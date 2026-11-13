@@ -13,6 +13,8 @@ Si una fuente está inaccesible, no enlazada, parcialmente leída o sin revisió
 **Leer primero:** [referencia general](00-REFERENCIA-GENERAL.md) · [decisiones históricas](01-REGISTRO-DECISIONES.md).  
 **Precedencia:** [Norma 01](NORMA-01-integridad-exhaustividad.md) → [Norma 02](NORMA-02-integracion-comparabilidad.md) → [Norma 04 — Cierre obligatorio](NORMA-04-validacion-convocatorias.md) → [Norma 03](NORMA-03-extraccion-externa-ia.md) → [configuración de operación](../config/operacion_ia.json).
 
+**Prueba de enlace PDF:** al reconstruir SQLite v2 desde los cuatro lotes se comprueba que existan **16 fuentes PDF con URL real y texto leído**, y que sigan con estado no cotejado. El auditor debe tener el enlace disponible junto a cada fila/criterio documental; no aceptar acta final cuyo PDF principal o de resultados carezca de URL en la base y de acceso desde la interfaz.
+
 ## A. Punto de control actual
 
 **Foto documental consolidada:**

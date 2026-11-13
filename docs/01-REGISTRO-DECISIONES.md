@@ -1,5 +1,16 @@
 # REGISTRO DE DECISIONES, CORRECCIONES Y PROBLEMAS
 
+## Rectificación final del criterio de avance — 13 de noviembre de 2026
+
+**Problema identificado:** durante varios lotes se había dado protagonismo a cifras de filas, convocatorias registradas y PDF leídos, aunque no se había comprobado íntegramente cada expediente ni preservado en la base el enlace de verificación de cada PDF. Además, la regla anterior pedía siempre PDF de resultados, incluso si se había verificado que no estaba disponible.
+
+**Corrección adoptada:** **[NORMA 04](NORMA-04-validacion-convocatorias.md)**. Solo cuenta una **convocatoria validada** cuando se extrajeron y cotejaron Excel completo y PDF de convocatoria con enlace, se examinó y registró la disponibilidad de resultados y, si los hay, se extrajo/cotejó su PDF con enlace. La no disponibilidad verificada se registra con fuente, URL, fecha y alcance; no se presume a partir de una celda vacía.
+
+**Garantía estructural:** nuevos controles y actas SQL que bloquean validaciones si faltan registros Excel, páginas de convocatoria, URL PDF, verificación de resultados o referencia de persistencia. La vista `v2_conteo_convocatorias_validadas` alimenta el número rector.
+
+**Recuento corregido al corte:** **0 validadas; 42 identificadas**. Conservar los lotes históricos como trabajo parcial sin etiquetar ninguno como validado. No alterar ni borrar sus datos.
+
+
 **Corte:** 13 de noviembre de 2026. **Alcance:** reconstrucción de decisiones del proyecto de veeduría; se refiere al historial de este repositorio, no a hallazgos concluyentes contra la universidad.  
 **Referencia vigente:** [00 — Referencia general](00-REFERENCIA-GENERAL.md). **Normas superiores:** [01](NORMA-01-integridad-exhaustividad.md), [02](NORMA-02-integracion-comparabilidad.md) y [03](NORMA-03-extraccion-externa-ia.md).
 

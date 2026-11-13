@@ -71,8 +71,9 @@ details{margin-top:9px}summary{color:var(--accent);cursor:pointer;font-size:12px
 "use strict";
 (function(){
 const DATA_URL="data/exportacion_v2.json";
+const VALIDATION_URL="data/estado_validacion.json";
 const $=id=>document.getElementById(id);
-const D={rows:[],selected:new Set(),enhanced:new Map(),concepts:["numero_convocatoria","tipo_convocatoria","titulo","facultad","programa","estado","fecha_publicacion","fecha_cierre","correo_responsable","referencia_convocatoria","referencia_resultados","dependencia_convocante","requisitos","criterios_evaluacion","plazas","estimulo_economico","horas_semanales","duracion","participantes","puntajes","decision_resultados"],vars:new Set(["facultad","programa","estado","fecha_cierre","dependencia_convocante","requisitos","criterios_evaluacion","participantes"]),inspected:null};
+const D={rows:[],selected:new Set(),enhanced:new Map(),concepts:["numero_convocatoria","tipo_convocatoria","titulo","facultad","programa","estado","fecha_publicacion","fecha_cierre","correo_responsable","referencia_convocatoria","referencia_resultados","dependencia_convocante","requisitos","criterios_evaluacion","plazas","estimulo_economico","horas_semanales","duracion","participantes","puntajes","decision_resultados"],vars:new Set(["facultad","programa","estado","fecha_cierre","dependencia_convocante","requisitos","criterios_evaluacion","participantes"]),inspected:null,certificados:new Set(),contadorValidado:null};
 const norm=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const el=(tag,cls,txt)=>{let x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=String(txt);return x};
 const uniq=arr=>[...new Set(arr.filter(x=>x!==undefined&&x!==null&&x!==""))];
@@ -111,13 +112,13 @@ function filtered(){let q=norm($("search").value),p=norm($("program").value),fac
  if(result==="unlinked"&&pdfCount(g,"resultados"))return false;
  if($("onlyStructured").checked&&!(enriched(g.code).campos_originales||[]).some(v=>!String(v.fuente_id).startsWith("excel:"))&&!(enriched(g.code).listas_originales||[]).length&&!(enriched(g.code).tablas_originales||[]).length)return false;
  return true;}).sort((a,b)=>b.code.localeCompare(a.code,"es"))}
-function updateCounts(){let d=[["Convocatorias",groups.size],["Filas originales Excel",D.rows.length],["PDF convocatoria leídos",D.rows.reduce((n,x)=>n+(x.documentos||[]).filter(y=>y.rol==="convocatoria").length,0)],["PDF resultados leídos",D.rows.reduce((n,x)=>n+(x.documentos||[]).filter(y=>y.rol==="resultados").length,0)]];
+function updateCounts(){let d=[["Convocatorias VALIDADAS",D.contadorValidado===null?"—":D.contadorValidado],["Convocatorias identificadas",groups.size],["Filas originales Excel",D.rows.length],["PDF solo con texto leído",D.rows.reduce((n,x)=>n+(x.documentos||[]).length,0)]];
  $("stats").replaceChildren(...d.map(([k,v])=>{let box=el("div","box");box.append(el("div","n",v),el("div","label",k));return box}));
 }
 function updateChoices(){let list=filtered(),wrap=document.createDocumentFragment();
  list.forEach(g=>{let node=el("label","case"),check=document.createElement("input");check.type="checkbox";check.checked=D.selected.has(g.code);check.onchange=()=>{if(check.checked)D.selected.add(g.code);else D.selected.delete(g.code);render()};
  let div=el("div"),name=get(g,"titulo")[0]?.literal||"Sin título";div.append(el("div","code",g.code),el("div","name",name));
- let b=el("div");b.append(el("span","tag",g.rows.length+" fila(s)"),document.createTextNode(" "),el("span","tag",pdfCount(g,"convocatoria")+" conv. PDF"),document.createTextNode(" "),el("span","tag",pdfCount(g,"resultados")+" res. PDF"));
+ let b=el("div");b.append(el("span",D.certificados.has(g.code)?"tag ok":"tag warn",D.certificados.has(g.code)?"Validada":"No validada"),document.createTextNode(" "),el("span","tag",g.rows.length+" fila(s)"),document.createTextNode(" "),el("span","tag",pdfCount(g,"convocatoria")+" conv. PDF"),document.createTextNode(" "),el("span","tag",pdfCount(g,"resultados")+" res. PDF"));
  div.append(b);node.append(check,div);wrap.append(node)});
  $("choices").replaceChildren(wrap);$("matchCount").textContent=list.length+" convocatorias encontradas";$("selectedCount").textContent="("+D.selected.size+")";
 }
@@ -184,7 +185,13 @@ async function start(){
   const res=await fetch(DATA_URL,{cache:"no-store"});
   if(!res.ok)throw Error(DATA_URL+": HTTP "+res.status);
   const publication=await res.json();
+  const validationRes=await fetch(VALIDATION_URL,{cache:"no-store"});
+  if(!validationRes.ok)throw Error("No se puede comprobar el contador de validaciones: HTTP "+validationRes.status);
+  const validacion=await validationRes.json();
   if(!Array.isArray(publication.convocatorias))throw Error("Exportación v2 sin convocatorias");
+  if(!Array.isArray(validacion.codigos_validados)||!Number.isInteger(validacion.convocatorias_validadas)||validacion.convocatorias_validadas!==validacion.codigos_validados.length||validacion.convocatorias_validadas<0)throw Error("Registro de validaciones inconsistente");
+  D.certificados=new Set(validacion.codigos_validados);
+  D.contadorValidado=validacion.convocatorias_validadas;
   D.rows=[];
   publication.convocatorias.forEach(x=>{
     const code=String(x.numero||"");
@@ -197,9 +204,10 @@ async function start(){
   const fs=uniq(D.rows.flatMap(r=>get({rows:[r]},"facultad").map(x=>x.literal))).sort((a,b)=>a.localeCompare(b,"es"));
   fs.forEach(x=>{let opt=el("option","",x);opt.value=x;$("faculty").append(opt)});
   ["2026-C2381","2026-C2312","2026-C2368"].forEach(x=>{if(groups.has(x))D.selected.add(x)});
+  if(validacion.convocatorias_identificadas!==groups.size||[...D.certificados].some(c=>!groups.has(c)))throw Error("Estado de validación no coincide con las convocatorias de la base");
   const nPDF=D.rows.reduce((n,r)=>n+(r.documentos||[]).length,0);
   const nPDFRecons=publication.convocatorias.reduce((n,c)=>n+(c.tablas_originales||[]).length,0);
-  $("stateMsg").textContent="Base v2 cargada: "+groups.size+" convocatorias, "+D.rows.length+" registros Excel y "+nPDF+" transcripciones PDF enlazadas. Tablas PDF estructuradas publicadas: "+nPDFRecons+". Los PDF sin reconstrucción mantienen explícitamente ese estado; no se inventan requisitos ni resultados.";
+  $("stateMsg").textContent="VALIDADAS: "+D.contadorValidado+" de "+groups.size+" convocatorias identificadas. Una validación exige Excel íntegro, PDF convocatoria cotejado y comprobación de resultados (con extracción completa de su PDF si existe). Textos PDF recuperados: "+nPDF+"; tablas PDF cotejadas: "+nPDFRecons+". Cada enlace y comprobación debe quedar registrado en base de datos.";
   updateCounts();render();
  }catch(err){$("stateMsg").textContent="Error al cargar la base documental: "+err.message+". Revisa que data/exportacion_v2.json exista en Pages.";console.error(err);}
 }

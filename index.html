@@ -498,31 +498,38 @@ details[open]>summary{margin-bottom:9px}
     const head=node("header","sheethead");
     const code=node("div","eyebrow","Expediente integrado · "+String(exp.numero));
     const row=node("div","headline");
-    const badge=node("span","pill"+(exp.validada===true?"":" pending"),validity(exp));row.append(badge);
+    row.append(node("span","pill"+(exp.validada===true?"":" pending"),validity(exp)));
     head.append(code,node("h2","",displayTitle(exp)),row);
-    const context=node("p","context","El título anterior es una referencia de lectura; las diferentes apariciones originales se conservan más abajo.");
-    head.append(context);
-    const meta={};
-    ["tipo_convocatoria","facultad","programa","estado","fecha_publicacion","fecha_cierre"].forEach(key=>{const v=valueOf(exp,key);if(v!==null)meta[key]=v;});
-    if(Object.keys(meta).length)head.append(renderTree(meta));
+    head.append(node("p","context","La ficha destaca los campos disponibles; los originales, ocurrencias y evidencias permanecen íntegros en el expediente desplegable."));
     host.append(head);
-    const warn=node("div","statusline warning","Estado documental: "+validity(exp)+". Una identificación o transcripción previa no equivale a validación integral según las puertas A–E.");
-    host.append(warn);
-    let s=section("Fuentes originales y documentos","Cada versión y enlace se muestra de manera independiente. Las filas de Excel y los textos PDF históricos están diferenciados de las páginas cotejadas.",1);
-    const sources=exp.fuentes_originales;
-    if(!sources.length)s.append(noRecords("No hay fuentes registradas para este expediente; no se presume que no existan."));
-    sources.forEach((source,i)=>s.append(renderSource(source,i)));host.append(s);
-    s=section("Datos originales indexados","Cada literal permanece asociado a su fuente, rótulo, concepto y ubicación. Repeticiones y diferencias entre fuentes se conservan.",2);
-    s.append(renderListOfRecords(exp.datos_originales,"No hay datos indexados en esta exportación.","original"));host.append(s);
-    s=section("Listas originales","Los requisitos, criterios y otros conjuntos mantienen todos sus ítems, su orden y sus vínculos documentales.",3);
-    s.append(renderListOfRecords(exp.listas_originales,"No se han registrado listas estructuradas; no implica que el PDF carezca de ellas."));host.append(s);
-    s=section("Resultados estructurados","Las filas, participantes, encabezados, valores, puntajes y observaciones se mantienen individualmente.",4);
-    s.append(renderListOfRecords(exp.resultados_estructurados,"Sin resultados estructurados en la exportación. La disponibilidad de PDF se comprueba en la sección de validación."));host.append(s);
-    s=section("Validación, resultados e incidencias","Los controles A–E, consultas de disponibilidad de resultados, incidencias y actas son la única base del estado oficial.",5);
-    const control=exp.control_validacion;
+    host.append(node("div","statusline warning","Estado documental: "+validity(exp)+". Una identificación, referencia a PDF o transcripción previa NO equivale a validación integral según las puertas A–E."));
+    renderPriority(exp,host);
+
+    // El nivel técnico preserva toda la salida v3 y nunca se sustituye por el resumen.
+    const archive=node("details","archive");
+    archive.append(node("summary","","Expediente documental íntegro · fuentes, transcripciones y validación"));
+    const content=node("div","");
+    content.append(node("p","archive-desc","Conserve el contexto, las ocurrencias repetidas y cada vínculo. El archivo completo permanece accesible, aunque no se muestre todo a la vez."));
+
+    let s=section("Fuentes originales y documentos","Cada versión y enlace se muestra de forma independiente. Las filas Excel y textos PDF históricos se distinguen de páginas cotejadas.","A");
+    const sources=exp.fuentes_originales||[];
+    if(!sources.length)s.append(noRecords("No hay fuentes registradas; no se presume que no existan."));
+    sources.forEach((source,i)=>s.append(renderSource(source,i)));content.append(s);
+
+    s=section("Datos originales indexados","Cada literal conserva su fuente, etiqueta y posición, incluidas las repeticiones y diferencias.","B");
+    s.append(renderListOfRecords(exp.datos_originales,"No hay datos indexados en esta exportación.","original"));content.append(s);
+
+    s=section("Listas originales","Todos los ítems, subítems, órdenes y vínculos de las listas documentales.","C");
+    s.append(renderListOfRecords(exp.listas_originales,"No se han registrado listas estructuradas; no implica que no existan en el PDF."));content.append(s);
+
+    s=section("Resultados estructurados originales","Todas las filas y los valores literales registrados, independientemente de la ficha prioritaria.","D");
+    s.append(renderListOfRecords(exp.resultados_estructurados,"Sin filas de resultados estructuradas. Consulte por separado la disponibilidad del PDF."));content.append(s);
+
+    s=section("Validación, resultados e incidencias","Los controles A–E, consultas de resultados, incidencias y actas determinan la validación oficial.","E");
+    const control=exp.control_validacion||{};
     const sets=[
-      ["Puertas A–E y criterios",control.puertas,"No constan puertas de validación completadas o registradas."],
-      ["Consultas de disponibilidad del PDF de resultados",control.comprobaciones_resultados,"No hay consulta documentada; no se puede afirmar que no exista PDF de resultados."],
+      ["Puertas A–E y criterios",control.puertas,"No constan puertas de validación registradas."],
+      ["Consultas de disponibilidad de resultados",control.comprobaciones_resultados,"No hay consulta documentada; no se puede afirmar que no exista PDF de resultados."],
       ["Incidencias y resoluciones",control.incidencias,"Sin incidencias registradas en la exportación."],
       ["Actas de cierre",control.actas,"Sin actas de cierre en la exportación."]
     ];
@@ -531,16 +538,19 @@ details[open]>summary{margin-bottom:9px}
       block.append(renderListOfRecords(pair[1],pair[2],pair[0].startsWith("Puertas")?"gates":""));
       s.append(block);
     });
-    const extraControl=without(control,["puertas","comprobaciones_resultados","incidencias","actas"]);
-    if(Object.keys(extraControl).length)s.append(details("Otros datos del control de validación",extraControl,true));
-    host.append(s);
-    s=section("Indicadores sintéticos","Cálculos derivados separados de los originales; cuando existen se conservan fórmula, versión e insumos.",6);
-    s.append(renderListOfRecords(exp.indicadores_sinteticos,"No se registran indicadores sintéticos para esta convocatoria."));host.append(s);
+    const moreControl=without(control,["puertas","comprobaciones_resultados","incidencias","actas"]);
+    if(Object.keys(moreControl).length)s.append(details("Otros datos del control de validación",moreControl,true));
+    content.append(s);
+
+    s=section("Indicadores sintéticos","Derivados explícitos, fórmulas, versiones e insumos; nunca sustituyen los originales.","F");
+    s.append(renderListOfRecords(exp.indicadores_sinteticos,"No se registran indicadores sintéticos."));content.append(s);
+
     const extras=without(exp,mandatory);
     if(Object.keys(extras).length){
-      s=section("Otros campos del expediente","Campos nuevos o no clasificados conservados sin descartarlos.",7);
-      s.append(renderTree(extras));host.append(s);
+      s=section("Otros campos del expediente","Campos imprevistos conservados sin descartarlos.","G");
+      s.append(renderTree(extras));content.append(s);
     }
+    archive.append(content);host.append(archive);
     document.title=String(exp.numero)+" · Expediente de convocatoria · UNAL";
   }
   function renderList(){

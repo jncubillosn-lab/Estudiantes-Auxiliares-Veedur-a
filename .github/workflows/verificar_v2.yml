@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'db/estructura_v2.sql'
+      - 'docs/NORMA-04-validacion-convocatorias.md'
+      - 'scripts/probar_validacion_convocatorias.py'
       - 'scripts/probar_estructura_v2.py'
       - 'comparador-v2.html'
       - 'data/lotes/**'
@@ -29,6 +31,8 @@ jobs:
           python-version: '3.12'
       - name: Verificar que originales y sintéticos están separados
         run: python scripts/probar_estructura_v2.py
+      - name: Verificar puertas de validacion por convocatoria y enlaces de evidencia
+        run: python scripts/probar_validacion_convocatorias.py
       - name: Verificar exportación reproducible desde la base v2
         run: python scripts/generar_publicacion_v2.py --comprobar
       - name: Verificar sintaxis, Excel y PDFs originales en Pages

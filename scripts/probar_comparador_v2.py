@@ -20,9 +20,13 @@ p=subprocess.run([node,"--check","-"],input=scripts[0],capture_output=True,text=
 assert p.returncode==0,p.stderr
 assert 'data/exportacion_v2.json' in html
 for keyword in ("documentos_lectura_previa","tablas_originales","listas_originales","SINTÉTICO",
-                "no se inventan requisitos","fuentes","original","Excel"):
+                "VALIDADAS","data/estado_validacion.json","fuentes","original","Excel"):
     assert keyword in html, keyword
 
+status=json.loads((ROOT/"data"/"estado_validacion.json").read_text(encoding="utf-8"))
+assert status["convocatorias_validadas"]==len(status["codigos_validados"])
+assert status["convocatorias_validadas"]==0, "No se han cotejado PDFs reales en los lotes históricos"
+assert status["convocatorias_identificadas"]==42
 publication=json.loads((ROOT/"data"/"exportacion_v2.json").read_text(encoding="utf-8"))
 srcs=[json.loads((ROOT/"data"/"lotes"/f"lote_0{n}.json").read_text(encoding="utf-8")) for n in range(1,5)]
 originals=[(batch["lote"],case) for batch in srcs for case in batch["casos"]]

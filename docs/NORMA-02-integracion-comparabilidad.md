@@ -1,5 +1,8 @@
 # NORMA 02 — Integración estructural y comparabilidad entre convocatorias
 
+> **Nota de vigencia (13-11-2026):** las referencias de esta norma al «primer visor `visor.html`/`index.html`» describen el defecto del **prototipo histórico**. Actualmente `index.html` publica el **comparador v2**, mientras `visor.html` conserva el anterior. Las exigencias normativas de integración y comparabilidad siguen plenamente vigentes. [Estado actual](00-REFERENCIA-GENERAL.md).
+
+
 **Jerarquía:** subordinada a [NORMA 01](NORMA-01-integridad-exhaustividad.md). **Objeto:** redefinir el producto desde una lista de publicaciones hacia una herramienta de veeduría documental comparativa.
 
 ## Contrato de integración: no confundir dos categorías de datos

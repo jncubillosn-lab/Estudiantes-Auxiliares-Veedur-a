@@ -2,6 +2,30 @@
 
 **Jerarquía:** subordinada a [NORMA 01](NORMA-01-integridad-exhaustividad.md). **Objeto:** redefinir el producto desde una lista de publicaciones hacia una herramienta de veeduría documental comparativa.
 
+## Contrato de integración: no confundir dos categorías de datos
+
+1. **Datos originales:** conjunto completo de las fuentes, guardado sin cambios y representado íntegramente de forma estructurada, con acceso directo desde la interfaz. La estructura de cada lista, tabla y elemento original se conserva de manera rastreable.
+2. **Datos sintéticos:** resultados derivados para análisis, comparación o visualización. Tienen nombre, regla de cálculo y procedencia; se muestran como adicionales y **nunca sustituyen ningún campo o elemento original**.
+
+La ficha integrada puede mostrar una sola vez el **código de convocatoria** como clave compartida cuando coincida entre las fuentes, pero debe permitir inspeccionar las tres ocurrencias literales originales. Para un campo que no coincide o que cambia por adenda, la vista presenta todos los valores y sus documentos, no sobrescribe ninguno.
+
+### Ejemplos de operaciones permitidas y prohibidas
+
+| Operación | Estado | Razón |
+|---|---|---|
+| Relacionar el mismo código desde Excel, convocatoria y resultados | Permitida | Identificador común; las ocurrencias literales permanecen intactas |
+| Integrar una lista de siete requisitos como siete registros individuales en una sola ficha | Obligatoria | Mantiene orden, literal y fuente de cada requisito |
+| Añadir un indicador «7 requisitos» junto a la lista | Permitida como **dato sintético** | Se puede volver a los siete registros originales |
+| Sustituir la lista de requisitos por el indicador «7» | **Prohibida** | Elimina información original |
+| Convertir una tabla de resultados en solo «1 seleccionado» | **Prohibida** | Suprime filas, personas, puntajes, notas, estados y condiciones |
+| Mostrar un resumen de resultados además de la tabla original completa | Permitida como **dato sintético** | Resumen y fuente permanecen distinguibles |
+| Fusionar dos condiciones distintas porque producen el mismo valor calculado | **Prohibida** | Los textos y condiciones originales no son equivalentes |
+| Presentar un texto extraído en bloque como si fuera tabla reconstruida | **Prohibida** | Pierde filas, columnas y relaciones de celdas |
+
+**Contrato de interfaz:** cada campo comparable puede desplegar inmediatamente su valor original completo y la estructura en que aparece (requisitos individuales, tabla, celda y página), y diferenciar visualmente los indicadores sintéticos. No basta ofrecer un vínculo al PDF ni esconder el contenido en un bloque de texto plano.
+
+**Contrato de base de datos:** los campos sintéticos usan registros/tablas lógicamente independientes, con referencia a los elementos originales que justifican su cálculo. Ningún valor sintetizado sobrescribe el texto literal, la tabla reconstruida ni el archivo original.
+
 ## 1. Unidad y resultado esperado
 
 La unidad principal de análisis es **la convocatoria**, identificada por su código sin fusionar automáticamente filas, versiones o documentos con referencias contradictorias. Para cada convocatoria el sistema debe producir una **ficha integrada** a partir de tres fuentes:

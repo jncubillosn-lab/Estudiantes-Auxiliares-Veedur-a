@@ -37,12 +37,16 @@ def revisar(manifest,config,anteriores=None):
     def extraidas(data):
         seen=set()
         for case in data.get("convocatorias",[]):
-            lookup={s.get("tipo"):s for s in case.get("fuentes",[]) if isinstance(s,dict)}
             for action in case.get("lecturas",[]):
                 if action.get("accion")=="extraer":
-                    src=lookup.get(action.get("fuente_tipo"),{})
-                    seen.add((src.get("url_original"),action.get("version_fuente"),
-                              action.get("ubicacion")))
+                    sources=[src for src in case.get("fuentes",[])
+                             if src.get("tipo")==action.get("fuente_tipo")
+                             and src.get("version_fuente")==action.get("version_fuente")
+                             and (not action.get("fuente_url")
+                                  or src.get("url_original")==action.get("fuente_url"))]
+                    if len(sources)==1:
+                        seen.add((sources[0].get("url_original"),action.get("version_fuente"),
+                                  action.get("ubicacion")))
         return seen
     leidas=set()
     anteriores_leidas=set().union(*(extraidas(a) for a in anteriores))
@@ -74,7 +78,7 @@ def revisar(manifest,config,anteriores=None):
             identity=(t,u,version)
             exigir(identity not in seenSources,f"{code}: inventario de fuentes duplicado")
             seenSources.add(identity)
-            lookup[t]=src
+            lookup.setdefault(t,[]).append(src)
         status=case.get("consulta_resultados")
         exigir(isinstance(status,dict),f"{code}: falta comprobación/estado explícito de resultados")
         st=status.get("estado")
@@ -98,14 +102,21 @@ def revisar(manifest,config,anteriores=None):
             total_read+=1
             t=row.get("fuente_tipo")
             exigir(t in lookup,f"{code}: lectura sin fuente inventariada")
-            assert_version=lookup[t].get("version_fuente")
-            exigir(row.get("version_fuente")==assert_version,
-                   f"{code}: versión de lectura distinta de fuente")
+            compatibles=[src for src in lookup[t]
+                        if src.get("version_fuente")==row.get("version_fuente")
+                        and (not row.get("fuente_url")
+                             or src.get("url_original")==row.get("fuente_url"))]
+            exigir(len(compatibles)==1,
+                   f"{code}: lectura ambigua; declarar fuente_url si hay fuentes del mismo tipo/versión")
+            source=compatibles[0]
+            exigir(url(source.get("url_original")),
+                   f"{code}: no se puede afirmar lectura de fuente sin URL")
+            assert_version=source["version_fuente"]
             location=row.get("ubicacion")
             exigir(isinstance(location,str) and location.strip(),f"{code}: lectura sin ubicación")
             action=row.get("accion")
             exigir(action in config["acciones_lectura"],f"{code}: acción de lectura desconocida")
-            source_url=lookup[t].get("url_original")
+            source_url=source.get("url_original")
             identity=(source_url,assert_version,location)
             if action=="extraer":
                 exigir(identity not in leidas and identity not in anteriores_leidas,
@@ -117,7 +128,11 @@ def revisar(manifest,config,anteriores=None):
                     and row["nueva_version_lectura"].strip(),
                     f"{code}: reextracción sin justificación y versión")
         for item in case.get("cobertura",[]):
-            exigir(item.get("fuente_tipo") in lookup,f"{code}: cobertura sin fuente")
+            tipo=item.get("fuente_tipo")
+            exigir(tipo in lookup,f"{code}: cobertura sin fuente")
+            matches=[src for src in lookup[tipo]
+                     if not item.get("fuente_url") or src.get("url_original")==item["fuente_url"]]
+            exigir(len(matches)==1,f"{code}: cobertura ambigua; indicar fuente_url")
             e=item.get("total_observado")
             c=item.get("total_cotejado")
             exigir(isinstance(e,int) and not isinstance(e,bool) and e>=0

@@ -26,7 +26,9 @@ def importar(lotes: list[Path], db_path: Path) -> dict:
     db=sqlite3.connect(db_path)
     db.execute("PRAGMA foreign_keys=ON")
     db.executescript((ROOT/"db"/"estructura_v2.sql").read_text(encoding="utf-8"))
-    totals={"lotes":0,"filas":0,"celdas":0,"convocatorias":set()}
+    totals={"lotes":0,"filas":0,"celdas":0,"convocatorias":set(),"pdf_enlaces_guardados":0}
+    pdf_identidades={}
+    clases_pdf={"convocatoria":"convocatoria_pdf","resultados":"resultados_pdf","adenda":"adenda_pdf","anexo":"anexo_pdf"}
     try:
         db.execute("BEGIN")
         for path in lotes:
@@ -75,6 +77,36 @@ def importar(lotes: list[Path], db_path: Path) -> dict:
                     VALUES(?,?,?,?,?,?,?,1,'extraido')""",
                     (fid,number,cur.lastrowid,concepts[i],row["encabezados"][i],cell.get("valor_visible"),i+1))
                     totals["celdas"]+=1
+                # Estas fuentes ya tienen URL y texto recuperado en los lotes
+                # históricos; registrarlos en la base NO equivale a cotejo PDF.
+                for doc in row.get("documentos",[]):
+                    url=doc.get("url")
+                    if not isinstance(url,str) or not url.startswith(("https://","http://")):
+                        raise ValueError(f"{number}: documento citado sin URL verificable; conservar el fallo")
+                    rol=doc.get("rol")
+                    clase=clases_pdf.get(rol,"otra")
+                    clave=(rol,url,doc.get("drive_id"))
+                    if clave not in pdf_identidades:
+                        meta={k:v for k,v in doc.items() if k!="texto_extraido"}
+                        meta.update({"corte_fuente":batch.get("fecha_extraccion"),
+                                     "nivel_documental":"texto_plano_sin_cotejo_visual",
+                                     "pdf_binario_disponible_en_bd":False})
+                        cur=db.execute("""INSERT INTO v2_fuente_original
+                            (clase,uri_original,nombre_literal,mime_literal,
+                             contenido_textual_original,estado_binario,metadatos_originales_json)
+                            VALUES(?,?,?,?,?,'pendiente',?)""",
+                            (clase,url,doc.get("titulo"),doc.get("mime"),
+                             doc.get("texto_extraido"),json.dumps(meta,ensure_ascii=False)))
+                        pdf_identidades[clave]=cur.lastrowid
+                        totals["pdf_enlaces_guardados"]+=1
+                    pdfid=pdf_identidades[clave]
+                    db.execute("""INSERT OR IGNORE INTO v2_vinculo_convocatoria_fuente
+                       (numero,fuente_id,rol_literal,codigo_observado_literal,
+                        fuente_del_codigo_literal,correspondencia,observacion)
+                       VALUES(?,?,?,?,?,'sin_cotejo',?)""",
+                       (number,pdfid,clase,doc.get("codigo_interno_literal"),
+                        "texto_extraido_del_documento",
+                        "URL de PDF conservada; lectura previa es texto, no tabla cotejada"))
                 totals["convocatorias"].add(number)
                 totals["filas"]+=1
             totals["lotes"]+=1

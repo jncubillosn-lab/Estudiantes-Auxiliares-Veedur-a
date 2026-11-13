@@ -2,9 +2,22 @@
 
 **Estado del producto:** replanteamiento de arquitectura de extracción y comparabilidad (13 de noviembre de 2026).
 
+## Sitio publicado: comparador v2 integrado
+
+**[Abrir la herramienta principal en GitHub Pages](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/)**
+
+- `index.html` y `comparador-v2.html` publican la misma interfaz comparativa. El visor previo permanece íntegro en [`visor.html`](visor.html).
+- La página lee [`data/exportacion_v2.json`](data/exportacion_v2.json), una proyección reproducible desde la base SQLite v2 y los cuatro lotes originales. **Pages no ejecuta SQLite**: la base se consulta mediante esta exportación estática.
+- Mantiene **42 convocatorias, 43 filas originales de Excel, 470 celdas con sus metadatos y los textos completos disponibles de 16 PDF**. Las dos filas del mismo código permanecen diferenciadas dentro de su convocatoria.
+- Los PDF con texto recuperado pero sin reconstrucción de tablas se presentan como **respaldo pendiente de cotejo**, no como requisitos ni resultados estructurados.
+- El comparador permite seleccionar varias convocatorias, contrastar campos originales, consultar todas las celdas de Excel y acceder a los PDF disponibles. Los criterios, requisitos y resultados PDF se incorporarán cuando exista su extracción externa validada por la IA, bajo la [Norma 03](docs/NORMA-03-extraccion-externa-ia.md).
+- La exportación se comprueba con `python scripts/generar_publicacion_v2.py --comprobar`; para generar la proyección desde fuentes y estructura se usa `--actualizar`. La validación automática exige la igualdad de cada celda y transcripción con las fuentes, no solamente de contadores.
+
+**Límite actual verificable:** 0 tablas PDF cotejadas y 0 expedientes con los tres documentos integrados en campos semánticos. La interfaz no suplanta ese trabajo.
+
 ## Arquitectura v2 — implementada como prototipo independiente
 
-La implementación ya se inició en el **orden acordado**, sin tocar los cuatro lotes originales ni reemplazar el sitio `index.html`:
+La implementación se desarrolló en el **orden acordado**. Tras validar la integración, se publicó el comparador como página principal y se conservó el antiguo visor en `visor.html`, sin cambiar los cuatro lotes originales:
 
 1. **Base de datos:** [esquema v2](db/estructura_v2.sql), originales inmutables, listas/celdas completas, referencias y derivados en tablas separadas.
 2. **Página comparadora:** [abrir comparador v2](comparador-v2.html) · [en GitHub Pages](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/comparador-v2.html). Compara los campos Excel de 42 convocatorias y deja señalados como pendientes los campos PDF todavía sin estructurar.
@@ -38,7 +51,7 @@ Transformar **tres fuentes completas** —Excel, PDF de convocatoria y PDF de re
 | PDF con tablas y celdas visualmente reconstruidas/verificadas | **0** |
 | Convocatorias con tres fuentes integradas y comparables | **0** |
 
-**El sitio `index.html`/`visor.html` es un prototipo documental de navegación**, no una herramienta terminada de veeduría. Presenta los PDF como texto lineal, lo que pierde la estructura tabular necesaria para evaluar y contrastar. **No escalar este formato como producto final**. El contenido conservado es respaldo para reconstrucción posterior.
+**El sitio `visor.html` es el prototipo documental anterior de navegación**, no una herramienta terminada de veeduría. Presenta los PDF como texto lineal, lo que pierde la estructura tabular necesaria para evaluar y contrastar. **No escalar este formato como producto final**. El contenido conservado es respaldo para reconstrucción posterior.
 
 La próxima implementación comienza por una **extracción externa de celdas y tablas por la IA** desde los PDF originales, con control de lote (máximo 50 convocatorias), cotejo visual y manifiesto verificable. Después se conectarán los campos a una ficha única y se creará la matriz transversal de comparación (carrera, dependencia, requisitos, criterios, ponderaciones, postulantes y resultados).
 

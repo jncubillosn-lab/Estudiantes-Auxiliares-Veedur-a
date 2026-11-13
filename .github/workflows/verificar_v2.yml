@@ -6,6 +6,8 @@ on:
       - 'db/estructura_v2.sql'
       - 'docs/NORMA-04-validacion-convocatorias.md'
       - 'scripts/probar_validacion_convocatorias.py'
+      - 'scripts/generar_estado_validacion.py'
+      - 'data/estado_validacion.json'
       - 'scripts/probar_estructura_v2.py'
       - 'comparador-v2.html'
       - 'data/lotes/**'
@@ -35,6 +37,8 @@ jobs:
         run: python scripts/probar_validacion_convocatorias.py
       - name: Verificar exportación reproducible desde la base v2
         run: python scripts/generar_publicacion_v2.py --comprobar
+      - name: Comprobar métrica principal respaldada exclusivamente por actas
+        run: python scripts/generar_estado_validacion.py --comprobar
       - name: Verificar sintaxis, Excel y PDFs originales en Pages
         run: python scripts/probar_comparador_v2.py
       - name: Controlar lotes IA, orden, límite de 50 y lecturas repetidas

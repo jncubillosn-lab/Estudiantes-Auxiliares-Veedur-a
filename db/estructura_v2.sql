@@ -441,9 +441,48 @@ CREATE INDEX IF NOT EXISTS idx_v2_acta_numero ON v2_acta_validacion_convocatoria
 
 -- «Validadas» se obtiene SOLO de actas finales que pasaron las tres puertas;
 -- contar códigos de fuente o PDF descargados daría resultados falsos.
-CREATE VIEW IF NOT EXISTS v2_convocatorias_validadas AS
- SELECT DISTINCT numero FROM v2_acta_validacion_convocatoria;
+-- Una acta histórica NO congela para siempre la validez. Si después aparecen
+-- nuevas filas Excel o documentos PDF sin cotejo, el código deja de contarse
+-- hasta que todos los originales disponibles vuelvan a estar completos.
+DROP VIEW IF EXISTS v2_conteo_convocatorias_validadas;
+DROP VIEW IF EXISTS v2_convocatorias_validadas;
+CREATE VIEW v2_convocatorias_validadas AS
+ SELECT DISTINCT a.numero
+ FROM v2_acta_validacion_convocatoria a
+ JOIN v2_control_validacion_fuente e ON e.control_id=a.control_excel_id
+ JOIN v2_control_validacion_fuente r ON r.control_id=a.control_resultados_id
+ WHERE e.total_elementos=(
+   SELECT count(*) FROM v2_excel_celda_original x WHERE x.numero=a.numero
+ )
+ AND NOT (r.estado='sin_pdf_verificado' AND EXISTS (
+   SELECT 1 FROM v2_vinculo_convocatoria_fuente v
+   JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
+   WHERE v.numero=a.numero AND f.clase='resultados_pdf'
+ ))
+ AND NOT EXISTS (
+   SELECT 1 FROM v2_vinculo_convocatoria_fuente v
+   JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
+   WHERE v.numero=a.numero
+     AND f.clase IN ('convocatoria_pdf','resultados_pdf','adenda_pdf','anexo_pdf')
+     AND NOT EXISTS (
+       SELECT 1 FROM v2_control_validacion_fuente c
+       WHERE c.numero=a.numero AND c.fuente_id=f.fuente_id
+         AND c.rol=f.clase AND c.estado='cotejada'
+         AND c.url_documento=f.uri_original
+         AND c.total_paginas>=1 AND c.paginas_cotejadas=c.total_paginas
+         AND c.total_paginas=(
+           SELECT count(*) FROM v2_pagina_original p
+           JOIN v2_corrida_extraccion t ON t.corrida_id=p.corrida_id
+           WHERE t.fuente_id=f.fuente_id AND p.estado_cobertura='cotejado'
+         )
+         AND c.total_paginas=(
+           SELECT count(*) FROM v2_pagina_original p
+           JOIN v2_corrida_extraccion t ON t.corrida_id=p.corrida_id
+           WHERE t.fuente_id=f.fuente_id
+         )
+     )
+ );
 
-CREATE VIEW IF NOT EXISTS v2_conteo_convocatorias_validadas AS
+CREATE VIEW v2_conteo_convocatorias_validadas AS
  SELECT (SELECT count(*) FROM v2_convocatorias_validadas) AS convocatorias_validadas,
         (SELECT count(*) FROM v2_convocatoria) AS convocatorias_identificadas;

@@ -21,21 +21,24 @@
           "tipo": "excel",
           "version": "corte-prueba-1",
           "referencia": "Hoja de prueba fila 2",
-          "estado": "cotejada"
+          "estado": "cotejada",
+          "url": "https://example.org/captura-excel"
         },
         {
           "fuente_id": "test-1-pdf",
           "tipo": "convocatoria_pdf",
           "version": "sha-prueba-1",
           "referencia": "PDF de prueba página 1",
-          "estado": "cotejada"
+          "estado": "cotejada",
+          "url": "https://example.org/convocatoria-ficticia.pdf"
         },
         {
           "fuente_id": "test-1-resultados",
           "tipo": "resultados_pdf",
           "version": "sha-prueba-2",
           "referencia": "PDF ficticio de resultados página 1",
-          "estado": "cotejada"
+          "estado": "cotejada",
+          "url": "https://example.org/resultados-ficticios.pdf"
         }
       ],
       "lecturas": [
@@ -106,6 +109,12 @@
       "persistencia": {
         "estado": "confirmada",
         "referencia": "solo-prueba.sqlite::TEST-C0001"
+      },
+      "verificacion_resultados": {
+        "estado": "pdf_disponible",
+        "url_consulta": "https://example.org/publicaciones/resultados",
+        "fecha_consulta": "2026-11-13",
+        "alcance_consulta": "Consulta integral ficticia de resultados para TEST-C0001"
       }
     },
     {

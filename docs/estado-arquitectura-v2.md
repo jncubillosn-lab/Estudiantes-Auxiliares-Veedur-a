@@ -26,36 +26,27 @@
 
 **Límite de calidad:** la matriz comparativa es real para los campos Excel, pero los requisitos y evaluaciones PDF están pendientes de extracción estructural real.
 
-## 3. Extracción (proceso construido y probado con PDF sintético)
+## 3. Operación vigente: extracción externa por IA
 
-Scripts independientes:
-- `scripts/extraer_pdf_v2.py`: a partir del PDF descargado conserva copia binaria **byte por byte**, hash, nombre original, páginas rasterizadas, caracteres con coordenadas, geometrías, imágenes, anotaciones y tablas candidatas con todas sus posiciones, incluidas celdas no detectadas.
-- `scripts/importar_pdf_v2.py`: vuelca esas estructuras y el PDF binario a SQLite sin sobrescribir originales ni asignar códigos internos que no se hayan observado en la fuente.
-- `scripts/exportar_comparador_v2.py`: exporta por convocatoria los campos, listas y tablas de las fuentes y los indicadores sintéticos de forma independiente.
-- `scripts/probar_extraccion_v2.py`: crea un PDF **de prueba** con tabla; ejecuta extracción → base SQLite → salida de comparación. Confirma estructura, hash y que 7 ítems originales coexisten con indicador derivado.
+**Corrección arquitectónica del 13 de noviembre de 2026.** La extracción y reconstrucción de los PDF reales serán realizadas directamente por la IA en sus interacciones, **no** por un programa extractor autónomo.
 
-**Límite de calidad:** las tablas son candidatas automáticas y todas sus páginas permanecen **pendientes de cotejo visual**. No se ha aplicado ni certificado esta nueva extracción sobre un PDF real de la UNAL. El estado visual es explícito.
+- [Norma 03](NORMA-03-extraccion-externa-ia.md): proceso y responsabilidad de lectura integral.
+- [Parámetros del proceso](../config/operacion_ia.json): límite duro de **50 convocatorias distintas por interacción**, orden de etapas y reglas contra lecturas redundantes.
+- [Validador de manifiestos](../scripts/validar_lote_ia.py): controla secuencia, duplicidad de lecturas de la misma región, cobertura declarada, pendientes y persistencia.
+- [Pruebas de control](../scripts/probar_control_lotes_ia.py): muestran que dos ubicaciones con el mismo texto son originales distintos, mientras que repetir una lectura ya registrada se detecta.
+- Un documento con resultados, convocatorias o adendas faltantes NO queda marcado completo; la falta de enlace se documenta sin inferir inexistencia.
+- El protocolo se ejecuta y registra dentro de la interacción y se guarda junto a los expedientes; el **siguiente lote se reanuda desde lo persistido**, no desde cero.
 
-### Ejecución reproducible
+**Herramientas experimentales anteriores:** `scripts/extraer_pdf_v2.py`, `scripts/importar_pdf_v2.py` y `scripts/probar_extraccion_v2.py` siguen en GitHub como apoyo opcional para imágenes/coordenadas. Su existencia y sus pruebas sobre un PDF ficticio son históricas; **no son el flujo operativo ni tienen autorización para interpretar automáticamente documentos reales**. La acción CI habitual comprueba estructura, comparador y controles del protocolo, sin ejecutar un extractor de PDF.
+
+Ejemplo de validación:
 
 ```bash
-python -m pip install pymupdf pdfplumber
-python scripts/probar_estructura_v2.py
-python scripts/probar_comparador_v2.py
-python scripts/probar_extraccion_v2.py
-
-# Construcción inicial de SQLite con los cuatro lotes existentes:
-python scripts/importar_excel_v2.py --db salidas/estructura_v2.sqlite
-
-# Un PDF real previamente descargado del enlace verificado:
-python scripts/extraer_pdf_v2.py archivo.pdf --numero 2026-C2381 --tipo convocatoria_pdf --salida salidas/extracciones_v2
-python scripts/importar_pdf_v2.py salidas/extracciones_v2/EL_SHA256/manifest.json --db salidas/estructura_v2.sqlite
-
-# La exportación se produce con salida nueva; no reescribe anteriores:
-python scripts/exportar_comparador_v2.py --db salidas/estructura_v2.sqlite --salida data/exportacion_v2.json
+python scripts/validar_lote_ia.py tests/fixtures/lote_ia_ejemplo.json
+python scripts/validar_lote_ia.py data/manifiestos/lote_05.json --anteriores data/manifiestos/lote_01.json data/manifiestos/lote_02.json
 ```
 
-El PDF real debe ser obtenido sin alteración del original. `EL_SHA256` es el directorio devuelto por el extractor; no se construyen direcciones arbitrarias ni se suponen documentos existentes.
+El segundo comando describe el uso cuando esos manifiestos reales existan; no indica que ya se hayan creado. **La validación de manifiesto verifica disciplina del proceso, no reemplaza el cotejo visual de PDF.**
 
 ## Orden de mejora y puertas de validación
 

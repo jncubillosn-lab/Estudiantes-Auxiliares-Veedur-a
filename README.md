@@ -3,6 +3,10 @@
 **Versión:** diseño preliminar v0.1 (13 de noviembre de 2026).  
 **Estado:** planificación técnica; no se han importado masivamente convocatorias ni resultados.
 
+## Norma superior del proyecto
+
+**[NORMA 01 — Integridad, exhaustividad y visibilidad de las fuentes](docs/NORMA-01-integridad-exhaustividad.md)**. La tarea es transformar, nunca escoger qué datos conservar. Todo el contenido original de Excel, convocatorias y resultados debe permanecer completo y consultable en estructuras explícitas, sin alias sustitutos, omisiones, anonimización en la base fiel ni normalizaciones que sobrescriban lo literal. Toda extracción debe conservar referencia a su fuente y ubicación original.
+
 ## Propósito
 
 Construir una base documental **verificable, reversible y auditable** a partir de tres clases de fuentes independientes:
@@ -33,7 +37,7 @@ Casos reales útiles como pruebas posteriores:
 
 ## Privacidad
 
-Los resultados pueden contener números de identificación personal y notas académicas. **No se deben subir datos completos de postulantes a un repositorio público**. Conservar la información íntegra en un almacenamiento privado autorizado y generar una vista pública redactada, sin números de documento ni claves reversibles. Los enlaces a documentos públicos no implican permiso irrestricto de republicación.
+**La base íntegra conserva todos los datos literales**, incluidos los identificadores y resultados necesarios para la trazabilidad. No se anonimizan ni sustituyen dentro de la base fiel. La protección de acceso se gestiona en la infraestructura de almacenamiento, separadamente de la extracción. Mientras el repositorio no figure como privado y no se haya confirmado autorización efectiva de acceso, no se incorporarán archivos con datos personales. Una eventual versión de consulta pública no podrá modificar la base íntegra ni se elaborará sin decisión expresa del responsable del proyecto.
 
 ## Ruta propuesta
 
@@ -41,6 +45,6 @@ Los resultados pueden contener números de identificación personal y notas acad
 2. Hacer piloto de 15–30 casos con alta variabilidad, incluyendo adendas y resultados.
 3. Ajustar diccionario y extracción con base en el piloto, manteniendo versionado.
 4. Importar por lotes, registrar errores y revisar integridad documental.
-5. Publicar dataset de consulta sin información personal y, aparte, un registro de contrastes verificables.
+5. Registrar todos los datos íntegros en un almacenamiento con acceso controlado; si se decide elaborar una vista pública, crearla como producto separado y sin alterar los registros originales.
 
 > La base no establece irregularidades por sí sola. Registra evidencias, diferencias, hipótesis y su estado de revisión.

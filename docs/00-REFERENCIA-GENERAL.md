@@ -17,6 +17,8 @@ Las URLs de los PDF son **evidencia obligatoria almacenada y consultable**, no s
 
 > **Regla central:** conservar todos los originales, transformarlos a estructuras fieles y explícitas, integrarlos por convocatoria y compararlos. Los indicadores derivados **nunca** reemplazan ni modifican la evidencia original. El sistema presenta diferencias; la valoración corresponde a la persona que realiza la veeduría.
 
+**Enlaces PDF en la base:** [`scripts/importar_excel_v2.py`](../scripts/importar_excel_v2.py) conserva ahora también en `v2_fuente_original.uri_original` los enlaces y textos de los **16 PDF conocidos** de los lotes, con referencia por código y estado no cotejado; su importación **no** crea actas de validación. Los mismos vínculos pueden abrirse desde el comparador. El código interno literal que difiera del código de Excel se conserva sin corregirlo. Los PDF originales binarios y sus estructuras visuales siguen pendientes.
+
 ## 1. Objetivos y alcance
 
 ### Objetivo general

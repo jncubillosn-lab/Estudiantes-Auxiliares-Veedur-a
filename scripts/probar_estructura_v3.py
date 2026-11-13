@@ -51,6 +51,14 @@ def add_source(code,typ,tag,pages=None,omit_metric=None):
                             literal_completo,pagina_id,celda_pdf_id,grupo_lista)
                             VALUES(?,?,?,?,?,?,?,'requisitos')""",
                            (code,fid,"requisito","Requisito","Requisito literal A",pg,cell))
+                if typ=="resultados_pdf":
+                    participante=db.execute("""INSERT INTO v3_resultado_fila
+                        (numero,fuente_id,tabla_id,fila_original,identificacion_literal)
+                        VALUES(?,?,?,0,'IDENTIFICACION FICTICIA')""",
+                        (code,fid,tbl)).lastrowid
+                    db.execute("""INSERT INTO v3_resultado_valor
+                        (resultado_fila_id,celda_pdf_id,encabezado_literal,valor_literal)
+                        VALUES(?,?,'Puntaje','80')""",(participante,cell))
         units=pages
     revision=db.execute("""INSERT INTO v3_revision_fuente
        (numero,fuente_id,estado,unidades_esperadas,unidades_cotejadas,url_de_verificacion,

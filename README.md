@@ -19,7 +19,7 @@ La documentación del proyecto está **consolidada y ordenada** para que una nue
 2. **[01 — REGISTRO DE DECISIONES, ERRORES Y CORRECCIONES](docs/01-REGISTRO-DECISIONES.md)** — explica el historial de la herramienta, cambios de criterio y por qué se descartaron enfoques anteriores.
 3. **[02 — CONTINUIDAD Y VALIDACIÓN](docs/02-CONTINUIDAD-Y-VALIDACION.md)** — procedimiento para cada lote externo por IA, máximo 50 convocatorias, control de fuentes/lecturas y criterios para darlo por cerrado.
 
-**Jerarquía vinculante:** [NORMA 01 — Integridad](docs/NORMA-01-integridad-exhaustividad.md) → [NORMA 02 — Comparabilidad](docs/NORMA-02-integracion-comparabilidad.md) → [NORMA 03 — IA externa](docs/NORMA-03-extraccion-externa-ia.md) → [configuración operativa](config/operacion_ia.json).
+**Jerarquía vinculante:** [NORMA 01 — Integridad](docs/NORMA-01-integridad-exhaustividad.md) → [NORMA 02 — Comparabilidad](docs/NORMA-02-integracion-comparabilidad.md) → [NORMA 04 — Aceptación y conteo](docs/NORMA-04-validacion-convocatorias.md) → [NORMA 03 — IA externa](docs/NORMA-03-extraccion-externa-ia.md) → [configuración operativa](config/operacion_ia.json).
 
 **Principio no negociable:** datos originales completos e inmutables, **separados** de indicadores sintéticos. El asistente estructura y verifica; el responsable del proyecto determina visibilidad e interpretación.
 

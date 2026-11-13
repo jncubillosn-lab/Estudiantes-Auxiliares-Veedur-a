@@ -1,7 +1,7 @@
 # CONTRATO ÚNICO DE SALIDA V3 — Herramienta de visualización
 
 **Versión:** 3.0 · **Norma superior:** [NORMA 00](NORMA-00-validacion-integral.md).  
-**Estado:** contrato implementado por [scripts/exportar_base_v3.py](../scripts/exportar_base_v3.py); la página publicada hoy sigue utilizando v2 y **no debe presentarse como conectada a v3**.
+**Estado:** contrato implementado por [scripts/exportar_base_v3.py](../scripts/exportar_base_v3.py). `index.html` ya consulta exclusivamente su proyección v3; la publicación efectiva en GitHub Pages depende del despliegue de la rama principal.
 
 ## 1. Una única entrada: datos integrados por código
 
@@ -12,7 +12,7 @@ python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
 python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida salidas/expedientes_v3.json
 ```
 
-El artefacto resultante, `expedientes_v3.json`, es **la única interfaz de entrada de datos para el futuro visualizador v3**. No debe leer datos dispersos de lotes originales para inventar una nueva conciliación. **GitHub Pages no ejecuta SQLite**; el JSON es una proyección que debe reconstruirse desde la base, nunca convertirse en fuente original.
+El artefacto resultante, `expedientes_v3.json`, es **la única interfaz de entrada de datos para el visualizador v3**. No debe leer datos dispersos de lotes originales para inventar una nueva conciliación. **GitHub Pages no ejecuta SQLite**; el JSON es una proyección que debe reconstruirse desde la base, nunca convertirse en fuente original.
 
 ### Objeto de raíz (contrato JSON)
 
@@ -100,6 +100,8 @@ El visualizador debe poder mostrar para cada puerta: criterio, evidencia URL, al
 ## 4. Estado de integración
 
 **Implementado:** estructura SQL, importación de capturas históricas, exportador de JSON, separación de originales/sintéticos/validación, y pruebas automatizadas.  
-**No implementado todavía:** conexión de `index.html` a este contrato v3. **No modificar la interfaz en esta tarea.**
+**Interfaz adaptada:** `index.html` consume `data/expedientes_v3.json`, sin lectura paralela de v2, con lista completa y fichas por código. El flujo `.github/workflows/publicar_visor_v3.yml` ejecuta el exportador oficial y versiona únicamente la proyección para GitHub Pages; la base SQLite y los originales no cambian. La representación de datos extensibles conserva campos desconocidos y mantiene cada fuente independiente.
+
+**Pendiente normativo distinto:** la comparación transversal simultánea de varias convocatorias exigida por la NORMA 02 no está implementada aún sobre v3. El comparador v2 se conserva como antecedente separado, sin presentarlo como cumplimiento de esa exigencia.
 
 **Corte histórico importado:** 42 códigos, 43 filas Excel, 470 celdas, 7 PDF de convocatoria + 9 de resultados **en lectura textual previa**, 0 tablas PDF visualmente cotejadas, **0 convocatorias validadas**. Este estado es una limitación real y debe mostrarse.

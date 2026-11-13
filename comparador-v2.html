@@ -41,8 +41,8 @@ details{margin-top:9px}summary{color:var(--accent);cursor:pointer;font-size:12px
 </head>
 <body>
 <div class="wrap">
-<div class="bar"><div><div class="kicker">Proyecto de veeduría · Universidad Nacional de Colombia</div><h1>Comparador documental de convocatorias</h1><p class="subtitle">Las filas comparan atributos y las columnas representan convocatorias. Los originales permanecen completos; los sintéticos son adicionales y se identifican por separado.</p></div><a href="./index.html">Visor anterior</a></div>
-<div class="message" id="stateMsg">Leyendo fuentes existentes. Esta versión no declara PDF estructurados ni completos hasta su extracción y cotejo visual.</div>
+<div class="bar"><div><div class="kicker">Proyecto de veeduría · Universidad Nacional de Colombia</div><h1>Comparador documental de convocatorias</h1><p class="subtitle">Selecciona convocatorias para contrastar campos originales y examinar las tres fuentes integradas. Las listas originales se muestran completas; los indicadores sintéticos nunca sustituyen las evidencias.</p></div><a href="./visor.html">Consultar visor anterior</a></div>
+<div class="message" id="stateMsg">Cargando exportación v2 de la base documental. El PDF leído como texto no se considera una tabla reconstruida ni una fuente visualmente cotejada.</div>
 <div class="stats" id="stats"></div>
 <section class="box" aria-label="Filtros">
 <div class="filters">
@@ -52,7 +52,7 @@ details{margin-top:9px}summary{color:var(--accent);cursor:pointer;font-size:12px
 <div class="field"><label for="state">Estado Excel</label><select id="state"><option value="">Todos</option><option>Abierta</option><option>Cerrada</option></select></div>
 <div class="field"><label for="results">Resultados documentales</label><select id="results"><option value="">Todos</option><option value="link">PDF leído</option><option value="unlinked">PDF no recuperado</option></select></div>
 </div>
-<div class="bar"><label><input type="checkbox" id="onlyStructured"> Solo campos PDF estructurados</label><span class="muted" id="matchCount"></span></div>
+<div class="bar"><label><input type="checkbox" id="onlyStructured"> Solo expedientes con PDF estructurado</label><span class="muted" id="matchCount"></span></div>
 </section>
 <div class="content" style="margin-top:13px">
 <aside class="pick"><div class="picktitle">Selecciona convocatorias <span id="selectedCount" class="muted"></span></div><div id="choices"></div></aside>
@@ -65,14 +65,14 @@ details{margin-top:9px}summary{color:var(--accent);cursor:pointer;font-size:12px
 </div>
 <section class="box inspector" id="inspector"><h2>Inspección de fuentes originales</h2><div class="empty">Selecciona una convocatoria y pulsa «Inspeccionar» para ver sus celdas originales y documentos vinculados.</div></section>
 </main></div>
-<p class="footer">Estado: comparador v2 en desarrollo. Los 4 lotes de Excel y el texto ya guardado no se modifican. Las tablas y listas PDF aparecerán únicamente cuando estén incorporadas en la exportación estructural v2.</p>
+<p class="footer">Fuentes: cuatro lotes originales de Excel y textos PDF disponibles, integrados por código en <a href="./data/exportacion_v2.json">exportacion_v2.json</a>. Sin alteración de los originales. Los requisitos, tablas y resultados se incorporarán solo cuando estén estructurados y cotejados, sin sustituir los textos originales.</p>
 </div>
 <script>
 "use strict";
 (function(){
-const paths=["data/lotes/lote_01.json","data/lotes/lote_02.json","data/lotes/lote_03.json","data/lotes/lote_04.json"];
+const DATA_URL="data/exportacion_v2.json";
 const $=id=>document.getElementById(id);
-const D={rows:[],selected:new Set(),enhanced:new Map(),concepts:["titulo","facultad","programa","estado","fecha_publicacion","fecha_cierre","correo_responsable","dependencia_convocante","requisitos","criterios_evaluacion","plazas","estimulo_economico","horas_semanales","duracion","participantes","puntajes","decision_resultados"],vars:new Set(["facultad","programa","estado","fecha_cierre","dependencia_convocante","requisitos","criterios_evaluacion","participantes"]),inspected:null};
+const D={rows:[],selected:new Set(),enhanced:new Map(),concepts:["numero_convocatoria","tipo_convocatoria","titulo","facultad","programa","estado","fecha_publicacion","fecha_cierre","correo_responsable","referencia_convocatoria","referencia_resultados","dependencia_convocante","requisitos","criterios_evaluacion","plazas","estimulo_economico","horas_semanales","duracion","participantes","puntajes","decision_resultados"],vars:new Set(["facultad","programa","estado","fecha_cierre","dependencia_convocante","requisitos","criterios_evaluacion","participantes"]),inspected:null};
 const norm=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const el=(tag,cls,txt)=>{let x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=String(txt);return x};
 const uniq=arr=>[...new Set(arr.filter(x=>x!==undefined&&x!==null&&x!==""))];
@@ -81,19 +81,21 @@ const cells=r=>r.celdas||[];
 const roleIndex=(r,closed,opened)=>r.pestana==="Convocatorias Cerradas"?closed:opened;
 const literal=(r,closed,opened)=>text(r,roleIndex(r,closed,opened));
 const get=(g,key)=>g.rows.map(r=>({literal:String(({
+ numero_convocatoria:()=>literal(r,10,9),tipo_convocatoria:()=>text(r,0),
  titulo:()=>literal(r,6,5),facultad:()=>text(r,1),programa:()=>text(r,2),estado:()=>text(r,4),
+ referencia_convocatoria:()=>text(r,3),referencia_resultados:()=>r.pestana==="Convocatorias Cerradas"?text(r,5):null,
  fecha_publicacion:()=>literal(r,8,7),fecha_cierre:()=>literal(r,9,8),correo_responsable:()=>literal(r,7,6)
-}[key]||(()=>null))()??""),source:"Excel · "+r.pestana+" · fila "+r.numero_fila})).filter(x=>x.literal);
+}[key]||(()=>null))()??""),source:"ORIGINAL Excel · "+r.pestana+" · fila "+r.numero_fila+" · lote "+r.lote})).filter(x=>x.literal);
 const groups=new Map();
-const schemaLabels={titulo:"Nombre original",facultad:"Facultad/sede",programa:"Programa curricular completo",estado:"Estado publicado",fecha_publicacion:"Fecha de publicación",fecha_cierre:"Fecha de cierre",correo_responsable:"Correo del responsable",dependencia_convocante:"Dependencia convocante",requisitos:"Requisitos (lista íntegra)",criterios_evaluacion:"Criterios de evaluación",plazas:"Plazas",estimulo_economico:"Estímulo económico",horas_semanales:"Horas semanales",duracion:"Duración",participantes:"Participantes (filas íntegras)",puntajes:"Puntuaciones por criterio",decision_resultados:"Decisiones y observaciones"};
+const schemaLabels={numero_convocatoria:"Número literal de convocatoria",tipo_convocatoria:"Tipo de convocatoria",titulo:"Nombre original",facultad:"Facultad/sede",programa:"Programa curricular completo",estado:"Estado publicado",referencia_convocatoria:"Referencia literal al PDF de convocatoria",referencia_resultados:"Referencia literal a resultados",fecha_publicacion:"Fecha de publicación",fecha_cierre:"Fecha de cierre",correo_responsable:"Correo del responsable",dependencia_convocante:"Dependencia convocante",requisitos:"Requisitos (lista íntegra)",criterios_evaluacion:"Criterios de evaluación",plazas:"Plazas",estimulo_economico:"Estímulo económico",horas_semanales:"Horas semanales",duracion:"Duración",participantes:"Participantes (filas íntegras)",puntajes:"Puntuaciones por criterio",decision_resultados:"Decisiones y observaciones"};
 function rowsFor(c){return groups.get(c)?.rows||[]}
 function conv(code){return groups.get(code)}
 function enriched(code){return D.enhanced.get(code)||{fuentes:[],campos_originales:[],listas_originales:[],sinteticos:[]}}
 function values(g,key){
  let a=get(g,key),en=enriched(g.code);
- if(!a.length) a=(en.campos_originales||[]).filter(v=>v.concepto===key).map(v=>({literal:v.valor_literal??"",source:"PDF · fuente "+v.fuente_id+" · pág. "+(v.pagina??"pendiente")+" · celda "+(v.celda_id??"pendiente"),ref:v}));
+ if(!a.length) a=(en.campos_originales||[]).filter(v=>v.concepto===key&&!String(v.fuente_id).startsWith("excel:")).map(v=>({literal:v.valor_literal??"",source:"ORIGINAL PDF · fuente "+v.fuente_id+" · pág. "+(v.pagina??"pendiente")+" · celda "+(v.celda_id??"pendiente"),ref:v}));
  // Para campos presentes en Excel y PDF, mostrar TODAS sus observaciones.
- else a=a.concat((en.campos_originales||[]).filter(v=>v.concepto===key).map(v=>({literal:v.valor_literal??"",source:"PDF · fuente "+v.fuente_id+" · pág. "+(v.pagina??"pendiente")+" · celda "+(v.celda_id??"pendiente"),ref:v})));
+ else a=a.concat((en.campos_originales||[]).filter(v=>v.concepto===key&&!String(v.fuente_id).startsWith("excel:")).map(v=>({literal:v.valor_literal??"",source:"ORIGINAL PDF · fuente "+v.fuente_id+" · pág. "+(v.pagina??"pendiente")+" · celda "+(v.celda_id??"pendiente"),ref:v})));
  const lists=(en.listas_originales||[]).filter(l=>l.concepto===key);
  lists.forEach(l=>a.push({literal:(l.items||[]).slice().sort((a,b)=>a.orden-b.orden).map(i=>i.orden+". "+i.literal_completo).join("\n"),source:"LISTA ORIGINAL · fuente "+l.fuente_id+" · "+(l.items||[]).length+" elementos individuales",ref:l}));
  return a;
@@ -107,7 +109,7 @@ function filtered(){let q=norm($("search").value),p=norm($("program").value),fac
  if(state&&!es.some(x=>x.literal===state))return false;
  if(result==="link"&&!pdfCount(g,"resultados"))return false;
  if(result==="unlinked"&&pdfCount(g,"resultados"))return false;
- if($("onlyStructured").checked&&!enriched(g.code).campos_originales?.length&&!enriched(g.code).listas_originales?.length)return false;
+ if($("onlyStructured").checked&&!(enriched(g.code).campos_originales||[]).some(v=>!String(v.fuente_id).startsWith("excel:"))&&!(enriched(g.code).listas_originales||[]).length&&!(enriched(g.code).tablas_originales||[]).length)return false;
  return true;}).sort((a,b)=>b.code.localeCompare(a.code,"es"))}
 function updateCounts(){let d=[["Convocatorias",groups.size],["Filas originales Excel",D.rows.length],["PDF convocatoria leídos",D.rows.reduce((n,x)=>n+(x.documentos||[]).filter(y=>y.rol==="convocatoria").length,0)],["PDF resultados leídos",D.rows.reduce((n,x)=>n+(x.documentos||[]).filter(y=>y.rol==="resultados").length,0)]];
  $("stats").replaceChildren(...d.map(([k,v])=>{let box=el("div","box");box.append(el("div","n",v),el("div","label",k));return box}));
@@ -138,7 +140,19 @@ function inspect(code){D.inspected=code;let g=conv(code),wrap=$("inspector");wra
  wrap.append(el("h3","","Documentos enlazados y estado"));
  if(!docs.length)wrap.append(el("p","muted","No hay PDF enlazado y leído en los lotes actuales. No implica que no exista."));
  docs.forEach(url=>{let a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=url;wrap.append(el("p","", "PDF original: "),a)});
- let en=enriched(code);wrap.append(el("h3","","Tablas, campos y listas PDF estructurados"));
+ let en=enriched(code);
+ const docsText=en.documentos_lectura_previa||[];
+ wrap.append(el("h3","","Respaldo textual de PDF ya consultados (SIN estructura tabular verificada)"));
+ if(!docsText.length)wrap.append(el("p","muted","No hay transcripciones PDF para esta convocatoria en los lotes disponibles."));
+ docsText.forEach(doc=>{
+  const entry=el("details","box");
+  entry.append(el("summary","",((doc.rol||"PDF")+" · "+(doc.titulo||"documento sin título"))));
+  const line=el("p","muted","Estado: texto extraído sin cotejo visual, no reconstrucción de tablas ni clasificación de requisitos.");entry.append(line);
+  if(doc.url){const a=el("a","","Abrir PDF original");a.href=doc.url;a.target="_blank";a.rel="noopener noreferrer";entry.append(a)}
+  entry.append(el("pre","raw",doc.texto_extraido??"[sin texto extraído]"));
+  wrap.append(entry);
+ });
+ wrap.append(el("h3","","Tablas, campos y listas PDF estructurados"));
  if(!(en.campos_originales||[]).length&&!(en.listas_originales||[]).length)wrap.append(el("div","message","La extracción anterior conservó texto lineal, no filas/celdas PDF verificadas. Esta sección permanece pendiente, sin presentar texto plano como si fuera una tabla."));
  (en.campos_originales||[]).forEach(v=>{let d=el("div","box");d.append(el("strong","",v.rotulo_literal||v.concepto),el("div","original",v.valor_literal??""),el("div","muted","Fuente "+v.fuente_id+" · Página "+(v.pagina??"pendiente")+" · Celda "+(v.celda_id??"pendiente")));wrap.append(d)});
  (en.tablas_originales||[]).forEach(t=>{
@@ -167,15 +181,27 @@ function inspect(code){D.inspected=code;let g=conv(code),wrap=$("inspector");wra
 function render(){updateChoices();variables();renderMatrix();if(D.inspected)inspect(D.inspected)}
 async function start(){
  try{
-  const parts=await Promise.all(paths.map(async url=>{let r=await fetch(url);if(!r.ok)throw Error(url+": HTTP "+r.status);return r.json()}));
-  D.rows=parts.flatMap(p=>p.casos||[]);
-  D.rows.forEach(r=>{let c=String(r.codigo||"");if(!groups.has(c))groups.set(c,{code:c,rows:[]});groups.get(c).rows.push(r)});
-  const fs=uniq(D.rows.flatMap(r=>get({rows:[r]},"facultad").map(x=>x.literal))).sort((a,b)=>a.localeCompare(b,"es"));fs.forEach(x=>{let opt=el("option","",x);opt.value=x;$("faculty").append(opt)});
-  try{let res=await fetch("data/exportacion_v2.json");if(res.ok){let data=await res.json();(data.convocatorias||[]).forEach(x=>D.enhanced.set(x.numero,x))}}catch(e){/* etapa 3 pendiente */}
+  const res=await fetch(DATA_URL,{cache:"no-store"});
+  if(!res.ok)throw Error(DATA_URL+": HTTP "+res.status);
+  const publication=await res.json();
+  if(!Array.isArray(publication.convocatorias))throw Error("Exportación v2 sin convocatorias");
+  D.rows=[];
+  publication.convocatorias.forEach(x=>{
+    const code=String(x.numero||"");
+    if(!code||groups.has(code))throw Error("Código vacío o repetido en exportación");
+    const rows=Array.isArray(x.filas_excel)?x.filas_excel:[];
+    groups.set(code,{code:code,rows:rows});
+    D.enhanced.set(code,x);
+    D.rows.push(...rows);
+  });
+  const fs=uniq(D.rows.flatMap(r=>get({rows:[r]},"facultad").map(x=>x.literal))).sort((a,b)=>a.localeCompare(b,"es"));
+  fs.forEach(x=>{let opt=el("option","",x);opt.value=x;$("faculty").append(opt)});
   ["2026-C2381","2026-C2312","2026-C2368"].forEach(x=>{if(groups.has(x))D.selected.add(x)});
-  $("stateMsg").textContent="Fuentes cargadas: "+D.rows.length+" registros originales de Excel, "+groups.size+" convocatorias. Los campos PDF que todavía no estén reconstruidos se marcan pendientes; no se inferirán requisitos o resultados desde texto plano.";
+  const nPDF=D.rows.reduce((n,r)=>n+(r.documentos||[]).length,0);
+  const nPDFRecons=publication.convocatorias.reduce((n,c)=>n+(c.tablas_originales||[]).length,0);
+  $("stateMsg").textContent="Base v2 cargada: "+groups.size+" convocatorias, "+D.rows.length+" registros Excel y "+nPDF+" transcripciones PDF enlazadas. Tablas PDF estructuradas publicadas: "+nPDFRecons+". Los PDF sin reconstrucción mantienen explícitamente ese estado; no se inventan requisitos ni resultados.";
   updateCounts();render();
- }catch(err){$("stateMsg").textContent="Error al cargar el conjunto documental: "+err.message+". Abre esta página desde GitHub Pages, donde las rutas de datos están disponibles.";}
+ }catch(err){$("stateMsg").textContent="Error al cargar la base documental: "+err.message+". Revisa que data/exportacion_v2.json exista en Pages.";console.error(err);}
 }
 ["search","program"].forEach(k=>$(k).oninput=render);
 ["faculty","state","results","onlyStructured"].forEach(k=>$(k).onchange=render);

@@ -52,11 +52,22 @@ def add_source(code,typ,tag,pages=None):
                             VALUES(?,?,?,?,?,?,?,'requisitos')""",
                            (code,fid,"requisito","Requisito","Requisito literal A",pg,cell))
         units=pages
-    db.execute("""INSERT INTO v3_revision_fuente
+    revision=db.execute("""INSERT INTO v3_revision_fuente
        (numero,fuente_id,estado,unidades_esperadas,unidades_cotejadas,url_de_verificacion,
         alcance,metodo_cotejo,fecha_cotejo)
        VALUES (?,?,'cotejada',?,?,?,?,?,'2026-11-13')""",
-       (code,fid,units,units,url,"Revisión integral ficticia del documento","Cotejo visual inventado"))
+       (code,fid,units,units,url,"Revisión integral ficticia del documento","Cotejo visual inventado")).lastrowid
+    for (m,) in db.execute("SELECT metrica FROM v3_metrica_requerida WHERE tipo_fuente=?",(typ,)).fetchall():
+        num=({"filas":1,"celdas":3 if typ=="excel" else 1,
+              "paginas":pages or 0,"tablas":0 if typ=="excel" else 1,
+              "requisitos":0 if typ!="convocatoria_pdf" else 1,
+              "criterios":0,"participantes":1 if typ=="resultados_pdf" else 0,
+              "puntajes":1 if typ=="resultados_pdf" else 0,
+              "otros_elementos":0,"hipervinculos":0}).get(m,0)
+        db.execute("""INSERT INTO v3_revision_metrica
+           (revision_id,metrica,total_observado,total_cotejado,estado,evidencia_url,nota_cotejo)
+           VALUES(?,?,?,?,'cotejada',?,'Confirmación íntegra ficticia por categoría')""",
+           (revision,m,num,num,url))
     return fid,url
 
 def make_controls(code,found,consult,excel,conv,res=None):

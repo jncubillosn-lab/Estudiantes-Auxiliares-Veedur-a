@@ -144,6 +144,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     <div class="detail-block"><div class="empty">Cargando la base documental v3…</div></div>
   </aside>
 </div>
+<div id="global-meta" style="margin-top:13px"></div>
 <footer class="footer">
   <span>Las fechas se presentan en formato legible a partir del valor original de Excel. «Sin vínculo» no significa ausencia verificada de resultados.</span>
   <span><a href="./docs/CONTRATO-V3-VISUALIZACION.md">Contrato v3</a> · <a href="./docs/NORMA-00-validacion-integral.md">Norma 00</a> · <a href="./comparador-v2.html">Comparador anterior</a></span>
@@ -526,6 +527,9 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       if(!response.ok)throw Error("HTTP "+response.status);
       const data=await response.json();
       ensureContract(data);db=data;
+      const globalData={};
+      Object.keys(data).filter(k=>k!=="convocatorias").forEach(k=>globalData[k]=data[k]);
+      $("global-meta").replaceChildren(lazyArchive("Información general de la exportación, advertencias y capturas originales",globalData));
       allRows=data.convocatorias.map(collectModel).sort((a,b)=>b.item.numero.localeCompare(a.item.numero,"es"));
       $("metric-total").textContent=String(data.metricas.convocatorias_identificadas);
       $("metric-validated").textContent=String(data.metricas.convocatorias_validadas);

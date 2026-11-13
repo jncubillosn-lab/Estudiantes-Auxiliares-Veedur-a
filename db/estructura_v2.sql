@@ -276,7 +276,7 @@ CREATE TRIGGER IF NOT EXISTS trg_v2_puntaje_no_delete BEFORE DELETE ON v2_result
 CREATE TABLE IF NOT EXISTS v2_control_validacion_fuente (
  control_id INTEGER PRIMARY KEY,
  numero TEXT NOT NULL REFERENCES v2_convocatoria(numero),
- rol TEXT NOT NULL CHECK(rol IN ('excel','convocatoria_pdf','resultados_pdf')),
+ rol TEXT NOT NULL CHECK(rol IN ('excel','convocatoria_pdf','resultados_pdf','adenda_pdf','anexo_pdf')),
  fuente_id INTEGER REFERENCES v2_fuente_original(fuente_id),
  estado TEXT NOT NULL CHECK(estado IN ('cotejada','sin_pdf_verificado')),
  url_documento TEXT,
@@ -400,6 +400,33 @@ BEGIN
        AND c.pendientes_criticos=0
    )
  ) THEN RAISE(ABORT,'C/D: disponibilidad de resultados no comprobada o PDF resultados incompleto') END;
+
+ -- Todas las fuentes PDF efectivamente vinculadas (incluidas adendas,
+ -- anexos y versiones adicionales) deben tener SU propio cotejo.
+ SELECT CASE WHEN EXISTS (
+   SELECT 1 FROM v2_vinculo_convocatoria_fuente v
+   JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
+   WHERE v.numero=NEW.numero
+     AND f.clase IN ('convocatoria_pdf','resultados_pdf','adenda_pdf','anexo_pdf')
+     AND NOT EXISTS (
+       SELECT 1 FROM v2_control_validacion_fuente c
+       WHERE c.numero=NEW.numero AND c.fuente_id=f.fuente_id
+         AND c.rol=f.clase AND c.estado='cotejada'
+         AND c.url_documento=f.uri_original
+         AND c.total_paginas>=1 AND c.paginas_cotejadas=c.total_paginas
+         AND c.total_paginas=(
+           SELECT count(*) FROM v2_pagina_original p
+           JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+           WHERE r.fuente_id=f.fuente_id AND p.estado_cobertura='cotejado'
+         )
+         AND c.total_paginas=(
+           SELECT count(*) FROM v2_pagina_original p
+           JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+           WHERE r.fuente_id=f.fuente_id
+         )
+         AND c.pendientes_criticos=0
+     )
+ ) THEN RAISE(ABORT,'E: hay PDFs, adendas o anexos vinculados sin cotejo y URL completa') END;
 END;
 
 -- Los controles/actas son históricos. Una corrección produce un nuevo control

@@ -631,3 +631,65 @@ CREATE TRIGGER v3_v3_resultado_fila_immutable_update BEFORE UPDATE ON v3_resulta
 CREATE TRIGGER v3_v3_resultado_fila_immutable_delete BEFORE DELETE ON v3_resultado_fila BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
 CREATE TRIGGER v3_v3_resultado_valor_immutable_update BEFORE UPDATE ON v3_resultado_valor BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
 CREATE TRIGGER v3_v3_resultado_valor_immutable_delete BEFORE DELETE ON v3_resultado_valor BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+
+
+-- Una categoría "cotejada" no puede declarar una cantidad diferente de lo
+-- efectivamente REPRESENTADO en SQLite. Esto no reemplaza el cotejo visual.
+-- Si el PDF tenía un elemento que la IA no detectó, solo la revisión externa
+-- puede descubrirlo: la base verifica fidelidad respecto de lo registrado.
+CREATE TRIGGER v3_cotejo_contra_elementos_guardados
+BEFORE INSERT ON v3_revision_metrica
+WHEN NEW.estado='cotejada'
+BEGIN
+ SELECT CASE WHEN NEW.total_observado!=(
+   SELECT CASE
+     WHEN f.tipo='excel' AND NEW.metrica='filas'
+       THEN (SELECT count(*) FROM v3_excel_fila x
+             WHERE x.fuente_id=f.fuente_id AND x.numero=r.numero)
+     WHEN f.tipo='excel' AND NEW.metrica='celdas'
+       THEN (SELECT count(*) FROM v3_excel_celda x JOIN v3_excel_fila y ON y.fila_id=x.fila_id
+             WHERE y.fuente_id=f.fuente_id AND y.numero=r.numero)
+     WHEN f.tipo='excel' AND NEW.metrica='hipervinculos'
+       THEN (SELECT count(*) FROM v3_excel_celda x JOIN v3_excel_fila y ON y.fila_id=x.fila_id
+             WHERE y.fuente_id=f.fuente_id AND y.numero=r.numero
+               AND x.hipervinculo_literal IS NOT NULL)
+     WHEN f.tipo!='excel' AND NEW.metrica='paginas'
+       THEN (SELECT count(*) FROM v3_pdf_pagina x WHERE x.fuente_id=f.fuente_id)
+     WHEN f.tipo!='excel' AND NEW.metrica='tablas'
+       THEN (SELECT count(*) FROM v3_pdf_tabla t JOIN v3_pdf_pagina p ON p.pagina_id=t.pagina_id
+             WHERE p.fuente_id=f.fuente_id)
+     WHEN f.tipo!='excel' AND NEW.metrica='celdas'
+       THEN (SELECT count(*) FROM v3_pdf_celda c
+             JOIN v3_pdf_tabla t ON t.tabla_id=c.tabla_id
+             JOIN v3_pdf_pagina p ON p.pagina_id=t.pagina_id
+             WHERE p.fuente_id=f.fuente_id)
+     WHEN f.tipo='convocatoria_pdf' AND NEW.metrica='requisitos'
+       THEN (CASE WHEN EXISTS(
+          SELECT 1 FROM v3_lista_original l WHERE l.fuente_id=f.fuente_id
+             AND l.codigo_concepto='requisitos')
+         THEN (SELECT count(*) FROM v3_item_original i
+               JOIN v3_lista_original l ON l.lista_id=i.lista_id
+               WHERE l.fuente_id=f.fuente_id AND l.codigo_concepto='requisitos')
+         ELSE (SELECT count(*) FROM v3_dato_original d
+               WHERE d.fuente_id=f.fuente_id AND d.numero=r.numero
+                 AND d.codigo_concepto='requisito') END)
+     WHEN f.tipo='convocatoria_pdf' AND NEW.metrica='criterios'
+       THEN (SELECT count(*) FROM v3_dato_original d
+             WHERE d.fuente_id=f.fuente_id AND d.numero=r.numero
+               AND d.codigo_concepto IN ('criterio','criterio_evaluacion'))
+     WHEN f.tipo='resultados_pdf' AND NEW.metrica='participantes'
+       THEN (SELECT count(*) FROM v3_resultado_fila x WHERE x.fuente_id=f.fuente_id)
+     WHEN f.tipo='resultados_pdf' AND NEW.metrica='puntajes'
+       THEN (SELECT count(*) FROM v3_resultado_valor v
+             JOIN v3_resultado_fila x ON x.resultado_fila_id=v.resultado_fila_id
+             WHERE x.fuente_id=f.fuente_id)
+     WHEN f.tipo!='excel' AND NEW.metrica='otros_elementos'
+       THEN (SELECT count(*) FROM v3_pdf_elemento x
+             JOIN v3_pdf_pagina p ON p.pagina_id=x.pagina_id
+             WHERE p.fuente_id=f.fuente_id)
+     ELSE NEW.total_observado
+   END
+   FROM v3_revision_fuente r JOIN v3_fuente f ON f.fuente_id=r.fuente_id
+   WHERE r.revision_id=NEW.revision_id
+ ) THEN RAISE(ABORT,'NORMA 00: conteo cotejado no coincide con los originales almacenados') END;
+END;

@@ -11,9 +11,7 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4024,201,'D','Archivo PDF de la convocatoria','https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk','{"stringValue":"https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk"}',NULL,'https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk',NULL,'{"formato":{"backgroundColor":{"red":1,"green":1,"blue":1},"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"OVERFLOW_CELL","textFormat":{"foregroundColor":{"red":0.12156863,"green":0.12156863,"blue":0.12156863},"fontFamily":"\"Google Sans\", Roboto, RobotoDraft, Helvetica, Arial, sans-serif","bold":false,"foregroundColorStyle":{"rgbColor":{"red":0.12156863,"green":0.12156863,"blue":0.12156863}},"link":{"uri":"https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk"}},"backgroundColorStyle":{"rgbColor":{"red":1,"green":1,"blue":1}}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4025,201,'E','Estado de la convocatoria','Cerrada','{"stringValue":"Cerrada"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4026,201,'F','Resultados',NULL,NULL,NULL,NULL,NULL,'{"formato":{"backgroundColor":{"red":1,"green":1,"blue":1},"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":true,"italic":false,"underline":false},"backgroundColorStyle":{"rgbColor":{"red":1,"green":1,"blue":1}}},"texto_formato_tramos":null}','leido');
-INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4027,201,'G','Nombre de la convocatoria, proyecto o Proceso','ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-
+INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4027,201,'G','Nombre de la convocatoria, proyecto o Proceso','ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'
 Selección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo en la Coordinación Curricular del Pregrado de Trabajo Social','{"stringValue":"ADENDA 2026-C2363-1 DEL 12/11/2026\r\nPor la cual se informa que esta convocatoria será declarada desierta por duplicidad\r\n\nSelección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo en la Coordinación Curricular del Pregrado de Trabajo Social"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4028,201,'H','Correo del responsable','ecifuentesa@unal.edu.co','{"stringValue":"ecifuentesa@unal.edu.co"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4029,201,'I','Fecha de publicación','12-nov-2026','{"numberValue":46338}',NULL,NULL,NULL,'{"formato":{"numberFormat":{"type":"DATE","pattern":"d\"-\"mmm\"-\"yyyy"},"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
@@ -22,373 +20,34 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO evento_revision (revision_id,objeto_tipo,objeto_id,accion,descripcion) VALUES (2011,'caso_convocatoria',201,'documento_pendiente','{"rol":"resultados","referencia_celda":"","motivo":"celda_sin_url_pdf","verificacion":"pendiente_de_localizar"}');
 INSERT INTO documento (documento_id,tipo_sugerido,url_origen,drive_id,titulo_archivo,mime_type,capturado_en,estado_acceso,estado_extraccion,notas) VALUES (2001,'convocatoria','https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk','14bFAveSC7yse_WcuINqXWCPLWKrTCIdi','2026-C2363','application/pdf','2026-11-13','leido','transcrito_sin_cotejo_visual','El PDF binario y su huella SHA256 no se han incorporado; texto extraído literalmente disponible en campo_documento y renglones.');
 INSERT INTO vinculo_caso (vinculo_id,caso_id,documento_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2012,201,2001,'convocatoria','2026-C2363','transcrito_pendiente_revision');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2001001,2001,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3
-Número de la
-Convocatoria
-2026-C2363
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Facultad de Ciencias Humanas - Departamento de Trabajo Social
-Nombre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Selección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo
-en la Coordinación Curricular del Pregrado de Trabajo Social
-Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a proyectos
-investigación o
-extensión
-Gestión
-Administrativa
-Bienestar
-universitario
-Otro
-No. de estudiantes a
-vincular
-1
-Requisitos generales
-(Art. 2 Acuerdo CSU 024
-de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de
-Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o
-superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad
-Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la
-Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e
-inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de
-apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de
-actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal
-desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer
-periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de
-acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo
-008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones
-académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académicoMacroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3
-igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de
-Trabajo Social.
-Contar con habilidades en herramientas virtuales, análisis de datos, habilidades
-comunicativas y trabajo en equipo
-Actividades a desarrollar
-• Apoyar en la sistematización y análisis de datos asociados al plan de
-mejoramiento y a los procesos de Autoevaluación continua, con fines de Acreditación y
-reforma del PEP del programa de Trabajo Social.
-• Apoyo en la aplicación de instrumentos de recolección de información
-relacionados con el plan de mejoramiento y los procesos de Autoevaluación continua, con
-fines de Acreditación y reforma del PEP del programa de Trabajo Social.
-• Apoyo logístico y metodológico a las actividades relacionadas con el plan de
-mejoramiento y los procesos de Autoevaluación continua, con fines de Acreditación y
-reforma del PEP del programa de Trabajo Social.
-• Apoyo en los procesos de socialización de prácticas académicas y trabajos de
-grado.
-• Apoyo en la redacción de informes del plan de mejoramiento.
-• Apoyo a la divulgación de actividades y asuntos relacionados con el desarrollo del
-plan de mejoramiento y de los procesos de Autoevaluación continua, con fines de
-Acreditación y reforma del PEP del programa de Trabajo Social.
-Modalidad de las
-actividades
-☐ ☐ ⛝
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-20 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por
-la distinción de Grado de Honor de la Universidad Nacional de Colombia.
-Duración de la vinculación
-36 Días
-Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación
-es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.
-Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y
-trabajo en equipo 20%
-• Disponibilidad horaria en relación con las actividades a desarrollar 10%
-• Conocimiento del PEP Trabajo Social 20%
-Términos para la
-presentación de
-documentos
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Fecha de cierre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-12/Nov/2026 12:00 m.Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3
-Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf
-• Historia Académica del SIA incluido el P.A.P.A.
-• Fotocopia del carné estudiantil vigente (por ambas caras)
-• Fotocopia de la cédula de ciudadanía (por ambas caras)
-• Horario de clases II Semestre de 2026
-• Recibo de pago de matrícula correspondiente al II Semestre de 2026
-• Certificación bancaria con fecha de expedición actual
-Documentos opcionales
-(no pueden ser
-modificatorios)
-Copia vinculaciones REA con la Universidad
-Responsable de la
-convocatoria
-Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,
-ecifuentesa@unal.edu.co , Ext: 16323
-Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y
-trabajo en equipo 20%
-4. Disponibilidad horaria en relación con las actividades a desarrollar 10%
-5. Conocimiento del PEP Trabajo Social 20%
-Fecha límite de
-Publicación de Resultados
-04/Dic/2026 05:00 p.m.','sin_cotejo_visual');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001002,2001,'número_de_la',1,'Número de la','Número de la
-Convocatoria
-2026-C2363
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-A','{"desplazamiento":179,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001003,2001,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por l','{"desplazamiento":219,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001004,2001,'nombre_de_la',1,'Nombre de la','Nombre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-S','{"desplazamiento":512,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001005,2001,'tipo_de_estudiante',1,'Tipo de estudiante','Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a pro','{"desplazamiento":812,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001006,2001,'perfil_requerido',1,'Perfil requerido','Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de
-Trabajo Social.
-Contar con habilidades en her','{"desplazamiento":3555,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001007,2001,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":1257,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001008,2001,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1516,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001009,2001,'actividades_a_desarrollar',3,'Actividades a desarrollar','Actividades a desarrollar
-• Apoyar en la sistematización y análisis de datos asociados al plan de
-mejoramiento y a los procesos de Autoevaluación co','{"desplazamiento":3793,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001010,2001,'actividades_a_desarrollar',4,'actividades a desarrollar','actividades a desarrollar 10%
-• Conocimiento del PEP Trabajo Social 20%
-Términos para la
-presentación de
-documentos
-ADENDA 2026-C2363-1 DEL 12/11','{"desplazamiento":5746,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001011,2001,'actividades_a_desarrollar',5,'actividades a desarrollar','actividades a desarrollar 10%
-5. Conocimiento del PEP Trabajo Social 20%
-Fecha límite de
-Publicación de Resultados
-04/Dic/2026 05:00 p.m.','{"desplazamiento":8504,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001012,2001,'modalidad_de_las',1,'Modalidad de las','Modalidad de las
-actividades
-☐ ☐ ⛝
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-20 H/semana
-Estímulo económico
-mensual
-$ 2.626','{"desplazamiento":4859,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001013,2001,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo
-requerida
-20 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico qu','{"desplazamiento":4923,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001014,2001,'estímulo_económico',1,'Estímulo económico','Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor ac','{"desplazamiento":4973,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001015,2001,'estímulo_económico',2,'estímulo económico','estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de po','{"desplazamiento":5052,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001016,2001,'duración_de_la_vinculación',1,'Duración de la vinculación','Duración de la vinculación
-36 Días
-Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación
-es funda','{"desplazamiento":5287,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001017,2001,'forma_de_selección',1,'Forma de Selección','Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y','{"desplazamiento":5527,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001018,2001,'términos_para_la',1,'Términos para la','Términos para la
-presentación de
-documentos
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desiert','{"desplazamiento":5820,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001019,2001,'fecha_de_cierre_de_la',1,'Fecha de cierre de la','Fecha de cierre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por dupl','{"desplazamiento":5988,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001020,2001,'documentación_requerida',1,'Documentación requerida','Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf','{"desplazamiento":7530,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001021,2001,'documentos_opcionales',1,'Documentos opcionales','Documentos opcionales
-(no pueden ser
-modificatorios)
-Copia vinculaciones REA con la Universidad
-Responsable de la
-convocatoria
-Esperanza Cifuent','{"desplazamiento":8020,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001022,2001,'responsable_de_la',1,'Responsable de la','Responsable de la
-convocatoria
-Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,
-ecifuentesa@unal.edu.co , Ext: 1','{"desplazamiento":8120,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001023,2001,'criterios_de_evaluación',1,'Criterios de evaluación','Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunica','{"desplazamiento":8276,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001024,2001,'adenda',1,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Facultad de Ciencias Humanas ','{"desplazamiento":328,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001025,2001,'adenda',2,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Selección y vinculación de un','{"desplazamiento":540,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001026,2001,'adenda',3,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Fecha de cierre de la
-convoc','{"desplazamiento":5867,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001027,2001,'adenda',4,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-12/Nov/2026 12:00 m.Macroproc','{"desplazamiento":6025,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200101,2001,1,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3
-Número de la
-Convocatoria
-2026-C2363
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Facultad de Ciencias Humanas - Departamento de Trabajo Social
-Nombre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Selección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo
-en la Coordinación Curricular del Pregrado de Trabajo Social
-Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a proyectos
-investigación o
-extensión
-Gestión
-Administrativa
-Bienestar
-universitario
-Otro
-No. de estudiantes a
-vincular
-1
-Requisitos generales
-(Art. 2 Acuerdo CSU 024
-de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de
-Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o
-superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad
-Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la
-Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e
-inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de
-apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de
-actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal
-desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer
-periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de
-acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo
-008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones
-académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2001001,2001,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3'||char(13)||char(10)||'Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2363'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Facultad de Ciencias Humanas - Departamento de Trabajo Social'||char(13)||char(10)||'Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Selección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo'||char(13)||char(10)||'en la Coordinación Curricular del Pregrado de Trabajo Social'||char(13)||char(10)||'Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a proyectos'||char(13)||char(10)||'investigación o'||char(13)||char(10)||'extensión'||char(13)||char(10)||'Gestión'||char(13)||char(10)||'Administrativa'||char(13)||char(10)||'Bienestar'||char(13)||char(10)||'universitario'||char(13)||char(10)||'Otro'||char(13)||char(10)||'No. de estudiantes a'||char(13)||char(10)||'vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Requisitos generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024'||char(13)||char(10)||'de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para'||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o'||char(13)||char(10)||'superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la'||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e'||char(13)||char(10)||'inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de'||char(13)||char(10)||'apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de'||char(13)||char(10)||'actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal'||char(13)||char(10)||'desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer'||char(13)||char(10)||'periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de'||char(13)||char(10)||'acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo'||char(13)||char(10)||'008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones'||char(13)||char(10)||'académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académicoMacroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3'||char(13)||char(10)||'igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de'||char(13)||char(10)||'Trabajo Social.'||char(13)||char(10)||'Contar con habilidades en herramientas virtuales, análisis de datos, habilidades'||char(13)||char(10)||'comunicativas y trabajo en equipo'||char(13)||char(10)||'Actividades a desarrollar'||char(13)||char(10)||'• Apoyar en la sistematización y análisis de datos asociados al plan de'||char(13)||char(10)||'mejoramiento y a los procesos de Autoevaluación continua, con fines de Acreditación y'||char(13)||char(10)||'reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo en la aplicación de instrumentos de recolección de información'||char(13)||char(10)||'relacionados con el plan de mejoramiento y los procesos de Autoevaluación continua, con'||char(13)||char(10)||'fines de Acreditación y reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo logístico y metodológico a las actividades relacionadas con el plan de'||char(13)||char(10)||'mejoramiento y los procesos de Autoevaluación continua, con fines de Acreditación y'||char(13)||char(10)||'reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo en los procesos de socialización de prácticas académicas y trabajos de'||char(13)||char(10)||'grado.'||char(13)||char(10)||'• Apoyo en la redacción de informes del plan de mejoramiento.'||char(13)||char(10)||'• Apoyo a la divulgación de actividades y asuntos relacionados con el desarrollo del'||char(13)||char(10)||'plan de mejoramiento y de los procesos de Autoevaluación continua, con fines de'||char(13)||char(10)||'Acreditación y reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'☐ ☐ ⛝'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'20 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por'||char(13)||char(10)||'la distinción de Grado de Honor de la Universidad Nacional de Colombia.'||char(13)||char(10)||'Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación'||char(13)||char(10)||'es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.'||char(13)||char(10)||'Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y'||char(13)||char(10)||'trabajo en equipo 20%'||char(13)||char(10)||'• Disponibilidad horaria en relación con las actividades a desarrollar 10%'||char(13)||char(10)||'• Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'12/Nov/2026 12:00 m.Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3'||char(13)||char(10)||'Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf'||char(13)||char(10)||'• Historia Académica del SIA incluido el P.A.P.A.'||char(13)||char(10)||'• Fotocopia del carné estudiantil vigente (por ambas caras)'||char(13)||char(10)||'• Fotocopia de la cédula de ciudadanía (por ambas caras)'||char(13)||char(10)||'• Horario de clases II Semestre de 2026'||char(13)||char(10)||'• Recibo de pago de matrícula correspondiente al II Semestre de 2026'||char(13)||char(10)||'• Certificación bancaria con fecha de expedición actual'||char(13)||char(10)||'Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Copia vinculaciones REA con la Universidad'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,'||char(13)||char(10)||'ecifuentesa@unal.edu.co , Ext: 16323'||char(13)||char(10)||'Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y'||char(13)||char(10)||'trabajo en equipo 20%'||char(13)||char(10)||'4. Disponibilidad horaria en relación con las actividades a desarrollar 10%'||char(13)||char(10)||'5. Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'04/Dic/2026 05:00 p.m.','sin_cotejo_visual');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001002,2001,'número_de_la',1,'Número de la','Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2363'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'A','{"desplazamiento":179,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001003,2001,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por l','{"desplazamiento":219,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001004,2001,'nombre_de_la',1,'Nombre de la','Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'S','{"desplazamiento":512,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001005,2001,'tipo_de_estudiante',1,'Tipo de estudiante','Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a pro','{"desplazamiento":812,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001006,2001,'perfil_requerido',1,'Perfil requerido','Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de'||char(13)||char(10)||'Trabajo Social.'||char(13)||char(10)||'Contar con habilidades en her','{"desplazamiento":3555,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001007,2001,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":1257,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001008,2001,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1516,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001009,2001,'actividades_a_desarrollar',3,'Actividades a desarrollar','Actividades a desarrollar'||char(13)||char(10)||'• Apoyar en la sistematización y análisis de datos asociados al plan de'||char(13)||char(10)||'mejoramiento y a los procesos de Autoevaluación co','{"desplazamiento":3793,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001010,2001,'actividades_a_desarrollar',4,'actividades a desarrollar','actividades a desarrollar 10%'||char(13)||char(10)||'• Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11','{"desplazamiento":5746,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001011,2001,'actividades_a_desarrollar',5,'actividades a desarrollar','actividades a desarrollar 10%'||char(13)||char(10)||'5. Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'04/Dic/2026 05:00 p.m.','{"desplazamiento":8504,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001012,2001,'modalidad_de_las',1,'Modalidad de las','Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'☐ ☐ ⛝'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'20 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626','{"desplazamiento":4859,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001013,2001,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'20 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico qu','{"desplazamiento":4923,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001014,2001,'estímulo_económico',1,'Estímulo económico','Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor ac','{"desplazamiento":4973,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001015,2001,'estímulo_económico',2,'estímulo económico','estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de po','{"desplazamiento":5052,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001016,2001,'duración_de_la_vinculación',1,'Duración de la vinculación','Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación'||char(13)||char(10)||'es funda','{"desplazamiento":5287,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001017,2001,'forma_de_selección',1,'Forma de Selección','Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y'||char(13)||'','{"desplazamiento":5527,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001018,2001,'términos_para_la',1,'Términos para la','Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desiert','{"desplazamiento":5820,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001019,2001,'fecha_de_cierre_de_la',1,'Fecha de cierre de la','Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por dupl','{"desplazamiento":5988,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001020,2001,'documentación_requerida',1,'Documentación requerida','Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf','{"desplazamiento":7530,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001021,2001,'documentos_opcionales',1,'Documentos opcionales','Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Copia vinculaciones REA con la Universidad'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Esperanza Cifuent','{"desplazamiento":8020,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001022,2001,'responsable_de_la',1,'Responsable de la','Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,'||char(13)||char(10)||'ecifuentesa@unal.edu.co , Ext: 1','{"desplazamiento":8120,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001023,2001,'criterios_de_evaluación',1,'Criterios de evaluación','Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunica','{"desplazamiento":8276,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001024,2001,'adenda',1,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Facultad de Ciencias Humanas ','{"desplazamiento":328,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001025,2001,'adenda',2,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Selección y vinculación de un','{"desplazamiento":540,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001026,2001,'adenda',3,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Fecha de cierre de la'||char(13)||char(10)||'convoc','{"desplazamiento":5867,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2001027,2001,'adenda',4,'ADENDA','ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'12/Nov/2026 12:00 m.Macroproc','{"desplazamiento":6025,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200101,2001,1,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3'||char(13)||char(10)||'Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2363'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Facultad de Ciencias Humanas - Departamento de Trabajo Social'||char(13)||char(10)||'Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Selección y vinculación de un estudiante auxiliar de pregrado para apoyo administrativo'||char(13)||char(10)||'en la Coordinación Curricular del Pregrado de Trabajo Social'||char(13)||char(10)||'Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a proyectos'||char(13)||char(10)||'investigación o'||char(13)||char(10)||'extensión'||char(13)||char(10)||'Gestión'||char(13)||char(10)||'Administrativa'||char(13)||char(10)||'Bienestar'||char(13)||char(10)||'universitario'||char(13)||char(10)||'Otro'||char(13)||char(10)||'No. de estudiantes a'||char(13)||char(10)||'vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Requisitos generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024'||char(13)||char(10)||'de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para'||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o'||char(13)||char(10)||'superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la'||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e'||char(13)||char(10)||'inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de'||char(13)||char(10)||'apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de'||char(13)||char(10)||'actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal'||char(13)||char(10)||'desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer'||char(13)||char(10)||'periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de'||char(13)||char(10)||'acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo'||char(13)||char(10)||'008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones'||char(13)||char(10)||'académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101001,200101,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101002,200101,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101003,200101,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -462,65 +121,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101071,200101,71,'renglon_literal','008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101072,200101,72,'renglon_literal','académicas.','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200101073,200101,73,'renglon_literal','3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200102,2001,2,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3
-igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de
-Trabajo Social.
-Contar con habilidades en herramientas virtuales, análisis de datos, habilidades
-comunicativas y trabajo en equipo
-Actividades a desarrollar
-• Apoyar en la sistematización y análisis de datos asociados al plan de
-mejoramiento y a los procesos de Autoevaluación continua, con fines de Acreditación y
-reforma del PEP del programa de Trabajo Social.
-• Apoyo en la aplicación de instrumentos de recolección de información
-relacionados con el plan de mejoramiento y los procesos de Autoevaluación continua, con
-fines de Acreditación y reforma del PEP del programa de Trabajo Social.
-• Apoyo logístico y metodológico a las actividades relacionadas con el plan de
-mejoramiento y los procesos de Autoevaluación continua, con fines de Acreditación y
-reforma del PEP del programa de Trabajo Social.
-• Apoyo en los procesos de socialización de prácticas académicas y trabajos de
-grado.
-• Apoyo en la redacción de informes del plan de mejoramiento.
-• Apoyo a la divulgación de actividades y asuntos relacionados con el desarrollo del
-plan de mejoramiento y de los procesos de Autoevaluación continua, con fines de
-Acreditación y reforma del PEP del programa de Trabajo Social.
-Modalidad de las
-actividades
-☐ ☐ ⛝
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-20 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por
-la distinción de Grado de Honor de la Universidad Nacional de Colombia.
-Duración de la vinculación
-36 Días
-Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación
-es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.
-Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y
-trabajo en equipo 20%
-• Disponibilidad horaria en relación con las actividades a desarrollar 10%
-• Conocimiento del PEP Trabajo Social 20%
-Términos para la
-presentación de
-documentos
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-Fecha de cierre de la
-convocatoria
-ADENDA 2026-C2363-1 DEL 12/11/2026
-Por la cual se informa que esta convocatoria será declarada desierta por duplicidad
-12/Nov/2026 12:00 m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200102,2001,2,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3'||char(13)||char(10)||'igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido Ser estudiante del Pregrado en Trabajo Social y haber cursado el 70% de la carrera de'||char(13)||char(10)||'Trabajo Social.'||char(13)||char(10)||'Contar con habilidades en herramientas virtuales, análisis de datos, habilidades'||char(13)||char(10)||'comunicativas y trabajo en equipo'||char(13)||char(10)||'Actividades a desarrollar'||char(13)||char(10)||'• Apoyar en la sistematización y análisis de datos asociados al plan de'||char(13)||char(10)||'mejoramiento y a los procesos de Autoevaluación continua, con fines de Acreditación y'||char(13)||char(10)||'reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo en la aplicación de instrumentos de recolección de información'||char(13)||char(10)||'relacionados con el plan de mejoramiento y los procesos de Autoevaluación continua, con'||char(13)||char(10)||'fines de Acreditación y reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo logístico y metodológico a las actividades relacionadas con el plan de'||char(13)||char(10)||'mejoramiento y los procesos de Autoevaluación continua, con fines de Acreditación y'||char(13)||char(10)||'reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'• Apoyo en los procesos de socialización de prácticas académicas y trabajos de'||char(13)||char(10)||'grado.'||char(13)||char(10)||'• Apoyo en la redacción de informes del plan de mejoramiento.'||char(13)||char(10)||'• Apoyo a la divulgación de actividades y asuntos relacionados con el desarrollo del'||char(13)||char(10)||'plan de mejoramiento y de los procesos de Autoevaluación continua, con fines de'||char(13)||char(10)||'Acreditación y reforma del PEP del programa de Trabajo Social.'||char(13)||char(10)||'Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'☐ ☐ ⛝'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'20 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por'||char(13)||char(10)||'la distinción de Grado de Honor de la Universidad Nacional de Colombia.'||char(13)||char(10)||'Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación'||char(13)||char(10)||'es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.'||char(13)||char(10)||'Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y'||char(13)||char(10)||'trabajo en equipo 20%'||char(13)||char(10)||'• Disponibilidad horaria en relación con las actividades a desarrollar 10%'||char(13)||char(10)||'• Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'ADENDA 2026-C2363-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se informa que esta convocatoria será declarada desierta por duplicidad'||char(13)||char(10)||'12/Nov/2026 12:00 m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102001,200102,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102002,200102,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102003,200102,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -580,46 +181,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102057,200102,57,'renglon_literal','ADENDA 2026-C2363-1 DEL 12/11/2026','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102058,200102,58,'renglon_literal','Por la cual se informa que esta convocatoria será declarada desierta por duplicidad','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200102059,200102,59,'renglon_literal','12/Nov/2026 12:00 m.','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200103,2001,3,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3
-Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf
-• Historia Académica del SIA incluido el P.A.P.A.
-• Fotocopia del carné estudiantil vigente (por ambas caras)
-• Fotocopia de la cédula de ciudadanía (por ambas caras)
-• Horario de clases II Semestre de 2026
-• Recibo de pago de matrícula correspondiente al II Semestre de 2026
-• Certificación bancaria con fecha de expedición actual
-Documentos opcionales
-(no pueden ser
-modificatorios)
-Copia vinculaciones REA con la Universidad
-Responsable de la
-convocatoria
-Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,
-ecifuentesa@unal.edu.co , Ext: 16323
-Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y
-trabajo en equipo 20%
-4. Disponibilidad horaria en relación con las actividades a desarrollar 10%
-5. Conocimiento del PEP Trabajo Social 20%
-Fecha límite de
-Publicación de Resultados
-04/Dic/2026 05:00 p.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200103,2001,3,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3'||char(13)||char(10)||'Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf'||char(13)||char(10)||'• Historia Académica del SIA incluido el P.A.P.A.'||char(13)||char(10)||'• Fotocopia del carné estudiantil vigente (por ambas caras)'||char(13)||char(10)||'• Fotocopia de la cédula de ciudadanía (por ambas caras)'||char(13)||char(10)||'• Horario de clases II Semestre de 2026'||char(13)||char(10)||'• Recibo de pago de matrícula correspondiente al II Semestre de 2026'||char(13)||char(10)||'• Certificación bancaria con fecha de expedición actual'||char(13)||char(10)||'Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Copia vinculaciones REA con la Universidad'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Esperanza Cifuentes Arcila Coordinadora Curricular del Pregrado de Trabajo Social ,'||char(13)||char(10)||'ecifuentesa@unal.edu.co , Ext: 16323'||char(13)||char(10)||'Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Habilidades en herramientas virtuales, análisis de datos, habilidades comunicativas y'||char(13)||char(10)||'trabajo en equipo 20%'||char(13)||char(10)||'4. Disponibilidad horaria en relación con las actividades a desarrollar 10%'||char(13)||char(10)||'5. Conocimiento del PEP Trabajo Social 20%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'04/Dic/2026 05:00 p.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200103001,200103,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200103002,200103,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200103003,200103,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -665,9 +227,7 @@ INSERT INTO fila_hoja (fila_id,captura_id,pestaña_literal,indice_fila,estado_ex
 INSERT INTO vinculo_caso (vinculo_id,caso_id,fila_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2021,202,202,'hoja_calculo','2026-C2361','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4041,202,'A','Programa','Pregrado','{"stringValue":"Pregrado"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4042,202,'B','Facultad','Facultad de Ciencias Humanas','{"stringValue":"Facultad de Ciencias Humanas"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
-INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4043,202,'C','Programa curricular','ADENDA 2026-C2361-1 DEL 12/11/2026
-Por la cual se corrige el porcentaje de avance de la carrera así: 
-Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo Social','{"stringValue":"ADENDA 2026-C2361-1 DEL 12/11/2026\r\nPor la cual se corrige el porcentaje de avance de la carrera así: \r\nSer estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo Social"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
+INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4043,202,'C','Programa curricular','ADENDA 2026-C2361-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se corrige el porcentaje de avance de la carrera así: '||char(13)||char(10)||'Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo Social','{"stringValue":"ADENDA 2026-C2361-1 DEL 12/11/2026\r\nPor la cual se corrige el porcentaje de avance de la carrera así: \r\nSer estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo Social"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4044,202,'D','Archivo PDF de la convocatoria','https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk','{"stringValue":"https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk"}',NULL,'https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk',NULL,'{"formato":{"backgroundColor":{"red":1,"green":1,"blue":1},"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"OVERFLOW_CELL","textFormat":{"foregroundColor":{"red":0.12156863,"green":0.12156863,"blue":0.12156863},"fontFamily":"\"Google Sans\", Roboto, RobotoDraft, Helvetica, Arial, sans-serif","bold":false,"foregroundColorStyle":{"rgbColor":{"red":0.12156863,"green":0.12156863,"blue":0.12156863}},"link":{"uri":"https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk"}},"backgroundColorStyle":{"rgbColor":{"red":1,"green":1,"blue":1}}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4045,202,'E','Estado de la convocatoria','Cerrada','{"stringValue":"Cerrada"}',NULL,NULL,NULL,'{"formato":{"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":false,"italic":false,"underline":false}},"texto_formato_tramos":null}','leido');
 INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_visible,valor_origen_json,formula,hipervinculo,nota,metadatos_formato_json,estado_lectura) VALUES (4046,202,'F','Resultados',NULL,NULL,NULL,NULL,NULL,'{"formato":{"backgroundColor":{"red":1,"green":1,"blue":1},"horizontalAlignment":"CENTER","verticalAlignment":"MIDDLE","wrapStrategy":"WRAP","textFormat":{"fontSize":10,"bold":true,"italic":false,"underline":false},"backgroundColorStyle":{"rgbColor":{"red":1,"green":1,"blue":1}}},"texto_formato_tramos":null}','leido');
@@ -679,355 +239,31 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO evento_revision (revision_id,objeto_tipo,objeto_id,accion,descripcion) VALUES (2021,'caso_convocatoria',202,'documento_pendiente','{"rol":"resultados","referencia_celda":"","motivo":"celda_sin_url_pdf","verificacion":"pendiente_de_localizar"}');
 INSERT INTO documento (documento_id,tipo_sugerido,url_origen,drive_id,titulo_archivo,mime_type,capturado_en,estado_acceso,estado_extraccion,notas) VALUES (2002,'convocatoria','https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk','1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe','2026-C2361','application/pdf','2026-11-13','leido','transcrito_sin_cotejo_visual','El PDF binario y su huella SHA256 no se han incorporado; texto extraído literalmente disponible en campo_documento y renglones.');
 INSERT INTO vinculo_caso (vinculo_id,caso_id,documento_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2022,202,2002,'convocatoria','2026-C2361','transcrito_pendiente_revision');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2002001,2002,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3
-Número de la
-Convocatoria
-2026-C2361
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-Facultad de Ciencias Humanas - Departamento de Trabajo Social
-Nombre de la
-convocatoria
-Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo
-en la Dirección del Departamento de Trabajo Social
-Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a proyectos
-investigación o
-extensión
-Gestión
-Administrativa
-Bienestar
-universitario
-Otro
-No. de estudiantes a
-vincular
-1
-Requisitos generales
-(Art. 2 Acuerdo CSU 024
-de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de
-Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o
-superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad
-Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la
-Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e
-inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de
-apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de
-actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal
-desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer
-periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de
-acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo
-008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones
-académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico
-igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026
-Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3
-Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo
-Social
-Suficiencia en el uso de recursos informáticos: manejo del paquete Office / Word, Excel,
-PowerPoint, Acces, etc. y de Internet
-Contar con disposición de tiempo
-Buena actitud y compromiso
-Actividades a desarrollar
-• Apoyar a la directora del Departamento de Trabajo Social en actividades
-correspondientes a la gestión.
-• Actualizar la página WEB del Departamento.
-• Apoyar documentos, ayuda memoria de reuniones y actividades que se programan
-desde la Dirección del Departamento de Trabajo Social.
-• Apoyar la consolidación de informes de gestión del Departamento.
-• Apoyar la organización de documentación y archivos del Departamento de Trabajo
-Social.
-Modalidad de las
-actividades
-⛝ ☐ ☐
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-12 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por
-la distinción de Grado de Honor de la Universidad Nacional de Colombia.
-Duración de la vinculación
-36 Días
-NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de
-2026. Por tal motivo puede existir una primera vinculación hasta el 31 de diciembre de 2026
-y una segunda vinculación por el período restante en la vigencia 2027. En el caso en que no se
-realice la vinculación en el año 2026, esta se hará en su totalidad en la vigencia del 2027.
-Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación
-es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.
-Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Disponibilidad horaria en relación con las actividades a desarrollar 20%
-• Conocimiento del programa de Trabajo Social 30%
-Términos para la
-presentación de
-documentos
-• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo
-deptras_bog@unal.edu.co.
-Fecha de cierre de la
-convocatoria
-17/Nov/2026 11:00 a.m.Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3
-Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf
-• Historia Académica del SIA incluido el P.A.P.A.
-• Fotocopia del carné estudiantil vigente (por ambas caras)
-• Fotocopia de la cédula de ciudadanía (por ambas caras)
-• Horario de clases II Semestre de 2026
-• Recibo de pago de matrícula correspondiente al II Semestre de 2026
-• Certificación bancaria con fecha de expedición actual
-• Formato Autorización para Verificación de Inhabilidad por Delitos Sexuales
-Cometidos Contra Menores. (Obligatorio)
-Documentos opcionales
-(no pueden ser
-modificatorios)
-Responsable de la
-convocatoria
-Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323
-Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Disponibilidad horaria en relación con las actividades a desarrollar 20%
-4. Conocimiento del programa de Trabajo Social 30%
-Fecha límite de
-Publicación de Resultados
-08/Dic/2026 11:00 a.m.','sin_cotejo_visual');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002002,2002,'número_de_la',1,'Número de la','Número de la
-Convocatoria
-2026-C2361
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-F','{"desplazamiento":179,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002003,2002,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-Facultad de Ciencias Humanas - Departamen','{"desplazamiento":219,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002004,2002,'nombre_de_la',1,'Nombre de la','Nombre de la
-convocatoria
-Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo
-en la Dirección del Departa','{"desplazamiento":391,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002005,2002,'tipo_de_estudiante',1,'Tipo de estudiante','Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a pro','{"desplazamiento":566,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002006,2002,'perfil_requerido',1,'Perfil requerido','Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026
-Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación
-Proceso','{"desplazamiento":3132,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002007,2002,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":1011,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002008,2002,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1270,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002009,2002,'actividades_a_desarrollar',3,'Actividades a desarrollar','Actividades a desarrollar
-• Apoyar a la directora del Departamento de Trabajo Social en actividades
-correspondientes a la gestión.
-• Actualizar la ','{"desplazamiento":3723,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002010,2002,'actividades_a_desarrollar',4,'actividades a desarrollar','actividades a desarrollar 20%
-• Conocimiento del programa de Trabajo Social 30%
-Términos para la
-presentación de
-documentos
-• LUGAR Y HORARIO DE ','{"desplazamiento":5343,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002011,2002,'actividades_a_desarrollar',5,'actividades a desarrollar','actividades a desarrollar 20%
-4. Conocimiento del programa de Trabajo Social 30%
-Fecha límite de
-Publicación de Resultados
-08/Dic/2026 11:00 a.m.','{"desplazamiento":7888,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002012,2002,'modalidad_de_las',1,'Modalidad de las','Modalidad de las
-actividades
-⛝ ☐ ☐
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-12 H/semana
-Estímulo económico
-mensual
-$ 2.626','{"desplazamiento":4198,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002013,2002,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo
-requerida
-12 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico qu','{"desplazamiento":4262,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002014,2002,'estímulo_económico',1,'Estímulo económico','Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor ac','{"desplazamiento":4312,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002015,2002,'estímulo_económico',2,'estímulo económico','estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de po','{"desplazamiento":4391,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002016,2002,'duración_de_la_vinculación',1,'Duración de la vinculación','Duración de la vinculación
-36 Días
-NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de
-2026. Por tal motivo puede','{"desplazamiento":4626,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002017,2002,'forma_de_selección',1,'Forma de Selección','Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Disponibilidad horaria en relación con las actividades a desarrollar 20%
-• Conocimien','{"desplazamiento":5236,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002018,2002,'términos_para_la',1,'Términos para la','Términos para la
-presentación de
-documentos
-• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo
-deptras_bog@unal.edu.co.
-Fecha de cie','{"desplazamiento":5425,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002019,2002,'fecha_de_cierre_de_la',1,'Fecha de cierre de la','Fecha de cierre de la
-convocatoria
-17/Nov/2026 11:00 a.m.Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato c','{"desplazamiento":5563,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002020,2002,'documentación_requerida',1,'Documentación requerida','Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf','{"desplazamiento":6986,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002021,2002,'documentos_opcionales',1,'Documentos opcionales','Documentos opcionales
-(no pueden ser
-modificatorios)
-Responsable de la
-convocatoria
-Eucaris Olaya Directora Departamento de Trabajo Social, euola','{"desplazamiento":7595,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002022,2002,'responsable_de_la',1,'Responsable de la','Responsable de la
-convocatoria
-Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323
-Criterios de evaluación 1. P','{"desplazamiento":7651,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002023,2002,'criterios_de_evaluación',1,'Criterios de evaluación','Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Disponibilidad horaria en relación con las actividades a desarrollar 20%
-4. C','{"desplazamiento":7773,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002024,2002,'adenda',1,'ADENDA','ADENDA 2026-C2361-1 DEL 12/11/2026
-Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación
-Proceso: Gestión Adminis','{"desplazamiento":3149,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200201,2002,1,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3
-Número de la
-Convocatoria
-2026-C2361
-Fecha de publicación de la
-convocatoria
-09 11 2026
-Nombre Facultad,
-dependencia o proyecto
-que convoca
-Facultad de Ciencias Humanas - Departamento de Trabajo Social
-Nombre de la
-convocatoria
-Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo
-en la Dirección del Departamento de Trabajo Social
-Tipo de estudiante Pregrado ⛝ Posgrado ☐
-Tipo de actividades a
-desarrollar en la
-convocatoria
-☐ ☐ ⛝ ☐ ☐
-Docencia
-(Apoyo
-Académico)
-Apoyo a proyectos
-investigación o
-extensión
-Gestión
-Administrativa
-Bienestar
-universitario
-Otro
-No. de estudiantes a
-vincular
-1
-Requisitos generales
-(Art. 2 Acuerdo CSU 024
-de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de
-Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener
-un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o
-superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad
-Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la
-Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e
-inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de
-apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de
-actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal
-desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer
-periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de
-acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo
-008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones
-académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico
-igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026
-Por la cual se corrige el porcentaje de avance de la carrera así:','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2002001,2002,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3'||char(13)||char(10)||'Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2361'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'Facultad de Ciencias Humanas - Departamento de Trabajo Social'||char(13)||char(10)||'Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo'||char(13)||char(10)||'en la Dirección del Departamento de Trabajo Social'||char(13)||char(10)||'Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a proyectos'||char(13)||char(10)||'investigación o'||char(13)||char(10)||'extensión'||char(13)||char(10)||'Gestión'||char(13)||char(10)||'Administrativa'||char(13)||char(10)||'Bienestar'||char(13)||char(10)||'universitario'||char(13)||char(10)||'Otro'||char(13)||char(10)||'No. de estudiantes a'||char(13)||char(10)||'vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Requisitos generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024'||char(13)||char(10)||'de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para'||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o'||char(13)||char(10)||'superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la'||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e'||char(13)||char(10)||'inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de'||char(13)||char(10)||'apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de'||char(13)||char(10)||'actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal'||char(13)||char(10)||'desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer'||char(13)||char(10)||'periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de'||char(13)||char(10)||'acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo'||char(13)||char(10)||'008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones'||char(13)||char(10)||'académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico'||char(13)||char(10)||'igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3'||char(13)||char(10)||'Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo'||char(13)||char(10)||'Social'||char(13)||char(10)||'Suficiencia en el uso de recursos informáticos: manejo del paquete Office / Word, Excel,'||char(13)||char(10)||'PowerPoint, Acces, etc. y de Internet'||char(13)||char(10)||'Contar con disposición de tiempo'||char(13)||char(10)||'Buena actitud y compromiso'||char(13)||char(10)||'Actividades a desarrollar'||char(13)||char(10)||'• Apoyar a la directora del Departamento de Trabajo Social en actividades'||char(13)||char(10)||'correspondientes a la gestión.'||char(13)||char(10)||'• Actualizar la página WEB del Departamento.'||char(13)||char(10)||'• Apoyar documentos, ayuda memoria de reuniones y actividades que se programan'||char(13)||char(10)||'desde la Dirección del Departamento de Trabajo Social.'||char(13)||char(10)||'• Apoyar la consolidación de informes de gestión del Departamento.'||char(13)||char(10)||'• Apoyar la organización de documentación y archivos del Departamento de Trabajo'||char(13)||char(10)||'Social.'||char(13)||char(10)||'Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'⛝ ☐ ☐'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'12 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por'||char(13)||char(10)||'la distinción de Grado de Honor de la Universidad Nacional de Colombia.'||char(13)||char(10)||'Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de'||char(13)||char(10)||'2026. Por tal motivo puede existir una primera vinculación hasta el 31 de diciembre de 2026'||char(13)||char(10)||'y una segunda vinculación por el período restante en la vigencia 2027. En el caso en que no se'||char(13)||char(10)||'realice la vinculación en el año 2026, esta se hará en su totalidad en la vigencia del 2027.'||char(13)||char(10)||'Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación'||char(13)||char(10)||'es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.'||char(13)||char(10)||'Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'• Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo'||char(13)||char(10)||'deptras_bog@unal.edu.co.'||char(13)||char(10)||'Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'17/Nov/2026 11:00 a.m.Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3'||char(13)||char(10)||'Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf'||char(13)||char(10)||'• Historia Académica del SIA incluido el P.A.P.A.'||char(13)||char(10)||'• Fotocopia del carné estudiantil vigente (por ambas caras)'||char(13)||char(10)||'• Fotocopia de la cédula de ciudadanía (por ambas caras)'||char(13)||char(10)||'• Horario de clases II Semestre de 2026'||char(13)||char(10)||'• Recibo de pago de matrícula correspondiente al II Semestre de 2026'||char(13)||char(10)||'• Certificación bancaria con fecha de expedición actual'||char(13)||char(10)||'• Formato Autorización para Verificación de Inhabilidad por Delitos Sexuales'||char(13)||char(10)||'Cometidos Contra Menores. (Obligatorio)'||char(13)||char(10)||'Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323'||char(13)||char(10)||'Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'4. Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'08/Dic/2026 11:00 a.m.','sin_cotejo_visual');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002002,2002,'número_de_la',1,'Número de la','Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2361'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'F','{"desplazamiento":179,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002003,2002,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'Facultad de Ciencias Humanas - Departamen','{"desplazamiento":219,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002004,2002,'nombre_de_la',1,'Nombre de la','Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo'||char(13)||char(10)||'en la Dirección del Departa','{"desplazamiento":391,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002005,2002,'tipo_de_estudiante',1,'Tipo de estudiante','Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a pro','{"desplazamiento":566,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002006,2002,'perfil_requerido',1,'Perfil requerido','Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación'||char(13)||char(10)||'Proceso','{"desplazamiento":3132,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002007,2002,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":1011,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002008,2002,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1270,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002009,2002,'actividades_a_desarrollar',3,'Actividades a desarrollar','Actividades a desarrollar'||char(13)||char(10)||'• Apoyar a la directora del Departamento de Trabajo Social en actividades'||char(13)||char(10)||'correspondientes a la gestión.'||char(13)||char(10)||'• Actualizar la ','{"desplazamiento":3723,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002010,2002,'actividades_a_desarrollar',4,'actividades a desarrollar','actividades a desarrollar 20%'||char(13)||char(10)||'• Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'• LUGAR Y HORARIO DE ','{"desplazamiento":5343,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002011,2002,'actividades_a_desarrollar',5,'actividades a desarrollar','actividades a desarrollar 20%'||char(13)||char(10)||'4. Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'08/Dic/2026 11:00 a.m.','{"desplazamiento":7888,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002012,2002,'modalidad_de_las',1,'Modalidad de las','Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'⛝ ☐ ☐'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'12 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626','{"desplazamiento":4198,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002013,2002,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'12 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico qu','{"desplazamiento":4262,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002014,2002,'estímulo_económico',1,'Estímulo económico','Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor ac','{"desplazamiento":4312,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002015,2002,'estímulo_económico',2,'estímulo económico','estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de po','{"desplazamiento":4391,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002016,2002,'duración_de_la_vinculación',1,'Duración de la vinculación','Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de'||char(13)||char(10)||'2026. Por tal motivo puede','{"desplazamiento":4626,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002017,2002,'forma_de_selección',1,'Forma de Selección','Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'• Conocimien','{"desplazamiento":5236,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002018,2002,'términos_para_la',1,'Términos para la','Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo'||char(13)||char(10)||'deptras_bog@unal.edu.co.'||char(13)||char(10)||'Fecha de cie','{"desplazamiento":5425,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002019,2002,'fecha_de_cierre_de_la',1,'Fecha de cierre de la','Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'17/Nov/2026 11:00 a.m.Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato c','{"desplazamiento":5563,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002020,2002,'documentación_requerida',1,'Documentación requerida','Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf','{"desplazamiento":6986,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002021,2002,'documentos_opcionales',1,'Documentos opcionales','Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Eucaris Olaya Directora Departamento de Trabajo Social, euola','{"desplazamiento":7595,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002022,2002,'responsable_de_la',1,'Responsable de la','Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323'||char(13)||char(10)||'Criterios de evaluación 1. P','{"desplazamiento":7651,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002023,2002,'criterios_de_evaluación',1,'Criterios de evaluación','Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'4. C','{"desplazamiento":7773,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2002024,2002,'adenda',1,'ADENDA','ADENDA 2026-C2361-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se corrige el porcentaje de avance de la carrera así:Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Adminis','{"desplazamiento":3149,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200201,2002,1,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 1 de 3'||char(13)||char(10)||'Número de la'||char(13)||char(10)||'Convocatoria'||char(13)||char(10)||'2026-C2361'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'09 11 2026'||char(13)||char(10)||'Nombre Facultad,'||char(13)||char(10)||'dependencia o proyecto'||char(13)||char(10)||'que convoca'||char(13)||char(10)||'Facultad de Ciencias Humanas - Departamento de Trabajo Social'||char(13)||char(10)||'Nombre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Convocatoria para selección y vinculación de un estudiante auxiliar para apoyo administrativo'||char(13)||char(10)||'en la Dirección del Departamento de Trabajo Social'||char(13)||char(10)||'Tipo de estudiante Pregrado ⛝ Posgrado ☐'||char(13)||char(10)||'Tipo de actividades a'||char(13)||char(10)||'desarrollar en la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'☐ ☐ ⛝ ☐ ☐'||char(13)||char(10)||'Docencia'||char(13)||char(10)||'(Apoyo'||char(13)||char(10)||'Académico)'||char(13)||char(10)||'Apoyo a proyectos'||char(13)||char(10)||'investigación o'||char(13)||char(10)||'extensión'||char(13)||char(10)||'Gestión'||char(13)||char(10)||'Administrativa'||char(13)||char(10)||'Bienestar'||char(13)||char(10)||'universitario'||char(13)||char(10)||'Otro'||char(13)||char(10)||'No. de estudiantes a'||char(13)||char(10)||'vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Requisitos generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024'||char(13)||char(10)||'de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener'||char(13)||char(10)||'un Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para'||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o'||char(13)||char(10)||'superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la'||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e'||char(13)||char(10)||'inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de'||char(13)||char(10)||'apoyo a estudiantes en las cuales no se reciba una retribución económica por la realización de'||char(13)||char(10)||'actividades y que el desempeño como Estudiante Auxiliar no interfiera con el normal'||char(13)||char(10)||'desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer'||char(13)||char(10)||'periodo académico de un programa de posgrado cumplir una de las siguientes condiciones, de'||char(13)||char(10)||'acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo'||char(13)||char(10)||'008 de 2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones'||char(13)||char(10)||'académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico'||char(13)||char(10)||'igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026'||char(13)||char(10)||'Por la cual se corrige el porcentaje de avance de la carrera así:','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201001,200201,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201002,200201,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201003,200201,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -1100,59 +336,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201070,200201,70,'renglon_literal','igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201071,200201,71,'renglon_literal','Perfil requerido ADENDA 2026-C2361-1 DEL 12/11/2026','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200201072,200201,72,'renglon_literal','Por la cual se corrige el porcentaje de avance de la carrera así:','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200202,2002,2,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3
-Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo
-Social
-Suficiencia en el uso de recursos informáticos: manejo del paquete Office / Word, Excel,
-PowerPoint, Acces, etc. y de Internet
-Contar con disposición de tiempo
-Buena actitud y compromiso
-Actividades a desarrollar
-• Apoyar a la directora del Departamento de Trabajo Social en actividades
-correspondientes a la gestión.
-• Actualizar la página WEB del Departamento.
-• Apoyar documentos, ayuda memoria de reuniones y actividades que se programan
-desde la Dirección del Departamento de Trabajo Social.
-• Apoyar la consolidación de informes de gestión del Departamento.
-• Apoyar la organización de documentación y archivos del Departamento de Trabajo
-Social.
-Modalidad de las
-actividades
-⛝ ☐ ☐
-Presencial Virtual Mixta
-Disponibilidad de tiempo
-requerida
-12 H/semana
-Estímulo económico
-mensual
-$ 2.626.359
-Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de
-monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por
-la distinción de Grado de Honor de la Universidad Nacional de Colombia.
-Duración de la vinculación
-36 Días
-NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de
-2026. Por tal motivo puede existir una primera vinculación hasta el 31 de diciembre de 2026
-y una segunda vinculación por el período restante en la vigencia 2027. En el caso en que no se
-realice la vinculación en el año 2026, esta se hará en su totalidad en la vigencia del 2027.
-Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación
-es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.
-Forma de Selección
-• P.A.P.A 20%
-• Carta de motivación 30%
-• Disponibilidad horaria en relación con las actividades a desarrollar 20%
-• Conocimiento del programa de Trabajo Social 30%
-Términos para la
-presentación de
-documentos
-• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo
-deptras_bog@unal.edu.co.
-Fecha de cierre de la
-convocatoria
-17/Nov/2026 11:00 a.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200202,2002,2,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 2 de 3'||char(13)||char(10)||'Ser estudiante del pregrado de Trabajo Social y haber cursado el 70% de la carrera de Trabajo'||char(13)||char(10)||'Social'||char(13)||char(10)||'Suficiencia en el uso de recursos informáticos: manejo del paquete Office / Word, Excel,'||char(13)||char(10)||'PowerPoint, Acces, etc. y de Internet'||char(13)||char(10)||'Contar con disposición de tiempo'||char(13)||char(10)||'Buena actitud y compromiso'||char(13)||char(10)||'Actividades a desarrollar'||char(13)||char(10)||'• Apoyar a la directora del Departamento de Trabajo Social en actividades'||char(13)||char(10)||'correspondientes a la gestión.'||char(13)||char(10)||'• Actualizar la página WEB del Departamento.'||char(13)||char(10)||'• Apoyar documentos, ayuda memoria de reuniones y actividades que se programan'||char(13)||char(10)||'desde la Dirección del Departamento de Trabajo Social.'||char(13)||char(10)||'• Apoyar la consolidación de informes de gestión del Departamento.'||char(13)||char(10)||'• Apoyar la organización de documentación y archivos del Departamento de Trabajo'||char(13)||char(10)||'Social.'||char(13)||char(10)||'Modalidad de las'||char(13)||char(10)||'actividades'||char(13)||char(10)||'⛝ ☐ ☐'||char(13)||char(10)||'Presencial Virtual Mixta'||char(13)||char(10)||'Disponibilidad de tiempo'||char(13)||char(10)||'requerida'||char(13)||char(10)||'12 H/semana'||char(13)||char(10)||'Estímulo económico'||char(13)||char(10)||'mensual'||char(13)||char(10)||'$ 2.626.359'||char(13)||char(10)||'Este estímulo es incompatible con el estímulo económico que se otorga por ostentar la calidad de'||char(13)||char(10)||'monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por'||char(13)||char(10)||'la distinción de Grado de Honor de la Universidad Nacional de Colombia.'||char(13)||char(10)||'Duración de la vinculación'||char(13)||char(10)||'36 Días'||char(13)||char(10)||'NOTA IMPORTANTE: La duración solicitada (36 días) puede exceder el 31 de diciembre de'||char(13)||char(10)||'2026. Por tal motivo puede existir una primera vinculación hasta el 31 de diciembre de 2026'||char(13)||char(10)||'y una segunda vinculación por el período restante en la vigencia 2027. En el caso en que no se'||char(13)||char(10)||'realice la vinculación en el año 2026, esta se hará en su totalidad en la vigencia del 2027.'||char(13)||char(10)||'Los Estudiantes Auxiliares no tendrán la calidad de empleados, trabajadores o contratistas. Su relación'||char(13)||char(10)||'es fundamentalmente académica y no constituye vínculo laboral ni contractual con la Universidad.'||char(13)||char(10)||'Forma de Selección'||char(13)||char(10)||'• P.A.P.A 20%'||char(13)||char(10)||'• Carta de motivación 30%'||char(13)||char(10)||'• Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'• Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Términos para la'||char(13)||char(10)||'presentación de'||char(13)||char(10)||'documentos'||char(13)||char(10)||'• LUGAR Y HORARIO DE RECEPCIÓN: Únicamente por e-mail al correo'||char(13)||char(10)||'deptras_bog@unal.edu.co.'||char(13)||char(10)||'Fecha de cierre de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'17/Nov/2026 11:00 a.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202001,200202,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202002,200202,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202003,200202,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -1206,44 +390,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202051,200202,51,'renglon_literal','Fecha de cierre de la','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202052,200202,52,'renglon_literal','convocatoria','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200202053,200202,53,'renglon_literal','17/Nov/2026 11:00 a.m.','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200203,2002,3,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato convocatoria estudiantes auxiliares
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3
-Documentación requerida
-• Hoja de vida formato único (debidamente firmada):
-http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf
-• Historia Académica del SIA incluido el P.A.P.A.
-• Fotocopia del carné estudiantil vigente (por ambas caras)
-• Fotocopia de la cédula de ciudadanía (por ambas caras)
-• Horario de clases II Semestre de 2026
-• Recibo de pago de matrícula correspondiente al II Semestre de 2026
-• Certificación bancaria con fecha de expedición actual
-• Formato Autorización para Verificación de Inhabilidad por Delitos Sexuales
-Cometidos Contra Menores. (Obligatorio)
-Documentos opcionales
-(no pueden ser
-modificatorios)
-Responsable de la
-convocatoria
-Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323
-Criterios de evaluación 1. P.A.P.A. 20%
-2. Carta de Motivación 30%
-3. Disponibilidad horaria en relación con las actividades a desarrollar 20%
-4. Conocimiento del programa de Trabajo Social 30%
-Fecha límite de
-Publicación de Resultados
-08/Dic/2026 11:00 a.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200203,2002,3,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato convocatoria estudiantes auxiliares'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.013 Versión: 2.0 Página 3 de 3'||char(13)||char(10)||'Documentación requerida'||char(13)||char(10)||'• Hoja de vida formato único (debidamente firmada):'||char(13)||char(10)||'http://www.unal.edu.co/gerencia_finad/documentos/HV_ persona_natural.pdf'||char(13)||char(10)||'• Historia Académica del SIA incluido el P.A.P.A.'||char(13)||char(10)||'• Fotocopia del carné estudiantil vigente (por ambas caras)'||char(13)||char(10)||'• Fotocopia de la cédula de ciudadanía (por ambas caras)'||char(13)||char(10)||'• Horario de clases II Semestre de 2026'||char(13)||char(10)||'• Recibo de pago de matrícula correspondiente al II Semestre de 2026'||char(13)||char(10)||'• Certificación bancaria con fecha de expedición actual'||char(13)||char(10)||'• Formato Autorización para Verificación de Inhabilidad por Delitos Sexuales'||char(13)||char(10)||'Cometidos Contra Menores. (Obligatorio)'||char(13)||char(10)||'Documentos opcionales'||char(13)||char(10)||'(no pueden ser'||char(13)||char(10)||'modificatorios)'||char(13)||char(10)||'Responsable de la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'Eucaris Olaya Directora Departamento de Trabajo Social, euolaya@unal.edu.co, Ext: 16323'||char(13)||char(10)||'Criterios de evaluación 1. P.A.P.A. 20%'||char(13)||char(10)||'2. Carta de Motivación 30%'||char(13)||char(10)||'3. Disponibilidad horaria en relación con las actividades a desarrollar 20%'||char(13)||char(10)||'4. Conocimiento del programa de Trabajo Social 30%'||char(13)||char(10)||'Fecha límite de'||char(13)||char(10)||'Publicación de Resultados'||char(13)||char(10)||'08/Dic/2026 11:00 a.m.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200203001,200203,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200203002,200203,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200203003,200203,3,'renglon_literal','Formato convocatoria estudiantes auxiliares','pendiente');
@@ -1299,202 +446,17 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO evento_revision (revision_id,objeto_tipo,objeto_id,accion,descripcion) VALUES (2031,'caso_convocatoria',203,'documento_pendiente','{"rol":"convocatoria","referencia_celda":"2026-C2329","motivo":"referencia_sin_url_pdf","verificacion":"pendiente_de_localizar"}');
 INSERT INTO documento (documento_id,tipo_sugerido,url_origen,drive_id,titulo_archivo,mime_type,capturado_en,estado_acceso,estado_extraccion,notas) VALUES (2003,'resultados','https://drive.google.com/file/d/1tUwTVlKLCnO2h78EtcV3E4424LpQk0vm/view?usp=drivesdk','1tUwTVlKLCnO2h78EtcV3E4424LpQk0vm','Resultados 2026-C2329','application/pdf','2026-11-13','leido','transcrito_sin_cotejo_visual','El PDF binario y su huella SHA256 no se han incorporado; texto extraído literalmente disponible en campo_documento y renglones.');
 INSERT INTO vinculo_caso (vinculo_id,caso_id,documento_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2033,203,2003,'resultados','Resultados 2026-C2329','transcrito_pendiente_revision');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2003001,2003,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 2
-FORMATO PUBLICACIÓN DE RESULTADOS CONVOCATORIA ESTUDIANTE(S) AUXILIAR(ES)
-Nombre de la Convocatoria Número de 
-Convocatoria 
-Nº de estudiantes a 
-vincular Fecha de publicación de la convocatoria Fecha de publicación de resultados 
-Apoyo al proyecto “Ruta de la 
-Innovación Pedagógica UNAL” de la 
-sede Bogotá
-2026-C2329 1 5-nov-26 12/11/2026
-Requisitos Generales: (Art. 2 Acuerdo CSU 024 de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un Promedio Aritmético Ponder ado Acumulado - P.A.P.A. igual o superior a 3.5. para 
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrad o
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar universitario o de gestión adm inistrativa el estudiante deberá tener un Promedio 
-Aritmético Ponderado Acumulado - P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por la distinción de Grado de Honor de la 
-Universidad Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a estudiantes en las cuales n o se reciba una retribución económica por la 
-realización de actividades y que el desempeño como Estudiante Auxiliar no interfiera c on el normal desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo académico de un programa de posgrado cumplir una de las siguientes 
-condiciones, de acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de 2008 del Consejo Superi or Universitario - Estatuto Estudiantil en sus 
-disposiciones académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-PERFIL REQUERIDO
-Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Ciencias Humanas, sede 
-Bogotá.
-Demostrar habilidades de investigación, recopilación, organización y análisis de información cualitativa y cuantitativa; elab oración de documentos, 
-relatorías e informes; y manejo de herramientas digitales para la gestión de información.
-Contar con habilidades de comunicación escrita y oral, capacidad de trabajo en equipo y organización para la sistematización de proyectos o experiencias 
-pedagógicas.
-Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.
-CRITERIOS DE SELECCIÓN Y EVALUACIÓN
-Criterios Ponderación
-(Asigne el peso porcentual de cada criterio)
-1. P.A.P.A. 20%
-2. Capacidad para elaborar registros, organizar información y sistematizar datos. 30%
-3.
-Manejo de herramientas digitales y ofimáticas (Excel, Word, PowerPoint, Google 
-Drive y plataformas colaborativas). 30%
-4. Disponibilidad horaria para acompañar las sesiones presenciales y remotas, 
-reuniones y actividades programadas. 20%
-Sumatoria porcentajes 100%
-DATOS DE LOS PARTICIPANTES
-No Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-PAPA PBM
-(si aplica) 1 2 3 4 Total Selección
-1 1026583711 4,3 N/A 4,3 4 5 5 4,56 X
-2 1015473230 4,9 N/A 4,9
-4 4 5 4,38
-ELEGIBLE
-3 1121941173 4,8 N/A 4,8
-4 4 4 4,16
-ELEGIBLEMacroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 2
-4 1019148894 4,3 N/A 4,3 4 4 4 4,06 ELEGIBLE
-5 1003952593 4,9 N/A 4,9 4 3 4 3,88
-6 1000832735 4,5 N/A 4,5 4 3 4 3,81
-7 1001296257 4,4 N/A 4,4 4 3 4 3,78
-8 1007774123 4,4 N/A 4,4 4 3 4 3,77
-9 1007381266 4,2 N/A 4,2 4 3 4 3,74
-10 1010244644 4,5 N/A 4,5 4 3 3 3,60
-11 1005454411 3,5 N/A 3,5 4 3 4 3,59
-12 52981024 4,8 N/A 4,8 4 3 2 3,46
-13 1000580694 4,7 N/A 4,7 4 3 2 3,44
-14 1193224253 4,2 N/A 4,2 4 3 2 3,34
-Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio 
-económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s) 
-Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.
-En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo: No 
-aplica
-Observaciones: Ninguna
-NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA
-CARGO: Docente
-EXTENSIÓN: 14107
-CORREO: lkherreraq@unal.edu.co
-(Original Firmado)
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de 
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por 
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información pers onal 
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de 
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser 
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la 
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones 
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail 
-protecdatos_na@unal.edu.co.','sin_cotejo_visual');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003002,2003,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la convocatoria Fecha de publicación de resultados 
-Apoyo al proyecto “Ruta de la 
-Innovación Pedagógica UNAL” de la 
-sede ','{"desplazamiento":335,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003003,2003,'nombre_de_la',1,'Nombre de la','Nombre de la Convocatoria Número de 
-Convocatoria 
-Nº de estudiantes a 
-vincular Fecha de publicación de la convocatoria Fecha de publicación de re','{"desplazamiento":251,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003004,2003,'perfil_requerido',1,'PERFIL REQUERIDO','PERFIL REQUERIDO
-Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Cien','{"desplazamiento":2818,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2003001,2003,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 2'||char(13)||char(10)||'FORMATO PUBLICACIÓN DE RESULTADOS CONVOCATORIA ESTUDIANTE(S) AUXILIAR(ES)'||char(13)||char(10)||'Nombre de la Convocatoria Número de '||char(13)||char(10)||'Convocatoria '||char(13)||char(10)||'Nº de estudiantes a '||char(13)||char(10)||'vincular Fecha de publicación de la convocatoria Fecha de publicación de resultados '||char(13)||char(10)||'Apoyo al proyecto “Ruta de la '||char(13)||char(10)||'Innovación Pedagógica UNAL” de la '||char(13)||char(10)||'sede Bogotá'||char(13)||char(10)||'2026-C2329 1 5-nov-26 12/11/2026'||char(13)||char(10)||'Requisitos Generales: (Art. 2 Acuerdo CSU 024 de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un Promedio Aritmético Ponder ado Acumulado - P.A.P.A. igual o superior a 3.5. para '||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrad o'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar universitario o de gestión adm inistrativa el estudiante deberá tener un Promedio '||char(13)||char(10)||'Aritmético Ponderado Acumulado - P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por la distinción de Grado de Honor de la '||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a estudiantes en las cuales n o se reciba una retribución económica por la '||char(13)||char(10)||'realización de actividades y que el desempeño como Estudiante Auxiliar no interfiera c on el normal desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo académico de un programa de posgrado cumplir una de las siguientes '||char(13)||char(10)||'condiciones, de acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de 2008 del Consejo Superi or Universitario - Estatuto Estudiantil en sus '||char(13)||char(10)||'disposiciones académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'PERFIL REQUERIDO'||char(13)||char(10)||'Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Ciencias Humanas, sede '||char(13)||char(10)||'Bogotá.'||char(13)||char(10)||'Demostrar habilidades de investigación, recopilación, organización y análisis de información cualitativa y cuantitativa; elab oración de documentos, '||char(13)||char(10)||'relatorías e informes; y manejo de herramientas digitales para la gestión de información.'||char(13)||char(10)||'Contar con habilidades de comunicación escrita y oral, capacidad de trabajo en equipo y organización para la sistematización de proyectos o experiencias '||char(13)||char(10)||'pedagógicas.'||char(13)||char(10)||'Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.'||char(13)||char(10)||'CRITERIOS DE SELECCIÓN Y EVALUACIÓN'||char(13)||char(10)||'Criterios Ponderación'||char(13)||char(10)||'(Asigne el peso porcentual de cada criterio)'||char(13)||char(10)||'1. P.A.P.A. 20%'||char(13)||char(10)||'2. Capacidad para elaborar registros, organizar información y sistematizar datos. 30%'||char(13)||char(10)||'3.'||char(13)||char(10)||'Manejo de herramientas digitales y ofimáticas (Excel, Word, PowerPoint, Google '||char(13)||char(10)||'Drive y plataformas colaborativas). 30%'||char(13)||char(10)||'4. Disponibilidad horaria para acompañar las sesiones presenciales y remotas, '||char(13)||char(10)||'reuniones y actividades programadas. 20%'||char(13)||char(10)||'Sumatoria porcentajes 100%'||char(13)||char(10)||'DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'PAPA PBM'||char(13)||char(10)||'(si aplica) 1 2 3 4 Total Selección'||char(13)||char(10)||'1 1026583711 4,3 N/A 4,3 4 5 5 4,56 X'||char(13)||char(10)||'2 1015473230 4,9 N/A 4,9'||char(13)||char(10)||'4 4 5 4,38'||char(13)||char(10)||'ELEGIBLE'||char(13)||char(10)||'3 1121941173 4,8 N/A 4,8'||char(13)||char(10)||'4 4 4 4,16'||char(13)||char(10)||'ELEGIBLEMacroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 2'||char(13)||char(10)||'4 1019148894 4,3 N/A 4,3 4 4 4 4,06 ELEGIBLE'||char(13)||char(10)||'5 1003952593 4,9 N/A 4,9 4 3 4 3,88'||char(13)||char(10)||'6 1000832735 4,5 N/A 4,5 4 3 4 3,81'||char(13)||char(10)||'7 1001296257 4,4 N/A 4,4 4 3 4 3,78'||char(13)||char(10)||'8 1007774123 4,4 N/A 4,4 4 3 4 3,77'||char(13)||char(10)||'9 1007381266 4,2 N/A 4,2 4 3 4 3,74'||char(13)||char(10)||'10 1010244644 4,5 N/A 4,5 4 3 3 3,60'||char(13)||char(10)||'11 1005454411 3,5 N/A 3,5 4 3 4 3,59'||char(13)||char(10)||'12 52981024 4,8 N/A 4,8 4 3 2 3,46'||char(13)||char(10)||'13 1000580694 4,7 N/A 4,7 4 3 2 3,44'||char(13)||char(10)||'14 1193224253 4,2 N/A 4,2 4 3 2 3,34'||char(13)||char(10)||'Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio '||char(13)||char(10)||'económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s) '||char(13)||char(10)||'Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.'||char(13)||char(10)||'En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo: No '||char(13)||char(10)||'aplica'||char(13)||char(10)||'Observaciones: Ninguna'||char(13)||char(10)||'NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA'||char(13)||char(10)||'CARGO: Docente'||char(13)||char(10)||'EXTENSIÓN: 14107'||char(13)||char(10)||'CORREO: lkherreraq@unal.edu.co'||char(13)||char(10)||'(Original Firmado)'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de '||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por '||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información pers onal '||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de '||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser '||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la '||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones '||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail '||char(13)||char(10)||'protecdatos_na@unal.edu.co.','sin_cotejo_visual');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003002,2003,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la convocatoria Fecha de publicación de resultados '||char(13)||char(10)||'Apoyo al proyecto “Ruta de la '||char(13)||char(10)||'Innovación Pedagógica UNAL” de la '||char(13)||char(10)||'sede ','{"desplazamiento":335,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003003,2003,'nombre_de_la',1,'Nombre de la','Nombre de la Convocatoria Número de '||char(13)||char(10)||'Convocatoria '||char(13)||char(10)||'Nº de estudiantes a '||char(13)||char(10)||'vincular Fecha de publicación de la convocatoria Fecha de publicación de re','{"desplazamiento":251,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003004,2003,'perfil_requerido',1,'PERFIL REQUERIDO','PERFIL REQUERIDO'||char(13)||char(10)||'Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Cien','{"desplazamiento":2818,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
 INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003005,2003,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un Promedio Aritmético Ponder ado Acumulado - P.A.P.A. igual o s','{"desplazamiento":692,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
 INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003006,2003,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar universitario o de gestión adm inistrativa el estudiante deberá t','{"desplazamiento":955,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003007,2003,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.
-CRITERIOS DE SELECCIÓN Y EVALUACIÓN
-Criterios Ponderaci','{"desplazamiento":3409,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003008,2003,'responsable_de_la',1,'RESPONSABLE DE LA','RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA
-CARGO: Docente
-EXTENSIÓN: 14107
-CORREO: lkherreraq@unal.edu.co
-(Original Firmado)
-Los e','{"desplazamiento":5373,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003009,2003,'datos_de_los_participantes',1,'DATOS DE LOS PARTICIPANTES','DATOS DE LOS PARTICIPANTES
-No Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-PAPA PBM
-(si aplica) 1 2 3 4 Total Selección
-1 102','{"desplazamiento":3989,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003010,2003,'observaciones',1,'Observaciones','Observaciones: Ninguna
-NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA
-CARGO: Docente
-EXTENSIÓN: 14107
-CORREO: lkherreraq@una','{"desplazamiento":5338,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200301,2003,1,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 2
-FORMATO PUBLICACIÓN DE RESULTADOS CONVOCATORIA ESTUDIANTE(S) AUXILIAR(ES)
-Nombre de la Convocatoria Número de 
-Convocatoria 
-Nº de estudiantes a 
-vincular Fecha de publicación de la convocatoria Fecha de publicación de resultados 
-Apoyo al proyecto “Ruta de la 
-Innovación Pedagógica UNAL” de la 
-sede Bogotá
-2026-C2329 1 5-nov-26 12/11/2026
-Requisitos Generales: (Art. 2 Acuerdo CSU 024 de 2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un Promedio Aritmético Ponder ado Acumulado - P.A.P.A. igual o superior a 3.5. para 
-estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrad o
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar universitario o de gestión adm inistrativa el estudiante deberá tener un Promedio 
-Aritmético Ponderado Acumulado - P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por la distinción de Grado de Honor de la 
-Universidad Nacional de Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a estudiantes en las cuales n o se reciba una retribución económica por la 
-realización de actividades y que el desempeño como Estudiante Auxiliar no interfiera c on el normal desarrollo de su actividad académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo académico de un programa de posgrado cumplir una de las siguientes 
-condiciones, de acuerdo con el tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de 2008 del Consejo Superi or Universitario - Estatuto Estudiantil en sus 
-disposiciones académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-PERFIL REQUERIDO
-Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Ciencias Humanas, sede 
-Bogotá.
-Demostrar habilidades de investigación, recopilación, organización y análisis de información cualitativa y cuantitativa; elab oración de documentos, 
-relatorías e informes; y manejo de herramientas digitales para la gestión de información.
-Contar con habilidades de comunicación escrita y oral, capacidad de trabajo en equipo y organización para la sistematización de proyectos o experiencias 
-pedagógicas.
-Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.
-CRITERIOS DE SELECCIÓN Y EVALUACIÓN
-Criterios Ponderación
-(Asigne el peso porcentual de cada criterio)
-1. P.A.P.A. 20%
-2. Capacidad para elaborar registros, organizar información y sistematizar datos. 30%
-3.
-Manejo de herramientas digitales y ofimáticas (Excel, Word, PowerPoint, Google 
-Drive y plataformas colaborativas). 30%
-4. Disponibilidad horaria para acompañar las sesiones presenciales y remotas, 
-reuniones y actividades programadas. 20%
-Sumatoria porcentajes 100%
-DATOS DE LOS PARTICIPANTES
-No Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-PAPA PBM
-(si aplica) 1 2 3 4 Total Selección
-1 1026583711 4,3 N/A 4,3 4 5 5 4,56 X
-2 1015473230 4,9 N/A 4,9
-4 4 5 4,38
-ELEGIBLE
-3 1121941173 4,8 N/A 4,8
-4 4 4 4,16
-ELEGIBLE','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003007,2003,'disponibilidad_de_tiempo',1,'Disponibilidad de tiempo','Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.'||char(13)||char(10)||'CRITERIOS DE SELECCIÓN Y EVALUACIÓN'||char(13)||char(10)||'Criterios Ponderaci','{"desplazamiento":3409,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003008,2003,'responsable_de_la',1,'RESPONSABLE DE LA','RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA'||char(13)||char(10)||'CARGO: Docente'||char(13)||char(10)||'EXTENSIÓN: 14107'||char(13)||char(10)||'CORREO: lkherreraq@unal.edu.co'||char(13)||char(10)||'(Original Firmado)'||char(13)||char(10)||'Los e','{"desplazamiento":5373,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003009,2003,'datos_de_los_participantes',1,'DATOS DE LOS PARTICIPANTES','DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'PAPA PBM'||char(13)||char(10)||'(si aplica) 1 2 3 4 Total Selección'||char(13)||char(10)||'1 102','{"desplazamiento":3989,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2003010,2003,'observaciones',1,'Observaciones','Observaciones: Ninguna'||char(13)||char(10)||'NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA'||char(13)||char(10)||'CARGO: Docente'||char(13)||char(10)||'EXTENSIÓN: 14107'||char(13)||char(10)||'CORREO: lkherreraq@una','{"desplazamiento":5338,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200301,2003,1,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 2'||char(13)||char(10)||'FORMATO PUBLICACIÓN DE RESULTADOS CONVOCATORIA ESTUDIANTE(S) AUXILIAR(ES)'||char(13)||char(10)||'Nombre de la Convocatoria Número de '||char(13)||char(10)||'Convocatoria '||char(13)||char(10)||'Nº de estudiantes a '||char(13)||char(10)||'vincular Fecha de publicación de la convocatoria Fecha de publicación de resultados '||char(13)||char(10)||'Apoyo al proyecto “Ruta de la '||char(13)||char(10)||'Innovación Pedagógica UNAL” de la '||char(13)||char(10)||'sede Bogotá'||char(13)||char(10)||'2026-C2329 1 5-nov-26 12/11/2026'||char(13)||char(10)||'Requisitos Generales: (Art. 2 Acuerdo CSU 024 de 2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un Promedio Aritmético Ponder ado Acumulado - P.A.P.A. igual o superior a 3.5. para '||char(13)||char(10)||'estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrad o'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar universitario o de gestión adm inistrativa el estudiante deberá tener un Promedio '||char(13)||char(10)||'Aritmético Ponderado Acumulado - P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que obtuvieron la beca de posgrado por la distinción de Grado de Honor de la '||char(13)||char(10)||'Universidad Nacional de Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a estudiantes en las cuales n o se reciba una retribución económica por la '||char(13)||char(10)||'realización de actividades y que el desempeño como Estudiante Auxiliar no interfiera c on el normal desarrollo de su actividad académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo académico de un programa de posgrado cumplir una de las siguientes '||char(13)||char(10)||'condiciones, de acuerdo con el tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de 2008 del Consejo Superi or Universitario - Estatuto Estudiantil en sus '||char(13)||char(10)||'disposiciones académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'PERFIL REQUERIDO'||char(13)||char(10)||'Estudiante activo de posgrado: maestría o doctorado, preferiblemente de programas académicos de las Facultades de: Ingeniería o Ciencias Humanas, sede '||char(13)||char(10)||'Bogotá.'||char(13)||char(10)||'Demostrar habilidades de investigación, recopilación, organización y análisis de información cualitativa y cuantitativa; elab oración de documentos, '||char(13)||char(10)||'relatorías e informes; y manejo de herramientas digitales para la gestión de información.'||char(13)||char(10)||'Contar con habilidades de comunicación escrita y oral, capacidad de trabajo en equipo y organización para la sistematización de proyectos o experiencias '||char(13)||char(10)||'pedagógicas.'||char(13)||char(10)||'Disponibilidad de tiempo para acompañamiento presencial los viernes de 12:00 m. a 6:00 p. m.'||char(13)||char(10)||'CRITERIOS DE SELECCIÓN Y EVALUACIÓN'||char(13)||char(10)||'Criterios Ponderación'||char(13)||char(10)||'(Asigne el peso porcentual de cada criterio)'||char(13)||char(10)||'1. P.A.P.A. 20%'||char(13)||char(10)||'2. Capacidad para elaborar registros, organizar información y sistematizar datos. 30%'||char(13)||char(10)||'3.'||char(13)||char(10)||'Manejo de herramientas digitales y ofimáticas (Excel, Word, PowerPoint, Google '||char(13)||char(10)||'Drive y plataformas colaborativas). 30%'||char(13)||char(10)||'4. Disponibilidad horaria para acompañar las sesiones presenciales y remotas, '||char(13)||char(10)||'reuniones y actividades programadas. 20%'||char(13)||char(10)||'Sumatoria porcentajes 100%'||char(13)||char(10)||'DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'PAPA PBM'||char(13)||char(10)||'(si aplica) 1 2 3 4 Total Selección'||char(13)||char(10)||'1 1026583711 4,3 N/A 4,3 4 5 5 4,56 X'||char(13)||char(10)||'2 1015473230 4,9 N/A 4,9'||char(13)||char(10)||'4 4 5 4,38'||char(13)||char(10)||'ELEGIBLE'||char(13)||char(10)||'3 1121941173 4,8 N/A 4,8'||char(13)||char(10)||'4 4 4 4,16'||char(13)||char(10)||'ELEGIBLE','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301001,200301,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301002,200301,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301003,200301,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -1559,42 +521,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301062,200301,62,'renglon_literal','3 1121941173 4,8 N/A 4,8','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301063,200301,63,'renglon_literal','4 4 4 4,16','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200301064,200301,64,'renglon_literal','ELEGIBLE','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200302,2003,2,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 2
-4 1019148894 4,3 N/A 4,3 4 4 4 4,06 ELEGIBLE
-5 1003952593 4,9 N/A 4,9 4 3 4 3,88
-6 1000832735 4,5 N/A 4,5 4 3 4 3,81
-7 1001296257 4,4 N/A 4,4 4 3 4 3,78
-8 1007774123 4,4 N/A 4,4 4 3 4 3,77
-9 1007381266 4,2 N/A 4,2 4 3 4 3,74
-10 1010244644 4,5 N/A 4,5 4 3 3 3,60
-11 1005454411 3,5 N/A 3,5 4 3 4 3,59
-12 52981024 4,8 N/A 4,8 4 3 2 3,46
-13 1000580694 4,7 N/A 4,7 4 3 2 3,44
-14 1193224253 4,2 N/A 4,2 4 3 2 3,34
-Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio 
-económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s) 
-Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.
-En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo: No 
-aplica
-Observaciones: Ninguna
-NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA
-CARGO: Docente
-EXTENSIÓN: 14107
-CORREO: lkherreraq@unal.edu.co
-(Original Firmado)
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de 
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por 
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información pers onal 
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de 
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser 
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la 
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones 
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail 
-protecdatos_na@unal.edu.co.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200302,2003,2,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 2'||char(13)||char(10)||'4 1019148894 4,3 N/A 4,3 4 4 4 4,06 ELEGIBLE'||char(13)||char(10)||'5 1003952593 4,9 N/A 4,9 4 3 4 3,88'||char(13)||char(10)||'6 1000832735 4,5 N/A 4,5 4 3 4 3,81'||char(13)||char(10)||'7 1001296257 4,4 N/A 4,4 4 3 4 3,78'||char(13)||char(10)||'8 1007774123 4,4 N/A 4,4 4 3 4 3,77'||char(13)||char(10)||'9 1007381266 4,2 N/A 4,2 4 3 4 3,74'||char(13)||char(10)||'10 1010244644 4,5 N/A 4,5 4 3 3 3,60'||char(13)||char(10)||'11 1005454411 3,5 N/A 3,5 4 3 4 3,59'||char(13)||char(10)||'12 52981024 4,8 N/A 4,8 4 3 2 3,46'||char(13)||char(10)||'13 1000580694 4,7 N/A 4,7 4 3 2 3,44'||char(13)||char(10)||'14 1193224253 4,2 N/A 4,2 4 3 2 3,34'||char(13)||char(10)||'Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio '||char(13)||char(10)||'económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s) '||char(13)||char(10)||'Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.'||char(13)||char(10)||'En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo: No '||char(13)||char(10)||'aplica'||char(13)||char(10)||'Observaciones: Ninguna'||char(13)||char(10)||'NOMBRE DEL RESPONSABLE DE LA EVALUACIÓN: PROFESORA LIZ KAREN HERRERA'||char(13)||char(10)||'CARGO: Docente'||char(13)||char(10)||'EXTENSIÓN: 14107'||char(13)||char(10)||'CORREO: lkherreraq@unal.edu.co'||char(13)||char(10)||'(Original Firmado)'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de '||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por '||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información pers onal '||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de '||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser '||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la '||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones '||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail '||char(13)||char(10)||'protecdatos_na@unal.edu.co.','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200302001,200302,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200302002,200302,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200302003,200302,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -1756,334 +683,19 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO evento_revision (revision_id,objeto_tipo,objeto_id,accion,descripcion) VALUES (2041,'caso_convocatoria',204,'documento_pendiente','{"rol":"convocatoria","referencia_celda":"2026-C2309","motivo":"referencia_sin_url_pdf","verificacion":"pendiente_de_localizar"}');
 INSERT INTO documento (documento_id,tipo_sugerido,url_origen,drive_id,titulo_archivo,mime_type,capturado_en,estado_acceso,estado_extraccion,notas) VALUES (2004,'resultados','https://drive.google.com/file/d/18K65PnfzrfPBXv4gWORpsR33DN4mnhss/view?usp=drivesdk','18K65PnfzrfPBXv4gWORpsR33DN4mnhss','Resultados 2026-C2309','application/pdf','2026-11-13','leido','transcrito_sin_cotejo_visual','El PDF binario y su huella SHA256 no se han incorporado; texto extraído literalmente disponible en campo_documento y renglones.');
 INSERT INTO vinculo_caso (vinculo_id,caso_id,documento_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2043,204,2004,'resultados','Resultados 2026-C2309','transcrito_pendiente_revision');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2004001,2004,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Nombre de la convocatoria
-Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de
-Procesos Institucionales Número 2
-Número de la convocatoria
-Facultad de Medicina - Unidad de Gestión de
-Proyectos Estratégicos
-N.º de estudiantes
-a vincular
-1
-Facultad, dependencia o
-proyecto
-Facultad de Medicina - Unidad de Gestión de Proyectos Estratégicos
-Fecha de publicación de la
-convocatoria 04 11 2026
-Fecha de publicación de
-resultados 12 11 2026
-Requisitos Generales
-(Art. 2 Acuerdo CSU 024 de
-2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un
-Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para estudiantes de
-pregrado, e igual o superior a 4.0 para estudiantes de posgrado.
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior
-a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad Nacional de
-Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad
-Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al
-menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a
-estudiantes en las cuales no se reciba una retribución económica por la realización de actividades y
-que el desempeño como Estudiante Auxiliar no interfiera con el normal desarrollo de su actividad
-académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo
-académico de un programa de posgrado cumplir una de las siguientes condiciones, de acuerdo con el
-tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de
-2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o
-superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido
-1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.
-2. Deseable contar con conocimientos avanzados en Microsoft Excel, incluyendo manejo de bases de
-datos, funciones avanzadas, tablas dinámicas, análisis de información y elaboración de herramientas
-para el seguimiento y control de proyectos.
-3. Deseable contar con conocimientos en programación, especialmente Python, inteligencia artificial y
-desarrollo de herramientas digitales para el procesamiento de información y la automatización de
-tareas.
-4. Deseable tener interés en el diseño, desarrollo, implementación y validación de herramientas
-digitales, prototipos y soluciones tecnológicas orientadas al mejoramiento de procesos
-institucionales.
-5. Deseable contar con conocimientos o interés en inteligencia artificial, transformación digital,
-innovación y evaluación de la viabilidad técnica de soluciones tecnológicas.
-CRITERIOS DE SELECCIÓN Y EVALUACIÓN
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Criterios
-Ponderación
-(Asigne el peso porcentual de cada criterio)
-1 PAPA 20%
-2
-PBM menores o iguales a 10
-calificación de 5.0, PBM de 11 a 20
-puntos calificación de 4,5, PBM de 21 a
-30 puntos calificación de 4.0, PBM
-mayores a 30 puntos 3.5
-30%
-3
-Entrevista presencial – 25 %: Se
-realizará una entrevista presencial a los
-aspirantes que cumplan con los
-requisitos de la convocatoria. La fecha y
-hora serán comunicadas previamente a
-cada aspirante, teniendo en cuenta la
-disponibilidad registrada en sus
-horarios académicos.
-La entrevista se calificará en una escala
-de 0 a 5, de acuerdo con los siguientes
-criterios:
-a. Puntualidad (10 % del 25 %): Se
-asignará una calificación de 5.0 a
-quienes asistan puntualmente a la
-entrevista, descontando una unidad por
-cada dos minutos de retraso, hasta
-llegar a una calificación mínima de 0.
-En caso de presentarse alguna
-eventualidad que impida asistir a la
-cita, el aspirante deberá comunicarse
-por teléfono o correo electrónico con al
-menos 15 minutos de anticipación. La
-entrevista se podrá reprogramar una
-única vez.
-b. Perfil (60 % del 25 %): Se evaluará el
-cumplimiento del perfil requerido en la
-convocatoria. Si el aspirante cumple
-con el perfil solicitado, se le otorgará la
-calificación máxima de 5.0 en este
-subcomponente. (En caso de no
-cumplir con los requisitos obligatorios
-del perfil, será descalificado del
-proceso de selección.)
-c. Experiencia laboral relacionada (15 %
-del 25 %): Se valorará la experiencia
-laboral acreditada por el aspirante,
-tanto dentro como fuera de la
-Universidad, que esté relacionada con
-las actividades de la convocatoria. En
-caso de no contar con experiencia
-25%
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-laboral, se asignará una calificación de
-3.0 en este componente.
-d. Carta de intención (15 % del 25 %):
-Se evaluará la motivación, el interés y la
-disposición del aspirante para
-desarrollar las actividades de apoyo, así
-como la relación entre sus
-conocimientos, habilidades y el perfil
-solicitado. (El solo hecho de enviar la
-carta obtendrá 5.0en la calificación de
-este subcomponente).
-4
-Reto de conocimientos – 25 %: Se
-realizará una prueba de conocimientos
-de manera presencial, orientada a
-evaluar las competencias relacionadas
-con el perfil requerido y las actividades
-de apoyo de la convocatoria. La fecha,
-hora y lugar de aplicación serán
-comunicados previamente a los
-aspirantes, teniendo en cuenta la
-disponibilidad registrada en sus
-horarios académicos. La prueba tendrá
-un peso del 25 % en la calificación final
-y se evaluará en una escala de 0 a 5.
-25%
-Sumatoria de
-porcentajes
-100%
-DATOS DE LOS PARTICIPANTES
-No. Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-*P.A.P.A.
-O puntaje de
-admisión (PA)
-(SI/NO)
-P.B.M.
-(si aplica)
-1a 1b 1c 1d
-Total
-item 1
-2 Total Seleccionado
-1 1031647812 3,9 9 3 5 5 5 4,8 4,5 4,61 X
-2 1002733029 4,1 6 5 5 5 5 5 0 3,57
-Renunció a la
-convocatoria
-3 1034659651 0 0 0 0 0 0 0 0 0
-Descalificada, no
-presentó
-documentación
-completa
-• Se deben relacionar todos los participantes que aplicaron a la convocatoria.
-• Si el (la-los) estudiante(s) incumple(n) alguno de los Requisitos mínimos no se debe continuar con la evaluación de la hoja de vida.
-• En caso de empate en el puntaje total, se dará prelación a los estudiantes cuyos puntajes básicos de matrícula (PBM) sean los más
-bajos. (En caso que aplique)
-• Marque una X en la columna "Seleccionado" para identificar el (los) ganador(es) de la convocatoria.
-• Marque con la palabra “Elegible” a el (la-los) estudiante(s) que quedará(n) en la lista de elegible(s).
-Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio
-económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s)
-Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.
-Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo:
-Observaciones:
-Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse
-voluntariamente del proceso de selección de la Convocatoria 2309 de 2026, debido a compromisos
-académicos y tras considerar las condiciones de vinculación y los tiempos estimados de pago.
-NOMBRE DEL
-RESPONSABLE DE LA
-EVALUACIÓN
-Cristian Camilo Veloza Garcia
-CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE
-EXTENSIÓN
-CORREO ugepefm_bog@unal.edu.co
-_________________________________
-(Original Firmado
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','sin_cotejo_visual');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004002,2004,'número_de_la',1,'Número de la','Número de la convocatoria
-Facultad de Medicina - Unidad de Gestión de
-Proyectos Estratégicos
-N.º de estudiantes
-a vincular
-1
-Facultad, dependenc','{"desplazamiento":271,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004003,2004,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la
-convocatoria 04 11 2026
-Fecha de publicación de
-resultados 12 11 2026
-Requisitos Generales
-(Art. 2 Acuerdo CSU 024 de','{"desplazamiento":505,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004004,2004,'nombre_de_la',1,'Nombre de la','Nombre de la convocatoria
-Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de
-Procesos Institucionales Número 2
-Núm','{"desplazamiento":124,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004005,2004,'perfil_requerido',1,'Perfil requerido','Perfil requerido
-1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.
-2. Deseable contar con conocim','{"desplazamiento":2893,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004006,2004,'perfil_requerido',2,'perfil requerido','perfil requerido en la
-convocatoria. Si el aspirante cumple
-con el perfil solicitado, se le otorgará la
-calificación máxima de 5.0 en este
-subcomp','{"desplazamiento":5220,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004007,2004,'perfil_requerido',3,'perfil requerido','perfil requerido y las actividades
-de apoyo de la convocatoria. La fecha,
-hora y lugar de aplicación serán
-comunicados previamente a los
-aspirante','{"desplazamiento":6493,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004008,2004,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un
-Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":772,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004009,2004,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1032,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004010,2004,'responsable_de_la',1,'RESPONSABLE DE LA','RESPONSABLE DE LA
-EVALUACIÓN
-Cristian Camilo Veloza Garcia
-CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE
-','{"desplazamiento":8821,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004011,2004,'datos_de_los_participantes',1,'DATOS DE LOS PARTICIPANTES','DATOS DE LOS PARTICIPANTES
-No. Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-*P.A.P.A.
-O puntaje de
-admisión (PA)
-(SI/NO)
-P.','{"desplazamiento":6862,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004012,2004,'observaciones',1,'Observaciones','Observaciones:
-Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse
-voluntariamente del proceso de s','{"desplazamiento":8501,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200401,2004,1,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Nombre de la convocatoria
-Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de
-Procesos Institucionales Número 2
-Número de la convocatoria
-Facultad de Medicina - Unidad de Gestión de
-Proyectos Estratégicos
-N.º de estudiantes
-a vincular
-1
-Facultad, dependencia o
-proyecto
-Facultad de Medicina - Unidad de Gestión de Proyectos Estratégicos
-Fecha de publicación de la
-convocatoria 04 11 2026
-Fecha de publicación de
-resultados 12 11 2026
-Requisitos Generales
-(Art. 2 Acuerdo CSU 024 de
-2022)
-a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.
-b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un
-Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para estudiantes de
-pregrado, e igual o superior a 4.0 para estudiantes de posgrado.
-c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar
-universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético
-Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior
-a 4.0 para estudiantes de posgrado
-d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que
-obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad Nacional de
-Colombia.
-e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad
-Nacional de Colombia.
-f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al
-menos la carga mínima exigida por el Estatuto Estudiantil.
-g. No haber tenido sanciones disciplinarias.
-PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a
-estudiantes en las cuales no se reciba una retribución económica por la realización de actividades y
-que el desempeño como Estudiante Auxiliar no interfiera con el normal desarrollo de su actividad
-académica.
-PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo
-académico de un programa de posgrado cumplir una de las siguientes condiciones, de acuerdo con el
-tipo de admisión, así:
-1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.
-2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de
-2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones académicas.
-3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o
-superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.
-Perfil requerido
-1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.
-2. Deseable contar con conocimientos avanzados en Microsoft Excel, incluyendo manejo de bases de
-datos, funciones avanzadas, tablas dinámicas, análisis de información y elaboración de herramientas
-para el seguimiento y control de proyectos.
-3. Deseable contar con conocimientos en programación, especialmente Python, inteligencia artificial y
-desarrollo de herramientas digitales para el procesamiento de información y la automatización de
-tareas.
-4. Deseable tener interés en el diseño, desarrollo, implementación y validación de herramientas
-digitales, prototipos y soluciones tecnológicas orientadas al mejoramiento de procesos
-institucionales.
-5. Deseable contar con conocimientos o interés en inteligencia artificial, transformación digital,
-innovación y evaluación de la viabilidad técnica de soluciones tecnológicas.
-CRITERIOS DE SELECCIÓN Y EVALUACIÓN
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2004001,2004,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Nombre de la convocatoria'||char(13)||char(10)||'Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de'||char(13)||char(10)||'Procesos Institucionales Número 2'||char(13)||char(10)||'Número de la convocatoria'||char(13)||char(10)||'Facultad de Medicina - Unidad de Gestión de'||char(13)||char(10)||'Proyectos Estratégicos'||char(13)||char(10)||'N.º de estudiantes'||char(13)||char(10)||'a vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Facultad, dependencia o'||char(13)||char(10)||'proyecto'||char(13)||char(10)||'Facultad de Medicina - Unidad de Gestión de Proyectos Estratégicos'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria 04 11 2026'||char(13)||char(10)||'Fecha de publicación de'||char(13)||char(10)||'resultados 12 11 2026'||char(13)||char(10)||'Requisitos Generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024 de'||char(13)||char(10)||'2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un'||char(13)||char(10)||'Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para estudiantes de'||char(13)||char(10)||'pregrado, e igual o superior a 4.0 para estudiantes de posgrado.'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior'||char(13)||char(10)||'a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al'||char(13)||char(10)||'menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a'||char(13)||char(10)||'estudiantes en las cuales no se reciba una retribución económica por la realización de actividades y'||char(13)||char(10)||'que el desempeño como Estudiante Auxiliar no interfiera con el normal desarrollo de su actividad'||char(13)||char(10)||'académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo'||char(13)||char(10)||'académico de un programa de posgrado cumplir una de las siguientes condiciones, de acuerdo con el'||char(13)||char(10)||'tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de'||char(13)||char(10)||'2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o'||char(13)||char(10)||'superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido'||char(13)||char(10)||'1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.'||char(13)||char(10)||'2. Deseable contar con conocimientos avanzados en Microsoft Excel, incluyendo manejo de bases de'||char(13)||char(10)||'datos, funciones avanzadas, tablas dinámicas, análisis de información y elaboración de herramientas'||char(13)||char(10)||'para el seguimiento y control de proyectos.'||char(13)||char(10)||'3. Deseable contar con conocimientos en programación, especialmente Python, inteligencia artificial y'||char(13)||char(10)||'desarrollo de herramientas digitales para el procesamiento de información y la automatización de'||char(13)||char(10)||'tareas.'||char(13)||char(10)||'4. Deseable tener interés en el diseño, desarrollo, implementación y validación de herramientas'||char(13)||char(10)||'digitales, prototipos y soluciones tecnológicas orientadas al mejoramiento de procesos'||char(13)||char(10)||'institucionales.'||char(13)||char(10)||'5. Deseable contar con conocimientos o interés en inteligencia artificial, transformación digital,'||char(13)||char(10)||'innovación y evaluación de la viabilidad técnica de soluciones tecnológicas.'||char(13)||char(10)||'CRITERIOS DE SELECCIÓN Y EVALUACIÓN'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Criterios'||char(13)||char(10)||'Ponderación'||char(13)||char(10)||'(Asigne el peso porcentual de cada criterio)'||char(13)||char(10)||'1 PAPA 20%'||char(13)||char(10)||'2'||char(13)||char(10)||'PBM menores o iguales a 10'||char(13)||char(10)||'calificación de 5.0, PBM de 11 a 20'||char(13)||char(10)||'puntos calificación de 4,5, PBM de 21 a'||char(13)||char(10)||'30 puntos calificación de 4.0, PBM'||char(13)||char(10)||'mayores a 30 puntos 3.5'||char(13)||char(10)||'30%'||char(13)||char(10)||'3'||char(13)||char(10)||'Entrevista presencial – 25 %: Se'||char(13)||char(10)||'realizará una entrevista presencial a los'||char(13)||char(10)||'aspirantes que cumplan con los'||char(13)||char(10)||'requisitos de la convocatoria. La fecha y'||char(13)||char(10)||'hora serán comunicadas previamente a'||char(13)||char(10)||'cada aspirante, teniendo en cuenta la'||char(13)||char(10)||'disponibilidad registrada en sus'||char(13)||char(10)||'horarios académicos.'||char(13)||char(10)||'La entrevista se calificará en una escala'||char(13)||char(10)||'de 0 a 5, de acuerdo con los siguientes'||char(13)||char(10)||'criterios:'||char(13)||char(10)||'a. Puntualidad (10 % del 25 %): Se'||char(13)||char(10)||'asignará una calificación de 5.0 a'||char(13)||char(10)||'quienes asistan puntualmente a la'||char(13)||char(10)||'entrevista, descontando una unidad por'||char(13)||char(10)||'cada dos minutos de retraso, hasta'||char(13)||char(10)||'llegar a una calificación mínima de 0.'||char(13)||char(10)||'En caso de presentarse alguna'||char(13)||char(10)||'eventualidad que impida asistir a la'||char(13)||char(10)||'cita, el aspirante deberá comunicarse'||char(13)||char(10)||'por teléfono o correo electrónico con al'||char(13)||char(10)||'menos 15 minutos de anticipación. La'||char(13)||char(10)||'entrevista se podrá reprogramar una'||char(13)||char(10)||'única vez.'||char(13)||char(10)||'b. Perfil (60 % del 25 %): Se evaluará el'||char(13)||char(10)||'cumplimiento del perfil requerido en la'||char(13)||char(10)||'convocatoria. Si el aspirante cumple'||char(13)||char(10)||'con el perfil solicitado, se le otorgará la'||char(13)||char(10)||'calificación máxima de 5.0 en este'||char(13)||char(10)||'subcomponente. (En caso de no'||char(13)||char(10)||'cumplir con los requisitos obligatorios'||char(13)||char(10)||'del perfil, será descalificado del'||char(13)||char(10)||'proceso de selección.)'||char(13)||char(10)||'c. Experiencia laboral relacionada (15 %'||char(13)||char(10)||'del 25 %): Se valorará la experiencia'||char(13)||char(10)||'laboral acreditada por el aspirante,'||char(13)||char(10)||'tanto dentro como fuera de la'||char(13)||char(10)||'Universidad, que esté relacionada con'||char(13)||char(10)||'las actividades de la convocatoria. En'||char(13)||char(10)||'caso de no contar con experiencia'||char(13)||char(10)||'25%'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'laboral, se asignará una calificación de'||char(13)||char(10)||'3.0 en este componente.'||char(13)||char(10)||'d. Carta de intención (15 % del 25 %):'||char(13)||char(10)||'Se evaluará la motivación, el interés y la'||char(13)||char(10)||'disposición del aspirante para'||char(13)||char(10)||'desarrollar las actividades de apoyo, así'||char(13)||char(10)||'como la relación entre sus'||char(13)||char(10)||'conocimientos, habilidades y el perfil'||char(13)||char(10)||'solicitado. (El solo hecho de enviar la'||char(13)||char(10)||'carta obtendrá 5.0en la calificación de'||char(13)||char(10)||'este subcomponente).'||char(13)||char(10)||'4'||char(13)||char(10)||'Reto de conocimientos – 25 %: Se'||char(13)||char(10)||'realizará una prueba de conocimientos'||char(13)||char(10)||'de manera presencial, orientada a'||char(13)||char(10)||'evaluar las competencias relacionadas'||char(13)||char(10)||'con el perfil requerido y las actividades'||char(13)||char(10)||'de apoyo de la convocatoria. La fecha,'||char(13)||char(10)||'hora y lugar de aplicación serán'||char(13)||char(10)||'comunicados previamente a los'||char(13)||char(10)||'aspirantes, teniendo en cuenta la'||char(13)||char(10)||'disponibilidad registrada en sus'||char(13)||char(10)||'horarios académicos. La prueba tendrá'||char(13)||char(10)||'un peso del 25 % en la calificación final'||char(13)||char(10)||'y se evaluará en una escala de 0 a 5.'||char(13)||char(10)||'25%'||char(13)||char(10)||'Sumatoria de'||char(13)||char(10)||'porcentajes'||char(13)||char(10)||'100%'||char(13)||char(10)||'DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No. Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'*P.A.P.A.'||char(13)||char(10)||'O puntaje de'||char(13)||char(10)||'admisión (PA)'||char(13)||char(10)||'(SI/NO)'||char(13)||char(10)||'P.B.M.'||char(13)||char(10)||'(si aplica)'||char(13)||char(10)||'1a 1b 1c 1d'||char(13)||char(10)||'Total'||char(13)||char(10)||'item 1'||char(13)||char(10)||'2 Total Seleccionado'||char(13)||char(10)||'1 1031647812 3,9 9 3 5 5 5 4,8 4,5 4,61 X'||char(13)||char(10)||'2 1002733029 4,1 6 5 5 5 5 5 0 3,57'||char(13)||char(10)||'Renunció a la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'3 1034659651 0 0 0 0 0 0 0 0 0'||char(13)||char(10)||'Descalificada, no'||char(13)||char(10)||'presentó'||char(13)||char(10)||'documentación'||char(13)||char(10)||'completa'||char(13)||char(10)||'• Se deben relacionar todos los participantes que aplicaron a la convocatoria.'||char(13)||char(10)||'• Si el (la-los) estudiante(s) incumple(n) alguno de los Requisitos mínimos no se debe continuar con la evaluación de la hoja de vida.'||char(13)||char(10)||'• En caso de empate en el puntaje total, se dará prelación a los estudiantes cuyos puntajes básicos de matrícula (PBM) sean los más'||char(13)||char(10)||'bajos. (En caso que aplique)'||char(13)||char(10)||'• Marque una X en la columna "Seleccionado" para identificar el (los) ganador(es) de la convocatoria.'||char(13)||char(10)||'• Marque con la palabra “Elegible” a el (la-los) estudiante(s) que quedará(n) en la lista de elegible(s).'||char(13)||char(10)||'Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio'||char(13)||char(10)||'económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s)'||char(13)||char(10)||'Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo:'||char(13)||char(10)||'Observaciones:'||char(13)||char(10)||'Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse'||char(13)||char(10)||'voluntariamente del proceso de selección de la Convocatoria 2309 de 2026, debido a compromisos'||char(13)||char(10)||'académicos y tras considerar las condiciones de vinculación y los tiempos estimados de pago.'||char(13)||char(10)||'NOMBRE DEL'||char(13)||char(10)||'RESPONSABLE DE LA'||char(13)||char(10)||'EVALUACIÓN'||char(13)||char(10)||'Cristian Camilo Veloza Garcia'||char(13)||char(10)||'CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE'||char(13)||char(10)||'EXTENSIÓN'||char(13)||char(10)||'CORREO ugepefm_bog@unal.edu.co'||char(13)||char(10)||'_________________________________'||char(13)||char(10)||'(Original Firmado'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','sin_cotejo_visual');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004002,2004,'número_de_la',1,'Número de la','Número de la convocatoria'||char(13)||char(10)||'Facultad de Medicina - Unidad de Gestión de'||char(13)||char(10)||'Proyectos Estratégicos'||char(13)||char(10)||'N.º de estudiantes'||char(13)||char(10)||'a vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Facultad, dependenc','{"desplazamiento":271,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004003,2004,'fecha_de_publicación_de_la',1,'Fecha de publicación de la','Fecha de publicación de la'||char(13)||char(10)||'convocatoria 04 11 2026'||char(13)||char(10)||'Fecha de publicación de'||char(13)||char(10)||'resultados 12 11 2026'||char(13)||char(10)||'Requisitos Generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024 de'||char(13)||'','{"desplazamiento":505,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004004,2004,'nombre_de_la',1,'Nombre de la','Nombre de la convocatoria'||char(13)||char(10)||'Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de'||char(13)||char(10)||'Procesos Institucionales Número 2'||char(13)||char(10)||'Núm','{"desplazamiento":124,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004005,2004,'perfil_requerido',1,'Perfil requerido','Perfil requerido'||char(13)||char(10)||'1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.'||char(13)||char(10)||'2. Deseable contar con conocim','{"desplazamiento":2893,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004006,2004,'perfil_requerido',2,'perfil requerido','perfil requerido en la'||char(13)||char(10)||'convocatoria. Si el aspirante cumple'||char(13)||char(10)||'con el perfil solicitado, se le otorgará la'||char(13)||char(10)||'calificación máxima de 5.0 en este'||char(13)||char(10)||'subcomp','{"desplazamiento":5220,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004007,2004,'perfil_requerido',3,'perfil requerido','perfil requerido y las actividades'||char(13)||char(10)||'de apoyo de la convocatoria. La fecha,'||char(13)||char(10)||'hora y lugar de aplicación serán'||char(13)||char(10)||'comunicados previamente a los'||char(13)||char(10)||'aspirante','{"desplazamiento":6493,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004008,2004,'actividades_a_desarrollar',1,'actividades a desarrollar','actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un'||char(13)||char(10)||'Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o sup','{"desplazamiento":772,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004009,2004,'actividades_a_desarrollar',2,'actividades a desarrollar','actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá t','{"desplazamiento":1032,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004010,2004,'responsable_de_la',1,'RESPONSABLE DE LA','RESPONSABLE DE LA'||char(13)||char(10)||'EVALUACIÓN'||char(13)||char(10)||'Cristian Camilo Veloza Garcia'||char(13)||char(10)||'CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE'||char(13)||char(10)||'','{"desplazamiento":8821,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004011,2004,'datos_de_los_participantes',1,'DATOS DE LOS PARTICIPANTES','DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No. Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'*P.A.P.A.'||char(13)||char(10)||'O puntaje de'||char(13)||char(10)||'admisión (PA)'||char(13)||char(10)||'(SI/NO)'||char(13)||char(10)||'P.','{"desplazamiento":6862,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,valor_normalizado_json,estado_revision) VALUES (2004012,2004,'observaciones',1,'Observaciones','Observaciones:'||char(13)||char(10)||'Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse'||char(13)||char(10)||'voluntariamente del proceso de s','{"desplazamiento":8501,"estado":"indice_no_cotejado"}','indice_sin_cotejo');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200401,2004,1,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Nombre de la convocatoria'||char(13)||char(10)||'Convocatoria - Apoyo a la Gestión de Proyectos, Análisis de Datos y Mejoramiento de'||char(13)||char(10)||'Procesos Institucionales Número 2'||char(13)||char(10)||'Número de la convocatoria'||char(13)||char(10)||'Facultad de Medicina - Unidad de Gestión de'||char(13)||char(10)||'Proyectos Estratégicos'||char(13)||char(10)||'N.º de estudiantes'||char(13)||char(10)||'a vincular'||char(13)||char(10)||'1'||char(13)||char(10)||'Facultad, dependencia o'||char(13)||char(10)||'proyecto'||char(13)||char(10)||'Facultad de Medicina - Unidad de Gestión de Proyectos Estratégicos'||char(13)||char(10)||'Fecha de publicación de la'||char(13)||char(10)||'convocatoria 04 11 2026'||char(13)||char(10)||'Fecha de publicación de'||char(13)||char(10)||'resultados 12 11 2026'||char(13)||char(10)||'Requisitos Generales'||char(13)||char(10)||'(Art. 2 Acuerdo CSU 024 de'||char(13)||char(10)||'2022)'||char(13)||char(10)||'a. Tener la calidad de estudiante de pregrado o postgrado de la Universidad Nacional de Colombia.'||char(13)||char(10)||'b. Si las actividades a desarrollar están relacionadas con docencia, el estudiante deberá tener un'||char(13)||char(10)||'Promedio Aritmético Ponderado Acumulado P.A.P.A. igual o superior a 3.5. para estudiantes de'||char(13)||char(10)||'pregrado, e igual o superior a 4.0 para estudiantes de posgrado.'||char(13)||char(10)||'c. Si las actividades a desarrollar están relacionadas con investigación, extensión, bienestar'||char(13)||char(10)||'universitario o de gestión administrativa el estudiante deberá tener un Promedio Aritmético'||char(13)||char(10)||'Ponderado Acumulado P.A.P.A. igual o superior a 3.0. para estudiantes de pregrado, e igual o superior'||char(13)||char(10)||'a 4.0 para estudiantes de posgrado'||char(13)||char(10)||'d. No ostentar la calidad de monitor académico o becario, salvo para aquellos estudiantes que'||char(13)||char(10)||'obtuvieron la beca de posgrado por la distinción de Grado de Honor de la Universidad Nacional de'||char(13)||char(10)||'Colombia.'||char(13)||char(10)||'e. No tener calidad de funcionario público (administrativo o docente de planta) de la Universidad'||char(13)||char(10)||'Nacional de Colombia.'||char(13)||char(10)||'f. Durante el periodo lectivo el Estudiante Auxiliar debe mantener la calidad de estudiante e inscrita al'||char(13)||char(10)||'menos la carga mínima exigida por el Estatuto Estudiantil.'||char(13)||char(10)||'g. No haber tenido sanciones disciplinarias.'||char(13)||char(10)||'PARÁGRAFO 1. La figura de Estudiante Auxiliar podrá ser compatible con las modalidades de apoyo a'||char(13)||char(10)||'estudiantes en las cuales no se reciba una retribución económica por la realización de actividades y'||char(13)||char(10)||'que el desempeño como Estudiante Auxiliar no interfiera con el normal desarrollo de su actividad'||char(13)||char(10)||'académica.'||char(13)||char(10)||'PARÁGRAFO 2. Para los estudiantes de posgrado que se encuentren matriculados en el primer periodo'||char(13)||char(10)||'académico de un programa de posgrado cumplir una de las siguientes condiciones, de acuerdo con el'||char(13)||char(10)||'tipo de admisión, así:'||char(13)||char(10)||'1. Admisión regular. Se privilegia a los que hayan obtenido los mayores puntajes de admisión.'||char(13)||char(10)||'2. Haber sido admitido por admisión automática, según el literal c del artículo 57 del Acuerdo 008 de'||char(13)||char(10)||'2008 del Consejo Superior Universitario - Estatuto Estudiantil en sus disposiciones académicas.'||char(13)||char(10)||'3. Admisión mediante tránsito entre programas de posgrado, tener un promedio académico igual o'||char(13)||char(10)||'superior a 4.0 en el programa de posgrado desde el cual se aprobó el tránsito.'||char(13)||char(10)||'Perfil requerido'||char(13)||char(10)||'1. Estudiante del programa curricular de Ingeniería Agrícola de la Universidad Nacional de Colombia.'||char(13)||char(10)||'2. Deseable contar con conocimientos avanzados en Microsoft Excel, incluyendo manejo de bases de'||char(13)||char(10)||'datos, funciones avanzadas, tablas dinámicas, análisis de información y elaboración de herramientas'||char(13)||char(10)||'para el seguimiento y control de proyectos.'||char(13)||char(10)||'3. Deseable contar con conocimientos en programación, especialmente Python, inteligencia artificial y'||char(13)||char(10)||'desarrollo de herramientas digitales para el procesamiento de información y la automatización de'||char(13)||char(10)||'tareas.'||char(13)||char(10)||'4. Deseable tener interés en el diseño, desarrollo, implementación y validación de herramientas'||char(13)||char(10)||'digitales, prototipos y soluciones tecnológicas orientadas al mejoramiento de procesos'||char(13)||char(10)||'institucionales.'||char(13)||char(10)||'5. Deseable contar con conocimientos o interés en inteligencia artificial, transformación digital,'||char(13)||char(10)||'innovación y evaluación de la viabilidad técnica de soluciones tecnológicas.'||char(13)||char(10)||'CRITERIOS DE SELECCIÓN Y EVALUACIÓN'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401001,200401,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401002,200401,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401003,200401,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -2149,63 +761,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401063,200401,63,'renglon_literal','innovación y evaluación de la viabilidad técnica de soluciones tecnológicas.','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401064,200401,64,'renglon_literal','CRITERIOS DE SELECCIÓN Y EVALUACIÓN','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200401065,200401,65,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200402,2004,2,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Criterios
-Ponderación
-(Asigne el peso porcentual de cada criterio)
-1 PAPA 20%
-2
-PBM menores o iguales a 10
-calificación de 5.0, PBM de 11 a 20
-puntos calificación de 4,5, PBM de 21 a
-30 puntos calificación de 4.0, PBM
-mayores a 30 puntos 3.5
-30%
-3
-Entrevista presencial – 25 %: Se
-realizará una entrevista presencial a los
-aspirantes que cumplan con los
-requisitos de la convocatoria. La fecha y
-hora serán comunicadas previamente a
-cada aspirante, teniendo en cuenta la
-disponibilidad registrada en sus
-horarios académicos.
-La entrevista se calificará en una escala
-de 0 a 5, de acuerdo con los siguientes
-criterios:
-a. Puntualidad (10 % del 25 %): Se
-asignará una calificación de 5.0 a
-quienes asistan puntualmente a la
-entrevista, descontando una unidad por
-cada dos minutos de retraso, hasta
-llegar a una calificación mínima de 0.
-En caso de presentarse alguna
-eventualidad que impida asistir a la
-cita, el aspirante deberá comunicarse
-por teléfono o correo electrónico con al
-menos 15 minutos de anticipación. La
-entrevista se podrá reprogramar una
-única vez.
-b. Perfil (60 % del 25 %): Se evaluará el
-cumplimiento del perfil requerido en la
-convocatoria. Si el aspirante cumple
-con el perfil solicitado, se le otorgará la
-calificación máxima de 5.0 en este
-subcomponente. (En caso de no
-cumplir con los requisitos obligatorios
-del perfil, será descalificado del
-proceso de selección.)
-c. Experiencia laboral relacionada (15 %
-del 25 %): Se valorará la experiencia
-laboral acreditada por el aspirante,
-tanto dentro como fuera de la
-Universidad, que esté relacionada con
-las actividades de la convocatoria. En
-caso de no contar con experiencia
-25%
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200402,2004,2,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Criterios'||char(13)||char(10)||'Ponderación'||char(13)||char(10)||'(Asigne el peso porcentual de cada criterio)'||char(13)||char(10)||'1 PAPA 20%'||char(13)||char(10)||'2'||char(13)||char(10)||'PBM menores o iguales a 10'||char(13)||char(10)||'calificación de 5.0, PBM de 11 a 20'||char(13)||char(10)||'puntos calificación de 4,5, PBM de 21 a'||char(13)||char(10)||'30 puntos calificación de 4.0, PBM'||char(13)||char(10)||'mayores a 30 puntos 3.5'||char(13)||char(10)||'30%'||char(13)||char(10)||'3'||char(13)||char(10)||'Entrevista presencial – 25 %: Se'||char(13)||char(10)||'realizará una entrevista presencial a los'||char(13)||char(10)||'aspirantes que cumplan con los'||char(13)||char(10)||'requisitos de la convocatoria. La fecha y'||char(13)||char(10)||'hora serán comunicadas previamente a'||char(13)||char(10)||'cada aspirante, teniendo en cuenta la'||char(13)||char(10)||'disponibilidad registrada en sus'||char(13)||char(10)||'horarios académicos.'||char(13)||char(10)||'La entrevista se calificará en una escala'||char(13)||char(10)||'de 0 a 5, de acuerdo con los siguientes'||char(13)||char(10)||'criterios:'||char(13)||char(10)||'a. Puntualidad (10 % del 25 %): Se'||char(13)||char(10)||'asignará una calificación de 5.0 a'||char(13)||char(10)||'quienes asistan puntualmente a la'||char(13)||char(10)||'entrevista, descontando una unidad por'||char(13)||char(10)||'cada dos minutos de retraso, hasta'||char(13)||char(10)||'llegar a una calificación mínima de 0.'||char(13)||char(10)||'En caso de presentarse alguna'||char(13)||char(10)||'eventualidad que impida asistir a la'||char(13)||char(10)||'cita, el aspirante deberá comunicarse'||char(13)||char(10)||'por teléfono o correo electrónico con al'||char(13)||char(10)||'menos 15 minutos de anticipación. La'||char(13)||char(10)||'entrevista se podrá reprogramar una'||char(13)||char(10)||'única vez.'||char(13)||char(10)||'b. Perfil (60 % del 25 %): Se evaluará el'||char(13)||char(10)||'cumplimiento del perfil requerido en la'||char(13)||char(10)||'convocatoria. Si el aspirante cumple'||char(13)||char(10)||'con el perfil solicitado, se le otorgará la'||char(13)||char(10)||'calificación máxima de 5.0 en este'||char(13)||char(10)||'subcomponente. (En caso de no'||char(13)||char(10)||'cumplir con los requisitos obligatorios'||char(13)||char(10)||'del perfil, será descalificado del'||char(13)||char(10)||'proceso de selección.)'||char(13)||char(10)||'c. Experiencia laboral relacionada (15 %'||char(13)||char(10)||'del 25 %): Se valorará la experiencia'||char(13)||char(10)||'laboral acreditada por el aspirante,'||char(13)||char(10)||'tanto dentro como fuera de la'||char(13)||char(10)||'Universidad, que esté relacionada con'||char(13)||char(10)||'las actividades de la convocatoria. En'||char(13)||char(10)||'caso de no contar con experiencia'||char(13)||char(10)||'25%'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402001,200402,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402002,200402,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402003,200402,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -2263,71 +819,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402055,200402,55,'renglon_literal','caso de no contar con experiencia','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402056,200402,56,'renglon_literal','25%','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200402057,200402,57,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200403,2004,3,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-laboral, se asignará una calificación de
-3.0 en este componente.
-d. Carta de intención (15 % del 25 %):
-Se evaluará la motivación, el interés y la
-disposición del aspirante para
-desarrollar las actividades de apoyo, así
-como la relación entre sus
-conocimientos, habilidades y el perfil
-solicitado. (El solo hecho de enviar la
-carta obtendrá 5.0en la calificación de
-este subcomponente).
-4
-Reto de conocimientos – 25 %: Se
-realizará una prueba de conocimientos
-de manera presencial, orientada a
-evaluar las competencias relacionadas
-con el perfil requerido y las actividades
-de apoyo de la convocatoria. La fecha,
-hora y lugar de aplicación serán
-comunicados previamente a los
-aspirantes, teniendo en cuenta la
-disponibilidad registrada en sus
-horarios académicos. La prueba tendrá
-un peso del 25 % en la calificación final
-y se evaluará en una escala de 0 a 5.
-25%
-Sumatoria de
-porcentajes
-100%
-DATOS DE LOS PARTICIPANTES
-No. Identificación
-Puntaje por Criterio
-(De 0 a 5) (PBM de 0 a 100)
-*P.A.P.A.
-O puntaje de
-admisión (PA)
-(SI/NO)
-P.B.M.
-(si aplica)
-1a 1b 1c 1d
-Total
-item 1
-2 Total Seleccionado
-1 1031647812 3,9 9 3 5 5 5 4,8 4,5 4,61 X
-2 1002733029 4,1 6 5 5 5 5 5 0 3,57
-Renunció a la
-convocatoria
-3 1034659651 0 0 0 0 0 0 0 0 0
-Descalificada, no
-presentó
-documentación
-completa
-• Se deben relacionar todos los participantes que aplicaron a la convocatoria.
-• Si el (la-los) estudiante(s) incumple(n) alguno de los Requisitos mínimos no se debe continuar con la evaluación de la hoja de vida.
-• En caso de empate en el puntaje total, se dará prelación a los estudiantes cuyos puntajes básicos de matrícula (PBM) sean los más
-bajos. (En caso que aplique)
-• Marque una X en la columna "Seleccionado" para identificar el (los) ganador(es) de la convocatoria.
-• Marque con la palabra “Elegible” a el (la-los) estudiante(s) que quedará(n) en la lista de elegible(s).
-Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio
-económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s)
-Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.
-Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200403,2004,3,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'laboral, se asignará una calificación de'||char(13)||char(10)||'3.0 en este componente.'||char(13)||char(10)||'d. Carta de intención (15 % del 25 %):'||char(13)||char(10)||'Se evaluará la motivación, el interés y la'||char(13)||char(10)||'disposición del aspirante para'||char(13)||char(10)||'desarrollar las actividades de apoyo, así'||char(13)||char(10)||'como la relación entre sus'||char(13)||char(10)||'conocimientos, habilidades y el perfil'||char(13)||char(10)||'solicitado. (El solo hecho de enviar la'||char(13)||char(10)||'carta obtendrá 5.0en la calificación de'||char(13)||char(10)||'este subcomponente).'||char(13)||char(10)||'4'||char(13)||char(10)||'Reto de conocimientos – 25 %: Se'||char(13)||char(10)||'realizará una prueba de conocimientos'||char(13)||char(10)||'de manera presencial, orientada a'||char(13)||char(10)||'evaluar las competencias relacionadas'||char(13)||char(10)||'con el perfil requerido y las actividades'||char(13)||char(10)||'de apoyo de la convocatoria. La fecha,'||char(13)||char(10)||'hora y lugar de aplicación serán'||char(13)||char(10)||'comunicados previamente a los'||char(13)||char(10)||'aspirantes, teniendo en cuenta la'||char(13)||char(10)||'disponibilidad registrada en sus'||char(13)||char(10)||'horarios académicos. La prueba tendrá'||char(13)||char(10)||'un peso del 25 % en la calificación final'||char(13)||char(10)||'y se evaluará en una escala de 0 a 5.'||char(13)||char(10)||'25%'||char(13)||char(10)||'Sumatoria de'||char(13)||char(10)||'porcentajes'||char(13)||char(10)||'100%'||char(13)||char(10)||'DATOS DE LOS PARTICIPANTES'||char(13)||char(10)||'No. Identificación'||char(13)||char(10)||'Puntaje por Criterio'||char(13)||char(10)||'(De 0 a 5) (PBM de 0 a 100)'||char(13)||char(10)||'*P.A.P.A.'||char(13)||char(10)||'O puntaje de'||char(13)||char(10)||'admisión (PA)'||char(13)||char(10)||'(SI/NO)'||char(13)||char(10)||'P.B.M.'||char(13)||char(10)||'(si aplica)'||char(13)||char(10)||'1a 1b 1c 1d'||char(13)||char(10)||'Total'||char(13)||char(10)||'item 1'||char(13)||char(10)||'2 Total Seleccionado'||char(13)||char(10)||'1 1031647812 3,9 9 3 5 5 5 4,8 4,5 4,61 X'||char(13)||char(10)||'2 1002733029 4,1 6 5 5 5 5 5 0 3,57'||char(13)||char(10)||'Renunció a la'||char(13)||char(10)||'convocatoria'||char(13)||char(10)||'3 1034659651 0 0 0 0 0 0 0 0 0'||char(13)||char(10)||'Descalificada, no'||char(13)||char(10)||'presentó'||char(13)||char(10)||'documentación'||char(13)||char(10)||'completa'||char(13)||char(10)||'• Se deben relacionar todos los participantes que aplicaron a la convocatoria.'||char(13)||char(10)||'• Si el (la-los) estudiante(s) incumple(n) alguno de los Requisitos mínimos no se debe continuar con la evaluación de la hoja de vida.'||char(13)||char(10)||'• En caso de empate en el puntaje total, se dará prelación a los estudiantes cuyos puntajes básicos de matrícula (PBM) sean los más'||char(13)||char(10)||'bajos. (En caso que aplique)'||char(13)||char(10)||'• Marque una X en la columna "Seleccionado" para identificar el (los) ganador(es) de la convocatoria.'||char(13)||char(10)||'• Marque con la palabra “Elegible” a el (la-los) estudiante(s) que quedará(n) en la lista de elegible(s).'||char(13)||char(10)||'Certifico que el (los) estudiante(s) seleccionado(s) fue(ron) consultado(s) y manifiesta(n) no recibir ningún otro beneficio'||char(13)||char(10)||'económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s)'||char(13)||char(10)||'Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403001,200403,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403002,200403,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403003,200403,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -2393,34 +885,7 @@ INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,t
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403063,200403,63,'renglon_literal','económico de la Universidad Nacional de Colombia y que no está(n) inhabilitado(s) para ser vinculado(s) como Estudiante(s)','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403064,200403,64,'renglon_literal','Auxiliar(es), a su vez asumo la responsabilidad de todo el proceso de selección del estudiante.','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200403065,200403,65,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200404,2004,4,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo:
-Observaciones:
-Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse
-voluntariamente del proceso de selección de la Convocatoria 2309 de 2026, debido a compromisos
-académicos y tras considerar las condiciones de vinculación y los tiempos estimados de pago.
-NOMBRE DEL
-RESPONSABLE DE LA
-EVALUACIÓN
-Cristian Camilo Veloza Garcia
-CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE
-EXTENSIÓN
-CORREO ugepefm_bog@unal.edu.co
-_________________________________
-(Original Firmado
-Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de
-identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por
-los canales de divulgación que la Universidad disponga para tal fin.
-En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal
-recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de
-Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser
-consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la
-seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones
-dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail
-protecdatos_na@unal.edu.co.
-Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200404,2004,4,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'En caso de que no se haya seleccionado a ningún estudiante como ganador de la convocatoria especifique el motivo:'||char(13)||char(10)||'Observaciones:'||char(13)||char(10)||'Se deja constancia de que el estudiante Julio César Romero Jiménez comunicó su decisión de retirarse'||char(13)||char(10)||'voluntariamente del proceso de selección de la Convocatoria 2309 de 2026, debido a compromisos'||char(13)||char(10)||'académicos y tras considerar las condiciones de vinculación y los tiempos estimados de pago.'||char(13)||char(10)||'NOMBRE DEL'||char(13)||char(10)||'RESPONSABLE DE LA'||char(13)||char(10)||'EVALUACIÓN'||char(13)||char(10)||'Cristian Camilo Veloza Garcia'||char(13)||char(10)||'CARGO Profesional en la Unidad de Gestión de Proyectos Estratégicos Especiales - UGEPE'||char(13)||char(10)||'EXTENSIÓN'||char(13)||char(10)||'CORREO ugepefm_bog@unal.edu.co'||char(13)||char(10)||'_________________________________'||char(13)||char(10)||'(Original Firmado'||char(13)||char(10)||'Los estudiantes que se postulen para la presente convocatoria aceptan que sus datos personales (nombre completo y/o documento de'||char(13)||char(10)||'identificación, BPM o puntaje de admisión y P.A.P.A) sean publicados al momento de dar a conocer los resultados del proceso de selección por'||char(13)||char(10)||'los canales de divulgación que la Universidad disponga para tal fin.'||char(13)||char(10)||'En el marco normativo de la Ley 1581 de 2012, la Universidad Nacional de Colombia se permite informar que la información personal'||char(13)||char(10)||'recolectada mediante la presente Convocatoria de Estudiantes Auxiliares se rige bajo los principios rectores del Régimen de Protección de'||char(13)||char(10)||'Datos de la Universidad Nacional, Resolución de Rectoría No. 207 de 2021, en especial el de Legalidad y Veracidad o calidad, la cual puede ser'||char(13)||char(10)||'consultada en http://www.legal.unal.edu.co/rlunal/home/doc.jsp?d_i=97992. Sus datos se encuentran bajo medidas que garantizan la'||char(13)||char(10)||'seguridad, confidencialidad e integridad. Puede ejercer sus derechos como titular a conocer, actualizar, rectificar y revocar las autorizaciones'||char(13)||char(10)||'dadas a las finalidades aplicables a través de los canales dispuestos y disponibles en https://unal.edu.co/ o en el e-mail'||char(13)||char(10)||'protecdatos_na@unal.edu.co.'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200404001,200404,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200404002,200404,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200404003,200404,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
@@ -2498,53 +963,25 @@ INSERT INTO celda_hoja (celda_id,fila_id,columna_letra,encabezado_literal,valor_
 INSERT INTO evento_revision (revision_id,objeto_tipo,objeto_id,accion,descripcion) VALUES (2051,'caso_convocatoria',205,'documento_pendiente','{"rol":"convocatoria","referencia_celda":"2026-C2308","motivo":"referencia_sin_url_pdf","verificacion":"pendiente_de_localizar"}');
 INSERT INTO documento (documento_id,tipo_sugerido,url_origen,drive_id,titulo_archivo,mime_type,capturado_en,estado_acceso,estado_extraccion,notas) VALUES (2005,'resultados','https://drive.google.com/file/d/1YxzEiwgh04uuJB23bi_Hwi5UccX3gN71/view?usp=drivesdk','1YxzEiwgh04uuJB23bi_Hwi5UccX3gN71','Resultados 2026-C2308','application/pdf','2026-11-13','leido','transcrito_sin_cotejo_visual','El PDF binario y su huella SHA256 no se han incorporado; texto extraído literalmente disponible en campo_documento y renglones.');
 INSERT INTO vinculo_caso (vinculo_id,caso_id,documento_id,rol_en_caso,evidencia_literal,estado_verificacion) VALUES (2053,205,2005,'resultados','Resultados 2026-C2308','transcrito_pendiente_revision');
-INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2005001,2005,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4
--
--Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','sin_cotejo_visual');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200501,2005,1,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4
--
--','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO campo_documento (campo_id,documento_id,ruta_campo,ocurrencia,rotulo_original,texto_original,estado_revision) VALUES (2005001,2005,'texto_extraido_integro',1,'Transcripción íntegra devuelta por Drive','Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4'||char(13)||char(10)||'-'||char(13)||char(10)||'-Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','sin_cotejo_visual');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200501,2005,1,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4'||char(13)||char(10)||'-'||char(13)||char(10)||'-','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501001,200501,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501002,200501,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501003,200501,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501004,200501,4,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 1 de 4','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501005,200501,5,'renglon_literal','-','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200501006,200501,6,'renglon_literal','-','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200502,2005,2,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200502,2005,2,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200502001,200502,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200502002,200502,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200502003,200502,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200502004,200502,4,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 2 de 4','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200503,2005,3,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200503,2005,3,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200503001,200503,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200503002,200503,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200503003,200503,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200503004,200503,4,'renglon_literal','Código: U.FT.05.007.014 Versión: 2.0 Página 3 de 4','pendiente');
-INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200504,2005,4,'Macroproceso: Formación
-Proceso: Gestión Administrativa de Apoyo a la Formación
-Formato selección estudiantes auxiliares
-Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
+INSERT INTO pagina_pdf (pagina_id,documento_id,numero_pagina,texto_extraido_literal,metodo_extraccion,estado_revision_visual,notas) VALUES (200504,2005,4,'Macroproceso: Formación'||char(13)||char(10)||'Proceso: Gestión Administrativa de Apoyo a la Formación'||char(13)||char(10)||'Formato selección estudiantes auxiliares'||char(13)||char(10)||'Código: U.FT.05.007.014 Versión: 2.0 Página 4 de 4','segmentacion_por_cabecera_heuristica','pendiente','Los límites de página son estimados; revisar original PDF.');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200504001,200504,1,'renglon_literal','Macroproceso: Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200504002,200504,2,'renglon_literal','Proceso: Gestión Administrativa de Apoyo a la Formación','pendiente');
 INSERT INTO fragmento_pdf (fragmento_id,pagina_id,orden_lectura,tipo_fragmento,texto_literal,estado_clasificacion) VALUES (200504003,200504,3,'renglon_literal','Formato selección estudiantes auxiliares','pendiente');

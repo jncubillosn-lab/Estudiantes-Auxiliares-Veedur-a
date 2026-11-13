@@ -14,6 +14,12 @@ La [NORMA 00 — Validación integral e inviolable](docs/NORMA-00-validacion-int
 
 **Cualquier requisito incumplido impide contar la convocatoria como validada.** Las cifras de inventario, PDFs leídos y pruebas automáticas no sustituyen esta métrica.
 
+## Jerarquía arquitectónica inviolable
+
+**La base de datos es el núcleo y contrato central de información.** La visualización y la extracción externa realizada por esta IA dependen de ella, no al revés. Sus limitaciones **no justifican alterar, omitir ni sustituir** datos originales o condiciones de validación. Toda ampliación del modelo se decide desde la base y se documenta con sus efectos sobre los dos componentes.
+
+Esta jerarquía desarrolla la [NORMA 00](docs/NORMA-00-validacion-integral.md) y está explicada en la [referencia general](docs/00-REFERENCIA-GENERAL.md).
+
 ## Estado real del corte histórico
 
 | Indicador | Estado |

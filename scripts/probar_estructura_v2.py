@@ -16,9 +16,9 @@ for ident,tipo,code in [(1,"excel","PRUEBA-C0001"),(2,"convocatoria_pdf","PRUEBA
     db.execute("INSERT INTO v2_vinculo_convocatoria_fuente(numero,fuente_id,rol_literal,codigo_observado_literal) VALUES(?,?,?,?)",
                ("PRUEBA-C0001",ident,tipo,code))
 db.execute("""INSERT INTO v2_excel_celda_original
-(fuente_id,pestana_literal,numero_fila,letra_columna,encabezado_literal,valor_visible_literal)
-VALUES (1,'Abiertas',2,'A','Número convocatoria','PRUEBA-C0001')""")
-db.execute("INSERT INTO v2_campo_original(campo_id,fuente_id,codigo_semantico,rotulo_literal,valor_literal) VALUES(1,2,'requisitos','Requisitos','Lista original completa')")
+(fuente_id,numero,pestana_literal,numero_fila,letra_columna,encabezado_literal,valor_visible_literal)
+VALUES (1,'PRUEBA-C0001','Abiertas',2,'A','Número convocatoria','PRUEBA-C0001')""")
+db.execute("INSERT INTO v2_campo_original(campo_id,fuente_id,numero,codigo_semantico,rotulo_literal,valor_literal) VALUES(1,2,'PRUEBA-C0001','requisitos','Requisitos','Lista original completa')")
 db.execute("INSERT INTO v2_lista_original(lista_id,campo_id,nombre_literal,texto_original_integral) VALUES(1,1,'Requisitos','Los siete requisitos completos')")
 for i in range(1,8):
     db.execute("INSERT INTO v2_item_lista_original(lista_id,orden,literal_completo) VALUES (1,?,?)",

@@ -3,6 +3,12 @@
 **Fecha:** 13 de noviembre de 2026 · **Objeto:** implementación de la base de datos, **sin modificar la herramienta de visualización ni automatizar la extracción documental**.  
 **Mandato supremo:** [NORMA 00](NORMA-00-validacion-integral.md): ninguna convocatoria cuenta como validada sin Excel íntegro, PDF de convocatoria íntegro con enlace, comprobación real de resultados y PDF de resultados íntegro con enlace cuando exista, y acta final con todos los controles.
 
+## Regla de centralidad y dependencias
+
+La **base v3 determina el contrato íntegro de información**. El visualizador **depende de su salida** y el procedimiento externo de IA **depende de su contrato de entrada y verificación**. Nunca se rediseña la base para compensar una limitación de interfaz ni se omite contenido porque el procedimiento de extracción no lo maneje.
+
+Ante un original imprevisto: **conservarlo**, documentar su fuente y posición, **ampliar/versionar la estructura de la base** sin pérdida, verificar compatibilidad y solo después adaptar el contrato del visualizador y la entrega de IA. La primacía arquitectónica de la base se encuentra subordinada a la [Norma 00](NORMA-00-validacion-integral.md), que define la integridad y la validación obligatorias.
+
 ## 1. Qué se implementó en el repositorio
 
 | Pieza | Archivo | Función |

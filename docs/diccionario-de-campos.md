@@ -1,5 +1,8 @@
 # Diccionario inicial de información — abierto y no excluyente
 
+> **Catálogo auxiliar de rótulos observados, no contrato obligatorio ni lista cerrada.** La entrada/salida vigente se define en [CONTRATO-V3-EXTRACCION-IA](CONTRATO-V3-EXTRACCION-IA.md), [CONTRATO-V3-VISUALIZACION](CONTRATO-V3-VISUALIZACION.md) y [NORMA 01](NORMA-01-integridad-exhaustividad.md). Todo campo original no previsto también debe registrarse íntegramente; el nombre observado en Excel se conserva literalmente aunque parezca inusual. Ninguna columna de este diccionario demuestra por sí sola que un expediente fue validado.
+
+
 El diccionario es una ayuda para el tratamiento estructurado y **no establece una lista cerrada**. Todo texto, elemento visual o campo no previsto debe conservarse y quedar visible.
 
 ## Hoja «Convocatorias Abiertas» (10 columnas)

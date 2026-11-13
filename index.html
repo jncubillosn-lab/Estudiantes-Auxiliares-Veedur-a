@@ -4,616 +4,542 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Expedientes de convocatorias · Veeduría UNAL</title>
+<title>Convocatorias · Veeduría UNAL</title>
 <style>
-:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#17252b;background:#f5f7f7;line-height:1.55;--ink:#17252b;--muted:#57676d;--line:#dce4e5;--paper:#fff;--accent:#175b51;--soft:#edf4f2}
-*{box-sizing:border-box}body{margin:0}button,a{font:inherit}a{color:#155a51;text-underline-offset:3px;overflow-wrap:anywhere}a:hover{color:#0e3933}button{cursor:pointer}
-.shell{max-width:1540px;margin:0 auto;padding:27px 25px 70px}
-.masthead{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:22px}
-.eyebrow{color:var(--accent);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
-h1{font-size:clamp(1.55rem,2.5vw,2.3rem);letter-spacing:-.04em;line-height:1.13;margin:8px 0}h2{font-size:1.2rem;line-height:1.3;letter-spacing:-.02em}h3{font-size:1.04rem;margin:0 0 10px}
-p{margin:7px 0 0}.intro{max-width:850px;color:var(--muted)}
-.metricbar{display:flex;gap:24px;flex-wrap:wrap;padding:6px 0 0}
-.metric{min-width:112px;border-left:2px solid #a1b9b4;padding-left:12px}.metric strong{font-size:1.7rem;line-height:1.1;display:block;font-variant-numeric:tabular-nums}.metric small{display:block;color:var(--muted);font-size:.76rem;margin-top:5px}
-.layout{display:grid;grid-template-columns:minmax(245px,315px) minmax(0,1fr);gap:20px;align-items:start}
-.sidebar{background:var(--paper);border:1px solid var(--line);border-radius:12px;position:sticky;top:14px;max-height:calc(100vh - 28px);display:flex;flex-direction:column;overflow:hidden}
-.sidehead{padding:16px 18px 13px;border-bottom:1px solid var(--line)}.sidehead h2{margin:0;font-size:1rem}.sidehead p{color:var(--muted);font-size:.78rem}
-.list{overflow:auto;min-height:90px;overscroll-behavior:contain}
-.case{display:block;text-align:left;background:#fff;border:0;border-bottom:1px solid #edf1f1;padding:13px 16px;width:100%;color:var(--ink)}
-.case:hover{background:#f6faf9}.case[aria-current="true"]{background:var(--soft);box-shadow:inset 3px 0 var(--accent)}
-.case-code{display:block;font-size:.79rem;color:var(--accent);font-weight:800;letter-spacing:.015em}.case-title{display:block;margin-top:4px;font-size:.85rem;line-height:1.38;font-weight:620}
-.case-status{display:block;color:var(--muted);font-size:.72rem;margin-top:5px}
-.sheet{min-width:0}.statusline{border:1px solid var(--line);background:#fff;border-radius:11px;padding:13px 17px;color:var(--muted);font-size:.87rem;margin-bottom:16px}
-.statusline.warning{border-left:4px solid #bd8240;background:#fffaf4;color:#64471e}
-.statusline.error{border-left:4px solid #b24a4a;background:#fff6f6;color:#85312f}
-.sheethead,.section,.global{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:21px 24px;margin-bottom:16px;min-width:0}
-.sheethead{padding:27px 28px}.sheethead h2{font-size:clamp(1.4rem,2.2vw,2rem);margin:8px 0 10px;overflow-wrap:anywhere}
-.sheethead .context{color:var(--muted);font-size:.85rem;margin:8px 0 0}.sheethead .headline{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-.pill{font-size:.73rem;border:1px solid #c9d8d4;border-radius:99px;padding:3px 9px;color:#235c51;background:#f0f7f4;font-weight:720}
-.pill.pending{border-color:#ecd9b4;background:#fff8e8;color:#875e19}
-.section h2{margin:0 0 6px}.section .description{color:var(--muted);font-size:.86rem;margin-bottom:18px}
-.section + .section{margin-top:16px}.section-number{color:var(--accent);font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
-.record{border:1px solid var(--line);border-radius:9px;padding:15px 16px;margin-top:11px;background:#fff;min-width:0}
-.record h3{font-size:.96rem;overflow-wrap:anywhere}.record-title{font-weight:730;color:#1f3937;display:block;margin-bottom:10px;overflow-wrap:anywhere}
-.record + .record{margin-top:11px}
-.literal{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.89rem;line-height:1.62}
-.large-literal{border-left:3px solid #9cbeb7;padding:9px 12px;margin:9px 0 12px;background:#f8fbfa}
-.properties{margin:0;display:grid;grid-template-columns:minmax(140px,28%) minmax(0,1fr);column-gap:20px;row-gap:0}
-.properties dt,.properties dd{margin:0;border-top:1px solid #edf1f1;padding:9px 0;min-width:0}
-.properties dt{font-size:.79rem;font-weight:690;color:#5b696e;overflow-wrap:anywhere}
-.properties dd{font-size:.85rem;overflow-wrap:anywhere}.properties dt:first-of-type,.properties dt:first-of-type+dd{border-top:0}
-.tree{border-left:2px solid #e2eae9;padding-left:14px;margin:6px 0}
-.tree-list{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:9px}
-.tree-item{border:1px solid #e6eeee;border-radius:8px;padding:11px 12px;background:#fafcfc;overflow-wrap:anywhere}
-.tree-index{font-size:.73rem;text-transform:uppercase;color:#687a7a;font-weight:740;margin-bottom:7px}
-.empty{background:#f7f9f9;border:1px dashed #ccd9d9;padding:14px;border-radius:8px;color:#617178;font-size:.85rem}
-.note{border-left:3px solid #c4a16f;background:#fffcf6;padding:12px 14px;margin:12px 0;font-size:.84rem;color:#5d4a32}
-details{margin-top:12px}summary{cursor:pointer;font-weight:720;color:#24584f;font-size:.84rem;padding:5px 0}
-details[open]>summary{margin-bottom:9px}
-.scroll{overflow-x:auto;max-width:100%}
-.gridtable{width:100%;border-collapse:collapse;table-layout:auto;margin:8px 0}
-.gridtable th,.gridtable td{text-align:left;vertical-align:top;border-bottom:1px solid #e6eded;padding:9px 11px;font-size:.83rem;min-width:95px;overflow-wrap:anywhere}
-.gridtable th{font-size:.76rem;letter-spacing:.015em;color:#52666a;background:#f2f6f5;font-weight:800}
-.gridtable td:first-child{font-weight:680;min-width:145px}
-.gridtable details{margin-top:5px}
-.resource{font-size:.82rem;display:inline-block;margin:0 0 6px}
-.global{padding:17px 23px}.global>summary{font-size:1rem}.global .description{color:var(--muted);font-size:.84rem}
-.footer{font-size:.77rem;color:var(--muted);padding:16px 2px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
-@media(max-width:920px){.layout{grid-template-columns:245px minmax(0,1fr)}.shell{padding:17px 13px 50px}.sheethead,.section{padding:19px 17px}}
-@media(max-width:720px){.layout{display:block}.sidebar{position:static;max-height:260px;margin-bottom:15px}.sidehead{padding:11px 14px}.sheethead,.section{padding:20px 16px}.properties{grid-template-columns:1fr}.properties dt{padding-bottom:1px}.properties dd{padding-top:1px;border-top:0}.metricbar{width:100%}.case{padding:10px 13px}}
-@media(prefers-reduced-motion:no-preference){.case{transition:background .15s}}
-
-/* Jerarquía de lectura: la ficha prioritaria no reemplaza el expediente original */
-.priority{border-left:4px solid var(--theme);padding-top:19px}
-.theme-red{--theme:#bd5360;--tint:#fbf2f3}
-.theme-green{--theme:#278666;--tint:#eff8f4}
-.theme-yellow{--theme:#b28a32;--tint:#faf7ea}
-.theme-blue{--theme:#398a9a;--tint:#eff7f9}
-.priority .section-number{color:var(--theme)}
-.prior-note{background:var(--tint);color:#415459;font-size:.8rem;border-radius:7px;padding:9px 11px;margin:12px 0}
-.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px;margin-top:13px}
-.fact{min-width:0;background:#fbfcfc;border:1px solid #e2eaea;border-radius:8px;padding:13px}
-.fact-label{color:#56696c;font-size:.77rem;font-weight:750;margin-bottom:7px;overflow-wrap:anywhere}
-.fact-value{font-size:.93rem;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}
-.fact-source{margin-top:10px;color:#617478;font-size:.74rem;overflow-wrap:anywhere}
-.fact-source a{font-size:.74rem}
-.priority-subtitle{font-size:.94rem;font-weight:780;margin:20px 0 8px;color:#304d50}
-.preview-group{margin-top:12px;border-top:1px solid #e7edec;padding-top:8px}
-.preview-group summary{color:#51666b;font-size:.8rem}
-.preview-note{background:#fffaf0;color:#775b30;border-radius:7px;padding:9px 11px;font-size:.8rem;margin-bottom:9px}
-.preview-fragment{background:#fbfcfc;border-left:2px solid #b4c8c7;padding:9px 12px;margin:9px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.84rem;line-height:1.6}
-.archive{background:#f8fafa;border:1px solid var(--line);border-radius:12px;padding:17px 19px;margin-top:17px}
-.archive>summary{font-size:1.02rem;font-weight:780;color:#254d48}
-.archive-desc{font-size:.85rem;color:var(--muted);margin:4px 0 16px}
-.archive .section{border:1px solid var(--line)}
-.table-note{color:#627378;font-size:.79rem;padding:7px 2px}
-
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;--bg:#f5f7f8;--paper:#fff;--ink:#1a292d;--muted:#58686e;--border:#dbe4e6;--accent:#175e54;--accent-soft:#edf6f3}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;font-size:14px;line-height:1.5}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px;overflow-wrap:anywhere}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #65b7a3;outline-offset:2px}
+.wrap{max-width:1720px;margin:0 auto;padding:22px 22px 48px}
+header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:19px;border-bottom:1px solid var(--border)}
+.kicker{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1{font-size:clamp(23px,2.5vw,31px);line-height:1.2;letter-spacing:-.035em;margin:5px 0}
+.subtitle{color:var(--muted);max-width:780px;margin:4px 0 0}
+.stats{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;justify-content:flex-end}
+.stat{min-width:105px;padding-left:12px;border-left:2px solid #bed2cd}
+.stat strong{font-size:23px;display:block;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11px;display:block}
+.filters{margin:16px 0;padding:13px 16px;border:1px solid var(--border);border-radius:11px;background:var(--paper)}
+.filter-grid{display:grid;grid-template-columns:minmax(200px,2fr) minmax(150px,1.4fr) repeat(3,minmax(120px,1fr)) minmax(135px,1fr);gap:12px;align-items:end}
+.field label{font-size:11px;font-weight:750;color:#4f6468;display:block;margin-bottom:5px}
+.field input,.field select{border-radius:7px;border:1px solid #cfdcdd;background:white;padding:9px 10px;width:100%;min-height:39px;color:var(--ink)}
+.filter-footer{display:flex;justify-content:space-between;align-items:center;margin-top:9px;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.linkbutton{border:0;background:transparent;color:var(--accent);font-size:12px;font-weight:750;text-decoration:underline;padding:2px}
+.workspace{display:grid;grid-template-columns:minmax(490px,1.12fr) minmax(390px,1fr);gap:15px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--border);border-radius:11px;overflow:hidden;min-width:0}
+.panel-title{padding:13px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--border)}
+.panel-title h2{font-size:15px;margin:0}
+.tiny{font-size:11px;color:var(--muted)}
+.table-scroll{max-height:calc(100vh - 251px);min-height:240px;overflow:auto;overscroll-behavior:contain}
+table{border-collapse:collapse;width:100%;text-align:left}
+.list-table{min-width:830px}
+th,td{border-bottom:1px solid #e8eff0;text-align:left;vertical-align:top;padding:10px 12px;overflow-wrap:anywhere}
+th{background:#f5f8f8;color:#53666a;font-size:11px;white-space:nowrap;font-weight:750}
+.list-table thead th{position:sticky;top:0;z-index:2;border-bottom:1px solid var(--border)}
+.list-table tbody tr{cursor:pointer}
+.list-table tbody tr:hover{background:#f7faf9}
+.list-table tbody tr[aria-selected="true"]{background:#eaf5f1}
+.list-table tbody tr[aria-selected="true"] td:first-child{box-shadow:inset 3px 0 var(--accent)}
+.list-table td{font-size:12px;line-height:1.45}
+.code-button{border:0;background:transparent;color:var(--accent);font-weight:800;padding:0;text-align:left}
+.title-cell{min-width:190px;max-width:310px;font-weight:650}
+.program-cell{max-width:260px}
+.date-cell{font-variant-numeric:tabular-nums;white-space:nowrap}
+.mini-state{font-size:11px;white-space:nowrap}
+.mini-state.pending{color:#7b602b}
+.empty{padding:20px;color:var(--muted);font-size:13px;background:#f9fbfb;border:1px dashed #d2dddd;border-radius:8px}
+.table-empty{border:0;border-radius:0}
+.detail{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.detail-header{padding:17px 19px;border-bottom:1px solid var(--border)}
+.detail-header .code{font-size:12px;font-weight:800;color:var(--accent)}
+.detail-header h2{font-size:19px;line-height:1.32;margin:6px 0;overflow-wrap:anywhere}
+.detail-status{font-size:11px;color:#655126;background:#fff6e5;border:1px solid #f0dfbc;border-radius:30px;display:inline-block;padding:3px 8px;margin-top:8px}
+.detail-block{padding:16px 19px;border-bottom:1px solid var(--border);min-width:0}
+.detail-block:last-child{border-bottom:0}
+.detail-block h3{font-size:14px;margin:0 0 9px;display:flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:99px;display:inline-block;flex:none;background:var(--accent)}
+.dot.green{background:#3f9271}.dot.yellow{background:#b49a43}.dot.blue{background:#4188a5}.dot.red{background:#be6772}
+.properties{display:grid;grid-template-columns:minmax(120px,36%) minmax(0,1fr);margin:0}
+.properties dt,.properties dd{margin:0;padding:8px 0;border-bottom:1px solid #edf1f1;overflow-wrap:anywhere}
+.properties dt{font-weight:700;font-size:12px;color:#627379;padding-right:10px}
+.properties dd{font-size:12.5px;white-space:pre-wrap}
+.properties dt:last-of-type,.properties dd:last-of-type{border-bottom:0}
+.missing{color:#89969a;font-style:italic}
+.note{color:#617176;font-size:12px;margin:8px 0}
+.note.warning{color:#88652d}
+.sources{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.source-link{font-size:12px;display:inline-block;padding:5px 9px;border:1px solid #bfd9d2;background:#f3faf8;border-radius:6px;text-decoration:none}
+.source-link:hover{background:#e6f4ef}
+.observation{padding:10px 11px;background:#fafcfc;border:1px solid #e6ecec;border-radius:7px;margin:7px 0}
+.observation-label{font-size:12px;font-weight:750;margin-bottom:3px}
+.observation-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}
+.observation-src{font-size:11px;color:#6c7c80;margin-top:6px}
+.results-table,.criteria-table{min-width:560px}
+.results-table td,.criteria-table td{font-size:12px;white-space:pre-wrap}
+.results-table th,.criteria-table th{white-space:normal}
+.info-table-scroll{overflow-x:auto;border:1px solid #e2e9ea;border-radius:8px}
+section[data-kind="validation"]{background:#fffdf8}
+details.archive{border:1px solid var(--border);border-radius:8px;background:#fafcfc;margin-top:9px;overflow:hidden}
+details.archive>summary{padding:11px 13px;cursor:pointer;font-size:12px;font-weight:750;color:#315c57}
+details.archive[open]>summary{border-bottom:1px solid var(--border)}
+.archive-body{padding:10px 14px;max-height:460px;overflow:auto}
+.raw-fields{margin:0;display:grid;grid-template-columns:minmax(110px,30%) minmax(0,1fr)}
+.raw-fields dt,.raw-fields dd{font-size:11px;border-bottom:1px solid #e8eeee;margin:0;padding:6px 7px;overflow-wrap:anywhere}
+.raw-fields dt{color:#657478;font-weight:700}
+.raw-fields dd{white-space:pre-wrap}
+.raw-list{margin:0;padding:0 0 0 16px}
+.raw-list>li{margin:6px 0;padding:5px;border-left:1px solid #d8e2e3;overflow-wrap:anywhere}
+.raw-subtitle{font-weight:750;font-size:12px}
+.doc-row{padding:8px 0;border-bottom:1px solid #edf0f0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
+.doc-row:last-child{border-bottom:0}
+.footer{font-size:11px;color:var(--muted);margin-top:17px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
+@media(max-width:1190px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace{grid-template-columns:minmax(410px,1.05fr) minmax(340px,1fr)}.wrap{padding:16px 12px}}
+@media(max-width:880px){header.top{display:block}.stats{justify-content:flex-start;margin-top:12px}.workspace{display:block}.table-scroll{max-height:330px}.detail{position:static;max-height:none;margin-top:14px;scrollbar-gutter:auto}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.list-table{min-width:820px}}
+@media(max-width:500px){.filter-grid{grid-template-columns:1fr}.filter-grid .field:nth-child(1){grid-column:auto}.wrap{padding:14px 9px}.detail-block,.detail-header{padding:13px 12px}.properties{grid-template-columns:minmax(90px,38%) minmax(0,1fr)}}
 </style>
 </head>
 <body>
-<div class="shell">
-<header class="masthead">
+<div class="wrap">
+<header class="top">
   <div>
-    <div class="eyebrow">Veeduría documental · Universidad Nacional de Colombia, Bogotá</div>
-    <h1>Expedientes de convocatorias</h1>
-    <p class="intro">Consulta cada convocatoria como una ficha documental completa. La información original conserva su fuente, ubicación, versiones y estado de cotejo. El inventario no equivale a convocatorias validadas.</p>
+    <div class="kicker">Veeduría documental · Universidad Nacional de Colombia</div>
+    <h1>Convocatorias de estudiantes auxiliares</h1>
+    <p class="subtitle">Compara los datos de la tabla, filtra convocatorias y consulta su detalle sin salir del listado. Los documentos originales permanecen vinculados.</p>
   </div>
-  <div class="metricbar" aria-label="Métricas oficiales de la base v3">
-    <div class="metric"><strong id="validated">—</strong><small>Convocatorias validadas</small></div>
-    <div class="metric"><strong id="identified">—</strong><small>Identificadas (inventario)</small></div>
+  <div class="stats" aria-label="Métricas oficiales">
+    <div class="stat"><strong id="metric-validated">—</strong><span>Validadas · Norma 00</span></div>
+    <div class="stat"><strong id="metric-total">—</strong><span>Identificadas en la base</span></div>
+    <div class="stat"><strong id="metric-visible">—</strong><span>Visibles con filtros</span></div>
   </div>
 </header>
-<div class="layout">
-  <aside class="sidebar" aria-label="Listado completo de convocatorias">
-    <div class="sidehead"><h2>Convocatorias</h2><p id="list-caption">Listado íntegro, sin filtros</p></div>
-    <nav class="list" id="case-list" aria-label="Seleccionar expediente"></nav>
+<section class="filters" aria-label="Filtrar convocatorias">
+  <div class="filter-grid">
+    <div class="field"><label for="search">Buscar código, nombre o dependencia</label><input type="search" id="search" placeholder="Buscar en las convocatorias…"></div>
+    <div class="field"><label for="program">Carrera o perfil publicado</label><input type="search" id="program" placeholder="Ej. Mecánica, Sistemas…"></div>
+    <div class="field"><label for="faculty">Facultad</label><select id="faculty"><option value="">Todas</option></select></div>
+    <div class="field"><label for="level">Nivel</label><select id="level"><option value="">Todos</option></select></div>
+    <div class="field"><label for="state">Estado publicado</label><select id="state"><option value="">Todos</option></select></div>
+    <div class="field"><label for="results">PDF de resultados</label><select id="results"><option value="">Todos</option><option value="yes">Vinculado</option><option value="no">Sin vínculo</option></select></div>
+  </div>
+  <div class="filter-footer"><span id="filter-summary">Los filtros solo organizan la vista; no modifican ni descartan datos.</span><button id="reset" type="button" class="linkbutton">Limpiar filtros</button></div>
+</section>
+<div class="workspace">
+  <section class="panel" aria-label="Tabla de convocatorias">
+    <div class="panel-title"><h2>Listado comparativo</h2><span class="tiny">Selecciona una fila para consultar su ficha</span></div>
+    <div class="table-scroll">
+      <table class="list-table">
+        <thead><tr>
+          <th scope="col">Código</th><th scope="col">Convocatoria</th><th scope="col">Facultad</th>
+          <th scope="col">Carrera / perfil en Excel</th><th scope="col">Nivel</th>
+          <th scope="col">Estado Excel</th><th scope="col">Cierre</th><th scope="col">Resultados</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+  <aside class="panel detail" id="detail" aria-label="Ficha de la convocatoria seleccionada">
+    <div class="detail-block"><div class="empty">Cargando la base documental v3…</div></div>
   </aside>
-  <main class="sheet" id="sheet" aria-live="polite">
-    <div class="statusline" id="message" role="status">Cargando el contrato documental v3…</div>
-  </main>
 </div>
-<details class="global" id="global-info">
-  <summary>Origen de la información, capturas y contrato de datos</summary>
-  <p class="description">Esta sección corresponde a los metadatos generales de la exportación v3, sin modificar las fuentes.</p>
-  <div id="global-content"></div>
-</details>
-<footer class="footer"><span>La información se muestra tal como figura en la exportación oficial de SQLite v3. Ninguna ficha se valida desde esta interfaz.</span><span><a href="./docs/NORMA-00-validacion-integral.md">Norma 00</a> · <a href="./docs/CONTRATO-V3-VISUALIZACION.md">Contrato de visualización</a> · <a href="./comparador-v2.html">Comparador anterior (v2)</a></span></footer>
+<footer class="footer">
+  <span>Las fechas se presentan en formato legible a partir del valor original de Excel. «Sin vínculo» no significa ausencia verificada de resultados.</span>
+  <span><a href="./docs/CONTRATO-V3-VISUALIZACION.md">Contrato v3</a> · <a href="./docs/NORMA-00-validacion-integral.md">Norma 00</a> · <a href="./comparador-v2.html">Comparador anterior</a></span>
+</footer>
 </div>
 <script>
 "use strict";
 (function(){
-  const SOURCE = "./data/expedientes_v3.json";
-  const $ = id => document.getElementById(id);
-  let data = null;
-  let selected = null;
-  const idKeys = ["fuente_id", "lista_id", "dato_id", "puerta_id", "incidencia_id", "acta_id", "resultado_fila_id", "pagina_id"];
-  const mandatory = ["numero","estado_validacion","validada","fuentes_originales","datos_originales","listas_originales","resultados_estructurados","indicadores_sinteticos","control_validacion"];
-  const labelMap = {
-    numero:"Código integrado",estado_validacion:"Estado de validación",validada:"Validación oficial",
-    url_original:"Enlace al documento original",resultado_acceso:"Resultado de acceso",
-    pdf_lectura_previa:"Lectura textual anterior, sin cotejo visual",
-    paginas_pdf_estructuradas:"Páginas PDF estructuradas",revision_de_cobertura:"Revisión de cobertura",
-    filas_excel:"Filas originales de Excel",celdas:"Celdas originales",
-    literal_completo:"Contenido literal original",rotulo_literal:"Rótulo original",
-    valor_visible_literal:"Valor visible",encabezado_literal:"Encabezado original",
-    valor_entrada_literal:"Valor de entrada",hipervinculo_literal:"Hipervínculo",
-    codigo_concepto:"Concepto indexado",version_literal:"Versión original",
-    fuente_id:"Identificador de fuente",codigo_interno_literal:"Código literal en fuente",
-    comprobaciones_resultados:"Comprobaciones de disponibilidad de resultados",
-    incidencias:"Incidencias registradas",actas:"Actas de cierre",
-    criterios:"Criterios de verificación",items:"Ítems originales",
-    elementos_originales:"Elementos originales",tablas_originales:"Tablas originales"
+  const URL="./data/expedientes_v3.json";
+  const $=id=>document.getElementById(id);
+  const make=(tag,className,textValue)=>{
+    const el=document.createElement(tag);
+    if(className)el.className=className;
+    if(textValue!==undefined)el.textContent=String(textValue);
+    return el;
   };
-  function node(tag,className,value){
-    const n=document.createElement(tag);
-    if(className)n.className=className;
-    if(value!==undefined)n.textContent=String(value);
-    return n;
+  const clean=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim();
+  const nonempty=x=>x!==null&&x!==undefined&&String(x).trim()!=="";
+  const allowUrl=x=>typeof x==="string"&&/^https?:\/\/\S+$/i.test(x);
+  const labels={
+    title:[/^nombre de la convocatoria/,/^titulo$/,/^nombre convocatoria$/],
+    faculty:[/^facultad$/, /^facultad, dependencia/],
+    program:[/^programa curricular$/, /^carrera$/, /^programa academico$/],
+    level:[/^tipo de convocatoria$/, /^tipo de estudiante$/, /^programa$/],
+    state:[/^estado de la convocatoria$/, /^estado$/],
+    published:[/^fecha de publicacion(?: de la convocatoria)?$/],
+    closing:[/^fecha (?:y hora )?de cierre de la convocatoria$/, /^fecha de cierre$/],
+    email:[/^correo del responsable$/, /^correo responsable$/],
+    places:[/^no\.? de estudiantes a vincular$/, /^n.? de estudiantes a vincular$/, /^numero de estudiantes a vincular$/, /^plazas$/],
+    profile:[/^perfil requerido$/],
+    activities:[/^actividades a desarrollar$/, /^tipo de actividades a desarrollar/],
+    modality:[/^modalidad de las actividades$/],
+    availability:[/^disponibilidad de tiempo(?: requerida)?$/, /^horas semanales$/],
+    stipend:[/^estimulo economico(?: mensual)?$/],
+    duration:[/^duracion de la vinculacion$/],
+    selection:[/^forma de seleccion$/],
+    criteria:[/^criterios de evaluacion$/, /^criterios de seleccion(?: y evaluacion)?$/],
+    responsible:[/^responsable de la convocatoria$/, /^nombre del responsable$/],
+    progress:[/^porcentaje de avance$/, /^avance minimo$/, /^avance de la carrera$/]
+  };
+  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance"};
+  let db=null;
+  let allRows=[];
+  let selected=null;
+  function matchField(d,key){
+    const identifiers=[d.rotulo_literal,d.codigo_concepto].filter(nonempty).map(clean);
+    return (labels[key]||[]).some(re=>identifiers.some(value=>re.test(value)));
   }
-  function label(key){return labelMap[key]||String(key).replace(/_/g," ").replace(/^\w/,c=>c.toUpperCase());}
-  function hasValue(v){return v!==null&&v!==undefined&&String(v).trim()!=="";}
-  function literal(value){
-    if(value===null)return node("span","literal","No registrado (null)");
-    if(value===undefined)return node("span","literal","Campo no incluido");
-    if(value==="")return node("span","literal","Vacío literal en la fuente");
-    const text=typeof value==="string"?value:String(value);
-    if(/^https?:\/\/\S+$/i.test(text)){
-      const a=node("a","literal",text);a.href=text;a.target="_blank";a.rel="noopener noreferrer";return a;
-    }
-    return node("span","literal",text);
+  function entries(c,key){
+    return (c.datos_originales||[]).filter(d=>matchField(d,key)&&nonempty(d.literal_completo));
   }
-  function renderTree(value,contextKey=""){
-    if(value===null||typeof value!=="object")return literal(value);
-    if(Array.isArray(value)){
-      if(!value.length)return node("div","empty","Sin registros en esta sección (no demuestra que el documento no exista).");
-      const list=node("ol","tree-list");
-      value.forEach((item,i)=>{
-        const named=item&&typeof item==="object"&&!Array.isArray(item)?
-          (item.rotulo_literal||item.titulo_literal||item.nombre_literal||item.nombre||item.encabezado_literal||item.codigo_concepto||null):null;
-        const types={paginas:"Página",renglones:"Renglón",filas_excel:"Fila Excel",celdas:"Celda",items:"Ítem",campos_detectados:"Rótulo detectado",tablas_originales:"Tabla",valores:"Valor",metricas:"Métrica"};
-        const generic=(types[contextKey]||"Registro")+" "+(i+1);
-        const li=node("li","tree-item"),heading=node("div","tree-index",named||generic);
-        li.append(heading,renderTree(item,contextKey));list.append(li);
-      });
-      return list;
-    }
-    const dl=node("dl","properties");
-    Object.keys(value).forEach(key=>{
-      const dt=node("dt","",label(key)),dd=node("dd");
-      if(value[key]&&typeof value[key]==="object"){
-        const inner=node("div","tree");inner.append(renderTree(value[key],key));dd.append(inner);
-      }else{dd.append(literal(value[key]));}
-      dl.append(dt,dd);
-    });
-    if(!Object.keys(value).length)return node("div","empty","Objeto vacío en la exportación.");
-    return dl;
+  function uniqueTexts(c,key){
+    return [...new Set(entries(c,key).map(x=>String(x.literal_completo).trim()))];
   }
-  function without(record, keys){
-    const result={};
-    Object.keys(record||{}).forEach(k=>{if(!keys.includes(k))result[k]=record[k];});
+  function primary(c,key){
+    const vals=uniqueTexts(c,key);
+    if(vals.length===0)return null;
+    if(vals.length>1)return "Varios valores ("+vals.length+")";
+    return vals[0];
+  }
+  function excelDate(text,withTime){
+    if(!nonempty(text))return null;
+    const n=Number(text);
+    if(!Number.isFinite(n)||n<20000||n>90000)return String(text);
+    // Convención de fechas de Excel 1900: origen 1899-12-30.
+    const instant=new Date(Date.UTC(1899,11,30)+Math.round(n*86400000));
+    if(Number.isNaN(instant.getTime()))return String(text);
+    const pad=x=>String(x).padStart(2,"0");
+    let result=pad(instant.getUTCDate())+"/"+pad(instant.getUTCMonth()+1)+"/"+instant.getUTCFullYear();
+    if(withTime && Math.abs(n-Math.floor(n))>0.00001)result+=" "+pad(instant.getUTCHours())+":"+pad(instant.getUTCMinutes());
     return result;
   }
-  function section(title, explanation, index){
-    const s=node("section","section"), k=node("div","section-number","Sección "+index);
-    const h=node("h2","",title);const p=node("p","description",explanation);
-    s.append(k,h,p);return s;
+  function display(c,key){
+    const v=primary(c,key);
+    return (key==="closing"||key==="published")&&v&&!v.startsWith("Varios valores")?excelDate(v,key==="closing"):v;
   }
-  function noRecords(message){return node("div","empty",message||"No hay registros de esta categoría en la exportación. Esto no acredita ausencia en las fuentes originales.");}
-  function card(title){
-    const c=node("article","record");
-    c.append(node("h3","",title));return c;
+  function source(c,id){
+    return (c.fuentes_originales||[]).find(f=>String(f.fuente_id)===String(id));
   }
-  function details(labelText,value,isOpen){
-    const d=node("details"),s=node("summary","",labelText);
-    d.open=!!isOpen;d.append(s,renderTree(value));return d;
+  function sourceAnchor(f,title){
+    if(!f||!allowUrl(f.url_original))return null;
+    const a=make("a","source-link",title);
+    a.href=f.url_original;a.target="_blank";a.rel="noopener noreferrer";return a;
   }
-  function valueOf(exp, concept){
-    const candidates=(exp.datos_originales||[]).filter(x=>x.codigo_concepto===concept && hasValue(x.literal_completo));
-    return candidates.length?String(candidates[0].literal_completo):null;
-  }
-  function displayTitle(exp){return valueOf(exp,"titulo")||"Título no registrado en los originales indexados";}
-  function validity(exp){
-    return exp.validada===true?"Validada conforme a Norma 00":label(exp.estado_validacion||"no_iniciada");
-  }
-  function renderExcelRow(row){
-    const c=card("Hoja "+String(row.pestana_literal??"no registrada")+" · fila "+String(row.fila_original??"no registrada"));
-    c.append(renderTree(without(row,["celdas"])));
-    const cells=Array.isArray(row.celdas)?row.celdas:[];
-    if(!cells.length){c.append(noRecords("No hay celdas asociadas a esta fila en la exportación."));return c;}
-    const wrap=node("div","scroll"), table=node("table","gridtable"),thead=document.createElement("thead"),tr=document.createElement("tr");
-    ["Columna / encabezado original","Contenido literal visible","Información completa de la celda"].forEach(x=>tr.append(node("th","",x)));
-    thead.append(tr);table.append(thead);
-    const tbody=document.createElement("tbody");
-    cells.forEach(cell=>{
-      const line=document.createElement("tr"),left=document.createElement("td"),center=document.createElement("td"),right=document.createElement("td");
-      left.append(literal(cell.columna_original));left.append(node("div","",String(cell.encabezado_literal??"Encabezado no registrado")));
-      center.append(literal(cell.valor_visible_literal));
-      right.append(details("Fórmula, entrada, nota, enlace y formato",without(cell,["encabezado_literal","valor_visible_literal"]),false));
-      line.append(left,center,right);tbody.append(line);
+  function links(c,types){
+    const out=make("div","sources");
+    (c.fuentes_originales||[]).filter(f=>types.includes(f.tipo)).forEach((f,i)=>{
+      const kind=f.tipo==="convocatoria_pdf"?"Convocatoria":f.tipo==="resultados_pdf"?"Resultados":f.tipo==="excel"?"Excel":f.tipo.replace(/_pdf$/,"");
+      const a=sourceAnchor(f,"Abrir "+kind+(i>0?" · "+(i+1):""));
+      if(a)out.append(a);
     });
-    table.append(tbody);wrap.append(table);c.append(wrap);return c;
+    return out;
   }
-  function renderSource(source,i){
-    const kind=source.tipo==="excel"?"Excel original":source.tipo==="convocatoria_pdf"?"PDF de convocatoria":source.tipo==="resultados_pdf"?"PDF de resultados":label(source.tipo||"Fuente");
-    const c=card(kind+" · fuente "+String(source.fuente_id??(i+1)));
-    if(hasValue(source.url_original)){
-      const link=node("a","resource","Abrir fuente original");
-      link.href=String(source.url_original);link.target="_blank";link.rel="noopener noreferrer";c.append(link);
+  function appendTextCell(row,textValue,className){
+    const td=make("td",className);
+    td.append(nonempty(textValue)?document.createTextNode(String(textValue)):make("span","missing","—"));
+    row.append(td);
+  }
+  function collectModel(c){
+    return {
+      item:c,
+      title:display(c,"title"),
+      faculty:display(c,"faculty"),
+      program:display(c,"program"),
+      level:display(c,"level"),
+      state:display(c,"state"),
+      closing:display(c,"closing"),
+      pdfResult:(c.fuentes_originales||[]).some(f=>f.tipo==="resultados_pdf"),
+    };
+  }
+  function populateFilter(id,values){
+    const select=$(id);
+    const order=[...new Set(values.filter(nonempty))].sort((a,b)=>String(a).localeCompare(String(b),"es",{sensitivity:"base"}));
+    order.forEach(value=>{const o=make("option","",value);o.value=value;select.append(o);});
+  }
+  function filtered(){
+    const q=clean($("search").value),p=clean($("program").value);
+    const faculty=$("faculty").value,level=$("level").value,state=$("state").value,results=$("results").value;
+    return allRows.filter(row=>{
+      const text=clean([row.item.numero,row.title,row.faculty,row.program,row.level,row.state,display(row.item,"email")].join(" "));
+      if(q&&!text.includes(q))return false;
+      if(p&&!clean(row.program).includes(p)&&!clean(display(row.item,"profile")).includes(p))return false;
+      if(faculty && !uniqueTexts(row.item,"faculty").includes(faculty))return false;
+      if(level && !uniqueTexts(row.item,"level").includes(level))return false;
+      if(state && !uniqueTexts(row.item,"state").includes(state))return false;
+      if(results==="yes"&&!row.pdfResult)return false;
+      if(results==="no"&&row.pdfResult)return false;
+      return true;
+    });
+  }
+  function drawRows(){
+    const filteredRows=filtered(),target=$("rows");
+    target.replaceChildren();
+    $("metric-visible").textContent=String(filteredRows.length);
+    $("filter-summary").textContent=filteredRows.length+" de "+allRows.length+" convocatorias visibles · datos originales v3";
+    if(!filteredRows.length){
+      const tr=make("tr"),td=make("td","");td.colSpan=8;
+      td.append(make("div","empty table-empty","No hay coincidencias. Ajusta los filtros; ninguna convocatoria se ha eliminado."));
+      tr.append(td);target.append(tr);$("detail").replaceChildren(make("div","detail-block","No hay una convocatoria visible con estos filtros."));return;
     }
-    c.append(renderTree(without(source,["filas_excel","pdf_lectura_previa","paginas_pdf_estructuradas","revision_de_cobertura"])));
-    const excel=Array.isArray(source.filas_excel)?source.filas_excel:[];
-    if(excel.length){const block=node("div");block.append(node("h3","","Filas y celdas de Excel"));excel.forEach(r=>block.append(renderExcelRow(r)));c.append(block);}
-    if(source.pdf_lectura_previa!==null && source.pdf_lectura_previa!==undefined){
-      c.append(node("div","note","Esta lectura de PDF es un respaldo textual histórico, NO un cotejo visual ni una reconstrucción de tablas."));
-      c.append(details("Examinar íntegra la lectura textual histórica",source.pdf_lectura_previa,false));
+    if(!filteredRows.some(r=>r.item.numero===selected))selected=filteredRows[0].item.numero;
+    const fragment=document.createDocumentFragment();
+    filteredRows.forEach(row=>{
+      const tr=make("tr");
+      tr.setAttribute("aria-selected",String(row.item.numero===selected));
+      const code=make("td");
+      const button=make("button","code-button",row.item.numero);
+      button.type="button";button.setAttribute("aria-label","Ver convocatoria "+row.item.numero);
+      button.addEventListener("click",()=>choose(row.item.numero,true));
+      code.append(button);tr.append(code);
+      appendTextCell(tr,row.title,"title-cell");
+      appendTextCell(tr,row.faculty,"");
+      appendTextCell(tr,row.program,"program-cell");
+      appendTextCell(tr,row.level,"");
+      appendTextCell(tr,row.state,"mini-state");
+      appendTextCell(tr,row.closing,"date-cell");
+      appendTextCell(tr,row.pdfResult?"PDF vinculado":"Sin vínculo","mini-state");
+      tr.addEventListener("click",ev=>{if(ev.target.closest("button"))return;choose(row.item.numero,true);});
+      fragment.append(tr);
+    });
+    target.append(fragment);
+    drawDetail(allRows.find(r=>r.item.numero===selected).item);
+  }
+  function choose(code,manual){
+    selected=code;
+    const host=$("rows");
+    for(const tr of host.children){
+      const button=tr.querySelector("button");
+      if(button)tr.setAttribute("aria-selected",String(button.textContent===code));
     }
-    const pages=Array.isArray(source.paginas_pdf_estructuradas)?source.paginas_pdf_estructuradas:[];
-    if(pages.length)c.append(details("Páginas, elementos, tablas y celdas estructuradas",pages,true));
-    const checks=Array.isArray(source.revision_de_cobertura)?source.revision_de_cobertura:[];
-    if(checks.length)c.append(details("Revisiones de cobertura y métricas cotejadas",checks,true));
-    return c;
-  }
-  function renderOriginalRecord(record,i){
-    const name=hasValue(record.rotulo_literal)?String(record.rotulo_literal):"Dato original "+(i+1);
-    const c=card(name);
-    if(Object.hasOwn(record,"literal_completo")){const block=node("div","large-literal");block.append(literal(record.literal_completo));c.append(block);}
-    c.append(renderTree(without(record,["rotulo_literal","literal_completo"])));
-    return c;
-  }
-  function renderListOfRecords(values,emptyMessage,style){
-    const f=document.createDocumentFragment();
-    if(!Array.isArray(values)||!values.length){f.append(noRecords(emptyMessage));return f;}
-    values.forEach((entry,i)=>{
-      if(style==="original")f.append(renderOriginalRecord(entry,i));
-      else{
-        const number=idKeys.map(k=>entry&&entry[k]).find(v=>v!==null&&v!==undefined);
-        const name=(style==="gates"&&entry&&entry.codigo_puerta)?("Puerta "+entry.codigo_puerta):
-          "Registro "+(i+1)+(number!==undefined?" · "+String(number):"");
-        const c=card(name);c.append(renderTree(entry));f.append(c);
-      }
-    });
-    return f;
-  }
-
-  // Únicamente organiza campos YA INCLUIDOS en la exportación oficial v3.
-  // No interpreta ni crea datos a partir del PDF; las lecturas históricas siguen sin cotejo.
-  const normalizeTheme=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/_/g," ").trim();
-  function themeOf(raw,role){
-    const t=normalizeTheme(raw);
-    if(role==="resultados"){
-      if(/participante|identificacion|puntaje|p\.?a\.?p\.?a|p\.?b\.?m|seleccionado|elegible|total por criterio/.test(t))return "participantes";
-      if(/criterio|ponderacion|forma de seleccion|seleccion y evaluacion|sumatoria de porcentajes/.test(t))return "criterios";
-      if(/responsable|cargo|extension|correo|observacion/.test(t))return "responsable";
-      if(/perfil requerido/.test(t))return "perfil";
-      if(/fecha.*publicacion|numero.*convocatoria|nombre.*convocatoria|facultad|dependencia|estudiantes.*vincular|^(no\.?|n\.?º)\s*de estudiantes/.test(t))return "identificacion";
-      return null;
+    const item=allRows.find(x=>x.item.numero===code);
+    if(item)drawDetail(item.item);
+    if(manual && window.matchMedia && window.matchMedia("(max-width: 880px)").matches){
+      $("detail").scrollIntoView({behavior:"smooth",block:"start"});
     }
-    if(/referencia.*(convocatoria|resultados)|hipervinculo/.test(t))return null;
-    if(/criterio|ponderacion|forma de seleccion/.test(t))return "criterios";
-    if(/responsable|correo/.test(t))return "responsable";
-    if(/perfil|actividades|modalidad|disponibilidad|estimulo|duracion|programa/.test(t))return "condiciones";
-    if(/numero.*convocatoria|tipo.*convocatoria|tipo.*estudiante|nombre.*convocatoria|titulo|facultad|dependencia|fecha.*publicacion|fecha.*cierre|estudiantes.*vincular|^(no\.?|n\.?º)\s*de estudiantes|plazas|estado/.test(t))return "identificacion";
-    return null;
   }
-  function sourceLink(exp,sourceId){
-    const f=(exp.fuentes_originales||[]).find(x=>String(x.fuente_id)===String(sourceId));
-    if(!f||!hasValue(f.url_original))return null;
-    const a=node("a","","Consultar fuente "+String(f.fuente_id));
-    a.href=String(f.url_original);a.target="_blank";a.rel="noopener noreferrer";return a;
+  function block(title,color,kind){
+    const section=make("section","detail-block");
+    if(kind)section.dataset.kind=kind;
+    const h=make("h3"),dot=make("span","dot "+color);
+    dot.setAttribute("aria-hidden","true");h.append(dot,document.createTextNode(title));
+    section.append(h);return section;
   }
-  function fact(exp,title,value,sourceId,position){
-    const item=node("article","fact");
-    item.append(node("div","fact-label",title));
-    const body=node("div","fact-value");body.append(literal(value));item.append(body);
-    const footer=node("div","fact-source");
-    const link=sourceLink(exp,sourceId);
-    if(link)footer.append(link);
-    else if(sourceId!==null&&sourceId!==undefined)footer.append(node("span","","Fuente "+String(sourceId)));
-    if(position)footer.append(node("span",""," · "+position));
-    if(footer.childNodes.length)item.append(footer);
-    return item;
-  }
-  function originalFacts(exp,role,theme){
-    const sourceIds=new Set((exp.fuentes_originales||[]).filter(f=>role==="resultados"?f.tipo==="resultados_pdf":f.tipo!=="resultados_pdf").map(f=>String(f.fuente_id)));
-    const entries=[];
-    (exp.datos_originales||[]).forEach(d=>{
-      if(!sourceIds.has(String(d.fuente_id)))return;
-      const raw=[d.codigo_concepto,d.rotulo_literal].filter(Boolean).join(" ");
-      if(themeOf(raw,role)!==theme)return;
-      const title=d.rotulo_literal||d.codigo_concepto||"Dato documental";
-      const pos=[d.pagina_id!==null&&d.pagina_id!==undefined?"Página ref. "+d.pagina_id:null,
-                 d.celda_pdf_id!==null&&d.celda_pdf_id!==undefined?"Celda PDF "+d.celda_pdf_id:null,
-                 d.celda_excel_id!==null&&d.celda_excel_id!==undefined?"Celda Excel "+d.celda_excel_id:null].filter(Boolean).join(" · ");
-      entries.push({title,value:d.literal_completo,sourceId:d.fuente_id,position:pos});
+  function addFacts(section,c,keys){
+    const dl=make("dl","properties");
+    let num=0;
+    keys.forEach(key=>{
+      const vals=entries(c,key);
+      if(!vals.length)return;
+      const grouped=[...new Map(vals.map(v=>[String(v.fuente_id)+"|"+String(v.literal_completo),v])).values()];
+      const dt=make("dt","",fieldNames[key]||key),dd=make("dd");
+      grouped.forEach((entry,i)=>{
+        if(i>0)dd.append(make("div","note","Otra ocurrencia de la fuente:"));
+        dd.append(document.createTextNode(key==="published"||key==="closing"?excelDate(entry.literal_completo,key==="closing"):entry.literal_completo));
+        if(grouped.length>1){
+          const f=source(c,entry.fuente_id);
+          if(f&&allowUrl(f.url_original)){const a=make("a","", " · fuente "+entry.fuente_id);a.href=f.url_original;a.target="_blank";a.rel="noopener noreferrer";dd.append(a);}
+        }
+      });
+      dl.append(dt,dd);num++;
     });
-    (exp.listas_originales||[]).forEach(l=>{
-      if(!sourceIds.has(String(l.fuente_id)))return;
-      if(themeOf([l.codigo_concepto,l.titulo_literal].filter(Boolean).join(" "),role)!==theme)return;
-      const title=l.titulo_literal||l.codigo_concepto||"Lista documental";
-      const items=(l.items||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0));
-      // La lista original se renderiza como ítems individuales, nunca solo como total.
-      entries.push({title,items,sourceId:l.fuente_id,position:l.pagina_id!=null?"Página ref. "+l.pagina_id:""});
-    });
-    return entries;
+    if(num)section.append(dl);
+    return num;
   }
-  function historicalFields(exp,role,theme){
-    const records=[];
-    (exp.fuentes_originales||[]).filter(f=>role==="resultados"?f.tipo==="resultados_pdf":f.tipo==="convocatoria_pdf"||f.tipo==="adenda_pdf")
-      .forEach(f=>{
-        const found=f.pdf_lectura_previa?.datos_textuales_originales?.campos_detectados;
-        if(!Array.isArray(found))return;
-        found.forEach(field=>{
-          const title=field.rotulo_literal||field.nombre;
-          if(themeOf(title,role)!==theme)return;
-          // Estas coincidencias son rótulos detectados antes de v3, no hechos validados.
-          records.push({title,content:field.texto_literal,sourceId:f.fuente_id,occurrence:field.ocurrencia});
-        });
-      });
-    return records;
-  }
-  function renderPriorityFacts(exp,role,theme,silentEmpty=false){
-    const region=node("div","");
-    const facts=originalFacts(exp,role,theme);
-    if(facts.length){
-      const grid=node("div","fact-grid");
-      facts.forEach(item=>{
-        if(item.items){
-          const block=fact(exp,item.title,"",item.sourceId,item.position);
-          block.querySelector(".fact-value").replaceChildren();
-          const list=node("ol","tree-list");
-          item.items.forEach((entry,i)=>{
-            const li=node("li","tree-item"),number=entry.orden??i+1;
-            li.append(node("div","tree-index","Ítem "+number),literal(entry.literal_completo));
-            if(entry.item_padre_id!=null)li.append(node("div","fact-source","Ítem padre: "+entry.item_padre_id));
-            list.append(li);
-          });
-          block.querySelector(".fact-value").append(list);grid.append(block);
-        }else grid.append(fact(exp,item.title,item.value,item.sourceId,item.position));
-      });
-      region.append(grid);
-    }
-    const previous=historicalFields(exp,role,theme);
-    if(previous.length){
-      const fold=node("details","preview-group");
-      fold.append(node("summary","","Lectura textual histórica · "+previous.length+" fragmento(s) sin cotejo"));
-      fold.append(node("div","preview-note","Son fragmentos detectados en lecturas previas y pueden contener texto de apartados contiguos. No son extracción estructurada ni valores verificados."));
-      previous.forEach(v=>{
-        const c=node("div","preview-fragment");
-        c.append(node("strong","",v.title||"Rótulo detectado"),node("div","fact-source","Fuente "+v.sourceId+" · ocurrencia "+String(v.occurrence??"sin identificar")));
-        const text=node("div","literal");text.append(literal(v.content));c.append(text);
-        const link=sourceLink(exp,v.sourceId);if(link)c.append(link);
-        fold.append(c);
-      });
-      region.append(fold);
-    }
-    if(!facts.length && !previous.length && !silentEmpty)region.append(noRecords("Esta categoría todavía no tiene datos estructurados ni rótulos históricos detectados en la exportación. No se presume su ausencia en el documento."));
-    return region;
-  }
-  function prioritySection(exp,title,desc,index,color,role,theme){
-    const s=section(title,desc,index);
-    s.classList.add("priority","theme-"+color);
-    s.append(renderPriorityFacts(exp,role,theme));
-    return s;
-  }
-  function resultRowsTable(exp){
-    const rows=exp.resultados_estructurados||[];
-    if(!rows.length)return noRecords("Aún no hay filas de participantes estructuradas y cotejadas en la exportación v3. No equivale a ausencia de participantes.");
-    const headers=[], seen=new Set();
-    rows.forEach(row=>{
-      const occurrence=new Map();
-      (row.valores||[]).forEach(v=>{
-        const h=String(v.encabezado_literal||"Columna sin rótulo");
-        const n=(occurrence.get(h)||0)+1;occurrence.set(h,n);
-        const key=h+"::"+n;
-        if(!seen.has(key)){seen.add(key);headers.push({key,label:h+(n>1?" ("+n+")":"")});}
-      });
-    });
-    const wrap=node("div","scroll"),table=node("table","gridtable"),thead=node("thead"),tr=node("tr");
-    ["Fila original","Identificación","Nombre"].concat(headers.map(h=>h.label),["Observaciones","Fuente"]).forEach(t=>tr.append(node("th","",t)));
-    thead.append(tr);table.append(thead);
-    const body=node("tbody");
-    rows.forEach(row=>{
-      const line=node("tr"),occurrence=new Map(),values=new Map();
-      (row.valores||[]).forEach(v=>{
-        const h=String(v.encabezado_literal||"Columna sin rótulo");
-        const n=(occurrence.get(h)||0)+1;occurrence.set(h,n);
-        values.set(h+"::"+n,v.valor_literal);
-      });
-      [row.fila_original,row.identificacion_literal,row.nombre_literal].forEach(v=>{const cell=node("td");cell.append(literal(v));line.append(cell);});
-      headers.forEach(h=>{const cell=node("td");cell.append(literal(values.has(h.key)?values.get(h.key):null));line.append(cell);});
-      const note=node("td");note.append(literal(row.observacion_literal));line.append(note);
-      const link=node("td"),ref=sourceLink(exp,row.fuente_id);
-      if(ref)link.append(ref);else link.append(literal(row.fuente_id));
-      line.append(link);body.append(line);
-    });
-    table.append(body);wrap.append(table);
-    wrap.append(node("p","table-note","Cada fila conserva los valores literales de las columnas registradas; un vacío no se sustituye por cero ni implica no selección."));
-    return wrap;
-  }
-  function resultTablesFromPdf(exp){
-    const area=node("div","");
-    const sources=(exp.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
+  function renderLists(section,c,matcher){
     let count=0;
-    sources.forEach(f=>(f.paginas_pdf_estructuradas||[]).forEach(page=>(page.tablas_originales||[]).forEach(tab=>{
+    (c.listas_originales||[]).filter(l=>matcher(clean([l.codigo_concepto,l.titulo_literal].join(" ")))).forEach(l=>{
       count++;
-      const block=node("details","preview-group"),h=node("summary","","Tabla original "+count+" · página "+String(page.numero_pagina));
-      block.append(h);
-      const title=node("div","table-note","Datos originales de tabla; no se infiere un criterio a partir de su posición.");
-      block.append(title);
-      const byRow=new Map();
-      (tab.celdas||[]).forEach(c=>{
-        if(!byRow.has(c.fila))byRow.set(c.fila,[]);
-        byRow.get(c.fila).push(c);
-      });
-      const div=node("div","scroll"),table=node("table","gridtable"),body=node("tbody");
-      [...byRow.keys()].sort((a,b)=>a-b).forEach(num=>{
-        const tr=node("tr");
-        byRow.get(num).sort((a,b)=>a.columna-b.columna).forEach(cell=>{
-          const td=node("td");
-          td.colSpan=Number(cell.colspan)||1;td.rowSpan=Number(cell.rowspan)||1;
-          td.append(literal(cell.literal));
-          if(cell.estado!=="extraida")td.append(node("div","table-note","Estado: "+String(cell.estado)));
-          tr.append(td);
+      const item=make("div","observation"),h=make("div","observation-label",l.titulo_literal||l.codigo_concepto||"Lista original");
+      item.append(h);
+      const list=make("ol");
+      (l.items||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0)).forEach(v=>list.append(make("li","",v.literal_completo??"Vacío literal")));
+      item.append(list);section.append(item);
+    });
+    return count;
+  }
+  function resultsTable(c){
+    const values=c.resultados_estructurados||[];
+    if(!values.length)return null;
+    const grouped=new Map();
+    values.forEach(v=>{
+      const key=String(v.fuente_id)+"|"+String(v.tabla_id);
+      if(!grouped.has(key))grouped.set(key,[]);
+      grouped.get(key).push(v);
+    });
+    const region=make("div");
+    for(const [key,rows] of grouped){
+      const headings=[],seen=new Set();
+      rows.forEach(r=>{
+        const occurrence=new Map();
+        (r.valores||[]).forEach(v=>{
+          const label=String(v.encabezado_literal||"Columna sin rótulo");
+          const n=(occurrence.get(label)||0)+1;occurrence.set(label,n);
+          const id=label+"|"+n;
+          if(!seen.has(id)){seen.add(id);headings.push({id,label:label+(n>1?" ("+n+")":"")});}
         });
+      });
+      const container=make("div","info-table-scroll"),table=make("table","results-table"),thead=make("thead"),headrow=make("tr");
+      ["Fila","Identificación","Nombre"].concat(headings.map(h=>h.label),["Observaciones"]).forEach(t=>headrow.append(make("th","",t)));
+      thead.append(headrow);table.append(thead);
+      const body=make("tbody");
+      rows.slice().sort((a,b)=>a.fila_original-b.fila_original).forEach(r=>{
+        const tr=make("tr"),counts=new Map(),map=new Map();
+        (r.valores||[]).forEach(v=>{
+          const label=String(v.encabezado_literal||"Columna sin rótulo"),n=(counts.get(label)||0)+1;
+          counts.set(label,n);map.set(label+"|"+n,v.valor_literal);
+        });
+        [r.fila_original,r.identificacion_literal,r.nombre_literal].forEach(x=>appendTextCell(tr,x,""));
+        headings.forEach(h=>appendTextCell(tr,map.has(h.id)?map.get(h.id):null,""));
+        appendTextCell(tr,r.observacion_literal,"");
         body.append(tr);
       });
-      table.append(body);div.append(table);block.append(div);
-      const ref=sourceLink(exp,f.fuente_id);if(ref)block.append(ref);
-      area.append(block);
-    })));
-    if(count)area.insertBefore(node("h3","priority-subtitle","Tablas originales del PDF de resultados"),area.firstChild);
-    return {area,count};
-  }
-  function renderPriority(exp,host){
-    host.append(prioritySection(exp,"Identificación","Código, nombre, fechas, dependencia, tipo de estudiante y plazas según los originales registrados.",1,"red","convocatoria","identificacion"));
-    host.append(prioritySection(exp,"Perfil, actividades y condiciones","Perfil, actividades, modalidad, dedicación, estímulo y duración; se conservan los rótulos y literales de cada fuente.",2,"green","convocatoria","condiciones"));
-    host.append(prioritySection(exp,"Selección y criterios de la convocatoria","Forma de selección, criterios y ponderaciones cuando estén registrados documentalmente.",3,"yellow","convocatoria","criterios"));
-    host.append(prioritySection(exp,"Responsable de la convocatoria","Persona responsable y datos de contacto que consten en las fuentes.",4,"blue","convocatoria","responsable"));
-    const sources=(exp.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
-    const result=section("Resultados de selección","Prioridad a los criterios ponderados y a cada fila de participantes, sus puntajes, total y decisión, según los originales disponibles.",5);
-    result.classList.add("priority","theme-blue");
-    if(sources.length){
-      const links=node("div","prior-note");
-      links.append(node("strong","","Fuentes de resultados: "));
-      sources.forEach((s,i)=>{if(i)links.append(node("span",""," · "));const l=sourceLink(exp,s.fuente_id);links.append(l||node("span","",String(s.fuente_id)));});
-      result.append(links);
-    }else{
-      result.append(node("div","prior-note","No hay PDF de resultados asociado en esta exportación. Esto no prueba que no exista; revise las consultas documentadas en el control de validación."));
-      if(!(exp.resultados_estructurados||[]).length){host.append(result);return;}
+      table.append(body);container.append(table);
+      const f=source(c,rows[0].fuente_id);
+      const info=make("div","note","Tabla documental original · "+rows.length+" filas. "+(f?"Fuente "+f.fuente_id:""));
+      region.append(info,container);
     }
-    const grupos=[["Datos de publicación y convocatoria","identificacion"],["Perfil citado en los resultados","perfil"],["Criterios y ponderaciones","criterios"],["Responsable de la evaluación y observaciones","responsable"]];
-    grupos.forEach(([title,theme])=>{
-      if(!originalFacts(exp,"resultados",theme).length&&!historicalFields(exp,"resultados",theme).length)return;
-      result.append(node("h3","priority-subtitle",title));
-      result.append(renderPriorityFacts(exp,"resultados",theme,true));
+    return region;
+  }
+  function rawTree(value,depth){
+    if(value===null||typeof value!=="object")return make("span","",value===null?"null":String(value));
+    if(depth>16)return make("span","missing","Estructura anidada; consultar archivo original.");
+    if(Array.isArray(value)){
+      if(!value.length)return make("span","missing","Lista sin registros");
+      const list=make("ol","raw-list");
+      value.forEach(v=>{const li=make("li");li.append(rawTree(v,depth+1));list.append(li);});
+      return list;
+    }
+    const list=make("dl","raw-fields");
+    Object.entries(value).forEach(([key,val])=>{
+      list.append(make("dt","",key.replace(/_/g," ")));
+      const dd=make("dd");dd.append(rawTree(val,depth+1));list.append(dd);
     });
-    result.append(node("h3","priority-subtitle","Participantes, puntuaciones y selección"));
-    result.append(resultRowsTable(exp));
-    const tabs=resultTablesFromPdf(exp);if(tabs.count)result.append(tabs.area);
-    const preview=historicalFields(exp,"resultados","participantes");
-    if(preview.length){
-      result.append(node("p","table-note","La lectura textual histórica puede contener fragmentos de la tabla de participantes, pero no acredita columnas ni puntajes cotejados."));
-      const d=node("details","preview-group");d.append(node("summary","","Consultar fragmentos históricos detectados en participantes ("+preview.length+")"));
-      preview.forEach(v=>{const p=node("div","preview-fragment");p.append(node("strong","",v.title||"Rótulo"),node("div","literal",v.content||""));d.append(p);});
-      result.append(d);
-    }
-    host.append(result);
+    return list;
   }
-
-  function draw(exp){
-    const host=$("sheet");host.replaceChildren();
-    const head=node("header","sheethead");
-    const code=node("div","eyebrow","Expediente integrado · "+String(exp.numero));
-    const row=node("div","headline");
-    row.append(node("span","pill"+(exp.validada===true?"":" pending"),validity(exp)));
-    head.append(code,node("h2","",displayTitle(exp)),row);
-    head.append(node("p","context","La ficha destaca los campos disponibles; los originales, ocurrencias y evidencias permanecen íntegros en el expediente desplegable."));
+  function lazyArchive(title,data){
+    const el=make("details","archive"),sum=make("summary","",title),body=make("div","archive-body");
+    el.append(sum,body);
+    el.addEventListener("toggle",()=>{
+      if(!el.open||body.dataset.loaded==="true")return;
+      body.append(rawTree(data,0));body.dataset.loaded="true";
+    });
+    return el;
+  }
+  function drawDetail(c){
+    const host=$("detail");host.replaceChildren();
+    const head=make("div","detail-header");
+    head.append(make("div","code",c.numero));
+    head.append(make("h2","",display(c,"title")||"Convocatoria sin título indexado"));
+    head.append(make("span","detail-status",c.validada===true?"Validada según Norma 00":"Validación: "+String(c.estado_validacion||"no registrada").replace(/_/g," ")));
+    head.append(links(c,["convocatoria_pdf","adenda_pdf","anexo_pdf","resultados_pdf"]));
     host.append(head);
-    host.append(node("div","statusline warning","Estado documental: "+validity(exp)+". Una identificación, referencia a PDF o transcripción previa NO equivale a validación integral según las puertas A–E."));
-    renderPriority(exp,host);
+    let s=block("Identificación y fechas","red");
+    addFacts(s,c,["faculty","program","level","state","published","closing","places"]);host.append(s);
 
-    // El nivel técnico preserva toda la salida v3 y nunca se sustituye por el resumen.
-    const archive=node("details","archive");
-    archive.append(node("summary","","Expediente documental íntegro · fuentes, transcripciones y validación"));
-    const content=node("div","");
-    content.append(node("p","archive-desc","Conserve el contexto, las ocurrencias repetidas y cada vínculo. El archivo completo permanece accesible, aunque no se muestre todo a la vez."));
+    s=block("Perfil y condiciones","green");
+    const n=addFacts(s,c,["profile","progress","activities","modality","availability","stipend","duration"]);
+    const listCount=renderLists(s,c,t=>/perfil|actividad|requisito|condicion|documentacion/.test(t));
+    if(!n&&!listCount)s.append(make("p","note","La base aún no ofrece estos campos en forma estructurada para esta convocatoria. Consulta el PDF original desde el encabezado; no se deducen datos de transcripciones preliminares."));
+    host.append(s);
 
-    let s=section("Fuentes originales y documentos","Cada versión y enlace se muestra de forma independiente. Las filas Excel y textos PDF históricos se distinguen de páginas cotejadas.","A");
-    const sources=exp.fuentes_originales||[];
-    if(!sources.length)s.append(noRecords("No hay fuentes registradas; no se presume que no existan."));
-    sources.forEach((source,i)=>s.append(renderSource(source,i)));content.append(s);
+    s=block("Selección y criterios","yellow");
+    const conditions=addFacts(s,c,["selection","criteria"]);
+    const crits=renderLists(s,c,t=>/evaluacion|seleccion|criterio|ponderacion/.test(t));
+    if(!conditions&&!crits)s.append(make("p","note","Sin criterios estructurados en este corte de la base; no significa que el documento carezca de ellos."));
+    host.append(s);
 
-    s=section("Datos originales indexados","Cada literal conserva su fuente, etiqueta y posición, incluidas las repeticiones y diferencias.","B");
-    s.append(renderListOfRecords(exp.datos_originales,"No hay datos indexados en esta exportación.","original"));content.append(s);
+    s=block("Responsable y contacto","blue");
+    const contact=addFacts(s,c,["responsible","email"]);
+    if(!contact)s.append(make("p","note","Sin contacto registrado."));
+    host.append(s);
 
-    s=section("Listas originales","Todos los ítems, subítems, órdenes y vínculos de las listas documentales.","C");
-    s.append(renderListOfRecords(exp.listas_originales,"No se han registrado listas estructuradas; no implica que no existan en el PDF."));content.append(s);
-
-    s=section("Resultados estructurados originales","Todas las filas y los valores literales registrados, independientemente de la ficha prioritaria.","D");
-    s.append(renderListOfRecords(exp.resultados_estructurados,"Sin filas de resultados estructuradas. Consulte por separado la disponibilidad del PDF."));content.append(s);
-
-    s=section("Validación, resultados e incidencias","Los controles A–E, consultas de resultados, incidencias y actas determinan la validación oficial.","E");
-    const control=exp.control_validacion||{};
-    const sets=[
-      ["Puertas A–E y criterios",control.puertas,"No constan puertas de validación registradas."],
-      ["Consultas de disponibilidad de resultados",control.comprobaciones_resultados,"No hay consulta documentada; no se puede afirmar que no exista PDF de resultados."],
-      ["Incidencias y resoluciones",control.incidencias,"Sin incidencias registradas en la exportación."],
-      ["Actas de cierre",control.actas,"Sin actas de cierre en la exportación."]
-    ];
-    sets.forEach(pair=>{
-      const block=node("div","");block.append(node("h3","",pair[0]));
-      block.append(renderListOfRecords(pair[1],pair[2],pair[0].startsWith("Puertas")?"gates":""));
-      s.append(block);
-    });
-    const moreControl=without(control,["puertas","comprobaciones_resultados","incidencias","actas"]);
-    if(Object.keys(moreControl).length)s.append(details("Otros datos del control de validación",moreControl,true));
-    content.append(s);
-
-    s=section("Indicadores sintéticos","Derivados explícitos, fórmulas, versiones e insumos; nunca sustituyen los originales.","F");
-    s.append(renderListOfRecords(exp.indicadores_sinteticos,"No se registran indicadores sintéticos."));content.append(s);
-
-    const extras=without(exp,mandatory);
-    if(Object.keys(extras).length){
-      s=section("Otros campos del expediente","Campos imprevistos conservados sin descartarlos.","G");
-      s.append(renderTree(extras));content.append(s);
+    s=block("Resultados publicados","blue");
+    const resultSources=(c.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
+    const results=resultsTable(c);
+    if(results)s.append(results);
+    if(!results){
+      s.append(make("p","note",resultSources.length?
+        "Hay PDF de resultados vinculado, pero aún no existe una tabla de participantes y puntajes estructurada en la exportación v3.":
+        "No hay PDF de resultados vinculado en esta exportación. Esto no acredita su inexistencia."));
     }
-    archive.append(content);host.append(archive);
-    document.title=String(exp.numero)+" · Expediente de convocatoria · UNAL";
-  }
-  function renderList(){
-    const list=$("case-list");list.replaceChildren();
-    data.convocatorias.forEach(exp=>{
-      const b=node("button","case");b.type="button";b.setAttribute("aria-current",exp.numero===selected?"true":"false");
-      b.append(node("span","case-code",exp.numero),node("span","case-title",displayTitle(exp)),node("span","case-status",validity(exp)));
-      b.addEventListener("click",()=>{window.location.hash=encodeURIComponent(exp.numero);choose(exp.numero);});
-      list.append(b);
+    if(resultSources.length)s.append(links(c,["resultados_pdf"]));
+    // Cualquier dato o lista de resultados sigue representándose aunque no exista una tabla.
+    const resultIds=new Set(resultSources.map(x=>String(x.fuente_id)));
+    (c.datos_originales||[]).filter(x=>resultIds.has(String(x.fuente_id))).forEach(v=>{
+      const o=make("div","observation");
+      o.append(make("div","observation-label",v.rotulo_literal||v.codigo_concepto||"Dato de resultados"));
+      o.append(make("div","observation-text",v.literal_completo??"Vacío literal"));s.append(o);
     });
-    $("list-caption").textContent="Listado completo: "+data.convocatorias.length+" expedientes · sin filtros";
-  }
-  function choose(numero){
-    if(!data)return;
-    const exp=data.convocatorias.find(x=>x.numero===numero);
-    if(!exp)return;
-    selected=numero;renderList();draw(exp);
-  }
-  function fatal(msg){
-    $("message")?.remove();
-    $("sheet").replaceChildren(node("div","statusline error",msg));
-    $("case-list").replaceChildren(node("div","empty","No es posible listar expedientes sin la entrada oficial v3."));
-  }
-  function validContract(input){
-    if(!input||input.version_contrato!=="3.0"||!Array.isArray(input.convocatorias)||!input.metricas)throw Error("Versión o estructura incorrecta del contrato de visualización.");
-    for(const exp of input.convocatorias){
-      if(!mandatory.every(k=>Object.hasOwn(exp,k)))throw Error("Expediente sin campos obligatorios v3: "+String(exp.numero));
-      if(!Array.isArray(exp.fuentes_originales)||!Array.isArray(exp.datos_originales)||!exp.control_validacion)throw Error("Estructura original incompleta: "+String(exp.numero));
+    (c.listas_originales||[]).filter(x=>resultIds.has(String(x.fuente_id))).forEach(v=>{
+      const o=make("div","observation");
+      o.append(make("div","observation-label",v.titulo_literal||v.codigo_concepto||"Lista de resultados"));
+      const list=make("ol");(v.items||[]).forEach(item=>list.append(make("li","",item.literal_completo)));
+      o.append(list);s.append(o);
+    });
+    host.append(s);
+
+    s=block("Fuentes, validación y expediente completo","", "validation");
+    s.append(make("p","note warning","La ficha es una vista del contrato v3. La lectura textual histórica de un PDF no equivale a una tabla verificada ni convierte la convocatoria en validada."));
+    const docTitle=make("div","observation-label","Documentos asociados a esta convocatoria");
+    s.append(docTitle);
+    (c.fuentes_originales||[]).forEach(f=>{
+      const row=make("div","doc-row");
+      const kind=f.tipo==="excel"?"Excel":f.tipo==="convocatoria_pdf"?"Convocatoria PDF":f.tipo==="resultados_pdf"?"Resultados PDF":f.tipo;
+      row.append(make("span","",kind+" · fuente "+String(f.fuente_id)));
+      const a=sourceAnchor(f,"Abrir documento");if(a)row.append(a);
+      s.append(row);
+    });
+    s.append(lazyArchive("Ver registros originales, páginas y celdas",{
+      fuentes_originales:c.fuentes_originales,datos_originales:c.datos_originales,listas_originales:c.listas_originales,resultados_estructurados:c.resultados_estructurados
+    }));
+    s.append(lazyArchive("Ver controles A–E, incidencias y actas",c.control_validacion||{}));
+    if((c.indicadores_sinteticos||[]).length)s.append(lazyArchive("Ver indicadores sintéticos separados",c.indicadores_sinteticos));
+    const extra={};
+    for(const key of Object.keys(c)){
+      if(!["numero","estado_validacion","validada","fuentes_originales","datos_originales","listas_originales","resultados_estructurados","indicadores_sinteticos","control_validacion"].includes(key))extra[key]=c[key];
     }
-    const v=input.metricas.convocatorias_validadas,n=input.metricas.convocatorias_identificadas;
-    if(!Number.isInteger(v)||!Number.isInteger(n)||input.convocatorias.length!==n||input.convocatorias.filter(x=>x.validada===true).length!==v)throw Error("La métrica oficial no coincide con los expedientes exportados.");
+    if(Object.keys(extra).length)s.append(lazyArchive("Ver campos adicionales del contrato",extra));
+    host.append(s);
   }
-  function globalInfo(){
-    const info=without(data,["convocatorias"]);
-    $("global-content").replaceChildren(renderTree(info));
+  function ensureContract(data){
+    if(data?.version_contrato!=="3.0"||!Array.isArray(data.convocatorias)||!data.metricas)throw Error("La exportación no cumple el contrato v3.");
+    const m=data.metricas;
+    if(data.convocatorias.length!==m.convocatorias_identificadas||
+      data.convocatorias.filter(c=>c.validada===true).length!==m.convocatorias_validadas)
+      throw Error("La métrica oficial no coincide con los expedientes v3.");
+    for(const c of data.convocatorias){
+      if(!c.numero||!Array.isArray(c.datos_originales)||!Array.isArray(c.fuentes_originales)||!Array.isArray(c.listas_originales)||!Array.isArray(c.resultados_estructurados)||!c.control_validacion)
+        throw Error("Expediente incompleto: "+String(c.numero));
+    }
+  }
+  function error(message){
+    $("rows").replaceChildren();
+    $("detail").replaceChildren(make("div","detail-block",message));
+    $("filter-summary").textContent=message;
   }
   async function init(){
     try{
-      const response=await fetch(SOURCE,{cache:"no-store"});
-      if(!response.ok)throw Error("HTTP "+response.status+" al consultar "+SOURCE);
-      const input=await response.json();validContract(input);
-      data=input;
-      data.convocatorias.sort((a,b)=>String(b.numero).localeCompare(String(a.numero),"es"));
-      $("validated").textContent=String(data.metricas.convocatorias_validadas);
-      $("identified").textContent=String(data.metricas.convocatorias_identificadas);
-      globalInfo();
-      if(!data.convocatorias.length){$("sheet").replaceChildren(noRecords("La base no contiene convocatorias identificadas."));return;}
-      const fromHash=decodeURIComponent(window.location.hash.slice(1));
-      choose(data.convocatorias.some(x=>x.numero===fromHash)?fromHash:data.convocatorias[0].numero);
-      window.addEventListener("hashchange",()=>{
-        const code=decodeURIComponent(window.location.hash.slice(1));
-        if(data.convocatorias.some(x=>x.numero===code))choose(code);
+      const response=await fetch(URL,{cache:"no-store"});
+      if(!response.ok)throw Error("HTTP "+response.status);
+      const data=await response.json();
+      ensureContract(data);db=data;
+      allRows=data.convocatorias.map(collectModel).sort((a,b)=>b.item.numero.localeCompare(a.item.numero,"es"));
+      $("metric-total").textContent=String(data.metricas.convocatorias_identificadas);
+      $("metric-validated").textContent=String(data.metricas.convocatorias_validadas);
+      populateFilter("faculty",allRows.flatMap(r=>uniqueTexts(r.item,"faculty")));
+      populateFilter("level",allRows.flatMap(r=>uniqueTexts(r.item,"level")));
+      populateFilter("state",allRows.flatMap(r=>uniqueTexts(r.item,"state")));
+      ["search","program"].forEach(id=>$(id).addEventListener("input",drawRows));
+      ["faculty","level","state","results"].forEach(id=>$(id).addEventListener("change",drawRows));
+      $("reset").addEventListener("click",()=>{
+        ["search","program","faculty","level","state","results"].forEach(id=>$(id).value="");
+        drawRows();
       });
-    }catch(err){
-      fatal("No se pudo cargar la exportación oficial v3. No se mostrarán datos del comparador v2 como sustituto. Detalle: "+String(err.message||err));
-    }
+      drawRows();
+    }catch(e){error("No se pudo consultar la exportación oficial v3: "+String(e.message||e)+". No se usará el comparador v2 como sustituto.");}
   }
   init();
 })();

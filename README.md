@@ -2,6 +2,14 @@
 
 **Estado del producto:** replanteamiento de arquitectura de extracción y comparabilidad (13 de noviembre de 2026).
 
+## Regla de datos — distinción estricta
+
+**Datos originales:** los tres documentos fuente y todos sus elementos se conservan **íntegros, inalterados, estructurados y accesibles desde la interfaz**. Una convocatoria integrada puede presentar una sola vez un dato coincidente entre fuentes, como el número de convocatoria, pero cada ocurrencia original continúa disponible para inspección. Una lista de requisitos sigue siendo una lista completa con todos sus requisitos, no un indicador agregado.
+
+**Datos sintéticos:** cálculos, sumas, conteos, indicadores o métricas **adicionales** con regla y procedencia explícitas. **Nunca reemplazan datos originales.** Por ejemplo, `7 requisitos` es un conteo sintético; los siete requisitos originales siguen existiendo por separado.
+
+Se define de forma vinculante en la [Norma 01](docs/NORMA-01-integridad-exhaustividad.md) y el [contrato de integración de la Norma 02](docs/NORMA-02-integracion-comparabilidad.md).
+
 ## Propósito rector
 
 Transformar **tres fuentes completas** —Excel, PDF de convocatoria y PDF de resultados— en **una única estructura por convocatoria**, verificable, integrable y **comparable entre múltiples convocatorias**. No es un directorio de publicaciones ni una vitrina para leer PDF como texto plano.

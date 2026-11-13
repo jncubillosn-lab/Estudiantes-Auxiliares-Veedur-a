@@ -102,6 +102,12 @@
           "metrica": "celdas",
           "esperado": 1,
           "registrado": 1
+        },
+        {
+          "fuente_id": "test-1-resultados",
+          "metrica": "paginas",
+          "esperado": 1,
+          "registrado": 1
         }
       ],
       "pendientes": [],

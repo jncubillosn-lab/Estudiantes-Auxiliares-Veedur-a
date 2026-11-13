@@ -26,6 +26,8 @@ jobs:
           python-version: '3.12'
       - name: Verificar integridad y separación originales-sintéticos
         run: python scripts/probar_estructura_v2.py
+      - name: Verificar comparador e integridad de contratos
+        run: python scripts/probar_comparador_v2.py
       - name: Instalar lectores PDF con coordenadas
         run: python -m pip install --disable-pip-version-check --quiet pymupdf pdfplumber
       - name: Probar extracción estructural e integración de 4 lotes

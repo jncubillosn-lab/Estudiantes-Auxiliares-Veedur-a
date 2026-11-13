@@ -1,11 +1,45 @@
 # Veeduría de convocatorias de estudiantes auxiliares — UNAL
 
-**Versión:** diseño preliminar v0.1 (13 de noviembre de 2026).  
-**Estado:** planificación técnica; no se han importado masivamente convocatorias ni resultados.
+**Versión:** piloto documental v0.2 (13 de noviembre de 2026).  
+**Estado:** cuatro lotes importados y verificados en su capa textual; cotejo visual y recuperación de PDF faltantes pendientes.
 
 ## Norma superior del proyecto
 
 **[NORMA 01 — Integridad, exhaustividad y visibilidad de las fuentes](docs/NORMA-01-integridad-exhaustividad.md)**. La tarea es transformar, nunca escoger qué datos conservar. Todo el contenido original de Excel, convocatorias y resultados debe permanecer completo y consultable en estructuras explícitas, sin alias sustitutos, omisiones, anonimización en la base fiel ni normalizaciones que sobrescriban lo literal. Toda extracción debe conservar referencia a su fuente y ubicación original.
+
+## Estado de importación
+
+| Lote | Expedientes registrados | PDF leídos | Celdas | Renglones PDF |
+|---|---:|---:|---:|---:|
+| 01 — piloto | 3 | 3 | 33 | 415 |
+| 02 — primera implementación | 5 | 5 | 55 | 668 |
+| 03 — regular | 10 | 4 | 108 | 569 |
+| 04 — optimizado | 25 | 4 | 274 | 688 |
+| **Total** | **43** | **16** | **470** | **2.340** |
+
+Hay **51 registros provisionales de postulaciones** detectados en los documentos de resultados y **4 hallazgos preliminares** con fuentes contrastables. El repositorio es privado. **Ninguno de los 43 expedientes está documentalmente completo todavía**, porque no se ha recuperado simultáneamente PDF de convocatoria y PDF de resultados para un mismo expediente. Los documentos disponibles se conservan sin supresión de contenido textual; faltan binarios, revisión visual y estructuración semántica final.
+
+## Acceso a los datos
+
+- [Estado y limitaciones actuales](docs/estado-ejecucion.md)
+- [Norma superior de integridad](docs/NORMA-01-integridad-exhaustividad.md)
+- [Modelo de datos](docs/modelo-de-datos.md)
+- [Diccionario de campos](docs/diccionario-de-campos.md)
+- [Protocolo de verificación](docs/protocolo-de-validacion.md)
+- Datos fuente literales: `data/lotes/lote_01.json` … `lote_04.json`.
+- Tablas relacionales: `db/schema.sql` y `db/seed_lote_01.sql` … `seed_lote_04.sql`.
+- Vistas y posibles discrepancias: `db/views.sql` y `db/hallazgos_iniciales.sql`.
+
+Para verificar y construir la base SQLite localmente, sin dependencias externas:
+
+```bash
+python scripts/verificar_base.py
+python scripts/construir_base.py
+```
+
+La base resultante se guarda en `salidas/veeduria.sqlite` (local, no versionada). La acción de GitHub también puede generar un artefacto temporal de esta base, accesible a usuarios autorizados del repositorio.
+
+**La verificación automática compara datos de origen y tablas relacionales, pero no valida visualmente el PDF.**
 
 ## Propósito
 

@@ -8,7 +8,7 @@ La implementación ya se inició en el **orden acordado**, sin tocar los cuatro 
 
 1. **Base de datos:** [esquema v2](db/estructura_v2.sql), originales inmutables, listas/celdas completas, referencias y derivados en tablas separadas.
 2. **Página comparadora:** [abrir comparador v2](comparador-v2.html) · [en GitHub Pages](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/comparador-v2.html). Compara los campos Excel de 42 convocatorias y deja señalados como pendientes los campos PDF todavía sin estructurar.
-3. **Extracción:** [captura con geometría y binario original](scripts/extraer_pdf_v2.py), [importación relacional](scripts/importar_pdf_v2.py) y [exportación del comparador](scripts/exportar_comparador_v2.py).
+3. **Extracción externa por IA:** [Norma 03 y protocolo](docs/NORMA-03-extraccion-externa-ia.md), [parámetros operativos](config/operacion_ia.json), [validador de lotes](scripts/validar_lote_ia.py). La IA lee, transforma y coteja las fuentes; el código controla límites y fidelidad del proceso, **no sustituye la extracción humana/IA por heurísticas automáticas**.
 
 **[Estado técnico, límites y comandos reproducibles](docs/estado-arquitectura-v2.md)**. Las pruebas automáticas han confirmado la persistencia de 470 celdas existentes y un recorrido completo sobre **PDF de prueba**. **No se ha hecho aún un cotejo visual estructural sobre PDF reales de la UNAL; no declarar expedientes completos**.
 
@@ -40,7 +40,7 @@ Transformar **tres fuentes completas** —Excel, PDF de convocatoria y PDF de re
 
 **El sitio `index.html`/`visor.html` es un prototipo documental de navegación**, no una herramienta terminada de veeduría. Presenta los PDF como texto lineal, lo que pierde la estructura tabular necesaria para evaluar y contrastar. **No escalar este formato como producto final**. El contenido conservado es respaldo para reconstrucción posterior.
 
-La próxima implementación comienza por una **prueba de extracción de celdas y posiciones desde el PDF original**, con cotejo visual de convocatoria y resultados. Después se conectarán los campos a una ficha única y se creará la matriz transversal de comparación (carrera, dependencia, requisitos, criterios, ponderaciones, postulantes y resultados).
+La próxima implementación comienza por una **extracción externa de celdas y tablas por la IA** desde los PDF originales, con control de lote (máximo 50 convocatorias), cotejo visual y manifiesto verificable. Después se conectarán los campos a una ficha única y se creará la matriz transversal de comparación (carrera, dependencia, requisitos, criterios, ponderaciones, postulantes y resultados).
 
 ---
 

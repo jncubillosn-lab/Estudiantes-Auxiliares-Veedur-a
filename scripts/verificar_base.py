@@ -39,7 +39,16 @@ for lote in lotes:
         for i, src in enumerate(caso["celdas"]):
             cell = db.execute("SELECT valor_visible FROM celda_hoja WHERE fila_id=? AND columna_letra=?",
                               (row[0], "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i])).fetchone()
-            assert cell is not None and cell[0] == src["valor_visible"], (caso["codigo"], i)
+            if cell is None or cell[0] != src["valor_visible"]:
+                actual = cell[0] if cell else None
+                expected = src["valor_visible"]
+                a = actual or ""
+                b = expected or ""
+                first = next((j for j in range(min(len(a),len(b))) if a[j]!=b[j]), min(len(a),len(b)))
+                raise AssertionError({"tipo":"celda", "codigo":caso["codigo"],"col":i,"longitud_actual":len(a),
+                   "longitud_esperada":len(b), "posicion":first,
+                   "puntos_actuales":[ord(ch) for ch in a[first:first+8]],
+                   "puntos_esperados":[ord(ch) for ch in b[first:first+8]]})
         for doc in caso["documentos"]:
             rr = db.execute("""
                 SELECT d.documento_id, c.texto_original FROM documento d
@@ -47,7 +56,14 @@ for lote in lotes:
                 WHERE d.drive_id=? AND c.ruta_campo='texto_extraido_integro'
             """, (doc["drive_id"],)).fetchall()
             assert rr, doc["drive_id"]
-            assert any(x[1] == doc["texto_extraido"] for x in rr), doc["drive_id"]
+            if not any(x[1] == doc["texto_extraido"] for x in rr):
+                a=rr[0][1] or ""
+                b=doc["texto_extraido"]
+                first=next((j for j in range(min(len(a),len(b))) if a[j]!=b[j]),min(len(a),len(b)))
+                raise AssertionError({"tipo":"pdf","id":doc["drive_id"],"longitud_actual":len(a),
+                  "longitud_esperada":len(b),"posicion":first,
+                  "puntos_actuales":[ord(ch) for ch in a[first:first+8]],
+                  "puntos_esperados":[ord(ch) for ch in b[first:first+8]]})
             did = rr[0][0]
             pages = db.execute("SELECT texto_extraido_literal FROM pagina_pdf WHERE documento_id=? ORDER BY numero_pagina",
                                (did,)).fetchall()

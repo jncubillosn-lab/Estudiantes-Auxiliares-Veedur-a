@@ -125,6 +125,10 @@ def validar_lote(lote: dict, config: dict, previos: list[dict] | None = None) ->
                    f"{numero}: se marcó persistir sin confirmar referencia a los datos")
         if caso["cotejo"] == "cotejada":
             exigir(not faltas, f"{numero}: expediente cotejado con pendientes")
+            requeridas = {"excel", "convocatoria_pdf", "resultados_pdf"}
+            cotejadas = {f["tipo"] for f in fuentes if f["estado"] == "cotejada"}
+            exigir(requeridas.issubset(cotejadas),
+                   f"{numero}: expediente completo exige Excel, convocatoria PDF y resultados PDF cotejados")
             exigir(all(f["estado"] == "cotejada" for f in fuentes),
                    f"{numero}: expediente cotejado con fuentes no cotejadas")
             exigir(all(c.get("esperado") is not None and c.get("registrado") == c["esperado"]

@@ -358,6 +358,11 @@ BEGIN
        JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
        WHERE r.fuente_id=c.fuente_id AND p.estado_cobertura='cotejado'
      )
+     AND c.total_paginas=(
+       SELECT count(*) FROM v2_pagina_original p
+       JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+       WHERE r.fuente_id=c.fuente_id
+     )
      AND c.pendientes_criticos=0
  ) THEN RAISE(ABORT,'B: PDF de convocatoria, enlace o paginas no cotejados') END;
 
@@ -367,6 +372,11 @@ BEGIN
      WHERE c.control_id=NEW.control_resultados_id AND c.numero=NEW.numero
        AND c.rol='resultados_pdf' AND c.estado='sin_pdf_verificado'
        AND c.fuente_id IS NULL AND c.url_documento IS NULL
+       AND NOT EXISTS (
+         SELECT 1 FROM v2_vinculo_convocatoria_fuente v
+         JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
+         WHERE v.numero=NEW.numero AND f.clase='resultados_pdf'
+       )
        AND c.pendientes_criticos=0
    )
    OR EXISTS (
@@ -381,6 +391,11 @@ BEGIN
          SELECT count(*) FROM v2_pagina_original p
          JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
          WHERE r.fuente_id=c.fuente_id AND p.estado_cobertura='cotejado'
+       )
+       AND c.total_paginas=(
+         SELECT count(*) FROM v2_pagina_original p
+         JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+         WHERE r.fuente_id=c.fuente_id
        )
        AND c.pendientes_criticos=0
    )

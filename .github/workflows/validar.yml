@@ -6,6 +6,7 @@ on:
       - 'data/lotes/**'
       - 'db/**'
       - 'scripts/verificar_base.py'
+      - 'scripts/construir_base.py'
       - '.github/workflows/validar.yml'
   workflow_dispatch:
 
@@ -24,3 +25,11 @@ jobs:
           python-version: '3.12'
       - name: Verificar integridad relacional y fidelidad textual
         run: python scripts/verificar_base.py
+      - name: Construir base SQLite completa de los cuatro lotes
+        run: python scripts/construir_base.py
+      - name: Guardar base de consulta en artefacto privado
+        uses: actions/upload-artifact@v4
+        with:
+          name: veeduria-sqlite-lotes-01-04
+          path: salidas/veeduria.sqlite
+          retention-days: 7

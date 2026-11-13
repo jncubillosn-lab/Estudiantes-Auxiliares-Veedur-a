@@ -130,6 +130,25 @@ rejected(lambda:add_acta("TEST-SIN-RESULTADOS",{**g,"A":bad},q,False),"puerta A 
 add_acta("TEST-SIN-RESULTADOS",g,q,False)
 assert count()==1
 
+# Aunque la IA afirmara cobertura completa, una métrica no puede mentir
+# respecto de los elementos guardados: 2 páginas != 1 página documentada.
+bad_revision=db.execute("""INSERT INTO v3_revision_fuente
+ (numero,fuente_id,estado,unidades_esperadas,unidades_cotejadas,
+  url_de_verificacion,alcance,metodo_cotejo,fecha_cotejo)
+ VALUES('TEST-SIN-RESULTADOS',?,'incompleta',2,1,?,
+ 'Revisión experimental de cifras', 'Prueba ficticia', '2026-11-13')""",
+ (p,purl)).lastrowid
+rejected(lambda: db.execute("""INSERT INTO v3_revision_metrica
+ (revision_id,metrica,total_observado,total_cotejado,estado,evidencia_url,nota_cotejo)
+ VALUES(?,'paginas',1,1,'cotejada',?,
+ 'Declaración incompatible con las dos páginas guardadas')""",
+ (bad_revision,purl)),"conteo falso de páginas")
+rejected(lambda: db.execute("""INSERT INTO v3_revision_metrica
+ (revision_id,metrica,total_observado,total_cotejado,estado,evidencia_url,nota_cotejo)
+ VALUES(?,'requisitos',0,0,'cotejada',?,
+ 'Declaración falsa de cero requisitos, hay un dato original')""",
+ (bad_revision,purl)),"conteo falso de requisitos")
+
 # PDF de resultados encontrado exige puerta D y sus evidencias completas.
 db.execute("INSERT INTO v3_convocatoria(numero) VALUES('TEST-CON-RESULTADOS')")
 e2,_=add_source("TEST-CON-RESULTADOS","excel","corte3")

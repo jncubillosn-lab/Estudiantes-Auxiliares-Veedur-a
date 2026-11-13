@@ -7,6 +7,23 @@
 
 **[NORMA 01 — Integridad, exhaustividad y visibilidad de las fuentes](docs/NORMA-01-integridad-exhaustividad.md)**. La tarea es transformar, nunca escoger qué datos conservar. Todo el contenido original de Excel, convocatorias y resultados debe permanecer completo y consultable en estructuras explícitas, sin alias sustitutos, omisiones, anonimización en la base fiel ni normalizaciones que sobrescriban lo literal. Toda extracción debe conservar referencia a su fuente y ubicación original.
 
+## Visor HTML de validación
+
+**[Abrir el archivo del visor](visor.html)** (en el repositorio privado, usar **Download raw file** y abrir `visor.html` en el navegador). **No exige servidor ni instalación**: los 43 registros de la hoja y los 16 textos PDF ya están embebidos en una copia portátil. El visor agrupa por **42 códigos distintos de convocatoria**; conserva las dos filas del código `2026-C2324`.
+
+El buscador incluye: texto libre, carrera mencionada (clasificación heurística), facultad, dependencia extraída del PDF, estado abierto/cerrado, presencia de PDF de resultados, cobertura documental, progreso de validación y ordenamientos. En cada ficha pueden consultarse todas las celdas originales y el texto completo que devolvió el extractor para los documentos disponibles.
+
+La pestaña **Revisión y notas** permite verificar por separado hoja, PDF convocatoria y PDF resultados, registrar discrepancias, anotar el número de postulantes *confirmado manualmente* y guardar observaciones. **La validación manual no modifica los datos fuente**.
+
+Las observaciones se conservan **solo en el navegador** mediante almacenamiento local. Para compartirlas con el proyecto debe elegirse **Exportar observaciones JSON** y adjuntar ese archivo a una revisión. También se pueden importar para retomar el trabajo en otro equipo. **No se suben automáticamente a GitHub.**
+
+### Limitaciones expresas
+- «Sin PDF enlazado» no significa que el documento no exista o que la convocatoria no tenga resultados.
+- Un PDF leído es una **transcripción textual pendiente de cotejo visual**, no un PDF revisado integralmente.
+- Los números de participantes detectados mediante patrones son preliminares: el visor distingue explícitamente ese conteo de una cifra confirmada.
+- La clasificación por carrera y la identificación de la dependencia son **ayudas de búsqueda**, no sustituyen el valor literal de las fuentes.
+- El HTML incorpora datos originales, incluidos identificadores presentes en resultados; **su distribución debe permanecer bajo controles de acceso autorizados**, como los del repositorio privado.
+
 ## Estado de importación
 
 | Lote | Expedientes registrados | PDF leídos | Celdas | Renglones PDF |
@@ -17,7 +34,7 @@
 | 04 — optimizado | 25 | 4 | 274 | 688 |
 | **Total** | **43** | **16** | **470** | **2.340** |
 
-Hay **51 registros provisionales de postulaciones** detectados en los documentos de resultados y **4 hallazgos preliminares** con fuentes contrastables. El repositorio es privado. **Ninguno de los 43 expedientes está documentalmente completo todavía**, porque no se ha recuperado simultáneamente PDF de convocatoria y PDF de resultados para un mismo expediente. Los documentos disponibles se conservan sin supresión de contenido textual; faltan binarios, revisión visual y estructuración semántica final.
+Se han detectado **51 registros provisionales de postulaciones** en los documentos de resultados y **4 hallazgos preliminares** con fuentes contrastables. El repositorio es privado. **Ninguno de los 43 expedientes está documentalmente completo todavía**, porque no se ha recuperado simultáneamente PDF de convocatoria y PDF de resultados para un mismo expediente. Los documentos disponibles se conservan sin supresión de contenido textual; faltan binarios, revisión visual y estructuración semántica final.
 
 ## Acceso a los datos
 

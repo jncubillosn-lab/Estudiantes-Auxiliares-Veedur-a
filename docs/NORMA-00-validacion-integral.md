@@ -2,6 +2,17 @@
 
 **Jerarquía:** máxima. Rige todas las estructuras de datos, extracciones, vistas, pruebas, exportaciones y reportes. Es anterior a las Normas 01–04 y prevalece en caso de conflicto.
 
+## Principio arquitectónico obligatorio — Centralidad de la base de datos
+
+**La base de datos es el núcleo arquitectónico y el contrato central de información del proyecto.** La herramienta de visualización y la extracción externa realizada por esta IA son componentes **subordinados** a ese contrato. Esta jerarquía es una regla de diseño permanente, distinta del orden cronológico de trabajo.
+
+1. **Base de datos → interfaz.** La base define qué originales, fuentes, relaciones, verificaciones, incidencias y derivados existen y cómo se conservan. La interfaz consulta y representa esa información; ninguna limitación visual permite omitirla, modificarla, resumirla en sustitución o alterar el modelo de validación.
+2. **Base de datos → extracción por IA.** La base define la estructura de entrega, evidencia, completitud y validación. La IA interpreta y extrae íntegramente las fuentes **fuera del programa** y entrega lo que exige el contrato. El programa no asume esa interpretación ni reduce las exigencias de la base.
+3. **Evolución desde el núcleo.** Si la IA encuentra datos originales no previstos, debe conservarlos sin pérdida, documentar el descubrimiento y ampliar/versionar el contrato de la base antes de exigir cambios a la interfaz o al protocolo de entrega. Nunca se descartan datos para ajustarlos a un componente.
+4. **Independencia de componentes.** La interfaz y el procedimiento de extracción pueden corregirse o reemplazarse sin destruir el historial, los originales ni las evidencias. Los cambios de estructura requieren mantener integridad, trazabilidad y una migración verificable.
+
+**Precedencia:** la Norma 00 es superior a toda implementación; **dentro de la arquitectura**, la base es el núcleo y los otros componentes dependen de ella. Esta jerarquía **no habilita** a la base a cambiar los originales ni a suavizar la definición de convocatoria validada.
+
 ## Regla principal
 
 **La única métrica rectora de avance es el NÚMERO DE CONVOCATORIAS VALIDADAS.** Un código encontrado, una fila del Excel, un PDF leído como texto, una URL, un manifiesto, un registro importado o una prueba automática satisfactoria **no** acreditan validación.

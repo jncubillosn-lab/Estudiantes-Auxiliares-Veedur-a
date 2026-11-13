@@ -1,0 +1,38 @@
+# Estado de la primera ejecución — 13 de noviembre de 2026
+
+## Resultado persistido
+
+Se ejecutaron cuatro etapas acumulativas, usando la copia de Google Sheets como referencia estática:
+
+| Lote | Tipo | Expedientes (filas) | PDF con texto extraído | Celdas literales | Renglones PDF |
+|---|---|---:|---:|---:|---:|
+| 01 | Piloto | 3 | 3 | 33 | 415 |
+| 02 | Primera implementación | 5 | 5 | 55 | 668 |
+| 03 | Regular | 10 | 4 | 108 | 569 |
+| 04 | Optimizado | 25 | 4 | 274 | 688 |
+| **Total** | | **43** | **16** | **470** | **2.340** |
+
+Se detectaron **51 filas candidatas de postulantes** mediante lectura literal y se registraron sus identificadores. Las puntuaciones y la asociación exacta con encabezados siguen pendientes de cotejo visual; no se presumió una calificación si el formato no permite establecerla.
+
+## Persistencia
+- `data/lotes/lote_01.json` a `lote_04.json`: fuentes textuales literales.
+- `db/seed_lote_01.sql` a `seed_lote_04.sql`: tablas relacionales con los mismos textos.
+- `db/schema.sql`: modelo SQLite.
+- `scripts/verificar_base.py`: comparación de textos y celdas tras importación.
+- `scripts/importar.py`: reconstrucción de la capa literal desde JSON.
+
+## Limitaciones observadas
+La mayoría de filas examinadas solo contienen códigos, no enlaces al PDF. Para los expedientes de esta ronda, ninguna fila aportó a la vez un PDF de convocatoria y uno de resultados. **43 registros no son 43 expedientes completos**.
+
+Los PDF leídos son recuperaciones de texto, sin copia binaria local ni revisión visual de marcas, tablas y firmas. Por norma, **ningún expediente se considera auditado todavía**.
+
+El archivo de resultados asociado a `2026-C2312` parece identificar `2026-C2302` en su contenido; y la convocatoria `2026-C2381` muestra una diferencia de fecha de cierre entre Excel y PDF. Se registrarán como contrastes pendientes, no como faltas probadas.
+
+## Siguiente frontera técnica
+1. Localizar y verificar enlaces a PDF que solo se citan mediante códigos.
+2. Incorporar copias binarias/hash con permisos controlados.
+3. Cotejar visualmente todas las páginas, tablas, casillas y columnas de resultados.
+4. Completar los campos semánticos detallados sin pérdida del texto fuente.
+5. Conservar cada hallazgo y sus evidencias, con estado de revisión.
+
+**No se han alterado la hoja de origen ni los PDF de Google Drive.**

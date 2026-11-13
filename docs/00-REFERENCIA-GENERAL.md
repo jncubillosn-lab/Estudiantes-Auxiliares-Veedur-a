@@ -1,5 +1,12 @@
 # REFERENCIA GENERAL — Veeduría de convocatorias de estudiantes auxiliares (UNAL Bogotá)
 
+## Regla suprema y reinicio del diseño de datos — v3
+
+La [**NORMA 00 — Validación integral e inviolable**](NORMA-00-validacion-integral.md) prevalece sobre todas las normas y decisiones técnicas anteriores. La métrica principal **no** es «convocatorias registradas» sino **convocatorias validadas**, únicamente tras cumplir A Excel, B PDF convocatoria, C comprobación de resultados, D PDF resultados si existe, E integración y acta final, con URL verificable de todos los PDF disponibles.
+
+La [arquitectura v3](arquitectura-v3-validacion.md) se diseñó **desde cero** para registrar evidencia y cumplimiento **de cada requisito**, incluyendo cobertura por tipo de contenido, enlaces, excepciones, incidencias, condiciones de resultados y acta enlazada. El esquema v2 anterior y su comparador siguen como antecedentes; **el producto Pages todavía no consume la base v3**. No declarar migración o validaciones reales v3 que no existan.
+
+
 ## Corrección vinculante — Qué cuenta como una convocatoria validada
 
 **Métrica principal: número de convocatorias VALIDADAS**, exclusivamente desde `v2_conteo_convocatorias_validadas` respaldada por actas finales en la base, **no** desde la cantidad de códigos, filas, URLs o PDF con texto leído.

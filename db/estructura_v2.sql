@@ -110,8 +110,8 @@ CREATE TABLE IF NOT EXISTS v2_celda_tabla_original (
  x0 REAL,y0 REAL,x1 REAL,y1 REAL,
  texto_literal TEXT,
  estado_lectura TEXT NOT NULL DEFAULT 'pendiente',
- CHECK(estado_lectura IN ('pendiente','extraida','vacia_original','ilegible','sin_deteccion')),
  atributos_originales_json TEXT,
+ CHECK(estado_lectura IN ('pendiente','extraida','vacia_original','ilegible','sin_deteccion')), 
  UNIQUE(tabla_id,fila,columna)
 );
 CREATE TABLE IF NOT EXISTS v2_celda_elemento (
@@ -131,8 +131,8 @@ CREATE TABLE IF NOT EXISTS v2_campo_original (
  orden_en_fuente INTEGER,
  ocurrencia INTEGER NOT NULL DEFAULT 1,
  estado_lectura TEXT NOT NULL DEFAULT 'pendiente',
- CHECK(estado_lectura IN ('pendiente','extraido','ambiguo','ilegible','cotejado')),
- NOTA TEXT
+ NOTA TEXT,
+ CHECK(estado_lectura IN ('pendiente','extraido','ambiguo','ilegible','cotejado'))
 );
 CREATE TABLE IF NOT EXISTS v2_lista_original (
  lista_id INTEGER PRIMARY KEY,

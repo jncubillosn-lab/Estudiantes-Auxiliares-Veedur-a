@@ -1,6 +1,6 @@
 # NORMA 01 — Integridad, exhaustividad y visibilidad de las fuentes
 
-**Prioridad:** máxima.  
+**Prioridad:** norma vinculante de integridad, **subordinada exclusivamente a la NORMA 00**, de máxima jerarquía. [Leer NORMA 00](NORMA-00-validacion-integral.md).  
 **Vigencia:** a partir del 13 de noviembre de 2026.  
 **Ámbito:** Excel original, PDF de convocatoria, PDF de resultados, adendas, anexos y futuras incorporaciones.
 
@@ -58,4 +58,4 @@ Un lote **no puede marcarse como completo** si un elemento observable fue omitid
 
 ## Regla de precedencia
 
-Si una solución técnica, una estrategia de almacenamiento o una extracción automática contradice esta norma, **la solución debe adaptarse**. No se rebaja la fidelidad del registro para acomodarse a la herramienta.
+Si una solución técnica, una estrategia de almacenamiento o una extracción automática contradice esta norma, **la solución debe adaptarse**. Esta norma desarrolla la [NORMA 00](NORMA-00-validacion-integral.md) y nunca sustituye sus condiciones de aceptación. No se rebaja la fidelidad del registro para acomodarse a la herramienta.

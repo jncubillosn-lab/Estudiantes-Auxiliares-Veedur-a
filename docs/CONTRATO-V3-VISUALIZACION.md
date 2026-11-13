@@ -104,4 +104,4 @@ El visualizador debe poder mostrar para cada puerta: criterio, evidencia URL, al
 
 **Pendiente normativo distinto:** la comparación transversal simultánea de varias convocatorias exigida por la NORMA 02 no está implementada aún sobre v3. El comparador v2 se conserva como antecedente separado, sin presentarlo como cumplimiento de esa exigencia.
 
-**Corte histórico importado:** 42 códigos, 43 filas Excel, 470 celdas, 7 PDF de convocatoria + 9 de resultados **en lectura textual previa**, 0 tablas PDF visualmente cotejadas, **0 convocatorias validadas**. Este estado es una limitación real y debe mostrarse.
+**Corte vigente del 13 de noviembre de 2026:** 96 códigos, 97 filas Excel, 1.031 celdas, 97 PDF de convocatoria y 24 de resultados enlazados; 397 páginas con elementos textuales **preliminares**, 0 filas de participantes en `resultados_estructurados[]` y **0 convocatorias validadas**. Un texto con coordenadas no es una tabla de resultados cotejada. Estos números son inventario del corte, no constantes del contrato.

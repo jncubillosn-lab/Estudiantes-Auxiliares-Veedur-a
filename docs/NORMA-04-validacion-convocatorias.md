@@ -77,7 +77,15 @@ El expediente se muestra como **validado** únicamente cuando:
 
 Se conservará toda esa investigación como **avance parcial y punto de partida**, sin convertirla retroactivamente en «validada». Para subir el indicador, hay que terminar realmente A+B+C+(D1 o D2)+E para cada convocatoria.
 
-## 7. Orden de ejecución de controles
+## 7. Validación revocable cuando aparece información adicional
+
+**Una acta de validación histórica no es un permiso permanente para ignorar documentos nuevos.** La vista SQL de convocatorias validadas se recalcula contra las fuentes y celdas originales disponibles actualmente. Si se incorporan nuevas celdas Excel, otro PDF de resultados, una adenda, un anexo o una nueva versión de PDF sin cotejo, el código **deja de sumar al contador** hasta completar la verificación del nuevo material.
+
+La comprobación abarca **todos los PDF vinculados a la convocatoria**, no solamente el principal. El acta original se conserva íntegra como evidencia histórica; la fuente adicional requiere su propio control, enlace, versión, páginas y cotejo. No borrar ni actualizar actas para corregir el estado.
+
+El validador automático exige coherencia de controles y enlaces persistidos; el operador debe comprobar la **existencia real de fuentes adicionales** antes de afirmar el cierre. Un PDF todavía no detectado o no enlazado no puede descubrirse únicamente mirando la base.
+
+## 8. Orden de ejecución de controles
 
 **Antes de procesar:** inventariar fuentes y links reales; máximo 50 convocatorias distintas/interacción.  
 **Después de cada fuente:** cotejar extracción original y estructura contra evidencia; guardar estado y pendientes.  

@@ -16,6 +16,10 @@ with tempfile.TemporaryDirectory() as t:
     assert db.execute("SELECT COUNT(*) FROM v3_excel_fila WHERE numero='2026-C2324'").fetchone()[0]==2
     assert db.execute('SELECT COUNT(*) FROM v3_pdf_pagina WHERE cotejo_visual="completo"').fetchone()[0]==0
     assert db.execute('SELECT COUNT(*) FROM v3_fuente WHERE binario_original IS NOT NULL').fetchone()[0]==121
+    assert db.execute('SELECT COUNT(*) FROM v3_indicador_sintetico').fetchone()[0]==69
+    assert db.execute('SELECT COUNT(*) FROM v3_indicador_insumo').fetchone()[0]==76
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE numero='2026-C2297' AND nombre='perfil.avance_plan_estudios'").fetchone()[0]==1
+    assert db.execute('SELECT COUNT(*) FROM v3_acta_validacion').fetchone()[0]==0
     assert db.execute('SELECT COUNT(*) FROM v3_incidencia').fetchone()[0]>=40
     assert db.execute('SELECT COUNT(*) FROM v3_pdf_tabla').fetchone()[0]==0
     assert db.execute('SELECT COUNT(*) FROM v3_resultado_fila').fetchone()[0]==0

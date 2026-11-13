@@ -8,6 +8,8 @@ No acepta sobrescritura; no genera certificaciones ni tablas reconstruidas falsa
 """
 from __future__ import annotations
 import argparse
+import re
+import unicodedata
 import base64
 import hashlib
 import json
@@ -22,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / 'db' / 'estructura_v3.sql'
 PAYLOAD = ROOT / 'data' / 'ia_v3' / 'integrado_96_2026-11-13.json.zlib.b64'
 PDF_MANIFEST = ROOT / 'data' / 'ia_v3' / 'pdf_originales' / 'manifest.json'
+SEMANTICA = ROOT / 'data' / 'ia_v3' / 'normalizacion_semantica_v1.json'
 SHA256_ORIGINAL = 'c62afceaff7b4560025ea9f053136a157e4c669ce7a5fda72a54d25844c9ea2b'
 FUENTE_URL = 'https://docs.google.com/spreadsheets/d/1f3qQNRiNwdFMtLrcBsP-JEgZwLBWmMVcq7QXCLo_Sps/edit?usp=sharing'
 FECHA = '2026-11-13'
@@ -70,6 +73,77 @@ def cargar_pdf_binarios(manifesto:Path=PDF_MANIFEST):
     if len(archivos)!=121: raise ValueError('No se conservaron los 121 PDF')
     return archivos
 
+
+
+
+def _texto_comparable(s):
+    '''Solo comprueba citas; NO decide la categoría o significado de una frase.'''
+    s=s.casefold().replace('\u00ad','').replace('\u200b','')
+    s=''.join(c for c in unicodedata.normalize('NFD',s) if unicodedata.category(c)!='Mn')
+    s=re.sub(r'\s+',' ',s)
+    return re.sub(r'\s*%', '%', s).strip()
+
+
+def guardar_normalizacion_ia(db, archivo=SEMANTICA):
+    '''Almacena interpretación IA como DATO DERIVADO en tablas v3 ya existentes.
+
+    No reinterpreta documentos ni modifica fuentes originales. Cada faceta
+    debe apuntar a una cita hallable en la página y al PDF binario real.
+    '''
+    normal=json.loads(archivo.read_text(encoding='utf-8'))
+    if normal.get('version')!='1.0' or len(normal.get('expedientes',[]))!=96:
+        raise ValueError('Falta corte semántico v1 de 96 códigos')
+    codes={row[0] for row in db.execute('SELECT numero FROM v3_convocatoria')}
+    normcodes=[x['numero'] for x in normal['expedientes']]
+    if set(normcodes)!=codes or len(set(normcodes))!=96:
+        raise ValueError('Los 96 expedientes semánticos no coinciden con el corte')
+    stats={'facetas_semanticas':0,'expedientes_normalizados':0,'facetas_ambiguas':0}
+    for item in normal['expedientes']:
+        numero=item['numero']
+        if item['facetas']:stats['expedientes_normalizados']+=1
+        for facet in item['facetas']:
+            categoria=facet['categoria']
+            origen=facet['evidencias']
+            if not origen or facet['rol'] not in ('condicion_perfil_habilitante','habilitante','oferta','evaluacion','plazo'):
+                raise ValueError(f'{numero}: faceta sin evidencia/rol')
+            val=facet['valor_normalizado']
+            if val.get('filtro_habilitado') is False:stats['facetas_ambiguas']+=1
+            indice=db.execute('''INSERT INTO v3_indicador_sintetico
+                (numero,nombre,valor_json,formula,version_formula,fecha_calculo)
+                VALUES(?,?,?,?,?,?)''',
+                (numero,categoria,compact(facet),
+                 'Interpretación semántica explícita de IA vinculada a extractos de PDF; no sustituye el original ni constituye acta A-E',
+                 'IA-normalizacion-1.0',normal['fecha_corte'])).lastrowid
+            for evidencia in origen:
+                p=db.execute('''SELECT f.fuente_id,p.pagina_id,l.registro_original_json
+                    FROM v3_fuente f JOIN v3_pdf_pagina p ON p.fuente_id=f.fuente_id
+                    JOIN v3_convocatoria_fuente cf ON cf.fuente_id=f.fuente_id
+                    JOIN v3_lectura_pdf_previa l ON l.fuente_id=f.fuente_id AND l.numero=cf.numero
+                    WHERE cf.numero=? AND f.tipo=? AND f.sha256=?
+                      AND f.url_original=? AND p.numero_pagina=?''',
+                    (numero,evidencia['tipo_fuente'],evidencia['sha256_binario'],
+                     evidencia['url_original'],evidencia['numero_pagina'])).fetchone()
+                if p is None:raise ValueError(f'{numero}/{categoria}: PDF/página no existentes')
+                fuente_id,pagina_id,registro=p
+                d=json.loads(registro)
+                pagina=next((page for page in d.get('paginas',[])
+                             if page['numero_pagina']==evidencia['numero_pagina']),None)
+                if pagina is None or _texto_comparable(evidencia['extracto_original']) not in _texto_comparable(pagina['texto_original_orden_lectura_aproximado']):
+                    raise ValueError(f'{numero}/{categoria}: la cita no consta en la página de origen')
+                dato=db.execute('''INSERT INTO v3_dato_original
+                    (numero,fuente_id,codigo_concepto,rotulo_literal,literal_completo,
+                     orden_en_fuente,pagina_id,nota_lectura)
+                    VALUES(?,?,?,?,?,?,?,?)''',
+                    (numero,fuente_id,categoria,'Fragmento literal del PDF asociado a una faceta normalizada',
+                     evidencia['extracto_original'],evidencia['numero_pagina'],pagina_id,
+                     'Cita parcial, no sustituye el texto completo; la interpretación IA reside en v3_indicador_sintetico')).lastrowid
+                db.execute('INSERT INTO v3_indicador_insumo(indicador_id,dato_id) VALUES(?,?)',(indice,dato))
+            stats['facetas_semanticas']+=1
+    expected=normal['metricas_cobertura_esta_version']
+    if (stats['facetas_semanticas'],stats['expedientes_normalizados'],stats['facetas_ambiguas']) != (
+        expected['facetas_interpretadas'],expected['expedientes_con_facetas'],expected['facetas_sin_operador']):
+        raise ValueError('Conteo de facetas no corresponde a la entrega de IA')
+    return stats
 
 def crear_base(salida:Path, payload:Path=PAYLOAD):
     if salida.exists():
@@ -254,6 +328,8 @@ def crear_base(salida:Path, payload:Path=PAYLOAD):
                 db.execute('''INSERT INTO v3_incidencia
                   (numero,criticidad,detalle,evidencia_url,registrada_en) VALUES(?,?,?,?,?)''',
                   (num,criticidad,compact(inc),fuente,FECHA))
+        # Interpretaciones IA separadas, con trazabilidad literal; jamás reemplazan originales.
+        stats.update(guardar_normalizacion_ia(db))
         if db.execute('SELECT count(*) FROM v3_fuente WHERE binario_original IS NOT NULL').fetchone()[0]!=121:
             raise ValueError('No se guardaron los 121 documentos originales como bytes BLOB')
         if (stats['convocatorias'],stats['filas_excel'],stats['celdas_excel'],

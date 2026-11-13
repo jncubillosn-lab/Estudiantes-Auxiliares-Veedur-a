@@ -20,6 +20,8 @@ with tempfile.TemporaryDirectory() as t:
     assert sum(f['tipo']=='convocatoria_pdf' for c in cases for f in c['fuentes_originales'])==97
     assert sum(f['tipo']=='resultados_pdf' for c in cases for f in c['fuentes_originales'])==24
     assert sum(len(f['paginas_pdf_estructuradas']) for c in cases for f in c['fuentes_originales'])==397
+    assert sum(len(c['indicadores_sinteticos']) for c in cases)==69
+    assert all(i['insumos_datos_originales'] for c in cases for i in c['indicadores_sinteticos'])
     assert all(not c['validada'] and not c['control_validacion']['actas'] for c in cases)
     assert all(not page['tablas_originales'] and page['cotejo_visual']=='pendiente' for c in cases for f in c['fuentes_originales'] for page in f['paginas_pdf_estructuradas'])
     assert json.loads(json.dumps(doc,ensure_ascii=False))==doc

@@ -1,0 +1,2181 @@
+{
+  "version": "1.0",
+  "naturaleza": "interpretacion_semantica_derivada_por_IA_NO_sustituye_fuentes_originales",
+  "fecha_corte": "2026-11-13",
+  "esquema_sql_v3_modificado": false,
+  "alcance": "avance curricular de perfil en 96 expedientes; lectura selectiva, NO normalizacion exhaustiva de todo el PDF",
+  "estado_validacion_A_E": "ningun_expediente_validado",
+  "reglas": {
+    "comparadores": "respeta diferencia entre mayor, mayor o igual, menor, menor o igual, sin operador",
+    "ambiguedad": "no inferir comparador cuando el literal solo menciona un porcentaje",
+    "contexto": "perfil habilitante; no mezclar con ponderacion de criterios ni calificacion de participantes",
+    "cobertura": "un expediente sin faceta no significa que no posea el dato en su original"
+  },
+  "expedientes": [
+    {
+      "numero": "2026-C2381",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2380",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 25,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1IjdXBQIWd2c1tGMGHTuC7d08vCvpqTvK/view?usp=drivesdk",
+              "sha256_binario": "1998f017122c159cd1e580a76db509aa796694717627b40e4fbbd47fe74b22b0",
+              "numero_pagina": 2,
+              "extracto_original": "Avance de carrera superior a 25%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1IjdXBQIWd2c1tGMGHTuC7d08vCvpqTvK/view?usp=drivesdk",
+              "sha256_binario": "1998f017122c159cd1e580a76db509aa796694717627b40e4fbbd47fe74b22b0",
+              "numero_pagina": 3,
+              "extracto_original": "Avance de carrera superior a 25%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2379",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2378",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1IxFmwvOY1EUZ3emnu2-y6bmrdnLGRPP-/view?usp=drivesdk",
+              "sha256_binario": "e4d89933bb6b58907220bacd6b3ffa72e19b76cb58c5bcca5160349cd483a5f5",
+              "numero_pagina": 1,
+              "extracto_original": "Avance mayor al 70%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2377",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 90,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1nj_YgxBYfMvFed4S2YzEjHleE9VhdXlk/view?usp=drivesdk",
+              "sha256_binario": "31e5cee9a1b35112aacb676344eb8ab028625a57499dc1f433879b047f9844ba",
+              "numero_pagina": 2,
+              "extracto_original": "Avance no menor del 90%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2376",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1wYoaL1iAIkiutDBusy7F3u6vTwIf_oJ7/view?usp=drivesdk",
+              "sha256_binario": "7df4a4ddcf930b538218ffbb1acd225ef94efbcc5487c33297b48c7b45ca9102",
+              "numero_pagina": 2,
+              "extracto_original": "avance de carrera del 60 % o superior",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1wYoaL1iAIkiutDBusy7F3u6vTwIf_oJ7/view?usp=drivesdk",
+              "sha256_binario": "7df4a4ddcf930b538218ffbb1acd225ef94efbcc5487c33297b48c7b45ca9102",
+              "numero_pagina": 3,
+              "extracto_original": "avance de carrera del 60 % o superior",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2375",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 80,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1MHj9EzmaH22g304pXAUJScph5KRzNINW/view?usp=drivesdk",
+              "sha256_binario": "90fc838f170b597515feeab07d06e18cb1e30a941fd6080dc28be36b0be6d26b",
+              "numero_pagina": 1,
+              "extracto_original": "avance del 80% en el plan de estudios",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1MHj9EzmaH22g304pXAUJScph5KRzNINW/view?usp=drivesdk",
+              "sha256_binario": "90fc838f170b597515feeab07d06e18cb1e30a941fd6080dc28be36b0be6d26b",
+              "numero_pagina": 2,
+              "extracto_original": "avance del 80% en el plan de estudios",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2374",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.titulo_pregrado_requerido",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "profesion",
+            "valor": "Ingeniería Mecánica"
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 1,
+              "extracto_original": "Ser Ingeniero(a) Mecánico(a)",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "perfil.posgrado_actual",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "programa",
+            "valor": "Doctorado en Ingeniería Mecánica y Mecatrónica"
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "Ser estudiante activo del doctorado en Ingeniería Mecánica y Mecatrónica.",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "perfil.pertenencia_semillero",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "semillero",
+            "valor": "SEMIBIOT"
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "Pertenecer al semillero de investigación en Aprovechamiento Energético de Biomasa y",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "oferta.carga_horaria",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "horas_por_semana",
+            "valor": 8
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "8 H/semana",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "oferta.estimulo_mensual",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "COP_por_mes",
+            "valor": 2000000
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "$ 2.000.000",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "oferta.duracion",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "meses",
+            "valor": 1
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "1 Mes",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "oferta.modalidad",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "tipo",
+            "valor": "presencial"
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 2,
+              "extracto_original": "Presencial",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "aplicacion.fecha_cierre",
+          "rol": "plazo",
+          "valor_normalizado": {
+            "tipo": "iso_local",
+            "valor": "2026-11-18T10:00:00"
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 3,
+              "extracto_original": "18/Nov/2026 10:00 a.m.",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "evaluacion.criterio.1",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "ponderacion_pct",
+            "valor": 30
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 3,
+              "extracto_original": "Ser Ingeniero(a) Mecánico(a) 30%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "evaluacion.criterio.2",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "ponderacion_pct",
+            "valor": 40
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 3,
+              "extracto_original": "Ser estudiante de doctorado en Ingeniería Mecánica y Mecatrónica. 40%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        },
+        {
+          "categoria": "evaluacion.criterio.3",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "ponderacion_pct",
+            "valor": 30
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1untI_aCR-m1XhNZOmSrvjMP4j8o9XtKF/view?usp=drivesdk",
+              "sha256_binario": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+              "numero_pagina": 3,
+              "extracto_original": "Pertenecer al semillero de investigación en Aprovechamiento Energético de Biomasa y",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2373",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1-9esPZFKR4X6FVxEUq8IZ8L6tLsK55ku/view?usp=drivesdk",
+              "sha256_binario": "8dd35f777056c6ce1014492db9978a50afa6ef5472d50b7461b9a39d715799d0",
+              "numero_pagina": 2,
+              "extracto_original": "AVANCE MAYOR AL 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2372",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2371",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1S0B1IjKDbVqJlIeMoTG95hEuVIvsxybv/view?usp=drivesdk",
+              "sha256_binario": "fbc5e2d88a515f8a3c458a36abad229c34989d6b4b9ce00259d62bc905811535",
+              "numero_pagina": 2,
+              "extracto_original": "Haber cursado y aprobado al menos el 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2370",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1qKgGOwPKkOf7tB4fpsEyTrqrbnCffMO_/view?usp=drivesdk",
+              "sha256_binario": "18e2a13d0f2a2be086f241efbfc0eb357166339a992d837fc55cafbdcc235e6a",
+              "numero_pagina": 2,
+              "extracto_original": "Haber cursado y aprobado al menos el 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2369",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/13BwAcKDupt9rA74fG2c4VS0PymiERSVJ/view?usp=drivesdk",
+              "sha256_binario": "d85f9a6096e137c56072b37deb2c7ab628a463ada5af521a04b213b756d307b2",
+              "numero_pagina": 1,
+              "extracto_original": "Avance de carrera igual o superior al 60%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2367",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/10ezi108ZYhVZD-Qtgm645s18ZmUkcrcb/view?usp=drivesdk",
+              "sha256_binario": "e715890f284f40049d41846312049c27e978ca5bcccf67ef196dceb67e8cee9b",
+              "numero_pagina": 2,
+              "extracto_original": "Avance igual o superior al 70%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2366",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2365",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 70,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/19AopOswh9Urm6VhKs_yUdXM_SIDtNa5c/view?usp=drivesdk",
+              "sha256_binario": "d2652cf471eae124ad04ddaf62417648c212a60d9fb2832a1f0dddd732b50c56",
+              "numero_pagina": 1,
+              "extracto_original": "haber cursado el 70% de la carrera",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2364",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 55,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1jyrLdXxPP--jPjni_Wa4hfnRPR5Pl5kj/view?usp=drivesdk",
+              "sha256_binario": "d9a7a96affef16051cfcb2946b065d891fc93dabc55df313dc56e2068d70eff0",
+              "numero_pagina": 1,
+              "extracto_original": "Avance de Carrera igual o superior al 55%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2360",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2359",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 50,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/15v-HlKEd6Rc4i_ibS9PoDPZHziPRu9Aw/view?usp=drivesdk",
+              "sha256_binario": "6fd4e78f95fac238b0180cc2ace499ee78b220fb4d14680f25e69a974f1f5ea2",
+              "numero_pagina": 2,
+              "extracto_original": "Porcentaje de avance en el plan de estudios: 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2358",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2357",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 75,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1P5-2z-Az5paLRkHQgALZdTSMD4Wapb-s/view?usp=drivesdk",
+              "sha256_binario": "64df7fab8c8a17325c9242ce29108557c2c2f04e19a5a1062dae2277229a5407",
+              "numero_pagina": 1,
+              "extracto_original": "Haber cursado y aprobado al menos el 75%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2356",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/12s2LyiBmxaUfpzkT1oRhDyE_U0DaSs_m/view?usp=drivesdk",
+              "sha256_binario": "6eca71f425ea9c0858bfb76d8bb6a1f002b40c2b16b5d05ac1f845a908ba68ca",
+              "numero_pagina": 2,
+              "extracto_original": "Tener un avance de carrera igual o superior al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/12s2LyiBmxaUfpzkT1oRhDyE_U0DaSs_m/view?usp=drivesdk",
+              "sha256_binario": "6eca71f425ea9c0858bfb76d8bb6a1f002b40c2b16b5d05ac1f845a908ba68ca",
+              "numero_pagina": 3,
+              "extracto_original": "Tener un avance de carrera igual o superior al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2355",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2354",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 40,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1apNnNuaGJ9I-M_5oWfeJbUCTS506AIZD/view?usp=drivesdk",
+              "sha256_binario": "adc807f9958999486501a5c5b5bc588974b97dbfa1b9bbdb07c98023f94baf8b",
+              "numero_pagina": 2,
+              "extracto_original": "Avance igual o superior al 40%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2353",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2352",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2351",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 59,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1fWJuvY0nLSfg6nOKzXa-Zg1tNds7UdsK/view?usp=drivesdk",
+              "sha256_binario": "f8d4bbaff72812b47f016bf0e96a627e0514eebe07dfa431d38722cae117985a",
+              "numero_pagina": 1,
+              "extracto_original": "avance más del 59%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2350",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2349",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1B12ycdjsNp-P0OTFQyUUPTW9hmktZ77V/view?usp=drivesdk",
+              "sha256_binario": "41847176d0d7df937edc913023394514fe90f471f408cef7d604baf800626696",
+              "numero_pagina": 1,
+              "extracto_original": "Avance mínimo del 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2344",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1hhCcteE6ye9MHeo_EUrREd-BrgZbYsdX/view?usp=drivesdk",
+              "sha256_binario": "ced54b01171c88641cc39aed8a358a99e91e076e23a2fa93c68974f6a82965e1",
+              "numero_pagina": 1,
+              "extracto_original": "avance mínimo del 60%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2343",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2341",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 30,
+            "minimo_inclusivo": false,
+            "maximo_pct": 85,
+            "maximo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1gv9cVlnCdLOYRWoCQ9hIc3xRMF1pq7ZA/view?usp=drivesdk",
+              "sha256_binario": "8c38e020d6f3b9cb8e37d06754faa1e6847e68f7346ec5cd1ad598908f53fc4c",
+              "numero_pagina": 1,
+              "extracto_original": "avance de carrera superior al 30% y menor al 85%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2339",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/15JFogbL-l-j8IhUQEEFJaLgDxUkNqWo6/view?usp=drivesdk",
+              "sha256_binario": "68d32def1261049e6f42095fd5172ba8192d97eb8dd6c0d827c3259d97acede2",
+              "numero_pagina": 1,
+              "extracto_original": "porcentaje de avance de la carrera igual o superior al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2332",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1X8xuQz-NrzxTrZ0pHiFnWPX5-fDcEXOZ/view?usp=drivesdk",
+              "sha256_binario": "ed62cfbb9dc4aa30952ea85f336cd54355c92fdb0005b84413bf5625ba41074c",
+              "numero_pagina": 1,
+              "extracto_original": "avance mayor o igual al 70%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2322",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/13c9QFmO9cCpUI4648VltqBa-rd-X3RkX/view?usp=drivesdk",
+              "sha256_binario": "8696c4d222338c43f7c56b17429c24be7793cffbd1053f6f4631c51d485de3a1",
+              "numero_pagina": 1,
+              "extracto_original": "avance de carrera superior al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2319",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2368",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2363",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 70,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/14bFAveSC7yse_WcuINqXWCPLWKrTCIdi/view?usp=drivesdk",
+              "sha256_binario": "64b7e83187fc50c6b41313d5bf39857851f924aed9695c425847f4f763fd229f",
+              "numero_pagina": 2,
+              "extracto_original": "haber cursado el 70% de la carrera de Trabajo Social",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2362",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2361",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 70,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1X43tmwDE56g-hrLGVCmphtGSXiGAqaFe/view?usp=drivesdk",
+              "sha256_binario": "0caf8e51c1fc74fe7e1369f661f99197d1c985868397b08f3746d55f9236556e",
+              "numero_pagina": 2,
+              "extracto_original": "haber cursado el 70% de la carrera de Trabajo Social",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2348",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 70,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1Py9DarxDPlfUoWvT3VSAE9xU9k5pwRj7/view?usp=drivesdk",
+              "sha256_binario": "e5fdf1ba2b7aa3118063a180def3ef3180f937e10fb7fa920ec57d5362692fa3",
+              "numero_pagina": 2,
+              "extracto_original": "Avance de la carrera de 70%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2347",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 40,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1RZok6qBnoR7vJ0SPkDQxokJnl4-sm0ut/view?usp=drivesdk",
+              "sha256_binario": "91c85b17b2e34c5f8878e272516f45ad71a25fabbd7d63f47581c8f7767c6b96",
+              "numero_pagina": 2,
+              "extracto_original": "Avance de la carrera de 40%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2346",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/13mxmyecVKJYs-rRQfZNhUAgZUtTYqifD/view?usp=drivesdk",
+              "sha256_binario": "318a68b2b4e39800622de2672bac7cc9e3b8b7db677b2371c45d29767380c44b",
+              "numero_pagina": 2,
+              "extracto_original": "Avance de la carrera superior 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2345",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 80,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1d8AFI2RVO87UVCq7jGCjhVYRfrx0zzRS/view?usp=drivesdk",
+              "sha256_binario": "c875cbce0557632af39c365dea17f89f91369d1b9d47abca63461139575ed759",
+              "numero_pagina": 1,
+              "extracto_original": "porcentaje de avance en su plan de estudios del 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2342",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2340",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2338",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1QRNkPxmHJW47yVULeWRNERSHl9r-Hn43/view?usp=drivesdk",
+              "sha256_binario": "1c61f8f15b3a5af5bef0623a92621f900f079e48c92ade03ddd9916c22c8fb9b",
+              "numero_pagina": 1,
+              "extracto_original": "avance académico igual o superior al 70 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2337",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/16lR4LjMQnzCWkFOswlcmNDdRMamOdoOi/view?usp=drivesdk",
+              "sha256_binario": "f4551331e648dd88ca5d7118fc23b14d6d33a23a1dfdd44cd105cb31b8bf3249",
+              "numero_pagina": 1,
+              "extracto_original": "Avance igual o superior al 70%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2336",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2335",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1k7XNkzXGJ_-7WjUV9ioWfbgtHACNY2OO/view?usp=drivesdk",
+              "sha256_binario": "95d8c8aa1efdbe07e52596e2f906d1111475094bab6ea75bc950fe052be6d25f",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance de carrera igual o superior al 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2334",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2333",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2331",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 25,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1DcNozB57-NC8e_Vqz6t0uLOMxaCQ_eb_/view?usp=drivesdk",
+              "sha256_binario": "8f5c7b009e74adaa6a1eee83a23e87dd858c14965b4f46b9170e66dfbdb2932f",
+              "numero_pagina": 1,
+              "extracto_original": "avance en el plan de estudios superior al 25%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1DcNozB57-NC8e_Vqz6t0uLOMxaCQ_eb_/view?usp=drivesdk",
+              "sha256_binario": "8f5c7b009e74adaa6a1eee83a23e87dd858c14965b4f46b9170e66dfbdb2932f",
+              "numero_pagina": 2,
+              "extracto_original": "avance en el plan de estudios superior al 25%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2330",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1yGjV6TLqLmCrQ_ULrmhuauq1tnZBgU5o/view?usp=drivesdk",
+              "sha256_binario": "d44c134b6656db98ec22919823ead79135f239aa812e8e565759d070b44f870e",
+              "numero_pagina": 2,
+              "extracto_original": "Nivel de avance en sus estudios: más del 60%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2329",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2328",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 15,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1jnGbLEgD7mz1c2yDre6lF_7u-gUdbVBy/view?usp=drivesdk",
+              "sha256_binario": "39a5e5aa3401849a43ec489a22292e18b60090ea3e7cf3f3cc049fc0755278cd",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance del plan de estudios superior al 15%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2327",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 88,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1Bq0XbBAST2_u7qbrAe4mFtdhyh0uXwO5/view?usp=drivesdk",
+              "sha256_binario": "182af76e7358a4ff98d6fae5da4aaf53b6a8cdc1b3888a4e78a783ad31d04f62",
+              "numero_pagina": 2,
+              "extracto_original": "avance académico superior al 88%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2326",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1ijO2Nq7nAbKEiglK8_vxLrP9TmfMWyCY/view?usp=drivesdk",
+              "sha256_binario": "fe5b20275863283fba3d56a919304d89157e4a46c715e65cf6ff8c2ce6d4ed33",
+              "numero_pagina": 1,
+              "extracto_original": "Avance igual o superior al 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2325",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2324",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1wyPp1eqHyqBmMdUDfUUoVFEpYNC-yYXB/view?usp=drivesdk",
+              "sha256_binario": "abcce7d073cc6c2828d63975471bb8d8cf34cef87c22232e7ecc8b70a7c7202c",
+              "numero_pagina": 1,
+              "extracto_original": "avance igual o superior al 80% de su carrera",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1z1MWrOa-eYpQ1faW76ga2NOwMhaZFRsv/view?usp=drivesdk",
+              "sha256_binario": "8c31be57eae9106529c74f53e98bf134659489234651b69a34d75fc2a21bde77",
+              "numero_pagina": 1,
+              "extracto_original": "avance igual o superior al 80% de su carrera",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2323",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2321",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 90,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1Y0yv5rVy9d6rbN9-lJeTTW6qUqkTbKJz/view?usp=drivesdk",
+              "sha256_binario": "716f33a18245264be3ce2569b5e7d3a6838f73e8d5727e9f6dbf8b71f1d78d8b",
+              "numero_pagina": 2,
+              "extracto_original": "Avance igual o superior al 90%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2320",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 90,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/17WJC9kWQAEyCG7RCaAosoG4CBxJ3haRC/view?usp=drivesdk",
+              "sha256_binario": "983da356efe25d49e153fcba3d33522f53c4bdc9c06204cb7e9e3c3779696daf",
+              "numero_pagina": 2,
+              "extracto_original": "Avance igual o superior al 90%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2318",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2317",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2316",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2315",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2314",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2313",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2312",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2311",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2310",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2309",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2308",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2307",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2306",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 25,
+            "minimo_inclusivo": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1iQ0wsVfUMTnljZAQ3UmsLHFiFMz5cdX1/view?usp=drivesdk",
+              "sha256_binario": "b8ca121114f2a0b705b6e2228c8da8ab698661257fdce12491ac8e603b371435",
+              "numero_pagina": 1,
+              "extracto_original": "avance en el plan de estudios superior al 25 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            },
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1iQ0wsVfUMTnljZAQ3UmsLHFiFMz5cdX1/view?usp=drivesdk",
+              "sha256_binario": "b8ca121114f2a0b705b6e2228c8da8ab698661257fdce12491ac8e603b371435",
+              "numero_pagina": 2,
+              "extracto_original": "avance en el plan de estudios superior al 25 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2305",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2304",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 60,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1-94nfeTHFQ8lstuxA5gN9fnwVpp2vSxf/view?usp=drivesdk",
+              "sha256_binario": "e2933c12a9e64d686f46305b40345ae01bb5c443b5643f3ba3e20d7e7ba09612",
+              "numero_pagina": 1,
+              "extracto_original": "avance del 60% del plan de estudios",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2303",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 90,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/144zaZPztDVdQ2DgIjNFAH7iasS9-T_1o/view?usp=drivesdk",
+              "sha256_binario": "554e6a47ef5da26f974f65e90bda5265fcb4c7e677b5038e312af21e693a7040",
+              "numero_pagina": 1,
+              "extracto_original": "avance igual o superior al 90%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2302",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2301",
+      "estado": "sin_faceta_interpretada_en_esta_pasada",
+      "facetas": []
+    },
+    {
+      "numero": "2026-C2300",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1b9kEw0rQnjRVQc197RViQZn8DWHkOnzK/view?usp=drivesdk",
+              "sha256_binario": "f9891bdb8d72eff101bf6ce842fb1615bb8e32c1d362f2bf00f8bba63364fdd1",
+              "numero_pagina": 1,
+              "extracto_original": "avance en el plan de estudios igual o superior al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2299",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1nxETkuBQsdvzj0FNgwnUeGxnyVp0DhHE/view?usp=drivesdk",
+              "sha256_binario": "86054132f69c19ff1c984b90d1ac9c35621ab048e611e2a2a4f684bbca1237fb",
+              "numero_pagina": 1,
+              "extracto_original": "avance superior o igual al 50%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2298",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 30,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1bn3JmXMkjHvo7Jsh8CtKxQOO7L0GvwyN/view?usp=drivesdk",
+              "sha256_binario": "d073cdfa692e9f1632db5270c6d5afee18842d11081d7bd3701311740cb8113a",
+              "numero_pagina": 2,
+              "extracto_original": "avance igual o superior a 30%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2297",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "maximo_pct": 30,
+            "maximo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1L2BPe86EMjsPyi_d58qGpcIxqpwsRIkI/view?usp=drivesdk",
+              "sha256_binario": "c9c6c739dcb4d0c04eae9b292d302d9ae1e0974a03315735350a26bb11e41d40",
+              "numero_pagina": 2,
+              "extracto_original": "avance igual o inferior a 30%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2296",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 65,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1ukbv6T5j21Yr7V7FRUoJy9nnCgK0ALmk/view?usp=drivesdk",
+              "sha256_binario": "40cd968827d88bcbe7ba869128fb635a56b46138d5e8a9ce9aad20af143c11c0",
+              "numero_pagina": 2,
+              "extracto_original": "avance igual o superior al 65%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2295",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 90,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1yW1Z2YE6Q-I0tfz5HmsO4othR_0MCaGd/view?usp=drivesdk",
+              "sha256_binario": "40ca684c34006e14f402808bad76a2041f1712e3716f65deb6274c7f4cf5ba23",
+              "numero_pagina": 1,
+              "extracto_original": "Avance Igual o superior al 90%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2294",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1h9NI9tBNdZYFhXRQUDbc3b6dL1M23Gj5/view?usp=drivesdk",
+              "sha256_binario": "6daa5f6391823a9765c6066848077a8bd5f45449c1da16ce56b3034dfef6e6ce",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios mínimo del 60 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2293",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1hzlroduE1h6vVbn8P9rYbdvya2BxNu01/view?usp=drivesdk",
+              "sha256_binario": "e3af0afb44abdcb00898d7f50452dc3c1cc89a607c60819f5317f4c099f47ade",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios mínimo del 60 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2292",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 20,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1FaGLJXr9yXO31sqf-idPBDiIUYGjtPRA/view?usp=drivesdk",
+              "sha256_binario": "442098e773c728c3bca66c180bc8704e6be01f9f8478bc61c83b0f322fa3632a",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios mínimo del 20%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2291",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 60,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1rnRd611VYm5ukcXs6XkFLsIs0im5iJBv/view?usp=drivesdk",
+              "sha256_binario": "187143d94365ceea70acfd00b66ff3f29033611992354e1cf7493d41b0d26825",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios mínimo del 60 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2290",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "valor_mencionado_pct": 50,
+            "operador": "no_explicito",
+            "filtro_habilitado": false,
+            "interpretacion": "El perfil menciona un porcentaje sin operador inequívoco; no se infiere mínimo ni máximo."
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1KKVqRMxQnlQUTA7wY51lzqqia3e5h8dL/view?usp=drivesdk",
+              "sha256_binario": "77c2fefea8739ae54f111889375db148feac4fd80b9336fe720c3604e4e231a5",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios del 50 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "mencion_sin_comparador_inequivoco"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2289",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 50,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1FLdW7vYOQpe_mCzKXJsONUW_vlABocpJ/view?usp=drivesdk",
+              "sha256_binario": "c504d712038f5eed275d1175548002337fa20a3545de90aca95f34100a355ee4",
+              "numero_pagina": 1,
+              "extracto_original": "Porcentaje de avance en el plan de estudios mínimo del 50 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2288",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 65,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/17As29iJgnITJ5AMKKXkAywf5Au1SxFox/view?usp=drivesdk",
+              "sha256_binario": "7f46ff1d5e3f3a7a120bd8b27f4ebd9a6d808faf6912f47f91527732102dd154",
+              "numero_pagina": 1,
+              "extracto_original": "avance igual o superior a 65%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2287",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 70,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/1sS3LkGRJHKsgAcI9-ElVTHOVZlHWTmVb/view?usp=drivesdk",
+              "sha256_binario": "500e6990a8f76c5775f180c4ada13f475e6227201a342ae3175c01173431ea9d",
+              "numero_pagina": 1,
+              "extracto_original": "Haber cursado y aprobado al menos el 70 %",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    },
+    {
+      "numero": "2026-C2286",
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.avance_plan_estudios",
+          "rol": "condicion_perfil_habilitante",
+          "valor_normalizado": {
+            "tipo": "porcentaje_de_avance",
+            "unidad": "%",
+            "filtro_habilitado": true,
+            "minimo_pct": 80,
+            "minimo_inclusivo": true
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/13x9KVoTdGXab0N6PU9itVcpgz3zdj9Nt/view?usp=drivesdk",
+              "sha256_binario": "9f86adee07f5712df7521a5465c405400b240b2babd56d99379efa812941c2b4",
+              "numero_pagina": 2,
+              "extracto_original": "avance igual o superior al 80%",
+              "ubicacion_literal": "perfil requerido",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "declaracion_explicita"
+        }
+      ]
+    }
+  ],
+  "metricas_cobertura_esta_version": {
+    "expedientes_inventariados": 96,
+    "expedientes_con_facetas": 59,
+    "facetas_interpretadas": 69,
+    "facetas_sin_operador": 10,
+    "convocatorias_validadas_A_E": 0
+  }
+}

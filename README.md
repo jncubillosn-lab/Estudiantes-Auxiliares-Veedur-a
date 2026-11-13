@@ -21,6 +21,10 @@ El corte es **preliminar**; sus textos y coordenadas no equivalen a cotejo visua
 
 **[Detalle del corte y de la migración](docs/CORTE-IA-V3-2026-11-13.md)** · **[NORMA 05 — Orden de cerradas](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md)**.
 
+## Estandarización semántica — NORMA 06
+
+La [NORMA 06](docs/NORMA-06-ESTANDARIZACION-SEMANTICA.md) añade interpretación derivada por IA de condiciones de avance, ponderaciones, oferta y relaciones documentales, separada de los originales y trazada a URL, SHA-256 y página. La primera pasada es **parcial**: 59 expedientes con facetas, 69 facetas y 10 menciones con comparador no explícito. Su ausencia no implica ausencia del requisito. Se usan tablas SQL v3 existentes; **0 convocatorias validadas A–E**.
+
 ## Construcción reproducible y sin contaminación histórica
 
 Los datos de entrada vigentes son `data/ia_v3/integrado_96_2026-11-13.json.zlib.b64` y los **121 PDF originales** archivados con manifiesto de integridad en `data/ia_v3/pdf_originales/` (JSON de IA original íntegro, comprimido en zlib y codificado Base64; SHA-256 verificable). Los **viejos cuatro archivos** `data/lotes/lote_*.json` y los seeds SQL obsoletos se eliminaron; no se mezclan ni se utilizan en la construcción del SQLite v3.
@@ -45,6 +49,6 @@ La base actual **todavía no tiene tablas de participantes y puntajes reconstrui
 
 ## Contratos vigentes
 
-[Referencia general](docs/00-REFERENCIA-GENERAL.md) · [NORMA 00](docs/NORMA-00-validacion-integral.md) · [NORMA 01](docs/NORMA-01-integridad-exhaustividad.md) · [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) · [NORMA 03](docs/NORMA-03-extraccion-externa-ia.md) · [NORMA 04](docs/NORMA-04-validacion-convocatorias.md) · [NORMA 05](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md) · [Base v3](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) · [Entrega IA v3](docs/CONTRATO-V3-EXTRACCION-IA.md) · [Contrato visualización v3](docs/CONTRATO-V3-VISUALIZACION.md).
+[Referencia general](docs/00-REFERENCIA-GENERAL.md) · [NORMA 00](docs/NORMA-00-validacion-integral.md) · [NORMA 01](docs/NORMA-01-integridad-exhaustividad.md) · [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) · [NORMA 03](docs/NORMA-03-extraccion-externa-ia.md) · [NORMA 04](docs/NORMA-04-validacion-convocatorias.md) · [NORMA 05](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md) · [NORMA 06](docs/NORMA-06-ESTANDARIZACION-SEMANTICA.md) · [Base v3](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) · [Entrega IA v3](docs/CONTRATO-V3-EXTRACCION-IA.md) · [Contrato visualización v3](docs/CONTRATO-V3-VISUALIZACION.md).
 
 La extracción interpreta los documentos **exclusivamente mediante IA**, no mediante el programa. El programa almacena y verifica estructura/evidencia. El comparador v2 y el visualizador heredado permanecen como referencia histórica, no como fuente de datos vigentes. Ninguna nueva característica de interfaz forma parte de esta migración.

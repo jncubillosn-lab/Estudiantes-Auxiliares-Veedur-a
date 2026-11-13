@@ -1,5 +1,16 @@
 # REFERENCIA GENERAL — Veeduría de convocatorias de estudiantes auxiliares (UNAL Bogotá)
 
+## Corrección vinculante — Qué cuenta como una convocatoria validada
+
+**Métrica principal: número de convocatorias VALIDADAS**, exclusivamente desde `v2_conteo_convocatorias_validadas` respaldada por actas finales en la base, **no** desde la cantidad de códigos, filas, URLs o PDF con texto leído.
+
+**[NORMA 04 — Cierre y pruebas por convocatoria](NORMA-04-validacion-convocatorias.md)**: (A) Excel completo y cotejado; (B) PDF de convocatoria completo, cotejado y con enlace en BD; (C) comprobar documentalmente si hay PDF de resultados; (D) si existe, extraer/cotejar PDF entero y guardar su enlace; si no se encuentra tras una comprobación real, registrar `sin_pdf_verificado` con URL, fecha y alcance; (E) comprobar persistencia, accesibilidad y ausencia de omisiones críticas.
+
+**Regla de falla cerrada:** cualquier paso sin ejecutar o sin evidencia impide sumar la convocatoria. **No hay «validada a medias».** Con los datos del corte actual hay **0 convocatorias validadas de 42 identificadas**. El fichero [estado de validación de Pages](../data/estado_validacion.json) se genera desde la vista SQL, y el esquema prohíbe actas sin controles suficientes.
+
+Las URLs de los PDF son **evidencia obligatoria almacenada y consultable**, no simples adornos ni meros enlaces de navegación. Ningún texto PDF extraído suple el cotejo visual de sus tablas originales.
+
+
 **Edición:** 2026-11-13 · **Estado:** referencia consolidada de lo acordado e implementado, **no** certificación de expedientes auditados.  
 **Propósito de este documento:** que otra interacción pueda comprender, verificar y continuar el proyecto sin reconstruir esta conversación.  
 **Documentos complementarios:** [historial de decisiones y correcciones](01-REGISTRO-DECISIONES.md) · [procedimiento de continuidad y aceptación](02-CONTINUIDAD-Y-VALIDACION.md).

@@ -226,7 +226,7 @@ details[open]>summary{margin-bottom:9px}
   function renderOriginalRecord(record,i){
     const name=hasValue(record.rotulo_literal)?String(record.rotulo_literal):"Dato original "+(i+1);
     const c=card(name);
-    if(Object.hasOwn(record,"literal_completo"))c.append(node("div","large-literal")).lastChild.append(literal(record.literal_completo));
+    if(Object.hasOwn(record,"literal_completo")){const block=node("div","large-literal");block.append(literal(record.literal_completo));c.append(block);}
     c.append(renderTree(without(record,["rotulo_literal","literal_completo"])));
     return c;
   }

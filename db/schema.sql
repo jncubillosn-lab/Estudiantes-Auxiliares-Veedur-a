@@ -1,5 +1,6 @@
 -- Veeduría UNAL · esquema preliminar v0.1
--- SQLite. NO compartir una base poblada con identificadores personales en GitHub público.
+-- SQLite. Base documental fiel: no anonimizar ni sustituir los datos literales.
+-- Acceso a datos personales: controlar permisos del repositorio/almacenamiento, no reducir campos.
 -- Este esquema es el cimiento de un piloto, no la taxonomía definitiva.
 PRAGMA foreign_keys = ON;
 
@@ -195,8 +196,8 @@ CREATE TABLE IF NOT EXISTS postulacion (
   postulacion_id INTEGER PRIMARY KEY,
   publicacion_id INTEGER NOT NULL REFERENCES publicacion_resultados(publicacion_id),
   orden_en_tabla INTEGER NOT NULL,
-  alias_publico TEXT,
-  identificador_privado TEXT,
+  identificacion_literal TEXT,
+  nombre_literal TEXT,
   papa_literal TEXT,
   pbm_literal TEXT,
   total_literal TEXT,
@@ -206,6 +207,20 @@ CREATE TABLE IF NOT EXISTS postulacion (
   estado_revision TEXT NOT NULL DEFAULT 'pendiente',
   UNIQUE(publicacion_id, orden_en_tabla)
 );
+-- Los atributos adicionales de cada postulante permanecen visibles y separados
+-- en filas etiquetadas; no deben perderse por no existir una columna prediseñada.
+CREATE TABLE IF NOT EXISTS dato_postulacion (
+  dato_id INTEGER PRIMARY KEY,
+  postulacion_id INTEGER NOT NULL REFERENCES postulacion(postulacion_id),
+  orden_en_fuente INTEGER NOT NULL,
+  etiqueta_original TEXT,
+  columna_original TEXT,
+  valor_literal TEXT,
+  valor_normalizado TEXT,
+  fragmento_origen_id INTEGER REFERENCES fragmento_pdf(fragmento_id),
+  estado_revision TEXT NOT NULL DEFAULT 'pendiente'
+);
+CREATE INDEX IF NOT EXISTS idx_dato_postulacion ON dato_postulacion(postulacion_id, orden_en_fuente);
 CREATE TABLE IF NOT EXISTS calificacion (
   calificacion_id INTEGER PRIMARY KEY,
   postulacion_id INTEGER NOT NULL REFERENCES postulacion(postulacion_id),

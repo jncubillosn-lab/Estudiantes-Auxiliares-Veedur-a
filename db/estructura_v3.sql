@@ -151,6 +151,53 @@ CREATE TABLE v3_revision_fuente(
  CHECK(unidades_cotejadas<=unidades_esperadas),
  CHECK(estado!='cotejada' OR unidades_cotejadas=unidades_esperadas)
 );
+-- Cada categoría de contenido debe tener su PROPIO cotejo, no solo un total PDF.
+CREATE TABLE v3_metrica_requerida(
+ tipo_fuente TEXT NOT NULL,
+ metrica TEXT NOT NULL,
+ descripcion TEXT NOT NULL,
+ PRIMARY KEY(tipo_fuente,metrica)
+);
+INSERT INTO v3_metrica_requerida VALUES
+ ('excel','filas','Filas Excel verificadas'),
+ ('excel','celdas','Celdas Excel verificadas'),
+ ('excel','hipervinculos','Hipervinculos y formulas presentes verificados'),
+ ('convocatoria_pdf','paginas','Paginas cotejadas'),
+ ('convocatoria_pdf','tablas','Tablas y estructuras cotejadas'),
+ ('convocatoria_pdf','celdas','Celdas de tablas cotejadas'),
+ ('convocatoria_pdf','requisitos','Requisitos completos individualizados'),
+ ('convocatoria_pdf','criterios','Criterios y condiciones completos'),
+ ('convocatoria_pdf','otros_elementos','Notas, marcas, firmas y contenido extraordinario'),
+ ('resultados_pdf','paginas','Paginas cotejadas'),
+ ('resultados_pdf','tablas','Tablas de resultados completas'),
+ ('resultados_pdf','celdas','Celdas de resultados completas'),
+ ('resultados_pdf','participantes','Filas de todas las personas participantes'),
+ ('resultados_pdf','puntajes','Criterios y puntajes por participante'),
+ ('resultados_pdf','otros_elementos','Decisiones, notas y marcas adicionales'),
+ ('adenda_pdf','paginas','Paginas de adenda cotejadas'),
+ ('adenda_pdf','tablas','Tablas de adenda cotejadas'),
+ ('adenda_pdf','celdas','Celdas de adenda cotejadas'),
+ ('adenda_pdf','otros_elementos','Texto previo, cambios y notas de adenda'),
+ ('anexo_pdf','paginas','Paginas de anexo cotejadas'),
+ ('anexo_pdf','tablas','Tablas de anexo cotejadas'),
+ ('anexo_pdf','celdas','Celdas de anexo cotejadas'),
+ ('anexo_pdf','otros_elementos','Elementos de anexo cotejados'),
+ ('otro_pdf','paginas','Paginas de documento cotejadas'),
+ ('otro_pdf','tablas','Tablas de documento cotejadas'),
+ ('otro_pdf','celdas','Celdas de documento cotejadas'),
+ ('otro_pdf','otros_elementos','Elementos de documento cotejados');
+CREATE TABLE v3_revision_metrica(
+ revision_id INTEGER NOT NULL REFERENCES v3_revision_fuente(revision_id),
+ metrica TEXT NOT NULL,
+ total_observado INTEGER NOT NULL CHECK(total_observado>=0),
+ total_cotejado INTEGER NOT NULL CHECK(total_cotejado>=0 AND total_cotejado<=total_observado),
+ estado TEXT NOT NULL CHECK(estado IN ('pendiente','incompleta','cotejada')),
+ evidencia_url TEXT NOT NULL CHECK(evidencia_url LIKE 'https://%' OR evidencia_url LIKE 'http://%'),
+ nota_cotejo TEXT NOT NULL CHECK(length(trim(nota_cotejo))>=12),
+ CHECK(estado!='cotejada' OR total_observado=total_cotejado),
+ PRIMARY KEY(revision_id,metrica)
+);
+
 -- Cada puerta y cada criterio tiene ESPACIO PROPIO para evidencias de cumplimiento.
 CREATE TABLE v3_puerta(
  puerta_id INTEGER PRIMARY KEY,
@@ -266,6 +313,12 @@ CREATE TRIGGER v3_v3_resolucion_incidencia_no_update BEFORE UPDATE ON v3_resoluc
 CREATE TRIGGER v3_v3_resolucion_incidencia_no_delete BEFORE DELETE ON v3_resolucion_incidencia BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
 CREATE TRIGGER v3_v3_acta_validacion_no_update BEFORE UPDATE ON v3_acta_validacion BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
 CREATE TRIGGER v3_v3_acta_validacion_no_delete BEFORE DELETE ON v3_acta_validacion BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
+CREATE TRIGGER v3_metrica_requerida_no_update BEFORE UPDATE ON v3_metrica_requerida BEGIN SELECT RAISE(ABORT,'Norma 00 inmutable'); END;
+CREATE TRIGGER v3_metrica_requerida_no_delete BEFORE DELETE ON v3_metrica_requerida BEGIN SELECT RAISE(ABORT,'Norma 00 inmutable'); END;
+CREATE TRIGGER v3_criterio_no_update BEFORE UPDATE ON v3_criterio BEGIN SELECT RAISE(ABORT,'Norma 00 inmutable'); END;
+CREATE TRIGGER v3_criterio_no_delete BEFORE DELETE ON v3_criterio BEGIN SELECT RAISE(ABORT,'Norma 00 inmutable'); END;
+CREATE TRIGGER v3_revision_metrica_no_update BEFORE UPDATE ON v3_revision_metrica BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
+CREATE TRIGGER v3_revision_metrica_no_delete BEFORE DELETE ON v3_revision_metrica BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
 CREATE TRIGGER v3_v3_acta_fuente_no_update BEFORE UPDATE ON v3_acta_fuente BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
 CREATE TRIGGER v3_v3_acta_fuente_no_delete BEFORE DELETE ON v3_acta_fuente BEGIN SELECT RAISE(ABORT,'Evidencia inmutable'); END;
 
@@ -339,6 +392,14 @@ CREATE TRIGGER v3_acta_check BEFORE INSERT ON v3_acta_validacion BEGIN
          f.paginas_originales=x.unidades_esperadas
          AND NOT EXISTS(SELECT 1 FROM v3_pdf_pagina p
            WHERE p.fuente_id=f.fuente_id AND p.cotejo_visual!='completo')))
+       AND NOT EXISTS(
+         SELECT 1 FROM v3_metrica_requerida m WHERE m.tipo_fuente=f.tipo
+           AND NOT EXISTS (
+             SELECT 1 FROM v3_revision_metrica z
+             WHERE z.revision_id=x.revision_id AND z.metrica=m.metrica
+               AND z.estado='cotejada' AND z.total_observado=z.total_cotejado
+           )
+       )
    )
  ) THEN RAISE(ABORT,'NORMA 00: falta fuente íntegra, URL o revisión de páginas/celdas') END;
 
@@ -416,6 +477,14 @@ CREATE VIEW v3_convocatorias_validadas AS
          ELSE (SELECT count(*) FROM v3_pdf_pagina p WHERE p.fuente_id=f.fuente_id) END)
        AND (f.tipo='excel' OR (f.paginas_originales=x.unidades_esperadas
              AND NOT EXISTS(SELECT 1 FROM v3_pdf_pagina p WHERE p.fuente_id=f.fuente_id AND p.cotejo_visual!='completo')))
+       AND NOT EXISTS(
+          SELECT 1 FROM v3_metrica_requerida m WHERE m.tipo_fuente=f.tipo
+           AND NOT EXISTS(
+             SELECT 1 FROM v3_revision_metrica z WHERE z.revision_id=x.revision_id
+               AND z.metrica=m.metrica AND z.estado='cotejada'
+               AND z.total_observado=z.total_cotejado
+           )
+       )
    )
  );
 CREATE VIEW v3_metrica_principal AS

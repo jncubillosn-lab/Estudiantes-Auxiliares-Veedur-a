@@ -124,17 +124,56 @@ def validar_lote(lote: dict, config: dict, previos: list[dict] | None = None) ->
                    isinstance(pers.get("referencia"), str) and pers["referencia"].strip(),
                    f"{numero}: se marcó persistir sin confirmar referencia a los datos")
         if caso["cotejo"] == "cotejada":
+            # IMPORTANTE: 'cotejada' en el manifiesto es declaración de lectura,
+            # NO incrementa la métrica; SOLO un acta SQL v2 cuenta como validada.
+            exigir("persistir" in etapas and pers.get("estado") == "confirmada",
+                   f"{numero}: no cerrar sin integrar, verificar y persistir")
             exigir(not faltas, f"{numero}: expediente cotejado con pendientes")
-            requeridas = {"excel", "convocatoria_pdf", "resultados_pdf"}
-            cotejadas = {f["tipo"] for f in fuentes if f["estado"] == "cotejada"}
-            exigir(requeridas.issubset(cotejadas),
-                   f"{numero}: expediente completo exige Excel, convocatoria PDF y resultados PDF cotejados")
-            exigir(all(f["estado"] == "cotejada" for f in fuentes),
-                   f"{numero}: expediente cotejado con fuentes no cotejadas")
             exigir(all(c.get("esperado") is not None and c.get("registrado") == c["esperado"]
                        for c in caso.get("cobertura", [])),
                    f"{numero}: expediente cotejado sin cobertura completa")
-            exigir(bool(caso.get("cobertura")), f"{numero}: cotejo sin ninguna cobertura declarada")
+            exigir(bool(caso.get("cobertura")), f"{numero}: cotejo sin cobertura declarada")
+            excel = [f for f in fuentes if f["tipo"] == "excel"]
+            pdfconv = [f for f in fuentes if f["tipo"] == "convocatoria_pdf"]
+            pdfres = [f for f in fuentes if f["tipo"] == "resultados_pdf"]
+            exigir(bool(excel) and all(f["estado"] == "cotejada" for f in excel),
+                   f"{numero}: Excel original no cotejado integralmente")
+            exigir(bool(pdfconv) and all(f["estado"] == "cotejada" for f in pdfconv),
+                   f"{numero}: PDF de convocatoria no cotejado integralmente")
+            for pdf in pdfconv:
+                url = pdf.get("url") or pdf.get("url_documento")
+                exigir(isinstance(url, str) and url.startswith(("http://", "https://")),
+                       f"{numero}: PDF convocatoria sin URL verificable guardada")
+            for fuente in excel + pdfconv:
+                tipos = {c["metrica"] for c in caso["cobertura"] if c["fuente_id"] == fuente["fuente_id"]}
+                requerida = "celdas" if fuente["tipo"] == "excel" else "paginas"
+                exigir(requerida in tipos, f"{numero}: falta cobertura {requerida} de {fuente['fuente_id']}")
+            consulta = caso.get("verificacion_resultados")
+            exigir(isinstance(consulta, dict), f"{numero}: falta verificación documentada de resultados")
+            estado = consulta.get("estado")
+            exigir(estado in ("pdf_disponible", "sin_pdf_verificado"),
+                   f"{numero}: no se comprobó disponibilidad de PDF de resultados")
+            exigir(isinstance(consulta.get("url_consulta"), str)
+                   and consulta["url_consulta"].startswith(("http://", "https://"))
+                   and len(str(consulta.get("fecha_consulta") or "")) >= 10
+                   and len(str(consulta.get("alcance_consulta") or "")) >= 12,
+                   f"{numero}: falta URL, fecha o alcance real de consulta de resultados")
+            if estado == "pdf_disponible":
+                exigir(bool(pdfres) and all(f["estado"] == "cotejada" for f in pdfres),
+                       f"{numero}: PDF de resultados disponible pero no cotejado")
+                for pdf in pdfres:
+                    url = pdf.get("url") or pdf.get("url_documento")
+                    exigir(isinstance(url, str) and url.startswith(("http://", "https://")),
+                           f"{numero}: PDF resultados sin enlace verificable")
+                    exigir(any(c["fuente_id"] == pdf["fuente_id"] and c["metrica"] == "paginas"
+                               for c in caso["cobertura"]),
+                           f"{numero}: sin cobertura total de páginas de resultados")
+            else:
+                exigir(not any(f["estado"] in ("localizada", "leida", "estructura_capturada", "cotejada")
+                               for f in pdfres),
+                       f"{numero}: no declarar ausencia si hay PDF resultados identificado")
+            exigir(all(f["estado"] == "cotejada" for f in fuentes if f["tipo"] not in ("resultados_pdf",)),
+                   f"{numero}: hay anexos o fuentes adicionales no cotejados")
     return {
         "estado_control": "consistente_con_manifesto",
         "aviso": "No certifica calidad visual ni totalidad del PDF sin cotejo independiente",
@@ -143,7 +182,8 @@ def validar_lote(lote: dict, config: dict, previos: list[dict] | None = None) ->
         "lecturas_registradas": lecturas_registradas,
         "reextracciones_justificadas": repetidas,
         "pendientes_declarados": pendientes,
-        "maximo_permitido": maximo
+        "maximo_permitido": maximo,
+        "convocatorias_validadas": "NO SE CALCULA POR MANIFIESTO; consultar v2_conteo_convocatorias_validadas en SQLite"
     }
 
 

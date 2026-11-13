@@ -1,12 +1,16 @@
 # Veeduría de convocatorias de estudiantes auxiliares — UNAL
 
-## Reinicio de la base de datos — Norma 00 y arquitectura v3
+**Estado actual de la base V3:** el SQLite se construye desde los cuatro lotes históricos y conserva 42 códigos, 43 filas, 470 celdas y 16 enlaces PDF con su transcripción previa. **Cero convocatorias validadas; cero PDF cotejados visualmente.** Esto no implica haber terminado una extracción documental.
+
+**Referencias operativas:** [Base V3 y garantías](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) · [Contrato de visualización](docs/CONTRATO-V3-VISUALIZACION.md) · [Contrato de extracción externa por IA](docs/CONTRATO-V3-EXTRACCION-IA.md). La web publicada todavía usa v2 y no se modificó.
+
+## Base de datos V3 operativa — Norma 00
 
 **Regla de máxima jerarquía: [NORMA 00 — Validación integral e inviolable](docs/NORMA-00-validacion-integral.md).** Una convocatoria **solo suma** si tiene **Excel íntegro + PDF de convocatoria íntegro con URL + comprobación real de resultados + PDF de resultados completo con URL cuando esté disponible + evidencia y acta final de integración**. Cualquier puerta no cumplida = no validada.
 
 **Nuevo diseño desde cero:** [`db/estructura_v3.sql`](db/estructura_v3.sql) · [documentación de arquitectura v3](docs/arquitectura-v3-validacion.md) · [pruebas del contrato](scripts/probar_estructura_v3.py). La nueva estructura incorpora comprobación individual A–E, **13 criterios**, cobertura por tipo de elemento documental, evidencias URL, registro/resolución de incidencias, actas inmutables y contador recalculado ante fuentes nuevas.
 
-**Estado exacto:** este es un **reinicio del diseño de base**, no una migración terminada. Los 42 códigos históricos y la interfaz Pages v2 se conservan tal como están; **no se ha importado a v3 información real ni validado una sola convocatoria real**. Se trabajará primero en validar la estructura y luego en alinear la página y la extracción externa.
+**Estado exacto:** los 42 códigos históricos y sus datos disponibles se importan a una base SQLite V3 reproducible, pero no se ha validado ninguna convocatoria real. La interfaz Pages continúa en v2.
 
 
 ## Métrica principal y criterio de validación — NORMA 04

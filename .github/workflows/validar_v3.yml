@@ -9,6 +9,10 @@ on:
       - 'scripts/probar_construccion_v3.py'
       - 'scripts/exportar_base_v3.py'
       - 'scripts/probar_exportacion_v3.py'
+      - 'config/contrato_ia_v3.json'
+      - 'scripts/validar_entrega_ia_v3.py'
+      - 'scripts/probar_control_ia_v3.py'
+      - 'tests/fixtures/entrega_ia_v3_ejemplo.json'
       - 'data/lotes/lote_*.json'
       - '.github/workflows/validar_v3.yml'
   workflow_dispatch:
@@ -28,6 +32,8 @@ jobs:
         run: python scripts/probar_construccion_v3.py
       - name: Probar contrato completo de visualización
         run: python scripts/probar_exportacion_v3.py
+      - name: Verificar límites y disciplina de entregas IA
+        run: python scripts/probar_control_ia_v3.py
       - name: Construir base SQLite V3 reproducible
         run: python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
       - name: Exportar contrato V3 de consulta

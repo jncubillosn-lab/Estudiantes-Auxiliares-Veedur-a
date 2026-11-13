@@ -51,27 +51,34 @@ El HTML `index.html` existente **no se reemplaza** durante el desarrollo. El com
 
 **Entregable:** `comparador-v2.html` y contrato de intercambio `data/contrato-v2.md`. El comparador debe tolerar campos sin extraer, **sin inventar** valores.
 
-## 3 — Proceso de extracción, posterior al contrato y la interfaz
+## 3 — Extracción externa por IA (flujo vigente)
 
-**Secuencia documental**:
-1. Descargar PDF **binario original** de enlace verificado y calcular hash.
-2. Renderizar y conservar referencia visual de todas las páginas.
-3. Extraer sin pérdida **objetos con coordenadas** (palabras/bloques, trazos, imágenes, anotaciones).
-4. Detectar tablas y asignar sus celdas, incluyendo celdas vacías/combinadas.
-5. Registrar elementos no clasificados; nunca descartarlos.
-6. Clasificar rótulos, valores y listas; enlazarlos a elementos/celdas originales.
-7. Vincular por código de convocatoria sin borrar códigos disonantes.
-8. Contrastar estructura reconstruida con página visual; **cero documentos pasan a `cotejado` automáticamente**.
-9. Escribir lote atómico con estados, excepciones y una prueba de reversibilidad.
-10. Publicar estado de cada convocatoria y exportación al comparador.
+**No se implementa un motor documental dentro del programa.** La interpretación y transcripción de PDF los realiza directamente la IA, fuera del sitio y de la base de datos. El programa consume el resultado estructurado; los scripts de la etapa 3 sirven para **controlar y validar el trabajo de la IA**.
 
-**Extracción ≠ validación:** el software puede capturar coordenadas y proponer celdas; una prueba visual de integridad debe confirmar las relaciones complejas, casillas y tablas fusionadas. Si falla, se mantiene como `pendiente`.
+[Norma 03 — Extracción externa por IA](NORMA-03-extraccion-externa-ia.md) | [Parámetros operativos](../config/operacion_ia.json) | [Validador de lote](../scripts/validar_lote_ia.py).
 
-**Entregable:** extractor v2 y protocolo de revisión. Se valida con PDF de convocatoria, resultados y adenda de formatos distintos; solo después se escala por lotes.
+### Límites y orden invariables
+
+- Máximo **50 convocatorias distintas por interacción**, aunque una convocatoria tenga múltiples filas de Excel, PDF, adendas o versiones.
+- Procesar cada convocatoria según la secuencia: identificar fuentes → leer Excel → leer PDF de convocatoria → leer PDF de resultados → integrar → verificar → persistir.
+- Conservar registros del último avance para que nuevas interacciones retomen **sin repetir trabajo ya realizado**.
+- Evitar leer dos veces la **misma fuente, versión y ubicación**; si se reexamina para cotejo o corrección, registrarlo como revisión, no como otro dato original.
+- Un texto legítimamente impreso varias veces debe representarse en **cada ubicación original**, sin deduplicación de contenido.
+
+### Controles, no extracción automatizada
+
+1. Manifiesto de lote con lista ordenada de convocatorias y referencias reales a los documentos.
+2. Evidencias de lectura con procedencia, versión y posición exacta; páginas, tablas, celdas, listas, encabezados y filas conservadas.
+3. Comprobaciones de integridad declarada y registros explícitos de lo pendiente o no legible.
+4. Separación de datos originales y sintéticos, sin reemplazo de listas por conteos.
+5. Confirmación de escritura a la estructura de datos y punto de continuidad.
+6. Validación automática de la disciplina del proceso; **no** certificación automática del contenido visual.
+
+Los scripts previos `scripts/extraer_pdf_v2.py` e `scripts/importar_pdf_v2.py` quedan **como instrumentos técnicos experimentales y opcionales** para obtener coordenadas, imágenes o verificar evidencia; ya no definen la arquitectura ni ejecutan la extracción del proyecto. La decisión de qué se conserva no pertenece al programa: se conserva todo.
 
 ## Secuencia de mejora
 
-Cambios de esquema → prueba de reversibilidad → contrato de salida → interfaz → extracción de un PDF → cotejo → mejoras documentadas → nuevo lote. No correr una carga masiva si alguna puerta de calidad está sin pasar.
+Cambios de esquema → prueba de integridad → contrato de salida → comparador → extracción EXTERNA por IA → manifiesto y validación del lote → persistencia → mejoras documentadas. No correr una carga masiva si alguna puerta de calidad está sin pasar.
 
 ## Estado de los datos actuales
 

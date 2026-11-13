@@ -1,13 +1,16 @@
 # Arquitectura de base de datos V3 — Reconstrucción desde la Norma 00
 
-**Fecha:** 13-11-2026 · **Estado:** nuevo esquema aislado, con pruebas de contrato y **cero migraciones reales**.  
+**Implementación vigente:** [Operación de base V3](BASE-V3-OPERACION-Y-GARANTIAS.md) · [Contrato del visualizador](CONTRATO-V3-VISUALIZACION.md) · [Contrato de extracción IA](CONTRATO-V3-EXTRACCION-IA.md). El sitio de Pages sigue consumiendo V2.
+
+
+**Fecha:** 13-11-2026 · **Estado:** esquema aislado probado, constructor SQLite y contrato JSON operativos. Las cuatro capturas históricas se importan como información parcial; cero expedientes cotejados o validados.  
 **Precedencia:** [NORMA 00 — validación integral](NORMA-00-validacion-integral.md) > [NORMA 01 — integridad](NORMA-01-integridad-exhaustividad.md) > [NORMA 02 — comparabilidad](NORMA-02-integracion-comparabilidad.md) > [NORMA 03 — extracción externa por IA](NORMA-03-extraccion-externa-ia.md). La [NORMA 04](NORMA-04-validacion-convocatorias.md) detalla las puertas operativas A–E.
 
 ## 1. Decisión de reinicio
 
 Se **reinicia el diseño lógico de la base**, no se borra la investigación ni se destruyen las fuentes. `db/estructura_v3.sql` define desde cero una BD aislada, independiente de `db/schema.sql` y `db/estructura_v2.sql`. Los lotes `data/lotes/lote_01.json` a `lote_04.json` y la página `index.html` **no se modifican** en esta fase.
 
-**No migrar ni marcar validado ningún caso automáticamente.** Los 42 códigos históricos son identificados, pero **cero** cuentan como validados. Primero garantizar base y control, luego contrato de interfaz, luego extracción externa por IA.
+**No marcar ningún caso validado automáticamente.** Los 42 códigos se cargan como identificados y sus fuentes previas quedan preservadas; cero cuentan como validados. La interfaz y la nueva extracción por IA son etapas posteriores.
 
 ### Principio de las dos capas
 

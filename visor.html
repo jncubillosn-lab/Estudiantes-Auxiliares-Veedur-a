@@ -291,6 +291,7 @@ if(c.hipervinculo)extra.appendChild(link("Abrir enlace original",c.hipervinculo)
 if(c.formula)extra.appendChild(el("div","smallText","Fórmula literal: "+c.formula));
 if(c.nota)extra.appendChild(el("div","smallText","Nota: "+c.nota));
 if(c.valor_original&&c.valor_original.numberValue!==undefined)extra.appendChild(el("div","smallText","Valor numérico: "+c.valor_original.numberValue));
+var rawCell=el("details",""),rawSummary=el("summary","smallText","Ver metadatos completos de la celda"),rawValue=el("pre","raw",JSON.stringify(c,null,2));append(rawCell,rawSummary,rawValue);extra.appendChild(rawCell);
 append(row,a,b,d,extra);tbody.appendChild(row);});t.appendChild(tbody);append(content,el("div","tableWrap"));content.lastChild.appendChild(t);
 });
 content.appendChild(el("div","callout","No se ha cambiado el texto de ninguna celda. La hoja puede contener denominaciones o códigos duplicados; se muestran todas las filas capturadas."));
@@ -299,7 +300,8 @@ function rawDocView(d,root){
 var block=el("section","docBlock"),header=el("div","docHeader");
 append(header,el("h4","",d.titulo||"PDF sin título"),link("Abrir PDF original ↗",d.url));
 append(block,header,el("div","smallText","Tipo: "+d.rol+" · ID de Drive: "+(d.drive_id||"no registrado")+" · "+String((d.texto_extraido||"").length)+" caracteres extraídos. No hay cotejo visual del PDF."));
-var p=el("pre","raw",d.texto_extraido||"[El extractor no devolvió texto.]");block.appendChild(p);root.appendChild(block);
+var p=el("pre","raw",d.texto_extraido||"[El extractor no devolvió texto.]");block.appendChild(p);
+var detail=el("details",""),summary=el("summary","smallText","Ver metadatos y estructura detectada de este PDF"),detailPre=el("pre","raw",JSON.stringify({drive_id:d.drive_id,titulo:d.titulo,url:d.url,mime:d.mime,codigo_interno_literal:d.codigo_interno_literal,campos_detectados:d.campos_detectados,paginas_estimadas:(d.paginas||[]).length},null,2));append(detail,summary,detailPre);block.appendChild(detail);root.appendChild(block);
 }
 function showDocs(g,content,kind){
 var m=meta(g),documents=kind==="conv"?m.convs:m.results;content.appendChild(sectionTitle(kind==="conv"?"PDF de convocatoria":"PDF de resultados"));
@@ -347,7 +349,7 @@ if(tab==="result")showDocs(g,body,"result");
 if(tab==="review")showReview(g,body);
 d.appendChild(body);holder.replaceChildren(d);
 }
-["q","career","faculty","issuer","status","resultFilter","coverage","reviewFilter","sort","searchPdf"].forEach(function(id){$(id).addEventListener(id==="q"?"input":"change",renderList);});
+["q","career","faculty","issuer","status","resultFilter","coverage","reviewFilter","sort","searchPdf"].forEach(function(id){$(id).addEventListener(id==="q"?"input":"change",function(){renderList();});});
 $("resetFilters").onclick=function(){["q","career","faculty","issuer","status","resultFilter","coverage","reviewFilter"].forEach(function(x){$(x).value="";});$("sort").value="code";$("searchPdf").checked=false;renderList();};
 $("themeBtn").onclick=function(){var to=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=to;$("themeBtn").textContent=to==="dark"?"Modo claro":"Modo oscuro";};
 $("exportBtn").onclick=function(){var data={schema:"veeduria-feedback-v2",fuente:payload.fuente,corte:payload.corte,exportado_en:new Date().toISOString(),total_convocatorias:all.length,observaciones:feedback};var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});var a=document.createElement("a"),url=URL.createObjectURL(blob);a.href=url;a.download="veeduria-unal-observaciones-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},2000);$("saveIndicator").textContent="Observaciones exportadas a JSON."};

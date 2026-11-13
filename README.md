@@ -1,28 +1,30 @@
 # Veeduría de convocatorias de estudiantes auxiliares — UNAL
 
-**Versión:** piloto documental v0.2 (13 de noviembre de 2026).  
-**Estado:** cuatro lotes importados y verificados en su capa textual; cotejo visual y recuperación de PDF faltantes pendientes.
+**Estado del producto:** replanteamiento de arquitectura de extracción y comparabilidad (13 de noviembre de 2026).
 
-## Norma superior del proyecto
+## Propósito rector
 
-**[NORMA 01 — Integridad, exhaustividad y visibilidad de las fuentes](docs/NORMA-01-integridad-exhaustividad.md)**. La tarea es transformar, nunca escoger qué datos conservar. Todo el contenido original de Excel, convocatorias y resultados debe permanecer completo y consultable en estructuras explícitas, sin alias sustitutos, omisiones, anonimización en la base fiel ni normalizaciones que sobrescriban lo literal. Toda extracción debe conservar referencia a su fuente y ubicación original.
+Transformar **tres fuentes completas** —Excel, PDF de convocatoria y PDF de resultados— en **una única estructura por convocatoria**, verificable, integrable y **comparable entre múltiples convocatorias**. No es un directorio de publicaciones ni una vitrina para leer PDF como texto plano.
 
-## Visor HTML de validación
+1. **[NORMA 01 — Integridad y exhaustividad](docs/NORMA-01-integridad-exhaustividad.md):** conservar y rastrear absolutamente todos los datos observables.
+2. **[NORMA 02 — Integración estructural y comparabilidad](docs/NORMA-02-integracion-comparabilidad.md):** reconstruir tablas/celdas de los PDF, integrar fuentes, comparar requisitos/criterios/resultados y permitir veeduría sin calificar prácticas.
+3. **[Diagnóstico y estado real](docs/estado-ejecucion.md):** describe dónde falló el primer prototipo y las puertas de calidad pendientes.
 
-**[Abrir el archivo del visor](visor.html)** (en el repositorio privado, usar **Download raw file** y abrir `visor.html` en el navegador). **No exige servidor ni instalación**: los 43 registros de la hoja y los 16 textos PDF ya están embebidos en una copia portátil. El visor agrupa por **42 códigos distintos de convocatoria**; conserva las dos filas del código `2026-C2324`.
+### Estado real, sin equiparar lectura a validación
 
-El buscador incluye: texto libre, carrera mencionada (clasificación heurística), facultad, dependencia extraída del PDF, estado abierto/cerrado, presencia de PDF de resultados, cobertura documental, progreso de validación y ordenamientos. En cada ficha pueden consultarse todas las celdas originales y el texto completo que devolvió el extractor para los documentos disponibles.
+| Métrica | Estado |
+|---|---:|
+| Códigos distintos de convocatoria | 42 |
+| Filas originales en Excel | 43 |
+| PDF consultados como texto (7 convocatoria + 9 resultados) | 16 |
+| PDF con tablas y celdas visualmente reconstruidas/verificadas | **0** |
+| Convocatorias con tres fuentes integradas y comparables | **0** |
 
-La pestaña **Revisión y notas** permite verificar por separado hoja, PDF convocatoria y PDF resultados, registrar discrepancias, anotar el número de postulantes *confirmado manualmente* y guardar observaciones. **La validación manual no modifica los datos fuente**.
+**El sitio `index.html`/`visor.html` es un prototipo documental de navegación**, no una herramienta terminada de veeduría. Presenta los PDF como texto lineal, lo que pierde la estructura tabular necesaria para evaluar y contrastar. **No escalar este formato como producto final**. El contenido conservado es respaldo para reconstrucción posterior.
 
-Las observaciones se conservan **solo en el navegador** mediante almacenamiento local. Para compartirlas con el proyecto debe elegirse **Exportar observaciones JSON** y adjuntar ese archivo a una revisión. También se pueden importar para retomar el trabajo en otro equipo. **No se suben automáticamente a GitHub.**
+La próxima implementación comienza por una **prueba de extracción de celdas y posiciones desde el PDF original**, con cotejo visual de convocatoria y resultados. Después se conectarán los campos a una ficha única y se creará la matriz transversal de comparación (carrera, dependencia, requisitos, criterios, ponderaciones, postulantes y resultados).
 
-### Limitaciones expresas
-- «Sin PDF enlazado» no significa que el documento no exista o que la convocatoria no tenga resultados.
-- Un PDF leído es una **transcripción textual pendiente de cotejo visual**, no un PDF revisado integralmente.
-- Los números de participantes detectados mediante patrones son preliminares: el visor distingue explícitamente ese conteo de una cifra confirmada.
-- La clasificación por carrera y la identificación de la dependencia son **ayudas de búsqueda**, no sustituyen el valor literal de las fuentes.
-- El HTML incorpora datos originales, incluidos identificadores presentes en resultados; **su distribución debe permanecer bajo controles de acceso autorizados**, como los del repositorio privado.
+---
 
 ## Estado de importación
 
@@ -34,7 +36,7 @@ Las observaciones se conservan **solo en el navegador** mediante almacenamiento 
 | 04 — optimizado | 25 | 4 | 274 | 688 |
 | **Total** | **43** | **16** | **470** | **2.340** |
 
-Se han detectado **51 registros provisionales de postulaciones** en los documentos de resultados y **4 hallazgos preliminares** con fuentes contrastables. El repositorio es privado. **Ninguno de los 43 expedientes está documentalmente completo todavía**, porque no se ha recuperado simultáneamente PDF de convocatoria y PDF de resultados para un mismo expediente. Los documentos disponibles se conservan sin supresión de contenido textual; faltan binarios, revisión visual y estructuración semántica final.
+Se han detectado **51 registros provisionales de postulaciones** en los documentos de resultados y **4 hallazgos preliminares** con fuentes contrastables. La configuración de visibilidad del repositorio es decidida por su responsable. **Ninguno de los 43 expedientes está documentalmente completo todavía**, porque no se ha recuperado simultáneamente PDF de convocatoria y PDF de resultados para un mismo expediente. Los documentos disponibles se conservan sin supresión de contenido textual; faltan binarios, revisión visual y estructuración semántica final.
 
 ## Acceso a los datos
 
@@ -86,9 +88,9 @@ Casos reales útiles como pruebas posteriores:
 - Archivo de resultados llamado 2026-C2312: en texto interno figura otro identificador (2026-C2302); requiere cotejo visual antes de concluir cuál es correcto.
 - 2026-C2309: incluye selección, renuncia y descalificación, y ponderaciones con subcriterios.
 
-## Privacidad
+## Responsabilidad del tratamiento y de la publicación
 
-**La base íntegra conserva todos los datos literales**, incluidos los identificadores y resultados necesarios para la trazabilidad. No se anonimizan ni sustituyen dentro de la base fiel. La protección de acceso se gestiona en la infraestructura de almacenamiento, separadamente de la extracción. Mientras el repositorio no figure como privado y no se haya confirmado autorización efectiva de acceso, no se incorporarán archivos con datos personales. Una eventual versión de consulta pública no podrá modificar la base íntegra ni se elaborará sin decisión expresa del responsable del proyecto.
+La base original se conserva completa y sin omisiones decididas por el sistema. El usuario responsable determina la visibilidad y el alcance de las publicaciones. El asistente no altera, elimina, oculta, anonimiza ni publica datos originales por iniciativa propia.
 
 ## Ruta propuesta
 

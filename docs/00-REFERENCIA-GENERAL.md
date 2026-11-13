@@ -56,7 +56,7 @@ SQLite V3
 JSON de expediente V3 → futuro visualizador comparador
 ```
 
-**GitHub Pages no ejecuta SQLite.** La página actual `index.html` continúa utilizando **v2**; todavía no recibe el JSON v3. La base v3 ya se construye y exporta, sin modificar esa página.
+**GitHub Pages no ejecuta SQLite.** La página `index.html` ahora utiliza `data/expedientes_v3.json`, generado por el exportador oficial desde SQLite v3 y versionado por `.github/workflows/publicar_visor_v3.yml`. La interfaz principal es una lista sin filtros con ficha documental por convocatoria. El comparador v2 permanece por separado. La comparación transversal simultánea de la NORMA 02 sigue pendiente de una implementación v3.
 
 ## 5. Estado real del corte histórico
 
@@ -76,6 +76,6 @@ Los cuatro JSON se conservan en `data/lotes/`, completos e inalterados. La const
 
 **Implementado y probado:** esquema SQL v3; constructor SQLite reproducible; exportación JSON por código; almacenamiento de entregas/manifiestos de IA; validadores de límites, lecturas y cobertura; pruebas contra las 470 celdas y 16 capturas textuales PDF.
 
-**No ejecutado:** cotejo visual íntegro de PDF reales, validación de convocatorias, análisis transversal completo de requisitos/resultados, ni adaptación de la página web a v3. **Ninguna prueba automática convierte texto PDF parcial en un expediente validado.**
+**No ejecutado:** cotejo visual íntegro de PDF reales, validación de convocatorias, análisis transversal completo de requisitos/resultados, ni cierre de la comparación transversal v3. **Ninguna prueba automática convierte texto PDF parcial en un expediente validado.**
 
 [Historial de decisiones y errores](01-REGISTRO-DECISIONES.md) · [Documentación heredada, solo archivo](historico/INDICE.md).

@@ -11,7 +11,7 @@ Si una fuente está inaccesible, no enlazada, parcialmente leída o sin revisió
 
 **Versión de procedimiento:** 2026-11-13 · **Estado:** instrucciones vigentes para retomar trabajo posterior.  
 **Leer primero:** [referencia general](00-REFERENCIA-GENERAL.md) · [decisiones históricas](01-REGISTRO-DECISIONES.md).  
-**Precedencia:** [Norma 01](NORMA-01-integridad-exhaustividad.md) → [Norma 02](NORMA-02-integracion-comparabilidad.md) → [Norma 03](NORMA-03-extraccion-externa-ia.md) → [configuración de operación](../config/operacion_ia.json).
+**Precedencia:** [Norma 01](NORMA-01-integridad-exhaustividad.md) → [Norma 02](NORMA-02-integracion-comparabilidad.md) → [Norma 04 — Cierre obligatorio](NORMA-04-validacion-convocatorias.md) → [Norma 03](NORMA-03-extraccion-externa-ia.md) → [configuración de operación](../config/operacion_ia.json).
 
 ## A. Punto de control actual
 

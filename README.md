@@ -11,6 +11,8 @@ No encontrar un hipervínculo en Excel no demuestra ausencia de resultados; debe
 
 **Estado del producto (13 de noviembre de 2026):** comparador v2 conectado a la proyección de la base documental; extracción estructural y cotejo de PDF reales pendientes. No es una auditoría concluida.
 
+**Enlaces PDF como evidencia:** la importación v2 ahora incorpora a SQLite las **URL y transcripciones ya disponibles de los 16 PDF**, con su tipo, código literal observado y estado `pendiente` de cotejo. Los originales de los cuatro lotes no se modifican. La prueba [`probar_validacion_convocatorias.py`](scripts/probar_validacion_convocatorias.py) comprueba sus enlaces y deja **0 actas reales**.
+
 ## Documentación de referencia — empezar aquí
 
 La documentación del proyecto está **consolidada y ordenada** para que una nueva interacción pueda continuar sin reconstruir la conversación:

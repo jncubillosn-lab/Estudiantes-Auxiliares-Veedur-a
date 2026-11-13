@@ -38,5 +38,12 @@
     "confirmada"
   ],
   "pendientes_permitidos": true,
-  "certificacion_automatica_integral": false
+  "certificacion_automatica_integral": false,
+  "metrica_principal": "numero_de_convocatorias_validadas_por_acta_sql",
+  "regla_validacion": "excel_completo_y_pdf_convocatoria_completo_y_comprobacion_resultados_y_si_existe_pdf_resultados_completo_y_acta_persistida",
+  "estados_comprobacion_resultados": [
+    "pendiente",
+    "pdf_disponible",
+    "sin_pdf_verificado"
+  ]
 }

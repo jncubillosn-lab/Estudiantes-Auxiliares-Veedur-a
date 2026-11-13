@@ -7,20 +7,20 @@
 
 | Pieza | Archivo | Función |
 |---|---|---|
-| **Modelo relacional** | [\`db/estructura_v3.sql\`](../db/estructura_v3.sql) | Fuentes originales inmutables, relaciones, Excel, PDF estructurado, listas, resultados, entrega de IA, evidencias, puertas A–E, incidencias, actas y vistas. |
-| **Construcción operativa** | [\`scripts/construir_base_v3.py\`](../scripts/construir_base_v3.py) | Genera un SQLite NUEVO desde las capturas originales existentes; conserva sus bytes, celdas, vínculos y texto previo PDF. **No ejecuta extracción PDF**. |
-| **Exportación única** | [\`scripts/exportar_base_v3.py\`](../scripts/exportar_base_v3.py) | Genera **un JSON de expedientes integrados** para el futuro visualizador, con originales + controles + sintéticos en secciones independientes. |
-| **Control de trabajo de IA** | [\`scripts/validar_entrega_ia_v3.py\`](../scripts/validar_entrega_ia_v3.py) y [\`config/contrato_ia_v3.json\`](../config/contrato_ia_v3.json) | Comprueba el manifiesto: ≤50 códigos por interacción, versiones, fuentes, páginas/posiciones y no repetir extracción. **No lee ni interpreta PDFs**. |
-| **Pruebas** | [\`scripts/probar_estructura_v3.py\`](../scripts/probar_estructura_v3.py), [\`scripts/probar_construccion_v3.py\`](../scripts/probar_construccion_v3.py), [\`scripts/probar_exportacion_v3.py\`](../scripts/probar_exportacion_v3.py), [\`scripts/probar_control_ia_v3.py\`](../scripts/probar_control_ia_v3.py) | Casos ficticios de puertas A–E, cotejos, nuevos documentos y pruebas contra las capturas reales disponibles. |
-| **CI / base descargable** | [\`.github/workflows/validar_v3.yml\`](../.github/workflows/validar_v3.yml) | Ejecuta pruebas, construye la base y genera un **artefacto de GitHub Actions** que contiene SQLite + JSON de consulta. |
-| **Contrato para visualización** | [\`docs/CONTRATO-V3-VISUALIZACION.md\`](CONTRATO-V3-VISUALIZACION.md) | Especifica la **única entrada** que deberá recibir el visualizador en una fase posterior. |
-| **Contrato para la IA** | [\`docs/CONTRATO-V3-EXTRACCION-IA.md\`](CONTRATO-V3-EXTRACCION-IA.md) | Especifica todo lo que la IA debe observar, entregar, documentar y cotejar. |
+| **Modelo relacional** | [`db/estructura_v3.sql`](../db/estructura_v3.sql) | Fuentes originales inmutables, relaciones, Excel, PDF estructurado, listas, resultados, entrega de IA, evidencias, puertas A–E, incidencias, actas y vistas. |
+| **Construcción operativa** | [`scripts/construir_base_v3.py`](../scripts/construir_base_v3.py) | Genera un SQLite NUEVO desde las capturas originales existentes; conserva sus bytes, celdas, vínculos y texto previo PDF. **No ejecuta extracción PDF**. |
+| **Exportación única** | [`scripts/exportar_base_v3.py`](../scripts/exportar_base_v3.py) | Genera **un JSON de expedientes integrados** para el futuro visualizador, con originales + controles + sintéticos en secciones independientes. |
+| **Control de trabajo de IA** | [`scripts/validar_entrega_ia_v3.py`](../scripts/validar_entrega_ia_v3.py) y [`config/contrato_ia_v3.json`](../config/contrato_ia_v3.json) | Comprueba el manifiesto: ≤50 códigos por interacción, versiones, fuentes, páginas/posiciones y no repetir extracción. **No lee ni interpreta PDFs**. |
+| **Pruebas** | [`scripts/probar_estructura_v3.py`](../scripts/probar_estructura_v3.py), [`scripts/probar_construccion_v3.py`](../scripts/probar_construccion_v3.py), [`scripts/probar_exportacion_v3.py`](../scripts/probar_exportacion_v3.py), [`scripts/probar_control_ia_v3.py`](../scripts/probar_control_ia_v3.py) | Casos ficticios de puertas A–E, cotejos, nuevos documentos y pruebas contra las capturas reales disponibles. |
+| **CI / base descargable** | [`.github/workflows/validar_v3.yml`](../.github/workflows/validar_v3.yml) | Ejecuta pruebas, construye la base y genera un **artefacto de GitHub Actions** que contiene SQLite + JSON de consulta. |
+| **Contrato para visualización** | [`docs/CONTRATO-V3-VISUALIZACION.md`](CONTRATO-V3-VISUALIZACION.md) | Especifica la **única entrada** que deberá recibir el visualizador en una fase posterior. |
+| **Contrato para la IA** | [`docs/CONTRATO-V3-EXTRACCION-IA.md`](CONTRATO-V3-EXTRACCION-IA.md) | Especifica todo lo que la IA debe observar, entregar, documentar y cotejar. |
 
 ## 2. Cómo reproducir el sistema
 
 Desde la raíz del repositorio, con **Python 3.12 o superior** y la biblioteca SQLite incluida en Python:
 
-\`\`\`bash
+```bash
 # 1. Revisar esquema, puertas y rechazo de expedientes incompletos
 python scripts/probar_estructura_v3.py
 
@@ -43,43 +43,43 @@ python scripts/exportar_base_v3.py \
 
 # 7. Comprobar un manifiesto de IA (caso de prueba ficticio)
 python scripts/validar_entrega_ia_v3.py tests/fixtures/entrega_ia_v3_ejemplo.json
-\`\`\`
+```
 
 El constructor **rechaza sobrescrituras**. La base generada se puede volver a construir desde los cuatro lotes ya guardados; no requiere servicios externos para reproducir este corte. **Reproducir las capturas no equivale a cotejar los PDF originales**.
 
-En [GitHub Actions](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions), seleccionar «Validar arquitectura v3 sin fuentes reales» y descargar el artefacto \`base-v3-corte-historico\` del último trabajo completado satisfactoriamente. La base es un **artefacto reproducible**, no debe confundirse con archivos originales. El plazo de conservación del artefacto depende de GitHub; los scripts y capturas originales permanecen en el repositorio.
+En [GitHub Actions](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions), seleccionar «Validar arquitectura v3 sin fuentes reales» y descargar el artefacto `base-v3-corte-historico` del último trabajo completado satisfactoriamente. La base es un **artefacto reproducible**, no debe confundirse con archivos originales. El plazo de conservación del artefacto depende de GitHub; los scripts y capturas originales permanecen en el repositorio.
 
 ### Recepción posterior de un manifiesto de IA (sin extracción automática)
 
 Para una **base v3 que ya exista**:
 
-\`\`\`bash
+```bash
 python scripts/validar_entrega_ia_v3.py tests/fixtures/entrega_ia_v3_ejemplo.json
 python scripts/registrar_entrega_ia_v3.py tests/fixtures/entrega_ia_v3_ejemplo.json \
   --db salidas/convocatorias_v3.sqlite
-\`\`\`
+```
 
-El ejemplo contiene **datos ficticios** y no debe incorporarse a la base real de producción. La herramienta de recepción guarda de forma atómica la entrega en \`v3_entrega_ia\`, identifica fuentes/URLs, registra lecturas en \`v3_control_lectura\` y deja explícitas las incidencias sin enlace. **No interpreta documentos, no crea páginas/tablas PDF ni genera actas**. Un manifiesto con cobertura declarada no sustituye la entrega adicional de todos los contenidos originales a las tablas documentales v3.
+El ejemplo contiene **datos ficticios** y no debe incorporarse a la base real de producción. La herramienta de recepción guarda de forma atómica la entrega en `v3_entrega_ia`, identifica fuentes/URLs, registra lecturas en `v3_control_lectura` y deja explícitas las incidencias sin enlace. **No interpreta documentos, no crea páginas/tablas PDF ni genera actas**. Un manifiesto con cobertura declarada no sustituye la entrega adicional de todos los contenidos originales a las tablas documentales v3.
 
-Para una entrega real, usar un manifiesto que la **IA haya generado después de leer efectivamente las fuentes** y registrar su ID/lote. La IA sigue siendo responsable de reconstruir y cotejar el contenido que alimentará las tablas originales. Las pruebas \`scripts/probar_registro_ia_v3.py\` confirman que una recepción no aumenta las convocatorias validadas y que no se repiten lecturas.
+Para una entrega real, usar un manifiesto que la **IA haya generado después de leer efectivamente las fuentes** y registrar su ID/lote. La IA sigue siendo responsable de reconstruir y cotejar el contenido que alimentará las tablas originales. Las pruebas `scripts/probar_registro_ia_v3.py` confirman que una recepción no aumenta las convocatorias validadas y que no se repiten lecturas.
 
 ## 3. Qué trae actualmente el SQLite generado
 
 A partir del material histórico existente se importan **sin inventar cotejos nuevos**:
 
 - **4 capturas JSON completas**: cada una conserva su texto UTF-8 original y SHA256 verificable, incluida toda información no clasificada, observaciones y referencias.
-- **42 códigos distintos de convocatoria**, **43 filas de Excel** y **470 celdas literales** con encabezados, valores de origen/visibles, hipervínculos, fórmulas, notas y formato disponibles. \`2026-C2324\` conserva sus **dos filas** originales.
+- **42 códigos distintos de convocatoria**, **43 filas de Excel** y **470 celdas literales** con encabezados, valores de origen/visibles, hipervínculos, fórmulas, notas y formato disponibles. `2026-C2324` conserva sus **dos filas** originales.
 - **16 referencias PDF**: **7 de convocatoria y 9 de resultados**; cada una conserva su URL real, código interno observado y el objeto JSON íntegro de la **lectura textual anterior** (texto, páginas de texto, campos detectados y metadatos).
 - **0 páginas/tablas PDF cotejadas** bajo v3; no se convierte texto plano en celdas que no constan.
 - **0 actas de validación reales y 0 convocatorias validadas.** Los códigos identificados son inventario, no métrica de éxito.
 
-La copia del PDF **binario** no existe en estas capturas; \`v3_fuente.binario_original\` y \`sha256\` se mantienen sin valor hasta que se obtenga el archivo binario real. **No se atribuye al PDF el SHA del texto extraído.**
+La copia del PDF **binario** no existe en estas capturas; `v3_fuente.binario_original` y `sha256` se mantienen sin valor hasta que se obtenga el archivo binario real. **No se atribuye al PDF el SHA del texto extraído.**
 
 ## 4. Entradas y salidas de la base
 
 ### Entrada de capturas ya existentes
 
-\`data/lotes/lote_01.json\` a \`lote_04.json\` → constructor → \`v3_captura_lote\`, \`v3_fuente\`, \`v3_excel_fila\`, \`v3_excel_celda\`, \`v3_dato_original\`, \`v3_lectura_pdf_previa\`.
+`data/lotes/lote_01.json` a `lote_04.json` → constructor → `v3_captura_lote`, `v3_fuente`, `v3_excel_fila`, `v3_excel_celda`, `v3_dato_original`, `v3_lectura_pdf_previa`.
 
 La captura histórica se conserva íntegra, además de su representación estructurada. Si aparece un campo no interpretado, permanece dentro de la captura original; nunca desaparece por no tener clasificación.
 
@@ -91,9 +91,9 @@ El control del manifiesto no valida expedientes: solo verifica límites y trazab
 
 ### Salida para visualización
 
-\`SQLite v3 → scripts/exportar_base_v3.py → expedientes_v3.json\`.
+`SQLite v3 → scripts/exportar_base_v3.py → expedientes_v3.json`.
 
-La salida tiene **una convocatoria por código** y los siguientes bloques: \`fuentes_originales\`, \`datos_originales\`, \`listas_originales\`, \`resultados_estructurados\`, \`indicadores_sinteticos\`, \`control_validacion\`. Incluye las URL de verificación originales, las estructuras y transcripciones disponibles y el estado honesto de cada fuente.
+La salida tiene **una convocatoria por código** y los siguientes bloques: `fuentes_originales`, `datos_originales`, `listas_originales`, `resultados_estructurados`, `indicadores_sinteticos`, `control_validacion`. Incluye las URL de verificación originales, las estructuras y transcripciones disponibles y el estado honesto de cada fuente.
 
 **En esta tarea no se modificó el sitio publicado en GitHub Pages**. La herramienta actual recibe v2; este documento constituye el contrato exigible para adaptar la interfaz en su etapa correspondiente.
 
@@ -104,7 +104,7 @@ La salida tiene **una convocatoria por código** y los siguientes bloques: \`fue
 1. Claves foráneas y restricciones de tipo/URL/versión para fuentes.
 2. **Inmutabilidad** de registros originales, capturas y evidencias con triggers que rechazan modificaciones y borrados.
 3. Cierre A+B+C+(D si existe)+E **con evidencia y subcriterios individuales**, no con un campo booleano manual.
-4. Comprobación individual de **filas, celdas, páginas, tablas, requisitos, participantes y puntajes** mediante \`v3_revision_metrica\`.
+4. Comprobación individual de **filas, celdas, páginas, tablas, requisitos, participantes y puntajes** mediante `v3_revision_metrica`.
 5. Bloqueo de métricas cotejadas cuyos **conteos no coinciden con elementos efectivamente guardados**.
 6. Bloqueo de actas con fuentes adicionales pendientes, resultados sin verificar, incidencias críticas abiertas o Excel incompleto.
 7. **Revalidación dinámica** cuando aparecen fuentes, consultas de resultados o incidencias nuevas.
@@ -115,7 +115,7 @@ La salida tiene **una convocatoria por código** y los siguientes bloques: \`fue
 
 ## 6. Fases que NO forman parte de esta tarea
 
-- No adaptar ni sustituir \`index.html\` o el comparador v2.
+- No adaptar ni sustituir `index.html` o el comparador v2.
 - No ejecutar extracción de nuevos PDF ni inferir sus tablas por código.
 - No migrar registros históricos a validaciones; los **42 identificados siguen siendo 0 validados**.
 - No crear nuevos indicadores sintéticos por conveniencia sin insumos rastreables.

@@ -25,9 +25,11 @@ No se permite omitir, editar, corregir, abreviar, anonimizar, sustituir por un a
 9. **Comprobación de exhaustividad.** Cada documento debe declarar páginas y fragmentos procesados, elementos pendientes, anomalías y resultado de verificación. 'Extraído' no equivale automáticamente a 'verificado'.
 10. **Prohibición de cambios invisibles.** Toda corrección de transcripción, revisión humana o modificación del esquema se documenta y deja trazabilidad histórica.
 
-## Protección de acceso sin reducción de contenido
+## Responsabilidad sobre visibilidad y fidelidad de datos
 
-La protección de acceso **no es anonimización de la base**: se mantienen los datos literales necesarios para reconstruir cada proceso. Dado que los documentos pueden contener datos sensibles, la copia completa se manejará exclusivamente en un entorno privado autorizado y controlado. La eventual elaboración de una vista pública o exportación selectiva requiere una decisión explícita del responsable del proyecto; nunca altera el registro íntegro original.
+**El responsable del proyecto decide la visibilidad, acceso, publicación y tratamiento de la información.** El sistema no decide estos aspectos por iniciativa propia y, en particular, no omite, anonimiza, oculta, sustituye ni modifica ningún dato por razones de presentación o publicación.
+
+La eventual creación de una vista adicional, si el responsable la solicita, no altera la base documental íntegra, la estructura relacional ni las fuentes originales. **Conservar la información y definir su visibilidad son decisiones separadas.**
 
 ## Criterio de aceptación
 

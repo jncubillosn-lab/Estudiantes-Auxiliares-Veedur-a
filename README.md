@@ -67,6 +67,8 @@ python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida
 
 **[Interfaz principal](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/)**: `index.html` consulta exclusivamente `data/expedientes_v3.json`, proyección generada desde SQLite v3 por [el flujo de publicación del visor](.github/workflows/publicar_visor_v3.yml). Muestra una lista sin filtros y un expediente por convocatoria, con fuentes originales, detalles completos, resultados, controles y sintéticos por separado. El [comparador v2](comparador-v2.html) se conserva como herramienta histórica; no es una comparación certificada sobre v3. El visor anterior sigue disponible en `visor.html`.
 
+**Jerarquía de lectura prioritaria:** la [especificación de la ficha v3](docs/INTERFAZ-V3-JERARQUIA-DE-LECTURA.md) describe las agrupaciones temáticas de convocatoria y resultados (criterios, ponderaciones, participantes, puntajes y decisión), el papel de las lecturas históricas y el acceso al expediente íntegro.
+
 **Alcance normativo pendiente:** la ficha documental v3 representa los datos, pero la comparación transversal simultánea exigida en la [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) todavía no está implementada sobre v3. La simplificación de la pantalla principal no modifica este requisito de la base ni autoriza afirmar su cumplimiento.
 
 Las especificaciones antiguas y el desarrollo previo se consultan solo como **antecedentes**, no como instrucciones vigentes. Véase el [registro histórico de decisiones](docs/01-REGISTRO-DECISIONES.md) y el [archivo de documentación heredada](docs/historico/INDICE.md).

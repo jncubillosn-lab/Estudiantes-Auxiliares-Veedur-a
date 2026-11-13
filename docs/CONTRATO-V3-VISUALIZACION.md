@@ -100,7 +100,7 @@ El visualizador debe poder mostrar para cada puerta: criterio, evidencia URL, al
 ## 4. Estado de integración
 
 **Implementado:** estructura SQL, importación de capturas históricas, exportador de JSON, separación de originales/sintéticos/validación, y pruebas automatizadas.  
-**Interfaz adaptada:** `index.html` consume `data/expedientes_v3.json`, sin lectura paralela de v2, con lista completa y fichas por código. El flujo `.github/workflows/publicar_visor_v3.yml` ejecuta el exportador oficial y versiona únicamente la proyección para GitHub Pages; la base SQLite y los originales no cambian. La representación de datos extensibles conserva campos desconocidos y mantiene cada fuente independiente.
+**Interfaz adaptada:** `index.html` consume `data/expedientes_v3.json`, sin lectura paralela de v2, con **tabla comparativa filtrable, selección de fila y ficha lateral**, más consulta íntegra y desplegable de cada fuente, original, validación y metadatos globales. El flujo `.github/workflows/publicar_visor_v3.yml` ejecuta el exportador oficial y versiona únicamente la proyección para GitHub Pages; la base SQLite y los originales no cambian. La representación de datos extensibles conserva campos desconocidos y mantiene cada fuente independiente.
 
 **Pendiente normativo distinto:** la comparación transversal simultánea de varias convocatorias exigida por la NORMA 02 no está implementada aún sobre v3. El comparador v2 se conserva como antecedente separado, sin presentarlo como cumplimiento de esa exigencia.
 

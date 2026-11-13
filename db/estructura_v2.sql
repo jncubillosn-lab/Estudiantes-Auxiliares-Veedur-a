@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS v2_vinculo_convocatoria_fuente (
 CREATE TABLE IF NOT EXISTS v2_excel_celda_original (
  celda_id INTEGER PRIMARY KEY,
  fuente_id INTEGER NOT NULL REFERENCES v2_fuente_original(fuente_id),
+ numero TEXT NOT NULL REFERENCES v2_convocatoria(numero),
  pestana_literal TEXT NOT NULL,
  numero_fila INTEGER NOT NULL,
  letra_columna TEXT NOT NULL,
@@ -122,6 +123,7 @@ CREATE TABLE IF NOT EXISTS v2_celda_elemento (
 CREATE TABLE IF NOT EXISTS v2_campo_original (
  campo_id INTEGER PRIMARY KEY,
  fuente_id INTEGER NOT NULL REFERENCES v2_fuente_original(fuente_id),
+ numero TEXT NOT NULL REFERENCES v2_convocatoria(numero),
  pagina_id INTEGER REFERENCES v2_pagina_original(pagina_id),
  celda_pdf_id INTEGER REFERENCES v2_celda_tabla_original(celda_id),
  celda_excel_id INTEGER REFERENCES v2_excel_celda_original(celda_id),
@@ -222,7 +224,7 @@ CREATE INDEX IF NOT EXISTS idx_v2_excel_celdas ON v2_excel_celda_original(fuente
 CREATE INDEX IF NOT EXISTS idx_v2_elementos_pagina ON v2_elemento_original(pagina_id,orden_lectura);
 CREATE INDEX IF NOT EXISTS idx_v2_tablas_pagina ON v2_tabla_original(pagina_id,orden_tabla);
 CREATE INDEX IF NOT EXISTS idx_v2_celdas_tabla ON v2_celda_tabla_original(tabla_id,fila,columna);
-CREATE INDEX IF NOT EXISTS idx_v2_campos ON v2_campo_original(fuente_id,codigo_semantico);
+CREATE INDEX IF NOT EXISTS idx_v2_campos ON v2_campo_original(numero,fuente_id,codigo_semantico);
 CREATE INDEX IF NOT EXISTS idx_v2_listas ON v2_item_lista_original(lista_id,orden);
 CREATE INDEX IF NOT EXISTS idx_v2_resultados ON v2_resultado_fila_original(tabla_id,fila_indice);
 CREATE INDEX IF NOT EXISTS idx_v2_indicadores ON v2_indicador_sintetico(numero,nombre);
@@ -234,7 +236,7 @@ CREATE VIEW IF NOT EXISTS v2_matriz_campos_originales AS
         x.estado_lectura
  FROM v2_vinculo_convocatoria_fuente v
  JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
- JOIN v2_campo_original x ON x.fuente_id=f.fuente_id;
+ JOIN v2_campo_original x ON x.fuente_id=f.fuente_id AND x.numero=v.numero;
 CREATE VIEW IF NOT EXISTS v2_cobertura_documental AS
  SELECT c.numero,
   (SELECT COUNT(*) FROM v2_vinculo_convocatoria_fuente v WHERE v.numero=c.numero AND v.rol_literal='excel') AS fuentes_excel,

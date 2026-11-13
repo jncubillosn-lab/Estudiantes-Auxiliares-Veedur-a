@@ -9,6 +9,9 @@ on:
       - 'scripts/probar_comparador_v2.py'
       - 'scripts/extraer_pdf_v2.py'
       - 'scripts/probar_extraccion_v2.py'
+      - 'scripts/importar_excel_v2.py'
+      - 'scripts/importar_pdf_v2.py'
+      - 'scripts/exportar_comparador_v2.py'
       - '.github/workflows/verificar_v2.yml'
   workflow_dispatch:
 permissions:
@@ -23,3 +26,7 @@ jobs:
           python-version: '3.12'
       - name: Verificar integridad y separación originales-sintéticos
         run: python scripts/probar_estructura_v2.py
+      - name: Instalar lectores PDF con coordenadas
+        run: python -m pip install --disable-pip-version-check --quiet pymupdf pdfplumber
+      - name: Probar extracción estructural e integración de 4 lotes
+        run: python scripts/probar_extraccion_v2.py

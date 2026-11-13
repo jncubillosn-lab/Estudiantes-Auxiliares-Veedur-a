@@ -62,6 +62,32 @@ details[open]>summary{margin-bottom:9px}
 @media(max-width:920px){.layout{grid-template-columns:245px minmax(0,1fr)}.shell{padding:17px 13px 50px}.sheethead,.section{padding:19px 17px}}
 @media(max-width:720px){.layout{display:block}.sidebar{position:static;max-height:260px;margin-bottom:15px}.sidehead{padding:11px 14px}.sheethead,.section{padding:20px 16px}.properties{grid-template-columns:1fr}.properties dt{padding-bottom:1px}.properties dd{padding-top:1px;border-top:0}.metricbar{width:100%}.case{padding:10px 13px}}
 @media(prefers-reduced-motion:no-preference){.case{transition:background .15s}}
+
+/* Jerarquía de lectura: la ficha prioritaria no reemplaza el expediente original */
+.priority{border-left:4px solid var(--theme);padding-top:19px}
+.theme-red{--theme:#bd5360;--tint:#fbf2f3}
+.theme-green{--theme:#278666;--tint:#eff8f4}
+.theme-yellow{--theme:#b28a32;--tint:#faf7ea}
+.theme-blue{--theme:#398a9a;--tint:#eff7f9}
+.priority .section-number{color:var(--theme)}
+.prior-note{background:var(--tint);color:#415459;font-size:.8rem;border-radius:7px;padding:9px 11px;margin:12px 0}
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px;margin-top:13px}
+.fact{min-width:0;background:#fbfcfc;border:1px solid #e2eaea;border-radius:8px;padding:13px}
+.fact-label{color:#56696c;font-size:.77rem;font-weight:750;margin-bottom:7px;overflow-wrap:anywhere}
+.fact-value{font-size:.93rem;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}
+.fact-source{margin-top:10px;color:#617478;font-size:.74rem;overflow-wrap:anywhere}
+.fact-source a{font-size:.74rem}
+.priority-subtitle{font-size:.94rem;font-weight:780;margin:20px 0 8px;color:#304d50}
+.preview-group{margin-top:12px;border-top:1px solid #e7edec;padding-top:8px}
+.preview-group summary{color:#51666b;font-size:.8rem}
+.preview-note{background:#fffaf0;color:#775b30;border-radius:7px;padding:9px 11px;font-size:.8rem;margin-bottom:9px}
+.preview-fragment{background:#fbfcfc;border-left:2px solid #b4c8c7;padding:9px 12px;margin:9px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.84rem;line-height:1.6}
+.archive{background:#f8fafa;border:1px solid var(--line);border-radius:12px;padding:17px 19px;margin-top:17px}
+.archive>summary{font-size:1.02rem;font-weight:780;color:#254d48}
+.archive-desc{font-size:.85rem;color:var(--muted);margin:4px 0 16px}
+.archive .section{border:1px solid var(--line)}
+.table-note{color:#627378;font-size:.79rem;padding:7px 2px}
+
 </style>
 </head>
 <body>
@@ -244,6 +270,229 @@ details[open]>summary{margin-bottom:9px}
     });
     return f;
   }
+
+  // Únicamente organiza campos YA INCLUIDOS en la exportación oficial v3.
+  // No interpreta ni crea datos a partir del PDF; las lecturas históricas siguen sin cotejo.
+  const normalizeTheme=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/_/g," ").trim();
+  function themeOf(raw,role){
+    const t=normalizeTheme(raw);
+    if(role==="resultados"){
+      if(/participante|identificacion|puntaje|p\.?a\.?p\.?a|p\.?b\.?m|seleccionado|elegible|total por criterio/.test(t))return "participantes";
+      if(/criterio|ponderacion|forma de seleccion|seleccion y evaluacion|sumatoria de porcentajes/.test(t))return "criterios";
+      if(/responsable|cargo|extension|correo|observacion/.test(t))return "responsable";
+      if(/perfil requerido/.test(t))return "perfil";
+      if(/fecha.*publicacion|numero.*convocatoria|nombre.*convocatoria|facultad|dependencia|estudiantes.*vincular/.test(t))return "identificacion";
+      return null;
+    }
+    if(/referencia.*(convocatoria|resultados)|hipervinculo/.test(t))return null;
+    if(/criterio|ponderacion|forma de seleccion/.test(t))return "criterios";
+    if(/responsable|correo/.test(t))return "responsable";
+    if(/perfil|actividades|modalidad|disponibilidad|estimulo|duracion|programa/.test(t))return "condiciones";
+    if(/numero.*convocatoria|tipo.*convocatoria|nombre.*convocatoria|titulo|facultad|dependencia|fecha.*publicacion|fecha.*cierre|estudiantes.*vincular|plazas|estado/.test(t))return "identificacion";
+    return null;
+  }
+  function sourceLink(exp,sourceId){
+    const f=(exp.fuentes_originales||[]).find(x=>String(x.fuente_id)===String(sourceId));
+    if(!f||!hasValue(f.url_original))return null;
+    const a=node("a","","Consultar fuente "+String(f.fuente_id));
+    a.href=String(f.url_original);a.target="_blank";a.rel="noopener noreferrer";return a;
+  }
+  function fact(exp,title,value,sourceId,position){
+    const item=node("article","fact");
+    item.append(node("div","fact-label",title));
+    const body=node("div","fact-value");body.append(literal(value));item.append(body);
+    const footer=node("div","fact-source");
+    const link=sourceLink(exp,sourceId);
+    if(link)footer.append(link);
+    else if(sourceId!==null&&sourceId!==undefined)footer.append(node("span","","Fuente "+String(sourceId)));
+    if(position)footer.append(node("span",""," · "+position));
+    if(footer.childNodes.length)item.append(footer);
+    return item;
+  }
+  function originalFacts(exp,role,theme){
+    const sourceIds=new Set((exp.fuentes_originales||[]).filter(f=>role==="resultados"?f.tipo==="resultados_pdf":f.tipo!=="resultados_pdf").map(f=>String(f.fuente_id)));
+    const entries=[];
+    (exp.datos_originales||[]).forEach(d=>{
+      if(!sourceIds.has(String(d.fuente_id)))return;
+      const raw=[d.codigo_concepto,d.rotulo_literal].filter(Boolean).join(" ");
+      if(themeOf(raw,role)!==theme)return;
+      const title=d.rotulo_literal||d.codigo_concepto||"Dato documental";
+      const pos=[d.pagina_id!==null&&d.pagina_id!==undefined?"Página ref. "+d.pagina_id:null,
+                 d.celda_pdf_id!==null&&d.celda_pdf_id!==undefined?"Celda PDF "+d.celda_pdf_id:null,
+                 d.celda_excel_id!==null&&d.celda_excel_id!==undefined?"Celda Excel "+d.celda_excel_id:null].filter(Boolean).join(" · ");
+      entries.push({title,value:d.literal_completo,sourceId:d.fuente_id,position:pos});
+    });
+    (exp.listas_originales||[]).forEach(l=>{
+      if(!sourceIds.has(String(l.fuente_id)))return;
+      if(themeOf([l.codigo_concepto,l.titulo_literal].filter(Boolean).join(" "),role)!==theme)return;
+      const title=l.titulo_literal||l.codigo_concepto||"Lista documental";
+      const items=(l.items||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0));
+      // La lista original se renderiza como ítems individuales, nunca solo como total.
+      entries.push({title,items,sourceId:l.fuente_id,position:l.pagina_id!=null?"Página ref. "+l.pagina_id:""});
+    });
+    return entries;
+  }
+  function historicalFields(exp,role,theme){
+    const records=[];
+    (exp.fuentes_originales||[]).filter(f=>role==="resultados"?f.tipo==="resultados_pdf":f.tipo==="convocatoria_pdf"||f.tipo==="adenda_pdf")
+      .forEach(f=>{
+        const found=f.pdf_lectura_previa?.datos_textuales_originales?.campos_detectados;
+        if(!Array.isArray(found))return;
+        found.forEach(field=>{
+          const title=field.rotulo_literal||field.nombre;
+          if(themeOf(title,role)!==theme)return;
+          // Estas coincidencias son rótulos detectados antes de v3, no hechos validados.
+          records.push({title,content:field.texto_literal,sourceId:f.fuente_id,occurrence:field.ocurrencia});
+        });
+      });
+    return records;
+  }
+  function renderPriorityFacts(exp,role,theme){
+    const region=node("div","");
+    const facts=originalFacts(exp,role,theme);
+    if(facts.length){
+      const grid=node("div","fact-grid");
+      facts.forEach(item=>{
+        if(item.items){
+          const block=fact(exp,item.title,"",item.sourceId,item.position);
+          block.querySelector(".fact-value").replaceChildren();
+          const list=node("ol","tree-list");
+          item.items.forEach((entry,i)=>{
+            const li=node("li","tree-item"),number=entry.orden??i+1;
+            li.append(node("div","tree-index","Ítem "+number),literal(entry.literal_completo));
+            if(entry.item_padre_id!=null)li.append(node("div","fact-source","Ítem padre: "+entry.item_padre_id));
+            list.append(li);
+          });
+          block.querySelector(".fact-value").append(list);grid.append(block);
+        }else grid.append(fact(exp,item.title,item.value,item.sourceId,item.position));
+      });
+      region.append(grid);
+    }
+    const previous=historicalFields(exp,role,theme);
+    if(previous.length){
+      const fold=node("details","preview-group");
+      fold.append(node("summary","","Lectura textual histórica · "+previous.length+" fragmento(s) sin cotejo"));
+      fold.append(node("div","preview-note","Son fragmentos detectados en lecturas previas y pueden contener texto de apartados contiguos. No son extracción estructurada ni valores verificados."));
+      previous.forEach(v=>{
+        const c=node("div","preview-fragment");
+        c.append(node("strong","",v.title||"Rótulo detectado"),node("div","fact-source","Fuente "+v.sourceId+" · ocurrencia "+String(v.occurrence??"sin identificar")));
+        const text=node("div","literal");text.append(literal(v.content));c.append(text);
+        const link=sourceLink(exp,v.sourceId);if(link)c.append(link);
+        fold.append(c);
+      });
+      region.append(fold);
+    }
+    if(!facts.length && !previous.length)region.append(noRecords("Esta categoría todavía no tiene datos estructurados ni rótulos históricos detectados en la exportación. No se presume su ausencia en el documento."));
+    return region;
+  }
+  function prioritySection(exp,title,desc,index,color,role,theme){
+    const s=section(title,desc,index);
+    s.classList.add("priority","theme-"+color);
+    s.append(renderPriorityFacts(exp,role,theme));
+    return s;
+  }
+  function resultRowsTable(exp){
+    const rows=exp.resultados_estructurados||[];
+    if(!rows.length)return noRecords("Aún no hay filas de participantes estructuradas y cotejadas en la exportación v3. No equivale a ausencia de participantes.");
+    const headers=[], seen=new Set();
+    rows.forEach(row=>{
+      const occurrence=new Map();
+      (row.valores||[]).forEach(v=>{
+        const h=String(v.encabezado_literal||"Columna sin rótulo");
+        const n=(occurrence.get(h)||0)+1;occurrence.set(h,n);
+        const key=h+"::"+n;
+        if(!seen.has(key)){seen.add(key);headers.push({key,label:h+(n>1?" ("+n+")":"")});}
+      });
+    });
+    const wrap=node("div","scroll"),table=node("table","gridtable"),thead=node("thead"),tr=node("tr");
+    ["Fila original","Identificación","Nombre"].concat(headers.map(h=>h.label),["Observaciones","Fuente"]).forEach(t=>tr.append(node("th","",t)));
+    thead.append(tr);table.append(thead);
+    const body=node("tbody");
+    rows.forEach(row=>{
+      const line=node("tr"),occurrence=new Map(),values=new Map();
+      (row.valores||[]).forEach(v=>{
+        const h=String(v.encabezado_literal||"Columna sin rótulo");
+        const n=(occurrence.get(h)||0)+1;occurrence.set(h,n);
+        values.set(h+"::"+n,v.valor_literal);
+      });
+      [row.fila_original,row.identificacion_literal,row.nombre_literal].forEach(v=>{const cell=node("td");cell.append(literal(v));line.append(cell);});
+      headers.forEach(h=>{const cell=node("td");cell.append(literal(values.has(h.key)?values.get(h.key):null));line.append(cell);});
+      const note=node("td");note.append(literal(row.observacion_literal));line.append(note);
+      const link=node("td"),ref=sourceLink(exp,row.fuente_id);
+      if(ref)link.append(ref);else link.append(literal(row.fuente_id));
+      line.append(link);body.append(line);
+    });
+    table.append(body);wrap.append(table);
+    wrap.append(node("p","table-note","Cada fila conserva los valores literales de las columnas registradas; un vacío no se sustituye por cero ni implica no selección."));
+    return wrap;
+  }
+  function resultTablesFromPdf(exp){
+    const area=node("div","");
+    const sources=(exp.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
+    let count=0;
+    sources.forEach(f=>(f.paginas_pdf_estructuradas||[]).forEach(page=>(page.tablas_originales||[]).forEach(tab=>{
+      count++;
+      const block=node("details","preview-group"),h=node("summary","","Tabla original "+count+" · página "+String(page.numero_pagina));
+      block.append(h);
+      const title=node("div","table-note","Datos originales de tabla; no se infiere un criterio a partir de su posición.");
+      block.append(title);
+      const byRow=new Map();
+      (tab.celdas||[]).forEach(c=>{
+        if(!byRow.has(c.fila))byRow.set(c.fila,[]);
+        byRow.get(c.fila).push(c);
+      });
+      const div=node("div","scroll"),table=node("table","gridtable"),body=node("tbody");
+      [...byRow.keys()].sort((a,b)=>a-b).forEach(num=>{
+        const tr=node("tr");
+        byRow.get(num).sort((a,b)=>a.columna-b.columna).forEach(cell=>{
+          const td=node("td");
+          td.colSpan=Number(cell.colspan)||1;td.rowSpan=Number(cell.rowspan)||1;
+          td.append(literal(cell.literal));
+          if(cell.estado!=="extraida")td.append(node("div","table-note","Estado: "+String(cell.estado)));
+          tr.append(td);
+        });
+        body.append(tr);
+      });
+      table.append(body);div.append(table);block.append(div);
+      const ref=sourceLink(exp,f.fuente_id);if(ref)block.append(ref);
+      area.append(block);
+    })));
+    if(count)area.insertBefore(node("h3","priority-subtitle","Tablas originales del PDF de resultados"),area.firstChild);
+    return {area,count};
+  }
+  function renderPriority(exp,host){
+    host.append(prioritySection(exp,"Identificación","Código, nombre, fechas, dependencia, tipo de estudiante y plazas según los originales registrados.",1,"red","convocatoria","identificacion"));
+    host.append(prioritySection(exp,"Perfil, actividades y condiciones","Perfil, actividades, modalidad, dedicación, estímulo y duración; se conservan los rótulos y literales de cada fuente.",2,"green","convocatoria","condiciones"));
+    host.append(prioritySection(exp,"Selección y criterios de la convocatoria","Forma de selección, criterios y ponderaciones cuando estén registrados documentalmente.",3,"yellow","convocatoria","criterios"));
+    host.append(prioritySection(exp,"Responsable de la convocatoria","Persona responsable y datos de contacto que consten en las fuentes.",4,"blue","convocatoria","responsable"));
+    const sources=(exp.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
+    const result=section("Resultados de selección","Prioridad a los criterios ponderados y a cada fila de participantes, sus puntajes, total y decisión, según los originales disponibles.",5);
+    result.classList.add("priority","theme-blue");
+    if(sources.length){
+      const links=node("div","prior-note");
+      links.append(node("strong","","Fuentes de resultados: "));
+      sources.forEach((s,i)=>{if(i)links.append(node("span",""," · "));const l=sourceLink(exp,s.fuente_id);links.append(l||node("span","",String(s.fuente_id)));});
+      result.append(links);
+    }else{
+      result.append(node("div","prior-note","No hay PDF de resultados asociado en esta exportación. Esto no prueba que no exista; revise las consultas documentadas en el control de validación."));
+    }
+    for(const [title,theme] of [["Datos de publicación y convocatoria","identificacion"],["Perfil citado en los resultados","perfil"],["Criterios y ponderaciones","criterios"],["Responsable de la evaluación y observaciones","responsable"]]){
+      result.append(node("h3","priority-subtitle",title));
+      result.append(renderPriorityFacts(exp,"resultados",theme));
+    }
+    result.append(node("h3","priority-subtitle","Participantes, puntuaciones y selección"));
+    result.append(resultRowsTable(exp));
+    const tabs=resultTablesFromPdf(exp);if(tabs.count)result.append(tabs.area);
+    const preview=historicalFields(exp,"resultados","participantes");
+    if(preview.length){
+      result.append(node("p","table-note","La lectura textual histórica puede contener fragmentos de la tabla de participantes, pero no acredita columnas ni puntajes cotejados."));
+      const d=node("details","preview-group");d.append(node("summary","","Consultar fragmentos históricos detectados en participantes ("+preview.length+")"));
+      preview.forEach(v=>{const p=node("div","preview-fragment");p.append(node("strong","",v.title||"Rótulo"),node("div","literal",v.content||""));d.append(p);});
+      result.append(d);
+    }
+    host.append(result);
+  }
+
   function draw(exp){
     const host=$("sheet");host.replaceChildren();
     const head=node("header","sheethead");

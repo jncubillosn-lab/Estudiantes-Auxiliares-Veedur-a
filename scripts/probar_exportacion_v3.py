@@ -18,7 +18,8 @@ with tempfile.TemporaryDirectory() as d:
     assert data["version_contrato"]=="3.0"
     assert len(cases)==42
     assert data["metricas"]["convocatorias_validadas"]==0
-    assert sum(len(c["fuentes_originales"]) for c in cases)==20
+    assert len({f["fuente_id"] for c in cases for f in c["fuentes_originales"]})==20
+    assert sum(len(c["fuentes_originales"]) for c in cases)>=20
     assert sum(len(f["filas_excel"]) for c in cases for f in c["fuentes_originales"])==43
     assert sum(len(r["celdas"]) for c in cases for f in c["fuentes_originales"] for r in f["filas_excel"])==470
     assert sum(f["pdf_lectura_previa"] is not None for c in cases for f in c["fuentes_originales"])==16

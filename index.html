@@ -405,7 +405,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
   }
   function rawTree(value,depth){
     if(value===null||typeof value!=="object")return make("span","",value===null?"null":String(value));
-    if(depth>16)return make("span","missing","Estructura anidada; consultar archivo original.");
+    // El expediente original debe conservarse accesible hasta el último nivel.
     if(Array.isArray(value)){
       if(!value.length)return make("span","missing","Lista sin registros");
       const list=make("ol","raw-list");

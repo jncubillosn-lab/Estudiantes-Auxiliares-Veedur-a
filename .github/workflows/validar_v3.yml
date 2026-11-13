@@ -1,21 +1,11 @@
-name: Validar arquitectura v3 sin fuentes reales
+name: Validar arquitectura v3 y corte IA preliminar
 on:
   push:
     branches: [main]
     paths:
       - 'db/estructura_v3.sql'
-      - 'scripts/probar_estructura_v3.py'
-      - 'scripts/construir_base_v3.py'
-      - 'scripts/probar_construccion_v3.py'
-      - 'scripts/exportar_base_v3.py'
-      - 'scripts/probar_exportacion_v3.py'
-      - 'config/contrato_ia_v3.json'
-      - 'scripts/validar_entrega_ia_v3.py'
-      - 'scripts/probar_control_ia_v3.py'
-      - 'scripts/registrar_entrega_ia_v3.py'
-      - 'scripts/probar_registro_ia_v3.py'
-      - 'tests/fixtures/entrega_ia_v3_ejemplo.json'
-      - 'data/lotes/lote_*.json'
+      - 'scripts/*_v3.py'
+      - 'data/ia_v3/**'
       - '.github/workflows/validar_v3.yml'
   workflow_dispatch:
 permissions:
@@ -28,24 +18,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Probar Norma 00, registros originales, puertas y revocación
-        run: python scripts/probar_estructura_v3.py
-      - name: Verificar conservación completa del corte histórico
-        run: python scripts/probar_construccion_v3.py
-      - name: Probar contrato completo de visualización
-        run: python scripts/probar_exportacion_v3.py
-      - name: Verificar límites y disciplina de entregas IA
-        run: python scripts/probar_control_ia_v3.py
-      - name: Verificar recepción de entrega IA sin autovalidación
-        run: python scripts/probar_registro_ia_v3.py
-      - name: Construir base SQLite V3 reproducible
+      - name: Pruebas de Norma 00 y base v3
+        run: |
+          python scripts/probar_estructura_v3.py
+          python scripts/probar_construccion_v3.py
+          python scripts/probar_exportacion_v3.py
+          python scripts/probar_control_ia_v3.py
+          python scripts/probar_registro_ia_v3.py
+          python scripts/probar_fuentes_pdf_v3.py
+      - name: Construcción limpia desde captura de IA
         run: python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
-      - name: Exportar contrato V3 de consulta
+      - name: Exportación de contrato v3
         run: python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida salidas/expedientes_v3.json
-      - name: Entregar SQLite de la base (artefacto reconstruible)
+      - name: Guardar artefactos para revisión
         uses: actions/upload-artifact@v4
         with:
-          name: base-v3-corte-historico
+          name: base-v3-ia-preliminar-96
           path: |
             salidas/convocatorias_v3.sqlite
             salidas/expedientes_v3.json

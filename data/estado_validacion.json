@@ -1,9 +1,0 @@
-{
-  "version": "1.0",
-  "norma": "docs/NORMA-04-validacion-convocatorias.md",
-  "fuente_de_verdad": "v2_conteo_convocatorias_validadas / v2_acta_validacion_convocatoria",
-  "convocatorias_validadas": 0,
-  "convocatorias_identificadas": 42,
-  "codigos_validados": [],
-  "advertencia": "Un código, fila Excel o PDF con solo texto leído no es una convocatoria validada."
-}

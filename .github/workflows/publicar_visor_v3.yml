@@ -4,68 +4,58 @@ on:
     branches: [main]
     paths:
       - 'index.html'
-      - 'data/lotes/lote_*.json'
+      - 'data/ia_v3/**'
       - 'db/estructura_v3.sql'
       - 'scripts/construir_base_v3.py'
       - 'scripts/exportar_base_v3.py'
       - 'scripts/probar_exportacion_v3.py'
       - '.github/workflows/publicar_visor_v3.yml'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   publicar:
     runs-on: ubuntu-latest
     steps:
-      - name: Recuperar repositorio
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verificar contrato v3 sin alterar las fuentes
+      - name: Verificar salida v3 sin validar expedientes pendientes
         run: python scripts/probar_exportacion_v3.py
-      - name: Construir SQLite temporal desde fuentes versionadas
+      - name: Construir SQLite temporal desde el nuevo payload IA
         run: python scripts/construir_base_v3.py --salida "${RUNNER_TEMP}/convocatorias_v3.sqlite"
-      - name: Validar sintaxis del script de la interfaz
+      - name: Validar sintaxis de la interfaz
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
-          html=Path('index.html').read_text(encoding='utf-8')
-          match=re.search(r'<script>(.*?)</script>', html, re.S)
-          assert match, 'Falta el script de la interfaz'
-          Path('/tmp/visor-v3.js').write_text(match.group(1), encoding='utf-8')
+          m=re.search(r'<script>(.*?)</script>',Path('index.html').read_text(encoding='utf-8'),re.S)
+          assert m, 'Falta script de la interfaz'
+          Path('/tmp/visor-v3.js').write_text(m.group(1),encoding='utf-8')
           PY
           node --check /tmp/visor-v3.js
-      - name: Proyectar JSON oficial para GitHub Pages
+      - name: Proyectar único JSON de lectura
         run: |
           python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida "${RUNNER_TEMP}/expedientes_v3.json"
           cp "${RUNNER_TEMP}/expedientes_v3.json" data/expedientes_v3.json
-      - name: Asegurar que el JSON respeta la métrica de validación
-        run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          p=Path('data/expedientes_v3.json')
-          d=json.loads(p.read_text(encoding='utf-8'))
-          assert d['version_contrato']=='3.0'
-          assert len(d['convocatorias'])==d['metricas']['convocatorias_identificadas']
-          assert sum(c['validada'] for c in d['convocatorias'])==d['metricas']['convocatorias_validadas']
-          print('Exportación v3 verificada; se conservaron las fuentes originales')
+          p=json.loads(Path('data/expedientes_v3.json').read_text(encoding='utf-8'))
+          assert p['version_contrato']=='3.0'
+          assert len(p['convocatorias'])==p['metricas']['convocatorias_identificadas']==96
+          assert p['metricas']['convocatorias_validadas']==0
+          assert sum(c['validada'] for c in p['convocatorias'])==0
           PY
-      - name: Versionar exclusivamente la proyección de lectura
+      - name: Actualizar solo proyección de consulta
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- data/expedientes_v3.json
           if ! git diff --cached --quiet; then
-            git commit -m "datos: actualizar proyección de lectura v3 generada desde SQLite"
+            git commit -m "datos: proyectar 96 expedientes preliminares desde SQLite v3"
             git push origin HEAD:main
-          else
-            echo "La proyección v3 no ha cambiado"
           fi

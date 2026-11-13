@@ -1,0 +1,959 @@
+{
+  "version": "3.0",
+  "corte": "2026-11-13",
+  "tipo": "archivos_fuentes_pdf_ia_sin_cotejo",
+  "archivos": [
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2381.pdf",
+      "sha256": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+      "bytes": 160547
+    },
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2380.pdf",
+      "sha256": "1998f017122c159cd1e580a76db509aa796694717627b40e4fbbd47fe74b22b0",
+      "bytes": 160062
+    },
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2379.pdf",
+      "sha256": "0167f7e3e39cc294e046e047b4b5ae5447c18afa2b7a34b85c936b798a74e4d2",
+      "bytes": 163473
+    },
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2378.pdf",
+      "sha256": "e4d89933bb6b58907220bacd6b3ffa72e19b76cb58c5bcca5160349cd483a5f5",
+      "bytes": 166122
+    },
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2377.pdf",
+      "sha256": "31e5cee9a1b35112aacb676344eb8ab028625a57499dc1f433879b047f9844ba",
+      "bytes": 156995
+    },
+    {
+      "parte": "parte_001.zip",
+      "ruta_zip": "pdf_originales/2026-C2376.pdf",
+      "sha256": "7df4a4ddcf930b538218ffbb1acd225ef94efbcc5487c33297b48c7b45ca9102",
+      "bytes": 167687
+    },
+    {
+      "parte": "parte_002.zip",
+      "ruta_zip": "pdf_originales/2026-C2375.pdf",
+      "sha256": "90fc838f170b597515feeab07d06e18cb1e30a941fd6080dc28be36b0be6d26b",
+      "bytes": 161048
+    },
+    {
+      "parte": "parte_002.zip",
+      "ruta_zip": "pdf_originales/2026-C2374.pdf",
+      "sha256": "96b369950ec5be493a39cac8267a57ad185a0f1077191b6f232df8e63f26758c",
+      "bytes": 168590
+    },
+    {
+      "parte": "parte_002.zip",
+      "ruta_zip": "pdf_originales/2026-C2373.pdf",
+      "sha256": "8dd35f777056c6ce1014492db9978a50afa6ef5472d50b7461b9a39d715799d0",
+      "bytes": 161941
+    },
+    {
+      "parte": "parte_002.zip",
+      "ruta_zip": "pdf_originales/2026-C2372.pdf",
+      "sha256": "f4ad4127664a7490d077a5c6a367578665f86c81f35bbb0d4982b0de59248098",
+      "bytes": 162101
+    },
+    {
+      "parte": "parte_002.zip",
+      "ruta_zip": "pdf_originales/2026-C2371.pdf",
+      "sha256": "fbc5e2d88a515f8a3c458a36abad229c34989d6b4b9ce00259d62bc905811535",
+      "bytes": 194403
+    },
+    {
+      "parte": "parte_003.zip",
+      "ruta_zip": "pdf_originales/2026-C2370.pdf",
+      "sha256": "18e2a13d0f2a2be086f241efbfc0eb357166339a992d837fc55cafbdcc235e6a",
+      "bytes": 190752
+    },
+    {
+      "parte": "parte_003.zip",
+      "ruta_zip": "pdf_originales/2026-C2369.pdf",
+      "sha256": "d85f9a6096e137c56072b37deb2c7ab628a463ada5af521a04b213b756d307b2",
+      "bytes": 168439
+    },
+    {
+      "parte": "parte_003.zip",
+      "ruta_zip": "pdf_originales/2026-C2367.pdf",
+      "sha256": "e715890f284f40049d41846312049c27e978ca5bcccf67ef196dceb67e8cee9b",
+      "bytes": 164363
+    },
+    {
+      "parte": "parte_003.zip",
+      "ruta_zip": "pdf_originales/2026-C2366.pdf",
+      "sha256": "d44222487d455930c8dc042d492cf4d5e6f6f7973244f50d05d8fcb52a357670",
+      "bytes": 157310
+    },
+    {
+      "parte": "parte_003.zip",
+      "ruta_zip": "pdf_originales/2026-C2365.pdf",
+      "sha256": "d2652cf471eae124ad04ddaf62417648c212a60d9fb2832a1f0dddd732b50c56",
+      "bytes": 166259
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2364.pdf",
+      "sha256": "d9a7a96affef16051cfcb2946b065d891fc93dabc55df313dc56e2068d70eff0",
+      "bytes": 164374
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2360.pdf",
+      "sha256": "5c986b36e22ef60cb567bf3668d0846cdb36f3d512dd46302805c4feb91eebcc",
+      "bytes": 159859
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2359.pdf",
+      "sha256": "6fd4e78f95fac238b0180cc2ace499ee78b220fb4d14680f25e69a974f1f5ea2",
+      "bytes": 161295
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2358.pdf",
+      "sha256": "4bc47ef0fc58f0db1b601d2c5f09f5165bbdb9a6c5a327060155febdefe8de73",
+      "bytes": 160672
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2357.pdf",
+      "sha256": "64df7fab8c8a17325c9242ce29108557c2c2f04e19a5a1062dae2277229a5407",
+      "bytes": 159410
+    },
+    {
+      "parte": "parte_004.zip",
+      "ruta_zip": "pdf_originales/2026-C2356.pdf",
+      "sha256": "6eca71f425ea9c0858bfb76d8bb6a1f002b40c2b16b5d05ac1f845a908ba68ca",
+      "bytes": 170704
+    },
+    {
+      "parte": "parte_005.zip",
+      "ruta_zip": "pdf_originales/2026-C2355.pdf",
+      "sha256": "8be90d9d8b22f3d07c230e81c5da57d55529dfa01375a84edb6ac25cbed84572",
+      "bytes": 164500
+    },
+    {
+      "parte": "parte_005.zip",
+      "ruta_zip": "pdf_originales/2026-C2354.pdf",
+      "sha256": "adc807f9958999486501a5c5b5bc588974b97dbfa1b9bbdb07c98023f94baf8b",
+      "bytes": 179039
+    },
+    {
+      "parte": "parte_005.zip",
+      "ruta_zip": "pdf_originales/2026-C2353.pdf",
+      "sha256": "12c7a00449f825883149dd957209b6784f86f8aa8e9bb9e9ee79ae1c6d3ca4ef",
+      "bytes": 159433
+    },
+    {
+      "parte": "parte_005.zip",
+      "ruta_zip": "pdf_originales/2026-C2352.pdf",
+      "sha256": "3ef29546b8aeb23edfc36333e75964e53e98ad8cb6049f36518b82927edf9a62",
+      "bytes": 157909
+    },
+    {
+      "parte": "parte_005.zip",
+      "ruta_zip": "pdf_originales/2026-C2351.pdf",
+      "sha256": "f8d4bbaff72812b47f016bf0e96a627e0514eebe07dfa431d38722cae117985a",
+      "bytes": 170914
+    },
+    {
+      "parte": "parte_006.zip",
+      "ruta_zip": "pdf_originales/2026-C2350.pdf",
+      "sha256": "370eae9ac5f19fa13e95caafd9c0ec76d50918ba3f1c5a2b4523c478fe15e05e",
+      "bytes": 172077
+    },
+    {
+      "parte": "parte_006.zip",
+      "ruta_zip": "pdf_originales/2026-C2349.pdf",
+      "sha256": "41847176d0d7df937edc913023394514fe90f471f408cef7d604baf800626696",
+      "bytes": 167588
+    },
+    {
+      "parte": "parte_006.zip",
+      "ruta_zip": "pdf_originales/2026-C2344.pdf",
+      "sha256": "ced54b01171c88641cc39aed8a358a99e91e076e23a2fa93c68974f6a82965e1",
+      "bytes": 170406
+    },
+    {
+      "parte": "parte_006.zip",
+      "ruta_zip": "pdf_originales/2026-C2343.pdf",
+      "sha256": "fe1a89c026172ed1c9bcd2b3f501240831db7f4df43846a0c3c43bcf62ecc223",
+      "bytes": 167505
+    },
+    {
+      "parte": "parte_006.zip",
+      "ruta_zip": "pdf_originales/2026-C2341.pdf",
+      "sha256": "8c38e020d6f3b9cb8e37d06754faa1e6847e68f7346ec5cd1ad598908f53fc4c",
+      "bytes": 192101
+    },
+    {
+      "parte": "parte_007.zip",
+      "ruta_zip": "pdf_originales/2026-C2339.pdf",
+      "sha256": "68d32def1261049e6f42095fd5172ba8192d97eb8dd6c0d827c3259d97acede2",
+      "bytes": 162179
+    },
+    {
+      "parte": "parte_007.zip",
+      "ruta_zip": "pdf_originales/2026-C2332.pdf",
+      "sha256": "ed62cfbb9dc4aa30952ea85f336cd54355c92fdb0005b84413bf5625ba41074c",
+      "bytes": 185064
+    },
+    {
+      "parte": "parte_007.zip",
+      "ruta_zip": "pdf_originales/2026-C2322.pdf",
+      "sha256": "8696c4d222338c43f7c56b17429c24be7793cffbd1053f6f4631c51d485de3a1",
+      "bytes": 190025
+    },
+    {
+      "parte": "parte_007.zip",
+      "ruta_zip": "pdf_originales/2026-C2319.pdf",
+      "sha256": "25a58fca131f14ab64efa072461c51523e614573ff5a47891c1f8183eac3dca7",
+      "bytes": 190257
+    },
+    {
+      "parte": "parte_007.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2368_fila2.pdf",
+      "sha256": "597e1901ddbaf0c9e0f6081aa5292674558f27962779febcd05635e93d2d977d",
+      "bytes": 196627
+    },
+    {
+      "parte": "parte_008.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2363_fila3.pdf",
+      "sha256": "64b7e83187fc50c6b41313d5bf39857851f924aed9695c425847f4f763fd229f",
+      "bytes": 199688
+    },
+    {
+      "parte": "parte_008.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2362_fila4.pdf",
+      "sha256": "d46214850038e148b0f0089d3b809c4fb3aed2ba4f8cb4225ae21ce9ba127b6a",
+      "bytes": 162063
+    },
+    {
+      "parte": "parte_008.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2361_fila5.pdf",
+      "sha256": "0caf8e51c1fc74fe7e1369f661f99197d1c985868397b08f3746d55f9236556e",
+      "bytes": 185254
+    },
+    {
+      "parte": "parte_008.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2348_fila6.pdf",
+      "sha256": "e5fdf1ba2b7aa3118063a180def3ef3180f937e10fb7fa920ec57d5362692fa3",
+      "bytes": 161900
+    },
+    {
+      "parte": "parte_008.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2347_fila7.pdf",
+      "sha256": "91c85b17b2e34c5f8878e272516f45ad71a25fabbd7d63f47581c8f7767c6b96",
+      "bytes": 163456
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2346_fila8.pdf",
+      "sha256": "318a68b2b4e39800622de2672bac7cc9e3b8b7db677b2371c45d29767380c44b",
+      "bytes": 162709
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2345_fila9.pdf",
+      "sha256": "c875cbce0557632af39c365dea17f89f91369d1b9d47abca63461139575ed759",
+      "bytes": 162559
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2342_fila10.pdf",
+      "sha256": "ef1bd69714768e861d6522dd06e3f80adb69df1a1a52a86032d1831701fb7c5d",
+      "bytes": 155877
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2340_fila11.pdf",
+      "sha256": "d5f8f82ce9003aa82dc1bf60bba206dcf0b0b70c3fe0f25443c1945cf1234afd",
+      "bytes": 163836
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2338_fila12.pdf",
+      "sha256": "1c61f8f15b3a5af5bef0623a92621f900f079e48c92ade03ddd9916c22c8fb9b",
+      "bytes": 194901
+    },
+    {
+      "parte": "parte_009.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2337_fila13.pdf",
+      "sha256": "f4551331e648dd88ca5d7118fc23b14d6d33a23a1dfdd44cd105cb31b8bf3249",
+      "bytes": 164250
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2336_fila14.pdf",
+      "sha256": "803080dbd776f9411c5a8588df83fbc9ac3dae3438ceda0f81dc66c02ef06b33",
+      "bytes": 164788
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2335_fila15.pdf",
+      "sha256": "95d8c8aa1efdbe07e52596e2f906d1111475094bab6ea75bc950fe052be6d25f",
+      "bytes": 165328
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2334_fila16.pdf",
+      "sha256": "a143027f6245a2d77e819c8127623bf8ba6d4ca1178c1fa2df24d7eb25e2a4c4",
+      "bytes": 157356
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2333_fila17.pdf",
+      "sha256": "36dfcdac88402b5853b08730002ece5c4d52ea139f5fb537d6fbfb1fb1426c69",
+      "bytes": 171592
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2331_fila18.pdf",
+      "sha256": "8f5c7b009e74adaa6a1eee83a23e87dd858c14965b4f46b9170e66dfbdb2932f",
+      "bytes": 167314
+    },
+    {
+      "parte": "parte_010.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2330_fila19.pdf",
+      "sha256": "d44c134b6656db98ec22919823ead79135f239aa812e8e565759d070b44f870e",
+      "bytes": 174486
+    },
+    {
+      "parte": "parte_011.zip",
+      "ruta_zip": "pdf_resultados_cerradas/Resultados_2026-C2330.pdf",
+      "sha256": "a527b25e1276447e303774f54c6a31f00e9b7d4ce7f5de7dfbf82086b9bddff7",
+      "bytes": 186569
+    },
+    {
+      "parte": "parte_011.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2329_fila20.pdf",
+      "sha256": "0c791ec88d2512c08c3b2fd7d20ce0509c70255a3f912ae3b8ea8e2c93cf574f",
+      "bytes": 173795
+    },
+    {
+      "parte": "parte_011.zip",
+      "ruta_zip": "pdf_resultados_cerradas/Resultados_2026-C2329.pdf",
+      "sha256": "4fd1ffed63758f9b3a1186c98fa2c636e58335637b9fd7316a177514eadb9823",
+      "bytes": 180149
+    },
+    {
+      "parte": "parte_011.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2328_fila21.pdf",
+      "sha256": "39a5e5aa3401849a43ec489a22292e18b60090ea3e7cf3f3cc049fc0755278cd",
+      "bytes": 157354
+    },
+    {
+      "parte": "parte_011.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2327_fila22.pdf",
+      "sha256": "182af76e7358a4ff98d6fae5da4aaf53b6a8cdc1b3888a4e78a783ad31d04f62",
+      "bytes": 171480
+    },
+    {
+      "parte": "parte_012.zip",
+      "ruta_zip": "pdf_resultados_cerradas/Resultados_2026-C2327.pdf",
+      "sha256": "2c428b9270f6c1fdc819496ec85436acf7cea8e6b63152cc38fcc43ff6dc9c93",
+      "bytes": 231829
+    },
+    {
+      "parte": "parte_012.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2326_fila23.pdf",
+      "sha256": "fe5b20275863283fba3d56a919304d89157e4a46c715e65cf6ff8c2ce6d4ed33",
+      "bytes": 169715
+    },
+    {
+      "parte": "parte_012.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2325_fila24.pdf",
+      "sha256": "b22e8655ec5b8b6c12bd30eb0df5c7fce9d4db13939778391f69e5c61aa3da46",
+      "bytes": 170671
+    },
+    {
+      "parte": "parte_012.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2324_fila25.pdf",
+      "sha256": "abcce7d073cc6c2828d63975471bb8d8cf34cef87c22232e7ecc8b70a7c7202c",
+      "bytes": 214213
+    },
+    {
+      "parte": "parte_012.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2324_fila26.pdf",
+      "sha256": "8c31be57eae9106529c74f53e98bf134659489234651b69a34d75fc2a21bde77",
+      "bytes": 188513
+    },
+    {
+      "parte": "parte_013.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2323_fila27.pdf",
+      "sha256": "f5bb262ac8192dc5a7e4d20b8b80a193d49699c4335633f348f875cde15c008d",
+      "bytes": 160264
+    },
+    {
+      "parte": "parte_013.zip",
+      "ruta_zip": "pdf_resultados_cerradas/Resultados_2026-C2323.pdf",
+      "sha256": "fa222df9bd66f78b2f48d560d53c291839d20f3c5b232d789f6c0743851179c0",
+      "bytes": 550237
+    },
+    {
+      "parte": "parte_013.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2321_fila28.pdf",
+      "sha256": "716f33a18245264be3ce2569b5e7d3a6838f73e8d5727e9f6dbf8b71f1d78d8b",
+      "bytes": 180257
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2320_fila29.pdf",
+      "sha256": "983da356efe25d49e153fcba3d33522f53c4bdc9c06204cb7e9e3c3779696daf",
+      "bytes": 180543
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2318_fila30.pdf",
+      "sha256": "30634343c2833e614c06f41a6e601b8a4719f1daa9dab0afef519687e26ffa0f",
+      "bytes": 160386
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2317_fila31.pdf",
+      "sha256": "6f1a81fb73b894063fea2f770c57f1db7ad1d8fc853d9c3c9f3fcc30aedc6471",
+      "bytes": 163103
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "pdf_convocatorias_cerradas/2026-C2316_fila32.pdf",
+      "sha256": "63a7011a7af4d4e008f7586c52a702639641684301d3133e3339709653c6137c",
+      "bytes": 160179
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2315_fila33.pdf",
+      "sha256": "8d7a73a53d2c7eeabb2a40bb5bbb95c2bb751c068ed7e5c39ffb5abc2d899d35",
+      "bytes": 153148
+    },
+    {
+      "parte": "parte_014.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2314_fila34.pdf",
+      "sha256": "99ca3bf2f07205375573d0356575d4712a5e4a8a98379d9683893778b3502256",
+      "bytes": 153570
+    },
+    {
+      "parte": "parte_015.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2313_fila35.pdf",
+      "sha256": "e394f64d7581cd5b4d51dc2d50c27d07a4ee6d56f7d0a27b033fbd9c970dfb09",
+      "bytes": 167325
+    },
+    {
+      "parte": "parte_015.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2312_fila36.pdf",
+      "sha256": "c2f62ebd82e07463ebbacc70faafdf45bc2291d3b1ca4b35117660f649a8d586",
+      "bytes": 167265
+    },
+    {
+      "parte": "parte_015.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2312_fila36.pdf",
+      "sha256": "004084466c0a0e9ae8ef0d000170f5df6d6b08dfaf0d00526a9400b62da39406",
+      "bytes": 351286
+    },
+    {
+      "parte": "parte_015.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2311_fila37.pdf",
+      "sha256": "19608f3d15130ab4a9c6eb7d768bd13bcddab3239b50dcadd4d287547302b1b8",
+      "bytes": 169664
+    },
+    {
+      "parte": "parte_016.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2310_fila38.pdf",
+      "sha256": "519d1bc4aab1ff57f41a677125459fcd13c5932fffb4bc9b19d4ea9049500dbf",
+      "bytes": 169677
+    },
+    {
+      "parte": "parte_016.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2309_fila39.pdf",
+      "sha256": "2b5253a396fac145dab6726f1ba427acbb502e75ddd2b96abc6bb02d36007f00",
+      "bytes": 194191
+    },
+    {
+      "parte": "parte_016.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2309_fila39.pdf",
+      "sha256": "8558aa59c0c4cc14dc37fa9c5d84386e1572aae29729d10acaf7a316fd135e8d",
+      "bytes": 191508
+    },
+    {
+      "parte": "parte_016.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2308_fila40.pdf",
+      "sha256": "3b67d32811033c097bd1b5aa487fbedc64a94643ae46f9eed028aff7678bd181",
+      "bytes": 194941
+    },
+    {
+      "parte": "parte_017.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2308_fila40.pdf",
+      "sha256": "459745696ce88f9bbcecf645becfa63616702d7bec63bd7d274d55396a8589d9",
+      "bytes": 851469
+    },
+    {
+      "parte": "parte_018.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2307_fila41.pdf",
+      "sha256": "60453ee2d8d461b0ebff68626c549ae6208da49f21043ce1571610bf417fefe3",
+      "bytes": 179461
+    },
+    {
+      "parte": "parte_018.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2307_fila41.pdf",
+      "sha256": "3347b7dafad6661ef8dd24ab030429aec0330d9a9575f4e2b637c0ac291d76b9",
+      "bytes": 257035
+    },
+    {
+      "parte": "parte_018.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2306_fila42.pdf",
+      "sha256": "b8ca121114f2a0b705b6e2228c8da8ab698661257fdce12491ac8e603b371435",
+      "bytes": 166009
+    },
+    {
+      "parte": "parte_018.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2305_fila43.pdf",
+      "sha256": "bd48404b2594f3b4be71fe93329f77006b4f422634152af5cf091188dbf365ec",
+      "bytes": 165160
+    },
+    {
+      "parte": "parte_018.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2304_fila44.pdf",
+      "sha256": "e2933c12a9e64d686f46305b40345ae01bb5c443b5643f3ba3e20d7e7ba09612",
+      "bytes": 158960
+    },
+    {
+      "parte": "parte_019.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2304_fila44.pdf",
+      "sha256": "8d8e426ea1bd1541d8deedae16d9ceebbe636860f8b6469816760e4deac3cee4",
+      "bytes": 381949
+    },
+    {
+      "parte": "parte_019.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2303_fila45.pdf",
+      "sha256": "554e6a47ef5da26f974f65e90bda5265fcb4c7e677b5038e312af21e693a7040",
+      "bytes": 163340
+    },
+    {
+      "parte": "parte_020.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2303_fila45.pdf",
+      "sha256": "eec4c4a0a47a9a383bd33e3d3b37d9eb77fa3768ddda119ee47246bcbecf660b",
+      "bytes": 754990
+    },
+    {
+      "parte": "parte_020.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2302_fila46.pdf",
+      "sha256": "2ca777621ec67e3ee6a51b107cfd68623bd3db6ea042d5a62c343e57e0125baa",
+      "bytes": 165386
+    },
+    {
+      "parte": "parte_021.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2302_fila46.pdf",
+      "sha256": "315768b07c6d27da4ed5279d9a696ca037f510b95ba14185ba1fb5d83c100141",
+      "bytes": 335970
+    },
+    {
+      "parte": "parte_021.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2301_fila47.pdf",
+      "sha256": "414d532be0d7c26a0dcebefe938a1f7aaf42ab9eb32c7dace6619757094775cc",
+      "bytes": 161412
+    },
+    {
+      "parte": "parte_021.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2301_fila47.pdf",
+      "sha256": "4fd9171eaf40316b27b1b82f29b3d15597bb64d0541f2d7956ff32738c0fde46",
+      "bytes": 162069
+    },
+    {
+      "parte": "parte_021.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2300_fila48.pdf",
+      "sha256": "f9891bdb8d72eff101bf6ce842fb1615bb8e32c1d362f2bf00f8bba63364fdd1",
+      "bytes": 159812
+    },
+    {
+      "parte": "parte_021.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2300_fila48.pdf",
+      "sha256": "6391ace58cd4f7a733da573625469842c2adf57d52ec01051b173444f104c053",
+      "bytes": 99855
+    },
+    {
+      "parte": "parte_022.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2299_fila49.pdf",
+      "sha256": "86054132f69c19ff1c984b90d1ac9c35621ab048e611e2a2a4f684bbca1237fb",
+      "bytes": 174147
+    },
+    {
+      "parte": "parte_022.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2298_fila50.pdf",
+      "sha256": "d073cdfa692e9f1632db5270c6d5afee18842d11081d7bd3701311740cb8113a",
+      "bytes": 167304
+    },
+    {
+      "parte": "parte_022.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2298_fila50.pdf",
+      "sha256": "3dafbe3bc1aac1b5254f6db0cca8846dacc2d744eaeb6dce8c1afb45253546f5",
+      "bytes": 333957
+    },
+    {
+      "parte": "parte_022.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2297_fila51.pdf",
+      "sha256": "c9c6c739dcb4d0c04eae9b292d302d9ae1e0974a03315735350a26bb11e41d40",
+      "bytes": 170366
+    },
+    {
+      "parte": "parte_023.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2297_fila51.pdf",
+      "sha256": "fd85202691b56c67d7e64b91fa3d1a86e73b3917b9133b574de642493df432b0",
+      "bytes": 325319
+    },
+    {
+      "parte": "parte_023.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2296_fila52.pdf",
+      "sha256": "40cd968827d88bcbe7ba869128fb635a56b46138d5e8a9ce9aad20af143c11c0",
+      "bytes": 167362
+    },
+    {
+      "parte": "parte_023.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2296_fila52.pdf",
+      "sha256": "e0b2bbfb00a7a001d9b17975b653fd06ac9270770858244d5d1a650516cf225b",
+      "bytes": 322563
+    },
+    {
+      "parte": "parte_024.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2295_fila53.pdf",
+      "sha256": "40ca684c34006e14f402808bad76a2041f1712e3716f65deb6274c7f4cf5ba23",
+      "bytes": 170902
+    },
+    {
+      "parte": "parte_024.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2294_fila54.pdf",
+      "sha256": "6daa5f6391823a9765c6066848077a8bd5f45449c1da16ce56b3034dfef6e6ce",
+      "bytes": 167930
+    },
+    {
+      "parte": "parte_025.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2294_fila54.pdf",
+      "sha256": "975570112216cdf174e50319f000c6d0f9f90099e4ad6c23b6c9a394c2da6a15",
+      "bytes": 737681
+    },
+    {
+      "parte": "parte_025.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2293_fila55.pdf",
+      "sha256": "e3af0afb44abdcb00898d7f50452dc3c1cc89a607c60819f5317f4c099f47ade",
+      "bytes": 168828
+    },
+    {
+      "parte": "parte_026.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2293_fila55.pdf",
+      "sha256": "51ccd194a2b31831b91deb492af469dc35a539c8e689f45b9ef409b8ed3f3b9b",
+      "bytes": 720663
+    },
+    {
+      "parte": "parte_026.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2292_fila56.pdf",
+      "sha256": "442098e773c728c3bca66c180bc8704e6be01f9f8478bc61c83b0f322fa3632a",
+      "bytes": 166850
+    },
+    {
+      "parte": "parte_027.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2292_fila56.pdf",
+      "sha256": "21fd593f459f22833279ff2601231f927a322699a3adf82ecdef15cca3393baf",
+      "bytes": 714812
+    },
+    {
+      "parte": "parte_027.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2291_fila57.pdf",
+      "sha256": "187143d94365ceea70acfd00b66ff3f29033611992354e1cf7493d41b0d26825",
+      "bytes": 169421
+    },
+    {
+      "parte": "parte_028.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2291_fila57.pdf",
+      "sha256": "7fc744866fa5bf4d0e3f7bc85d03b4678287c65fefcfc4ee6a1b5c49fc24ab71",
+      "bytes": 737974
+    },
+    {
+      "parte": "parte_028.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2290_fila58.pdf",
+      "sha256": "77c2fefea8739ae54f111889375db148feac4fd80b9336fe720c3604e4e231a5",
+      "bytes": 166309
+    },
+    {
+      "parte": "parte_029.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2290_fila58.pdf",
+      "sha256": "24f5888f0b02581930c998c01633e2fa97df373d398cf1eab7b4fdd233a72a9e",
+      "bytes": 732046
+    },
+    {
+      "parte": "parte_029.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2289_fila59.pdf",
+      "sha256": "c504d712038f5eed275d1175548002337fa20a3545de90aca95f34100a355ee4",
+      "bytes": 165345
+    },
+    {
+      "parte": "parte_030.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2289_fila59.pdf",
+      "sha256": "ffe33d3de1e34bce3443e9f7453591594ef937faad4f10976f53759aeb9aeff3",
+      "bytes": 713871
+    },
+    {
+      "parte": "parte_030.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2288_fila60.pdf",
+      "sha256": "7f46ff1d5e3f3a7a120bd8b27f4ebd9a6d808faf6912f47f91527732102dd154",
+      "bytes": 165816
+    },
+    {
+      "parte": "parte_031.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2288_fila60.pdf",
+      "sha256": "82d18e2e36713e8311862ac2fdedb41ac940821e3016bac5b4b19ca48fa9236d",
+      "bytes": 323569
+    },
+    {
+      "parte": "parte_031.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2287_fila61.pdf",
+      "sha256": "500e6990a8f76c5775f180c4ada13f475e6227201a342ae3175c01173431ea9d",
+      "bytes": 163425
+    },
+    {
+      "parte": "parte_031.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_convocatorias/2026-C2286_fila62.pdf",
+      "sha256": "9f86adee07f5712df7521a5465c405400b240b2babd56d99379efa812941c2b4",
+      "bytes": 167278
+    },
+    {
+      "parte": "parte_032.zip",
+      "ruta_zip": "tercer_lote_cerradas/pdf_resultados/Resultados_2026-C2286_fila62.pdf",
+      "sha256": "5eee3fa02fb46ddb62f0003b219b0a13ac7b416245e2ce58b132ec76cd23df8b",
+      "bytes": 336975
+    }
+  ],
+  "partes": [
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_001.zip",
+      "sha256": "736d5f5d0f7a21d1529b2c9fb8d770572b721772732bb6192e63afb2bdf9c10c",
+      "bytes": 802406,
+      "cantidad_pdf": 6,
+      "git_sha_objeto": "6f1dae0677025070b568f2edd1fbef8adf0cb13d"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_002.zip",
+      "sha256": "68a326f07811fb6d3b0c52a503f92301cfef7a2ca6320b20f2d0d3957a8842f5",
+      "bytes": 699837,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "1a6401dd2045ab724ca0231f5125c8baf77d13b4"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_003.zip",
+      "sha256": "1f53e82d81571cf8a1513b690976827555c5b309795c89adf6798e54500abcda",
+      "bytes": 697303,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "28d547f2b04385beb761b2db961b4463efa15cd4"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_004.zip",
+      "sha256": "2231a75f98a03489164db3d22f8a12ae435b2242c32b064958e463dba306a81b",
+      "bytes": 804860,
+      "cantidad_pdf": 6,
+      "git_sha_objeto": "2cb546b3e9dc917efad4d32a2fde545c030721ab"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_005.zip",
+      "sha256": "03256b735c0e92126619487b4e314723ab625cf5d48ebe548b5887194686fc6d",
+      "bytes": 683826,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "62444be67251af0f154a8e22460c78a2d23d442e"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_006.zip",
+      "sha256": "a31210dd711551d898ee401584f52a74044996117ba7cdd33c301d6fbcb0e2b4",
+      "bytes": 717223,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "8a113786def713b20552474de3594de717e5b8ae"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_007.zip",
+      "sha256": "95451ab6a4f5f965cb65c3db2fc5d7bb9a2e3b88c3bcd09f1e7369913f338a0a",
+      "bytes": 769700,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "9c39336becc7483b9bd23d4152786cc7e56cf361"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_008.zip",
+      "sha256": "fc2181a31aa3734ad56940904e6e14ba1eb71a153a7b35424f29c65087bc98a0",
+      "bytes": 723241,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "62d32efc462ecbb4efd02537438a8ace288409db"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_009.zip",
+      "sha256": "c0794b357861ee8b18c443991d58d7d9a84a1d08dbe08ae4c2b954f4bc4a2a44",
+      "bytes": 825460,
+      "cantidad_pdf": 6,
+      "git_sha_objeto": "086782ea153e8273f9d61db4ae74a7ce1bff8d87"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_010.zip",
+      "sha256": "6e1cd6af980219039370ef28d324ffe8afe23e4bc060d1e24ecd930b00b370e9",
+      "bytes": 824958,
+      "cantidad_pdf": 6,
+      "git_sha_objeto": "f7ad7e404dadabc6a6912bc1daaf9375d4d4a208"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_011.zip",
+      "sha256": "9573ccb50e2460b9f7092c8727e1644a4b5f8c3ab4abc0bae31e09b803c6c145",
+      "bytes": 739883,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "98a26ed08001e3e0fdf3c9ed56cf5a34eaa88f3a"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_012.zip",
+      "sha256": "3ef13dd2dae5adb33162c4a46befa02130974087aea12cce90e944bfdc6ad813",
+      "bytes": 822851,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "3d55354ef39b4ee8631dd1d978b81d5ea543fb4c"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_013.zip",
+      "sha256": "a442424257f9245eab97ef0acb79c2d345bcc10c3e210ed7fb81bc47caeceab6",
+      "bytes": 794221,
+      "cantidad_pdf": 3,
+      "git_sha_objeto": "1a6cefbd6c883efa82165b04bf763a9e75a21483"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_014.zip",
+      "sha256": "419f2073abaf8ed0d66fa2398540c961d811d72720c1987978028f0f8480d71f",
+      "bytes": 801343,
+      "cantidad_pdf": 6,
+      "git_sha_objeto": "f926243c8795cca0775e307981f1069beaf86a10"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_015.zip",
+      "sha256": "af7e2eae4fa0e5a56053ed6611d4b594cd0efdb486ab623e848d4778f21c2561",
+      "bytes": 717866,
+      "cantidad_pdf": 4,
+      "git_sha_objeto": "ffa06290f732bce5f03255036fb4251f2c530d70"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_016.zip",
+      "sha256": "7d740dfa42ff0aa89cc294761f0652f297145911590b37b8fde9fc645e1b0c4a",
+      "bytes": 617928,
+      "cantidad_pdf": 4,
+      "git_sha_objeto": "d177f9eb4f5049665f1398bd4bc6a01b066a6671"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_017.zip",
+      "sha256": "30a5543605ad5d72a2005ea90f1a8990d61fc188367dd89fb70725334573ded7",
+      "bytes": 726059,
+      "cantidad_pdf": 1,
+      "git_sha_objeto": "7245bed8a6bb0782565df673409e350a83064e96"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_018.zip",
+      "sha256": "df4aeb82c45dddf342226b86bac895910b685e40b1c6ca0c5b49d1340868cad9",
+      "bytes": 797345,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "973972c58cb5e22406e7df95e154378b2426dd26"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_019.zip",
+      "sha256": "5a23d6adc408e7a7520dd4509b48d39d27e9c7bf863058e1ef9def7fe239d53e",
+      "bytes": 486760,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "14f6047dcaeb3931f442a0e3c65b5e41466392ca"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_020.zip",
+      "sha256": "d429deb2acc3023ac439508cb88ca51f9d4d65218e2432c59168ca465cba7dcb",
+      "bytes": 790463,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "1eb8f9a05324a6cee8fbc2c9b1cd589984859ea5"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_021.zip",
+      "sha256": "638157abf829c8654623676797017f9a069faba89f648d5cb5c95519de73451e",
+      "bytes": 817240,
+      "cantidad_pdf": 5,
+      "git_sha_objeto": "b2c4dfb7270390084242cc9072e5510e225b2654"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_022.zip",
+      "sha256": "5b802afe26881f3cccecc796960794a067e02d4619d884b8b2db950aaa55e83c",
+      "bytes": 722944,
+      "cantidad_pdf": 4,
+      "git_sha_objeto": "c814dece6986d2f1ce2a8b16960d36fc07832c16"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_023.zip",
+      "sha256": "fc8b41f71701b7ccd84fa0a92227e7c2276afba18265072f36a334bf787439c2",
+      "bytes": 728900,
+      "cantidad_pdf": 3,
+      "git_sha_objeto": "5d5f75aec3e1366d8ce8ccc731be20be00df1342"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_024.zip",
+      "sha256": "a074efc1c986df81d685079d0bc156cca2894fec2d905e49d82b7b9fa61d946b",
+      "bytes": 278769,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "5d41095d2e2b8fd5b43275f015d5317b4aa17f27"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_025.zip",
+      "sha256": "67fc78b9157db085355ee7cf6cd51a3ed674e7e702ebfbe154899086a5792945",
+      "bytes": 785096,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "bf38528817363ab26fa500848f5c391acdf4fb1b"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_026.zip",
+      "sha256": "a259acdb633783c2efbc9937b768d6e6ae5b9b88ca3c472262fdf607a9cf3715",
+      "bytes": 768732,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "b75d19c07af5d52b17670d4699ef125fa1d7bbcd"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_027.zip",
+      "sha256": "5f96115de11afe68d8630b8815106bee694c19b37f9a8a018b26cfea83b99365",
+      "bytes": 764333,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "d0724d9faaa7811c12228c174d3152c8ec5d30dc"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_028.zip",
+      "sha256": "6f875a53de3b8b127cc18b1a85f6ac81d4f8caa2759f05e9cd10fa69e434a9b5",
+      "bytes": 781663,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "34e24962c9467aa23fcdeb6b0b1e66a9c3290793"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_029.zip",
+      "sha256": "171d9496dc468ef48bf39b956982c7e252043dd58c2a2f996f4990c4ce67658a",
+      "bytes": 778050,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "88c0a2eed684c41c903bbf44400537545d604014"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_030.zip",
+      "sha256": "540da2e1625ba6c540dcdf5f0eaa887c9f4a6b0dd875ca4eed1caad8ef195065",
+      "bytes": 758856,
+      "cantidad_pdf": 2,
+      "git_sha_objeto": "eb05d0879f31356c8d8ab0d94539c2c38cb3189e"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_031.zip",
+      "sha256": "0e51e09036195c18a7f37f34ad83cb9c23563fc7cd2ab0944d8d53cd568a7538",
+      "bytes": 566821,
+      "cantidad_pdf": 3,
+      "git_sha_objeto": "ce3459f2984bc421f336c15b2e9526e5afe86aea"
+    },
+    {
+      "ruta": "data/ia_v3/pdf_originales/parte_032.zip",
+      "sha256": "6899b3ccaebb1e61e43b5f2fdfc73dc0ee0923663ca619e9bb56e335afc98214",
+      "bytes": 294961,
+      "cantidad_pdf": 1,
+      "git_sha_objeto": "f1c9a1869cdc34c97dce88feef0cfb4430b97033"
+    }
+  ]
+}

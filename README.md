@@ -1,55 +1,29 @@
-# Veeduría de convocatorias de estudiantes auxiliares — UNAL Bogotá
+# Revisión de convocatorias — estudiantes auxiliares UNAL
 
-**Propósito:** conservar, integrar y comparar la información original publicada sobre convocatorias de estudiantes auxiliares. La herramienta ofrece evidencia para la veeduría; **no determina por sí sola si una práctica es indebida**.
+Este proyecto conserva e integra la información **original y verificable** de convocatorias. La interpretación de hallazgos corresponde a las personas usuarias, no al sistema.
 
-## Regla superior: una convocatoria solo cuenta si está validada
+## NORMA 00 — Regla suprema
 
-La [NORMA 00 — Validación integral e inviolable](docs/NORMA-00-validacion-integral.md) prevalece sobre cualquier implementación. Para cerrar cada convocatoria son obligatorios:
+La **base de datos v3 es el núcleo y contrato central**; la interfaz y la extracción de IA dependen de ella. Ninguna convocatoria cuenta como validada sin Excel completo, publicación PDF completa, búsqueda documentada de resultados, PDF de resultados completo cuando exista, evidencia de cotejo y acta A–E aprobada. **Identificada, extraída y validada son estados distintos**.
 
-1. **Excel completo:** todas las filas y celdas correspondientes, cotejadas.
-2. **PDF de convocatoria completo:** contenido, tablas, requisitos y versiones cotejados, con **URL real guardada**.
-3. **Resultados comprobados:** verificar documentalmente si se publicó PDF, con URL de consulta, fecha y alcance.
-4. **PDF de resultados completo cuando exista:** todas sus páginas, participantes, columnas, puntajes y notas, con URL real guardada. Si no está disponible tras la búsqueda verificada, registrar esa conclusión y su evidencia; **no presumir ausencia por una celda vacía**.
-5. **Integridad y cierre:** evidencias, incidencias y revisión final persistidas; acta aceptada por la base.
+## Estado del primer corte v3 — 13 de noviembre de 2026
 
-**Cualquier requisito incumplido impide contar la convocatoria como validada.** Las cifras de inventario, PDFs leídos y pruebas automáticas no sustituyen esta métrica.
-
-## Jerarquía arquitectónica inviolable
-
-**La base de datos es el núcleo y contrato central de información.** La visualización y la extracción externa realizada por esta IA dependen de ella, no al revés. Sus limitaciones **no justifican alterar, omitir ni sustituir** datos originales o condiciones de validación. Toda ampliación del modelo se decide desde la base y se documenta con sus efectos sobre los dos componentes.
-
-Esta jerarquía desarrolla la [NORMA 00](docs/NORMA-00-validacion-integral.md) y está explicada en la [referencia general](docs/00-REFERENCIA-GENERAL.md).
-
-## Estado real del corte histórico
-
-| Indicador | Estado |
+| Métrica de captura | Valor |
 |---|---:|
-| Convocatorias **validadas** | **0** |
-| Convocatorias identificadas | 42 |
-| Filas / celdas Excel capturadas | 43 / 470 |
-| PDF con respaldo **textual previo** | 16 (7 convocatorias, 9 resultados) |
-| PDF reales con tablas visualmente cotejadas | **0** |
+| Convocatorias identificadas | **96** |
+| Abiertas / cerradas | 36 / 60 |
+| Filas / celdas literales Excel | 97 / 1.031 |
+| PDF de publicación / resultados enlazados | 97 / 24 |
+| Páginas con extracción textual inicial | 397 |
+| **Convocatorias validadas A–E** | **0** |
 
-Los cuatro lotes originales permanecen en `data/lotes/`. La base **SQLite v3 es construible** desde ellos, conserva las capturas originales y sus enlaces PDF, pero **no transforma retroactivamente los PDF en documentos cotejados ni crea actas de validación**.
+El corte es **preliminar**; sus textos y coordenadas no equivalen a cotejo visual de tablas ni de puntajes. El registro de incidencias y de incertidumbres forma parte integral de los originales.
 
-## Documentación vigente (único punto de partida)
+**[Detalle del corte y de la migración](docs/CORTE-IA-V3-2026-11-13.md)** · **[NORMA 05 — Orden de cerradas](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md)**.
 
-| Documento | Propósito |
-|---|---|
-| [Referencia general](docs/00-REFERENCIA-GENERAL.md) | Objetivos, jerarquía, estado y mapa de documentos. |
-| [Norma 00](docs/NORMA-00-validacion-integral.md) | **Máxima jerarquía:** integridad de la validación y métrica principal. |
-| [Norma 01](docs/NORMA-01-integridad-exhaustividad.md) | Integridad de los **originales** y separación de sintéticos. |
-| [Norma 02](docs/NORMA-02-integracion-comparabilidad.md) | Expediente integrado y comparación transversal. |
-| [Norma 03](docs/NORMA-03-extraccion-externa-ia.md) | La **IA realiza la extracción** externamente; el software controla el proceso. |
-| [Norma 04](docs/NORMA-04-validacion-convocatorias.md) | Puertas A–E y reglas de acta **en v3**. |
-| [Base v3: operación y garantías](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) | Estructura SQLite, construcción, pruebas y límites. |
-| [Contrato de entrada del visualizador](docs/CONTRATO-V3-VISUALIZACION.md) | **Un único JSON** con originales, validación y sintéticos separados. |
-| [Contrato de entregas de IA](docs/CONTRATO-V3-EXTRACCION-IA.md) | Qué debe leer, entregar, cotejar y registrar la IA; límite de 50 códigos. |
-| [Continuidad y validación](docs/02-CONTINUIDAD-Y-VALIDACION.md) | Procedimiento vigente para retomar los trabajos. |
+## Construcción reproducible y sin contaminación histórica
 
-**Contrato ejecutable:** `db/estructura_v3.sql`, `config/contrato_ia_v3.json`, `scripts/construir_base_v3.py`, `scripts/exportar_base_v3.py`. No se añade un motor automático de extracción de PDF: **la interpretación documental corresponde a esta IA**.
-
-## Construcción reproducible de la base
+Los datos de entrada vigentes son `data/ia_v3/integrado_96_2026-11-13.json.zlib.b64` y los **121 PDF originales** archivados con manifiesto de integridad en `data/ia_v3/pdf_originales/` (JSON de IA original íntegro, comprimido en zlib y codificado Base64; SHA-256 verificable). Los **viejos cuatro archivos** `data/lotes/lote_*.json` y los seeds SQL obsoletos se eliminaron; no se mezclan ni se utilizan en la construcción del SQLite v3.
 
 ```bash
 python scripts/probar_estructura_v3.py
@@ -61,16 +35,10 @@ python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
 python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida salidas/expedientes_v3.json
 ```
 
-[GitHub Actions — validación y artefactos SQLite + JSON](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions).
+El constructor no sobrescribe archivos existentes. La exportación desde SQLite produce `data/expedientes_v3.json` para la [interfaz publicada](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/) mediante GitHub Actions. Los resultados no cotejados se señalan como tales, no se promueven a actas ni a indicadores validados.
 
-## Publicación web y antecedentes
+## Contratos vigentes
 
-**[Interfaz principal](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/)**: `index.html` consulta exclusivamente `data/expedientes_v3.json`, proyección generada desde SQLite v3 por [el flujo de publicación del visor](.github/workflows/publicar_visor_v3.yml). Muestra una lista sin filtros y un expediente por convocatoria, con fuentes originales, detalles completos, resultados, controles y sintéticos por separado. El [comparador v2](comparador-v2.html) se conserva como herramienta histórica; no es una comparación certificada sobre v3. El visor anterior sigue disponible en `visor.html`.
+[Referencia general](docs/00-REFERENCIA-GENERAL.md) · [NORMA 00](docs/NORMA-00-validacion-integral.md) · [NORMA 01](docs/NORMA-01-integridad-exhaustividad.md) · [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) · [NORMA 03](docs/NORMA-03-extraccion-externa-ia.md) · [NORMA 04](docs/NORMA-04-validacion-convocatorias.md) · [NORMA 05](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md) · [Base v3](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) · [Entrega IA v3](docs/CONTRATO-V3-EXTRACCION-IA.md) · [Contrato visualización v3](docs/CONTRATO-V3-VISUALIZACION.md).
 
-**Jerarquía de lectura prioritaria:** la [especificación de la ficha v3](docs/INTERFAZ-V3-JERARQUIA-DE-LECTURA.md) describe las agrupaciones temáticas de convocatoria y resultados (criterios, ponderaciones, participantes, puntajes y decisión), el papel de las lecturas históricas y el acceso al expediente íntegro.
-
-**Alcance normativo pendiente:** la ficha documental v3 representa los datos, pero la comparación transversal simultánea exigida en la [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) todavía no está implementada sobre v3. La simplificación de la pantalla principal no modifica este requisito de la base ni autoriza afirmar su cumplimiento.
-
-Las especificaciones antiguas y el desarrollo previo se consultan solo como **antecedentes**, no como instrucciones vigentes. Véase el [registro histórico de decisiones](docs/01-REGISTRO-DECISIONES.md) y el [archivo de documentación heredada](docs/historico/INDICE.md).
-
-**La responsabilidad de la visibilidad/publicación corresponde al responsable del proyecto.** Ningún procedimiento de la IA altera los datos originales por iniciativa propia.
+La extracción interpreta los documentos **exclusivamente mediante IA**, no mediante el programa. El programa almacena y verifica estructura/evidencia. El comparador v2 y el visualizador heredado permanecen como referencia histórica, no como fuente de datos vigentes. Ninguna nueva característica de interfaz forma parte de esta migración.

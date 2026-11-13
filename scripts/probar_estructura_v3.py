@@ -21,7 +21,7 @@ def rejected(call,why):
     else:
         raise AssertionError("Admitió expediente no validado: "+why)
 
-def add_source(code,typ,tag,pages=None):
+def add_source(code,typ,tag,pages=None,omit_metric=None):
     url=f"https://example.org/{code}/{typ}/{tag}"
     fid=db.execute("""INSERT INTO v3_fuente
        (tipo,url_original,nombre_literal,version_literal,fecha_captura,resultado_acceso,paginas_originales)
@@ -58,6 +58,7 @@ def add_source(code,typ,tag,pages=None):
        VALUES (?,?,'cotejada',?,?,?,?,?,'2026-11-13')""",
        (code,fid,units,units,url,"Revisión integral ficticia del documento","Cotejo visual inventado")).lastrowid
     for (m,) in db.execute("SELECT metrica FROM v3_metrica_requerida WHERE tipo_fuente=?",(typ,)).fetchall():
+        if m==omit_metric:continue
         num=({"filas":1,"celdas":3 if typ=="excel" else 1,
               "paginas":pages or 0,"tablas":0 if typ=="excel" else 1,
               "requisitos":0 if typ!="convocatoria_pdf" else 1,
@@ -134,6 +135,21 @@ q2=db.execute("""INSERT INTO v3_consulta_resultados(numero,estado,url_sitio_cons
 h=make_controls("TEST-CON-RESULTADOS",True,q2,e2,p2,r2)
 rejected(lambda:add_acta("TEST-CON-RESULTADOS",h,q2,False),"resultados encontrados pero puerta D omitida")
 add_acta("TEST-CON-RESULTADOS",h,q2,True)
+assert count()==2
+
+# Los PDF no pasan con solo páginas: también deben declarar tablas/celdas/
+# requisitos/elementos y todas las métricas obligatorias por tipo.
+db.execute("INSERT INTO v3_convocatoria(numero) VALUES('TEST-COBERTURA-INCOMPLETA')")
+e3,_=add_source("TEST-COBERTURA-INCOMPLETA","excel","excel3")
+p3,_=add_source("TEST-COBERTURA-INCOMPLETA","convocatoria_pdf","pdf3",pages=2,omit_metric="requisitos")
+q3=db.execute("""INSERT INTO v3_consulta_resultados(numero,estado,url_sitio_consultado,
+      fecha_consulta,alcance_y_metodo,justificacion_literal)
+      VALUES('TEST-COBERTURA-INCOMPLETA','sin_pdf_verificado_al_corte',
+      'https://example.org/consulta-tres','2026-11-13',
+      'Búsqueda ficticia suficiente para prueba','Sin resultado en la publicación ficticia')""").lastrowid
+k=make_controls("TEST-COBERTURA-INCOMPLETA",False,q3,e3,p3)
+rejected(lambda:add_acta("TEST-COBERTURA-INCOMPLETA",k,q3,False),
+    "no se admite PDF con cobertura de requisitos omitida")
 assert count()==2
 
 # Nueva adenda debe quitar el estado actual hasta un nuevo cierre formal.

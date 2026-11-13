@@ -49,6 +49,20 @@ El constructor **rechaza sobrescrituras**. La base generada se puede volver a co
 
 En [GitHub Actions](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions), seleccionar «Validar arquitectura v3 sin fuentes reales» y descargar el artefacto \`base-v3-corte-historico\` del último trabajo completado satisfactoriamente. La base es un **artefacto reproducible**, no debe confundirse con archivos originales. El plazo de conservación del artefacto depende de GitHub; los scripts y capturas originales permanecen en el repositorio.
 
+### Recepción posterior de un manifiesto de IA (sin extracción automática)
+
+Para una **base v3 que ya exista**:
+
+\`\`\`bash
+python scripts/validar_entrega_ia_v3.py tests/fixtures/entrega_ia_v3_ejemplo.json
+python scripts/registrar_entrega_ia_v3.py tests/fixtures/entrega_ia_v3_ejemplo.json \
+  --db salidas/convocatorias_v3.sqlite
+\`\`\`
+
+El ejemplo contiene **datos ficticios** y no debe incorporarse a la base real de producción. La herramienta de recepción guarda de forma atómica la entrega en \`v3_entrega_ia\`, identifica fuentes/URLs, registra lecturas en \`v3_control_lectura\` y deja explícitas las incidencias sin enlace. **No interpreta documentos, no crea páginas/tablas PDF ni genera actas**. Un manifiesto con cobertura declarada no sustituye la entrega adicional de todos los contenidos originales a las tablas documentales v3.
+
+Para una entrega real, usar un manifiesto que la **IA haya generado después de leer efectivamente las fuentes** y registrar su ID/lote. La IA sigue siendo responsable de reconstruir y cotejar el contenido que alimentará las tablas originales. Las pruebas \`scripts/probar_registro_ia_v3.py\` confirman que una recepción no aumenta las convocatorias validadas y que no se repiten lecturas.
+
 ## 3. Qué trae actualmente el SQLite generado
 
 A partir del material histórico existente se importan **sin inventar cotejos nuevos**:

@@ -1,5 +1,8 @@
 # Estado de la primera ejecución — 13 de noviembre de 2026
 
+> **Nota histórica (13-11-2026):** este documento conserva el estado y las decisiones **en el momento en que fue redactado**. Algunas referencias a `index.html`, extractores experimentales o «próximo trabajo» han cambiado. Para el **estado vigente**, consultar [Referencia general](00-REFERENCIA-GENERAL.md), [Registro de decisiones](01-REGISTRO-DECISIONES.md) y [Continuidad](02-CONTINUIDAD-Y-VALIDACION.md). No reinterpretar una fase histórica como la arquitectura actual.
+
+
 ## Evaluación crítica de la interfaz y nueva dirección — 13 de noviembre de 2026
 
 Tras la revisión visual del usuario se constató que **el visor actual NO cumple la función principal de la veeduría**. Aunque permite buscar y leer textos, presenta los documentos como bloques planos, desarmando su estructura de tablas y columnas; por ello no sirve para comparar rigurosamente requisitos, criterios y resultados.

@@ -1,5 +1,32 @@
 # Estado de la primera ejecución — 13 de noviembre de 2026
 
+## Evaluación crítica de la interfaz y nueva dirección — 13 de noviembre de 2026
+
+Tras la revisión visual del usuario se constató que **el visor actual NO cumple la función principal de la veeduría**. Aunque permite buscar y leer textos, presenta los documentos como bloques planos, desarmando su estructura de tablas y columnas; por ello no sirve para comparar rigurosamente requisitos, criterios y resultados.
+
+**No considerar el sitio actual como un comparador de convocatorias ni un instrumento de validación de criterios de selección.** Es una interfaz de navegación provisional. No se debe escalar la ingestión solo para alimentar ese formato.
+
+### Recuento de cobertura (sin métricas engañosas)
+
+- **42 códigos de convocatoria distintos** representados en **43 registros de Excel** (dos filas tienen el mismo código `2026-C2324`).
+- **16 PDF con texto extraído**: 7 convocatorias y 9 resultados.
+- **0 PDF con sus tablas/celdas reconstruidas y cotejadas visualmente**.
+- **0 convocatorias con sus tres fuentes integradas y comparables por campo**.
+- **51 registros provisionales** de participantes reconocidos por patrón: la estructura y el total real de postulantes NO están confirmados.
+- **4 diferencias/observaciones documentales preliminares**: evidencias por contrastar, no calificaciones de prácticas.
+
+### Redefinición del trabajo
+
+El objetivo deja de ser publicar una lista de convocatorias con enlace a PDF y pasa a ser **integrar Excel + PDF de convocatoria + PDF de resultados en una única ficha semántica comparable**, sin sacrificar literalidad. El producto central deberá ser una **matriz transversal de varias convocatorias** con filtros por carrera, dependencia convocante, estado, requisitos, criterios, ponderaciones, modalidades, plazas, valores económicos y resultados.
+
+La extracción debe reconstruir **rótulos, celdas, filas, columnas y coordenadas en página** del PDF antes de normalizar campos. La información textual ya guardada permanece como respaldo, pero **no puede considerarse extracción estructurada final**.
+
+Una fila de participante detectada por una expresión regular **no equivale** a participante validado ni puede usarse para decir que solamente se presentó una persona.
+
+El sistema registra diferencias y relaciones; **no determina si una práctica es adecuada, irregular o indebida**. Esa valoración corresponde al responsable del proyecto.
+
+La especificación rectora es [NORMA 02 — Integración estructural y comparabilidad](NORMA-02-integracion-comparabilidad.md), subordinada a NORMA 01. El actual `index.html`/`visor.html` permanece sin cambios en esta revisión; **está reconocido como prototipo no conforme con el objetivo definitivo**.
+
 ## Resultado persistido
 
 Se ejecutaron cuatro etapas acumulativas, usando la copia de Google Sheets como referencia estática:

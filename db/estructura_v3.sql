@@ -497,3 +497,137 @@ CREATE VIEW v3_estado_por_convocatoria AS
    WHEN EXISTS(SELECT 1 FROM v3_convocatoria_fuente f WHERE f.numero=c.numero) THEN 'en_curso'
    ELSE 'no_iniciada' END AS estado
  FROM v3_convocatoria c LEFT JOIN v3_convocatorias_validadas v ON v.numero=c.numero;
+
+
+-- IMPLEMENTACIÓN OPERATIVA V3: conservación de capturas y contratos.
+-- Los registros heredados son evidencia parcial, nunca validaciones automáticas.
+CREATE TABLE v3_captura_lote(
+ captura_id INTEGER PRIMARY KEY,
+ ruta_original TEXT NOT NULL UNIQUE,
+ sha256_bytes TEXT NOT NULL CHECK(length(sha256_bytes)=64),
+ bytes_origen INTEGER NOT NULL CHECK(bytes_origen>0),
+ contenido_literal_json TEXT NOT NULL CHECK(json_valid(contenido_literal_json)),
+ fuente_url TEXT NOT NULL,
+ corte_literal TEXT NOT NULL,
+ numero_lote TEXT NOT NULL,
+ registrado_en TEXT NOT NULL,
+ CHECK(bytes_origen=length(CAST(contenido_literal_json AS BLOB)))
+);
+CREATE TABLE v3_lectura_pdf_previa(
+ lectura_id INTEGER PRIMARY KEY,
+ fuente_id INTEGER NOT NULL UNIQUE REFERENCES v3_fuente(fuente_id),
+ captura_id INTEGER NOT NULL REFERENCES v3_captura_lote(captura_id),
+ numero TEXT NOT NULL REFERENCES v3_convocatoria(numero),
+ registro_original_json TEXT NOT NULL CHECK(json_valid(registro_original_json)),
+ estado TEXT NOT NULL DEFAULT 'texto_sin_cotejo'
+   CHECK(estado='texto_sin_cotejo'),
+ nota_integridad TEXT NOT NULL
+);
+-- Entrega realizada POR LA IA fuera del programa; no constituye validación.
+CREATE TABLE v3_entrega_ia(
+ entrega_id INTEGER PRIMARY KEY,
+ lote_id TEXT NOT NULL,
+ version_contrato TEXT NOT NULL,
+ numero TEXT NOT NULL REFERENCES v3_convocatoria(numero),
+ fuente_id INTEGER REFERENCES v3_fuente(fuente_id),
+ contenido_literal_json TEXT NOT NULL CHECK(json_valid(contenido_literal_json)),
+ sha256_contenido TEXT NOT NULL CHECK(length(sha256_contenido)=64),
+ fecha_entrega TEXT NOT NULL,
+ estado_importacion TEXT NOT NULL
+   CHECK(estado_importacion IN ('recibida','estructura_registrada','rechazada','pendiente_cotejo')),
+ nota TEXT
+);
+CREATE TABLE v3_control_lectura(
+ control_id INTEGER PRIMARY KEY,
+ lote_id TEXT NOT NULL,
+ numero TEXT NOT NULL REFERENCES v3_convocatoria(numero),
+ fuente_id INTEGER NOT NULL REFERENCES v3_fuente(fuente_id),
+ version_fuente TEXT NOT NULL,
+ ubicacion TEXT NOT NULL,
+ accion TEXT NOT NULL CHECK(accion IN ('extraer','cotejar','reextraer_justificado')),
+ motivo TEXT,
+ version_lectura TEXT,
+ fecha TEXT NOT NULL,
+ CHECK(accion!='reextraer_justificado' OR
+       (motivo IS NOT NULL AND length(trim(motivo))>8 AND version_lectura IS NOT NULL))
+);
+CREATE UNIQUE INDEX v3_lectura_sin_repetir
+ ON v3_control_lectura(fuente_id,version_fuente,ubicacion)
+ WHERE accion='extraer';
+CREATE TABLE v3_lista_original(
+ lista_id INTEGER PRIMARY KEY,
+ numero TEXT NOT NULL REFERENCES v3_convocatoria(numero),
+ fuente_id INTEGER NOT NULL REFERENCES v3_fuente(fuente_id),
+ titulo_literal TEXT,
+ codigo_concepto TEXT,
+ pagina_id INTEGER REFERENCES v3_pdf_pagina(pagina_id),
+ orden_en_fuente INTEGER NOT NULL
+);
+CREATE TABLE v3_item_original(
+ item_id INTEGER PRIMARY KEY,
+ lista_id INTEGER NOT NULL REFERENCES v3_lista_original(lista_id),
+ orden INTEGER NOT NULL,
+ literal_completo TEXT NOT NULL,
+ dato_id INTEGER REFERENCES v3_dato_original(dato_id),
+ celda_pdf_id INTEGER REFERENCES v3_pdf_celda(celda_id),
+ pagina_id INTEGER REFERENCES v3_pdf_pagina(pagina_id),
+ item_padre_id INTEGER REFERENCES v3_item_original(item_id),
+ nota_literal TEXT,
+ UNIQUE(lista_id,orden)
+);
+CREATE TABLE v3_resultado_fila(
+ resultado_fila_id INTEGER PRIMARY KEY,
+ numero TEXT NOT NULL REFERENCES v3_convocatoria(numero),
+ fuente_id INTEGER NOT NULL REFERENCES v3_fuente(fuente_id),
+ tabla_id INTEGER NOT NULL REFERENCES v3_pdf_tabla(tabla_id),
+ fila_original INTEGER NOT NULL CHECK(fila_original>=0),
+ nombre_literal TEXT,
+ identificacion_literal TEXT,
+ observacion_literal TEXT,
+ UNIQUE(tabla_id,fila_original)
+);
+CREATE TABLE v3_resultado_valor(
+ resultado_valor_id INTEGER PRIMARY KEY,
+ resultado_fila_id INTEGER NOT NULL REFERENCES v3_resultado_fila(resultado_fila_id),
+ celda_pdf_id INTEGER NOT NULL REFERENCES v3_pdf_celda(celda_id),
+ encabezado_literal TEXT,
+ valor_literal TEXT,
+ UNIQUE(resultado_fila_id,celda_pdf_id)
+);
+CREATE VIEW v3_fuentes_de_expediente AS
+ SELECT v.numero,f.fuente_id,f.tipo,f.url_original,f.nombre_literal,
+        f.codigo_interno_literal,f.version_literal,f.resultado_acceso,
+        f.paginas_originales,
+        (SELECT count(*) FROM v3_pdf_pagina p WHERE p.fuente_id=f.fuente_id) AS paginas_estructuradas,
+        (SELECT count(*) FROM v3_pdf_pagina p WHERE p.fuente_id=f.fuente_id
+           AND p.cotejo_visual='completo') AS paginas_cotejadas,
+        (SELECT count(*) FROM v3_revision_fuente r WHERE r.fuente_id=f.fuente_id
+           AND r.numero=v.numero AND r.estado='cotejada') AS revisiones_cotejadas,
+        (SELECT count(*) FROM v3_lectura_pdf_previa h WHERE h.fuente_id=f.fuente_id) AS lecturas_historicas_sin_tablas
+ FROM v3_convocatoria_fuente v JOIN v3_fuente f ON f.fuente_id=v.fuente_id;
+CREATE VIEW v3_cobertura_para_visualizador AS
+ SELECT r.numero,r.fuente_id,f.tipo AS tipo_fuente,r.revision_id,
+        r.estado AS estado_fuente,m.metrica,
+        x.total_observado,x.total_cotejado,
+        CASE WHEN x.revision_id IS NULL THEN 'pendiente' ELSE x.estado END AS estado_categoria,
+        x.evidencia_url,x.nota_cotejo
+ FROM v3_revision_fuente r
+ JOIN v3_fuente f ON f.fuente_id=r.fuente_id
+ JOIN v3_metrica_requerida m ON m.tipo_fuente=f.tipo
+ LEFT JOIN v3_revision_metrica x ON x.revision_id=r.revision_id AND x.metrica=m.metrica;
+CREATE TRIGGER v3_v3_captura_lote_immutable_update BEFORE UPDATE ON v3_captura_lote BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_captura_lote_immutable_delete BEFORE DELETE ON v3_captura_lote BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_lectura_pdf_previa_immutable_update BEFORE UPDATE ON v3_lectura_pdf_previa BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_lectura_pdf_previa_immutable_delete BEFORE DELETE ON v3_lectura_pdf_previa BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_entrega_ia_immutable_update BEFORE UPDATE ON v3_entrega_ia BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_entrega_ia_immutable_delete BEFORE DELETE ON v3_entrega_ia BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_control_lectura_immutable_update BEFORE UPDATE ON v3_control_lectura BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_control_lectura_immutable_delete BEFORE DELETE ON v3_control_lectura BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_lista_original_immutable_update BEFORE UPDATE ON v3_lista_original BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_lista_original_immutable_delete BEFORE DELETE ON v3_lista_original BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_item_original_immutable_update BEFORE UPDATE ON v3_item_original BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_item_original_immutable_delete BEFORE DELETE ON v3_item_original BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_resultado_fila_immutable_update BEFORE UPDATE ON v3_resultado_fila BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_resultado_fila_immutable_delete BEFORE DELETE ON v3_resultado_fila BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_resultado_valor_immutable_update BEFORE UPDATE ON v3_resultado_valor BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;
+CREATE TRIGGER v3_v3_resultado_valor_immutable_delete BEFORE DELETE ON v3_resultado_valor BEGIN SELECT RAISE(ABORT,'Evidencia original inmutable'); END;

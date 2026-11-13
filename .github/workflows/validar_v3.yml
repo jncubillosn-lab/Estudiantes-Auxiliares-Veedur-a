@@ -1,0 +1,21 @@
+name: Validar arquitectura v3 sin fuentes reales
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'db/estructura_v3.sql'
+      - 'scripts/probar_estructura_v3.py'
+      - '.github/workflows/validar_v3.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validacion_integral:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probar Norma 00, registros originales, puertas y revocación
+        run: python scripts/probar_estructura_v3.py

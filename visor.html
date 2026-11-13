@@ -184,7 +184,7 @@ function append(parent){for(var i=1;i<arguments.length;i++){if(arguments[i]!==un
 function label(txt,cls){return el("span","tag"+(cls?" "+cls:""),txt);}
 function link(txt,url){if(!/^https:\/\//.test(String(url||"")))return el("span","smallText","Sin enlace verificable");var a=el("a","",txt);a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;}
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(feedback));$("saveIndicator").textContent="Observaciones guardadas en este navegador";}catch(e){$("saveIndicator").textContent="Sin almacenamiento local: exporta el JSON";}}
-function setReview(key,field,value){if(!feedback[key])feedback[key]={};feedback[key][field]=value;feedback[key].updated_at=new Date().toISOString();save();renderStats();renderList();}
+function setReview(key,field,value){if(!feedback[key])feedback[key]={};feedback[key][field]=value;feedback[key].updated_at=new Date().toISOString();save();renderStats();renderList(field==="notes"||field==="evidence"||field==="count");}
 function fillSelect(id,vals){var s=$(id);vals.sort(function(a,b){return a.localeCompare(b,"es");}).forEach(function(x){var op=el("option","",x);op.value=x;s.appendChild(op);});}
 fillSelect("career",unique(all.flatMap(function(g){return meta(g).careers;})));
 fillSelect("faculty",unique(all.flatMap(function(g){return meta(g).faculty.split(" | ");})));
@@ -236,7 +236,7 @@ return d||b.codigo.localeCompare(a.codigo,"es");
 });
 return list;
 }
-function renderList(){
+function renderList(skipDetail){
 visible=filtered();
 $("resultCount").textContent=visible.length+" de "+all.length;
 if(!visible.find(function(g){return g.codigo===current;})){current=visible[0]?visible[0].codigo:null;tab="overview";}
@@ -254,7 +254,7 @@ append(btn,tags,el("div","smallText","Validaciones: "+nValidated(g)+"/3 · "+(m.
 items.appendChild(btn);});
 if(!visible.length)items.appendChild(el("div","empty","No hay convocatorias que coincidan con estos filtros."));
 box.replaceChildren(items);
-renderDetail();
+if(!skipDetail)renderDetail();
 }
 function sectionTitle(txt){return el("h3","",txt);}
 function infoRow(root,k,value){append(root,el("dt","",k),el("dd","",value||"No registrado en la fuente"));}
@@ -304,7 +304,7 @@ var p=el("pre","raw",d.texto_extraido||"[El extractor no devolvió texto.]");blo
 function showDocs(g,content,kind){
 var m=meta(g),documents=kind==="conv"?m.convs:m.results;content.appendChild(sectionTitle(kind==="conv"?"PDF de convocatoria":"PDF de resultados"));
 if(!documents.length){var box=el("div","callout warn");
-var vals=unique(g.filas.map(function(r){var pos=kind==="conv"?3:5;return val(r,pos);})).join(" | ");
+var vals=kind==="result"&&g.filas.every(function(r){return r.pestana==="Convocatorias Abiertas";})?"[la pestaña de abiertas no tiene columna de resultados]":unique(g.filas.map(function(r){var pos=kind==="conv"?3:5;return val(r,pos);})).join(" | ");
 box.textContent="No se recuperó un PDF de "+(kind==="conv"?"convocatoria":"resultados")+" para este expediente desde la hoja de corte. Valor literal de la celda: "+(vals||"[vacío / sin columna de resultados]")+". Esto NO demuestra que el PDF no exista.";content.appendChild(box);return;}
 if(kind==="result"){var candidates=m.candidates;content.appendChild(el("div","callout",candidates.length?("Se detectaron "+candidates.length+" filas con identificación mediante patrón textual. La cantidad y correspondencia de columnas son PROVISIONALES."):"No se detectaron filas de participantes mediante patrón textual; no debe inferirse que hubo cero postulados."));
 if(candidates.length){var t=el("table"),thead=el("thead"),tr=el("tr");["Orden literal","Identificación literal","Resto completo del renglón"].forEach(function(x){tr.appendChild(el("th","",x));});thead.appendChild(tr);t.appendChild(thead);var tb=el("tbody");

@@ -1,5 +1,14 @@
 # Veeduría de convocatorias de estudiantes auxiliares — UNAL
 
+## Métrica principal y criterio de validación — NORMA 04
+
+**Indicador rector: [convocatorias VALIDADAS](docs/NORMA-04-validacion-convocatorias.md)**, no convocatorias identificadas ni PDF leídos.
+
+**Corte histórico (13-11-2026): 0 validadas / 42 identificadas.** La validación exige, para cada código, **Excel íntegro y cotejado + PDF de convocatoria íntegro y cotejado con enlace guardado + comprobación documentada de la existencia del PDF de resultados + (si existe, PDF de resultados íntegro y cotejado con enlace guardado) + acta de persistencia**.
+
+No encontrar un hipervínculo en Excel no demuestra ausencia de resultados; debe verificarse y registrar fuente/URL, fecha y alcance. Un expediente parcial nunca suma al contador. [Estado computable para Pages](data/estado_validacion.json) · [restricciones SQL del acta](db/estructura_v2.sql).
+
+
 **Estado del producto (13 de noviembre de 2026):** comparador v2 conectado a la proyección de la base documental; extracción estructural y cotejo de PDF reales pendientes. No es una auditoría concluida.
 
 ## Documentación de referencia — empezar aquí

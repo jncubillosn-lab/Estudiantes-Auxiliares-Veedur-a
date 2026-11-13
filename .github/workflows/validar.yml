@@ -1,0 +1,26 @@
+name: Verificar fidelidad de lotes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lotes/**'
+      - 'db/**'
+      - 'scripts/verificar_base.py'
+      - '.github/workflows/validar.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio privado
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar integridad relacional y fidelidad textual
+        run: python scripts/verificar_base.py

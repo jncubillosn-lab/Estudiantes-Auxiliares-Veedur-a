@@ -162,14 +162,18 @@ details[open]>summary{margin-bottom:9px}
     }
     return node("span","literal",text);
   }
-  function renderTree(value){
+  function renderTree(value,contextKey=""){
     if(value===null||typeof value!=="object")return literal(value);
     if(Array.isArray(value)){
       if(!value.length)return node("div","empty","Sin registros en esta sección (no demuestra que el documento no exista).");
       const list=node("ol","tree-list");
       value.forEach((item,i)=>{
-        const li=node("li","tree-item"), heading=node("div","tree-index","Elemento "+(i+1));
-        li.append(heading,renderTree(item));list.append(li);
+        const named=item&&typeof item==="object"&&!Array.isArray(item)?
+          (item.rotulo_literal||item.titulo_literal||item.nombre_literal||item.nombre||item.encabezado_literal||item.codigo_concepto||null):null;
+        const types={paginas:"Página",renglones:"Renglón",filas_excel:"Fila Excel",celdas:"Celda",items:"Ítem",campos_detectados:"Rótulo detectado",tablas_originales:"Tabla",valores:"Valor",metricas:"Métrica"};
+        const generic=(types[contextKey]||"Registro")+" "+(i+1);
+        const li=node("li","tree-item"),heading=node("div","tree-index",named||generic);
+        li.append(heading,renderTree(item,contextKey));list.append(li);
       });
       return list;
     }
@@ -177,7 +181,7 @@ details[open]>summary{margin-bottom:9px}
     Object.keys(value).forEach(key=>{
       const dt=node("dt","",label(key)),dd=node("dd");
       if(value[key]&&typeof value[key]==="object"){
-        const inner=node("div","tree");inner.append(renderTree(value[key]));dd.append(inner);
+        const inner=node("div","tree");inner.append(renderTree(value[key],key));dd.append(inner);
       }else{dd.append(literal(value[key]));}
       dl.append(dt,dd);
     });

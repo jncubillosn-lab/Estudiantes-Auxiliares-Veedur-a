@@ -1,5 +1,8 @@
 # REFERENCIA GENERAL — Veeduría de convocatorias de estudiantes auxiliares (UNAL Bogotá)
 
+**Actualización de implementación V3 (13-11-2026):** el SQLite ahora se puede construir desde los cuatro lotes históricos, conservando todas sus capturas literales y URL PDF. La entrada para el futuro visualizador es un único JSON separado en originales, validación y sintéticos. **No se han cotejado los PDF reales ni existe una sola convocatoria validada.** Véanse [operación](BASE-V3-OPERACION-Y-GARANTIAS.md), [contrato de salida](CONTRATO-V3-VISUALIZACION.md) y [contrato de IA](CONTRATO-V3-EXTRACCION-IA.md). El sitio actual sigue en V2.
+
+
 ## Regla suprema y reinicio del diseño de datos — v3
 
 La [**NORMA 00 — Validación integral e inviolable**](NORMA-00-validacion-integral.md) prevalece sobre todas las normas y decisiones técnicas anteriores. La métrica principal **no** es «convocatorias registradas» sino **convocatorias validadas**, únicamente tras cumplir A Excel, B PDF convocatoria, C comprobación de resultados, D PDF resultados si existe, E integración y acta final, con URL verificable de todos los PDF disponibles.

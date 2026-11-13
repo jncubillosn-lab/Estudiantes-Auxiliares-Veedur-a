@@ -1,6 +1,20 @@
 # Veeduría de convocatorias de estudiantes auxiliares — UNAL
 
-**Estado del producto:** replanteamiento de arquitectura de extracción y comparabilidad (13 de noviembre de 2026).
+**Estado del producto (13 de noviembre de 2026):** comparador v2 conectado a la proyección de la base documental; extracción estructural y cotejo de PDF reales pendientes. No es una auditoría concluida.
+
+## Documentación de referencia — empezar aquí
+
+La documentación del proyecto está **consolidada y ordenada** para que una nueva interacción pueda continuar sin reconstruir la conversación:
+
+1. **[00 — REFERENCIA GENERAL: objetivos, normas, arquitectura, parámetros y estado](docs/00-REFERENCIA-GENERAL.md)** — documento central; distingue explícitamente lo implementado, probado y pendiente.
+2. **[01 — REGISTRO DE DECISIONES, ERRORES Y CORRECCIONES](docs/01-REGISTRO-DECISIONES.md)** — explica el historial de la herramienta, cambios de criterio y por qué se descartaron enfoques anteriores.
+3. **[02 — CONTINUIDAD Y VALIDACIÓN](docs/02-CONTINUIDAD-Y-VALIDACION.md)** — procedimiento para cada lote externo por IA, máximo 50 convocatorias, control de fuentes/lecturas y criterios para darlo por cerrado.
+
+**Jerarquía vinculante:** [NORMA 01 — Integridad](docs/NORMA-01-integridad-exhaustividad.md) → [NORMA 02 — Comparabilidad](docs/NORMA-02-integracion-comparabilidad.md) → [NORMA 03 — IA externa](docs/NORMA-03-extraccion-externa-ia.md) → [configuración operativa](config/operacion_ia.json).
+
+**Principio no negociable:** datos originales completos e inmutables, **separados** de indicadores sintéticos. El asistente estructura y verifica; el responsable del proyecto determina visibilidad e interpretación.
+
+**Fotografía real del avance:** 42 convocatorias distintas; 43 filas Excel; 470 celdas; 16 PDF recuperados **solo como texto** (7 convocatoria, 9 resultados); **0 PDF reales con tablas/celdas cotejadas y 0 expedientes plenamente integrados**. Los lotes de prueba y sus textos no constituyen auditoría documental concluida.
 
 ## Sitio publicado: comparador v2 integrado
 

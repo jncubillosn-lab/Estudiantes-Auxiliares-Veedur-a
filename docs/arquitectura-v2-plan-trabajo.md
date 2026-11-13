@@ -1,5 +1,8 @@
 # Arquitectura v2 y secuencia obligatoria de trabajo
 
+> **Nota histórica (13-11-2026):** este documento conserva el estado y las decisiones **en el momento en que fue redactado**. Algunas referencias a `index.html`, extractores experimentales o «próximo trabajo» han cambiado. Para el **estado vigente**, consultar [Referencia general](00-REFERENCIA-GENERAL.md), [Registro de decisiones](01-REGISTRO-DECISIONES.md) y [Continuidad](02-CONTINUIDAD-Y-VALIDACION.md). No reinterpretar una fase histórica como la arquitectura actual.
+
+
 **Estado:** especificación ejecutable inicial; no sustituye las fuentes ni modifica los lotes existentes.
 **Orden aprobado:** 1. Base de datos → 2. Página comparadora → 3. Extracción de PDF.
 **Normas superiores:** [Norma 01](NORMA-01-integridad-exhaustividad.md) y [Norma 02](NORMA-02-integracion-comparabilidad.md).

@@ -1,5 +1,14 @@
 # CONTINUIDAD Y VALIDACIÓN — Procedimiento operativo
 
+## Puerta de aceptación actual: NORMA 04
+
+**El proceso NO se considera completado ni suma una convocatoria validada** porque existan su código, las celdas Excel o un PDF abierto. Se exigen **todas** las comprobaciones de [NORMA 04](NORMA-04-validacion-convocatorias.md) y un acta SQL final:
+
+**Excel completo → PDF convocatoria íntegro + URL en base → verificación real de disponibilidad de resultados → PDF resultados íntegro + URL si existe / ausencia comprobada con fuente, fecha y alcance si no existe → persistencia y cotejo final.**
+
+Si una fuente está inaccesible, no enlazada, parcialmente leída o sin revisión tabular, registrar **bloqueo o progreso parcial**, nunca «validada». La **métrica principal del estado** es [`v2_conteo_convocatorias_validadas`](../db/estructura_v2.sql); al corte histórico: **0/42**. Los enlaces a PDF deben ser campos de evidencia consultables desde la interfaz.
+
+
 **Versión de procedimiento:** 2026-11-13 · **Estado:** instrucciones vigentes para retomar trabajo posterior.  
 **Leer primero:** [referencia general](00-REFERENCIA-GENERAL.md) · [decisiones históricas](01-REGISTRO-DECISIONES.md).  
 **Precedencia:** [Norma 01](NORMA-01-integridad-exhaustividad.md) → [Norma 02](NORMA-02-integracion-comparabilidad.md) → [Norma 03](NORMA-03-extraccion-externa-ia.md) → [configuración de operación](../config/operacion_ia.json).

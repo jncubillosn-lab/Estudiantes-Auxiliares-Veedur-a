@@ -1,5 +1,11 @@
 # REGISTRO DE DECISIONES, CORRECCIONES Y PROBLEMAS
 
+## Corrección del almacenamiento de medios de verificación
+
+Se constató que la primera importación v2 incorporaba **solo celdas Excel**; las URLs de PDF estaban en los JSON y la proyección de Pages, pero todavía no figuraban como fuentes vinculadas en SQLite.
+
+Se corrigió [`scripts/importar_excel_v2.py`](../scripts/importar_excel_v2.py) para almacenar **URL, ID de archivo, nombre, tipo de PDF, código interno observado y transcripción textual ya recuperada** de las 16 fuentes PDF existentes, con estado **pendiente de cotejo**. Se añadió prueba automática que coteja enlaces en SQLite y verifica que **ninguna convocatoria se certifique por el mero registro de PDF**.
+
 ## Rectificación final del criterio de avance — 13 de noviembre de 2026
 
 **Problema identificado:** durante varios lotes se había dado protagonismo a cifras de filas, convocatorias registradas y PDF leídos, aunque no se había comprobado íntegramente cada expediente ni preservado en la base el enlace de verificación de cada PDF. Además, la regla anterior pedía siempre PDF de resultados, incluso si se había verificado que no estaba disponible.

@@ -121,6 +121,29 @@ reject(lambda:db.execute("DELETE FROM v2_control_validacion_fuente WHERE control
 reject(lambda:db.execute("UPDATE v2_acta_validacion_convocatoria SET nota_cierre='x' WHERE acta_id=1"),
        "modificacion de acta")
 assert db.execute("SELECT convocatorias_validadas,convocatorias_identificadas FROM v2_conteo_convocatorias_validadas").fetchone()==(2,3)
+
+# Una nueva ADENDA vinculada invalida el conteo hasta que se coteje también.
+name="TEST-CON-RESULTADOS"
+u="https://example.org/TEST-CON-RESULTADOS-adenda.pdf"
+new_id=db.execute("""INSERT INTO v2_fuente_original(clase,uri_original,nombre_literal)
+                   VALUES('adenda_pdf',?,'FICTICIO adenda')""",(u,)).lastrowid
+db.execute("""INSERT INTO v2_vinculo_convocatoria_fuente(numero,fuente_id,rol_literal)
+              VALUES(?,?,'adenda_pdf')""",(name,new_id))
+assert db.execute("SELECT convocatorias_validadas FROM v2_conteo_convocatorias_validadas").fetchone()[0]==1
+run=db.execute("""INSERT INTO v2_corrida_extraccion(fuente_id,herramienta,estado)
+              VALUES(?,'IA externa simulada','elementos_extraidos')""",(new_id,)).lastrowid
+db.execute("""INSERT INTO v2_pagina_original(corrida_id,pagina_numero,ancho_pt,alto_pt,estado_cobertura)
+             VALUES(?,1,612,792,'cotejado')""",(run,))
+control(name,"adenda_pdf",new_id,total_pages=1,pages=1)
+assert db.execute("SELECT convocatorias_validadas FROM v2_conteo_convocatorias_validadas").fetchone()[0]==2
+
+# Si aparecen resultados después de un cierre «sin PDF» el código deja de contar.
+more_id=db.execute("""INSERT INTO v2_fuente_original(clase,uri_original,nombre_literal)
+                   VALUES('resultados_pdf',?,'FICTICIO resultados posteriores')""",
+                   ("https://example.org/TEST-NO-RESULTADOS-resultados-nuevos.pdf",)).lastrowid
+db.execute("""INSERT INTO v2_vinculo_convocatoria_fuente(numero,fuente_id,rol_literal)
+              VALUES('TEST-NO-RESULTADOS',?,'resultados_pdf')""",(more_id,))
+assert db.execute("SELECT convocatorias_validadas FROM v2_conteo_convocatorias_validadas").fetchone()[0]==1
 assert db.execute("PRAGMA foreign_key_check").fetchall()==[]
 assert db.execute("PRAGMA integrity_check").fetchone()[0]=="ok"
 db.close()
@@ -145,6 +168,7 @@ print(json.dumps({
  "bloqueo_por_excel_incompleto":True,
  "bloqueo_de_ausencia_si_pdf_resultados_ya_vinculado":True,
  "actas_inmutables":True,
+ "recalculo_si_nuevas_adendas_o_resultados":True,
  "convocatorias_historicas_identificadas":42,
  "convocatorias_historicas_validadas":0
 },ensure_ascii=False,indent=2))

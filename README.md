@@ -2,6 +2,16 @@
 
 **Estado del producto:** replanteamiento de arquitectura de extracción y comparabilidad (13 de noviembre de 2026).
 
+## Arquitectura v2 — implementada como prototipo independiente
+
+La implementación ya se inició en el **orden acordado**, sin tocar los cuatro lotes originales ni reemplazar el sitio `index.html`:
+
+1. **Base de datos:** [esquema v2](db/estructura_v2.sql), originales inmutables, listas/celdas completas, referencias y derivados en tablas separadas.
+2. **Página comparadora:** [abrir comparador v2](comparador-v2.html) · [en GitHub Pages](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/comparador-v2.html). Compara los campos Excel de 42 convocatorias y deja señalados como pendientes los campos PDF todavía sin estructurar.
+3. **Extracción:** [captura con geometría y binario original](scripts/extraer_pdf_v2.py), [importación relacional](scripts/importar_pdf_v2.py) y [exportación del comparador](scripts/exportar_comparador_v2.py).
+
+**[Estado técnico, límites y comandos reproducibles](docs/estado-arquitectura-v2.md)**. Las pruebas automáticas han confirmado la persistencia de 470 celdas existentes y un recorrido completo sobre **PDF de prueba**. **No se ha hecho aún un cotejo visual estructural sobre PDF reales de la UNAL; no declarar expedientes completos**.
+
 ## Regla de datos — distinción estricta
 
 **Datos originales:** los tres documentos fuente y todos sus elementos se conservan **íntegros, inalterados, estructurados y accesibles desde la interfaz**. Una convocatoria integrada puede presentar una sola vez un dato coincidente entre fuentes, como el número de convocatoria, pero cada ocurrencia original continúa disponible para inspección. Una lista de requisitos sigue siendo una lista completa con todos sus requisitos, no un indicador agregado.

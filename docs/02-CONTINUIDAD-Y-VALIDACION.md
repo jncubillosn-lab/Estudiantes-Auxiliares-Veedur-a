@@ -1,5 +1,14 @@
 # CONTINUIDAD Y VALIDACIÓN — Procedimiento operativo
 
+## Nuevo punto de continuación — Base v3 antes de interfaz y extracción
+
+La [Norma 00](NORMA-00-validacion-integral.md) es la condición superior del proyecto. **Primero** validar el nuevo [esquema de base v3](../db/estructura_v3.sql), después adaptar el contrato de la interfaz y solo entonces alimentar el sistema mediante extracción externa por IA.
+
+**No migrar automáticamente como validadas** las 42 convocatorias históricas. La base v3 está **sin expedientes reales**; las pruebas usan exclusivamente convocatorias ficticias. Los datos históricos siguen intactos.
+
+La [arquitectura v3](arquitectura-v3-validacion.md) contiene espacios explícitos para A–E, URL PDF, cobertura por páginas/tablas/requisitos/puntajes, evidencia de búsqueda de resultados, fallas y acta final. El contador de la v3 solo nace de `v3_metrica_principal` después de pasar pruebas de cierre. El visor Pages actual es v2 y **todavía no implementa este contrato**.
+
+
 ## Puerta de aceptación actual: NORMA 04
 
 **El proceso NO se considera completado ni suma una convocatoria validada** porque existan su código, las celdas Excel o un PDF abierto. Se exigen **todas** las comprobaciones de [NORMA 04](NORMA-04-validacion-convocatorias.md) y un acta SQL final:

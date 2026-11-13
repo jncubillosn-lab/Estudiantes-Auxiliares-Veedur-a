@@ -7,6 +7,8 @@ on:
       - 'db/**'
       - 'scripts/verificar_base.py'
       - 'scripts/construir_base.py'
+      - 'scripts/verificar_visor.py'
+      - 'visor.html'
       - '.github/workflows/validar.yml'
   workflow_dispatch:
 
@@ -27,6 +29,14 @@ jobs:
         run: python scripts/verificar_base.py
       - name: Construir base SQLite completa de los cuatro lotes
         run: python scripts/construir_base.py
+      - name: Verificar visor HTML offline
+        run: python scripts/verificar_visor.py
+      - name: Descargar visor HTML privado
+        uses: actions/upload-artifact@v4
+        with:
+          name: visor-unal-html-autonomo
+          path: visor.html
+          retention-days: 7
       - name: Guardar base de consulta en artefacto privado
         uses: actions/upload-artifact@v4
         with:

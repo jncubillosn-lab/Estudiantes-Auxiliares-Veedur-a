@@ -50,7 +50,8 @@ Se definen primero **qué significa fidelidad** y dónde se representa cada elem
 |---|---|---|
 | 1 (máxima) | [NORMA 01 — Integridad y exhaustividad](NORMA-01-integridad-exhaustividad.md) | **100 % de lo observado** debe permanecer representado, íntegro, visible y rastreable; originales separados de sintéticos; no eliminación, sustitución ni ocultamiento de datos. |
 | 2 | [NORMA 02 — Integración y comparabilidad](NORMA-02-integracion-comparabilidad.md) | Ficha integrada con las **tres fuentes**, tablas/celdas/listas originales y matriz comparativa; las discrepancias se preservan. |
-| 3 | [NORMA 03 — Extracción externa por IA](NORMA-03-extraccion-externa-ia.md) | La IA **extrae fuera del programa** siguiendo orden, límite de lote, controles de páginas, lecturas, pendientes y persistencia. |
+| 3 (puerta de cierre) | [NORMA 04 — Validación por convocatoria](NORMA-04-validacion-convocatorias.md) | Una convocatoria solo suma si Excel, PDF convocatoria, verificación de resultados y PDF resultados cuando exista están completos, enlazados y con acta. |
+| 4 (operativa) | [NORMA 03 — Extracción externa por IA](NORMA-03-extraccion-externa-ia.md) | La IA **extrae fuera del programa** siguiendo orden, límite de lote, controles de páginas, lecturas, pendientes y persistencia. |
 | Operativa | [Parámetros vigentes](../config/operacion_ia.json) | Archivo verificable con valores actuales y orden exacto de etapas. |
 
 **No se sustituye una norma superior por una implementación que resulte más cómoda.** El titular del proyecto determina la visibilidad de datos y las decisiones de interpretación/publicación; estas cuestiones no autorizan al asistente a modificar las fuentes.
@@ -125,7 +126,7 @@ Excel fuente / PDF convocatoria / PDF resultados / adendas
 
 | Archivo | Propósito / estado |
 |---|---|
-| [`db/estructura_v2.sql`](../db/estructura_v2.sql) | Contrato aditivo de **19 tablas**, **20 triggers** de inmutabilidad de registros originales y **2 vistas**. Incluye fuentes, vínculo, celdas Excel, páginas, elementos, tablas, celdas PDF, listas/ítems, resultados, revisiones y sintéticos. |
+| [`db/estructura_v2.sql`](../db/estructura_v2.sql) | Contrato aditivo de **21 tablas**, **25 triggers** (incluidas puertas de cierre) y **4 vistas**. Incluye fuentes, vínculo, celdas Excel, páginas, elementos, tablas, celdas PDF, listas/ítems, resultados, revisiones y sintéticos. |
 | [`db/schema.sql`](../db/schema.sql) | Esquema **histórico inicial** de 23 tablas. No es el esquema rector para nuevas integraciones v2. |
 | [`scripts/importar_excel_v2.py`](../scripts/importar_excel_v2.py) | Transforma **los JSON de captura Excel existentes** a SQLite v2 conservando celdas. No genera nuevos datos de PDF. |
 | [`scripts/generar_publicacion_v2.py`](../scripts/generar_publicacion_v2.py) | Reconstruye/valida la **proyección estática actual** desde lotes + SQLite v2 y compara valores. |

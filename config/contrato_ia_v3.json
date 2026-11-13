@@ -1,0 +1,52 @@
+{
+  "version_contrato": "3.0",
+  "norma_suprema": "docs/NORMA-00-validacion-integral.md",
+  "maximo_convocatorias_distintas_por_interaccion": 50,
+  "orden_obligatorio": [
+    "identificar_fuentes",
+    "leer_excel",
+    "leer_convocatoria",
+    "comprobar_resultados",
+    "leer_resultados_si_existe",
+    "integrar",
+    "cotejar",
+    "persistir"
+  ],
+  "tipos_fuente": [
+    "excel",
+    "convocatoria_pdf",
+    "resultados_pdf",
+    "adenda_pdf",
+    "anexo_pdf",
+    "otro_pdf"
+  ],
+  "estados_fuente": [
+    "pendiente",
+    "leida",
+    "estructura_registrada",
+    "cotejada",
+    "fallo_acceso"
+  ],
+  "estados_resultados": [
+    "pdf_encontrado",
+    "sin_pdf_verificado_al_corte",
+    "indeterminado"
+  ],
+  "acciones_lectura": [
+    "extraer",
+    "cotejar",
+    "reextraer_justificado"
+  ],
+  "estados_cierre_manifesto": [
+    "en_curso",
+    "bloqueada",
+    "pendiente_cotejo"
+  ],
+  "deduplicacion_trabajo": "fuente_url+version_fuente+ubicacion+accion_extraer",
+  "repeticion_literal_original": "si ubicacion distinta conservar cada ocurrencia",
+  "regla_cierre": "Nunca certificar una convocatoria desde un manifiesto. Consultar exclusivamente acta y vista SQL v3_metrica_principal",
+  "entrega_originales": "Cada fila/celda/pagina/tabla/elemento/criterio/participante debe conservar texto y posicion completos en la base, no solo indicadores",
+  "ausencias": "sin enlace no equivale a sin PDF verificado",
+  "inmutabilidad": "no actualizar ni borrar originales, lecturas previas ni cotejos; agregar nueva version",
+  "advertencia": "La validacion de manifiesto no certifica haber leído todo el PDF"
+}

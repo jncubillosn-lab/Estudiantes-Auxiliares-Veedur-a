@@ -268,3 +268,140 @@ CREATE TRIGGER IF NOT EXISTS trg_v2_resultado_no_update BEFORE UPDATE ON v2_resu
 CREATE TRIGGER IF NOT EXISTS trg_v2_resultado_no_delete BEFORE DELETE ON v2_resultado_fila_original BEGIN SELECT RAISE(ABORT,'Fila de resultados original inmutable'); END;
 CREATE TRIGGER IF NOT EXISTS trg_v2_puntaje_no_update BEFORE UPDATE ON v2_resultado_columna_original BEGIN SELECT RAISE(ABORT,'Columna de resultados original inmutable'); END;
 CREATE TRIGGER IF NOT EXISTS trg_v2_puntaje_no_delete BEFORE DELETE ON v2_resultado_columna_original BEGIN SELECT RAISE(ABORT,'Columna de resultados original inmutable'); END;
+
+
+-- NORMA 04: CONTROL FINAL. Estas tablas son actas de verificación, nunca fuentes.
+-- Si no existen las tres comprobaciones, NO existe una convocatoria validada.
+-- La existencia de código, texto PDF, URL o inventario no crea un acta.
+CREATE TABLE IF NOT EXISTS v2_control_validacion_fuente (
+ control_id INTEGER PRIMARY KEY,
+ numero TEXT NOT NULL REFERENCES v2_convocatoria(numero),
+ rol TEXT NOT NULL CHECK(rol IN ('excel','convocatoria_pdf','resultados_pdf')),
+ fuente_id INTEGER REFERENCES v2_fuente_original(fuente_id),
+ estado TEXT NOT NULL CHECK(estado IN ('cotejada','sin_pdf_verificado')),
+ url_documento TEXT,
+ url_verificacion TEXT NOT NULL CHECK(length(trim(url_verificacion)) > 10 AND (url_verificacion LIKE 'https://%' OR url_verificacion LIKE 'http://%')),
+ fecha_consulta TEXT NOT NULL CHECK(length(trim(fecha_consulta)) >= 10),
+ alcance_consulta TEXT NOT NULL CHECK(length(trim(alcance_consulta)) >= 12),
+ total_elementos INTEGER,
+ elementos_cotejados INTEGER,
+ total_paginas INTEGER,
+ paginas_cotejadas INTEGER,
+ pendientes_criticos INTEGER NOT NULL CHECK(pendientes_criticos >= 0),
+ nota_cotejo TEXT NOT NULL CHECK(length(trim(nota_cotejo)) >= 12),
+ referencia_persistencia TEXT NOT NULL CHECK(length(trim(referencia_persistencia)) >= 6),
+ creado_en TEXT NOT NULL DEFAULT (datetime('now')),
+ CHECK(
+   (rol='resultados_pdf' AND estado='sin_pdf_verificado'
+    AND fuente_id IS NULL AND url_documento IS NULL
+    AND total_paginas IS NULL AND paginas_cotejadas IS NULL
+    AND total_elementos IS NULL AND elementos_cotejados IS NULL)
+   OR
+   (estado='cotejada' AND fuente_id IS NOT NULL
+    AND (rol='excel' OR (url_documento IS NOT NULL AND length(trim(url_documento)) > 10
+      AND (url_documento LIKE 'https://%' OR url_documento LIKE 'http://%'))))
+ ),
+ CHECK(pendientes_criticos = 0),
+ CHECK(total_elementos IS NULL OR total_elementos >= 0),
+ CHECK(elementos_cotejados IS NULL OR elementos_cotejados >= 0),
+ CHECK(total_paginas IS NULL OR total_paginas >= 0),
+ CHECK(paginas_cotejadas IS NULL OR paginas_cotejadas >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS v2_acta_validacion_convocatoria (
+ acta_id INTEGER PRIMARY KEY,
+ numero TEXT NOT NULL REFERENCES v2_convocatoria(numero),
+ control_excel_id INTEGER NOT NULL REFERENCES v2_control_validacion_fuente(control_id),
+ control_convocatoria_id INTEGER NOT NULL REFERENCES v2_control_validacion_fuente(control_id),
+ control_resultados_id INTEGER NOT NULL REFERENCES v2_control_validacion_fuente(control_id),
+ referencia_cotejo_interfaz TEXT NOT NULL CHECK(length(trim(referencia_cotejo_interfaz)) >= 8),
+ referencia_commit_persistido TEXT NOT NULL CHECK(length(trim(referencia_commit_persistido)) >= 8),
+ nota_cierre TEXT NOT NULL CHECK(length(trim(nota_cierre)) >= 12),
+ fecha_cierre TEXT NOT NULL DEFAULT (datetime('now')),
+ CHECK(control_excel_id != control_convocatoria_id
+       AND control_excel_id != control_resultados_id
+       AND control_convocatoria_id != control_resultados_id)
+);
+
+-- Este disparador evita promover inventarios, fuentes parciales o «PDF no enlazado»
+-- a un expediente VALIDADO. Las declaraciones de cotejo visual siguen siendo
+-- responsabilidad documental de la IA y del responsable, no se generan por CI.
+CREATE TRIGGER IF NOT EXISTS trg_v2_acta_validacion_puertas
+BEFORE INSERT ON v2_acta_validacion_convocatoria
+BEGIN
+ SELECT CASE WHEN NOT EXISTS (
+   SELECT 1 FROM v2_control_validacion_fuente c
+   JOIN v2_fuente_original f ON f.fuente_id=c.fuente_id
+   JOIN v2_vinculo_convocatoria_fuente v ON v.numero=c.numero AND v.fuente_id=c.fuente_id
+   WHERE c.control_id=NEW.control_excel_id
+     AND c.numero=NEW.numero
+     AND c.rol='excel' AND c.estado='cotejada' AND f.clase='excel'
+     AND (f.uri_original IS NOT NULL AND f.uri_original=c.url_verificacion)
+     AND c.total_elementos>=1 AND c.elementos_cotejados=c.total_elementos
+     AND c.total_elementos=(
+       SELECT count(*) FROM v2_excel_celda_original e WHERE e.numero=NEW.numero
+     )
+     AND (SELECT count(*) FROM v2_excel_celda_original e WHERE e.numero=NEW.numero)>0
+     AND c.pendientes_criticos=0
+ ) THEN RAISE(ABORT,'A: Excel no cotejado por completo con sus celdas y URL de origen') END;
+
+ SELECT CASE WHEN NOT EXISTS (
+   SELECT 1 FROM v2_control_validacion_fuente c
+   JOIN v2_fuente_original f ON f.fuente_id=c.fuente_id
+   JOIN v2_vinculo_convocatoria_fuente v ON v.numero=c.numero AND v.fuente_id=c.fuente_id
+   WHERE c.control_id=NEW.control_convocatoria_id AND c.numero=NEW.numero
+     AND c.rol='convocatoria_pdf' AND c.estado='cotejada'
+     AND f.clase='convocatoria_pdf' AND f.uri_original=c.url_documento
+     AND c.total_paginas>=1 AND c.paginas_cotejadas=c.total_paginas
+     AND c.total_paginas=(
+       SELECT count(*) FROM v2_pagina_original p
+       JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+       WHERE r.fuente_id=c.fuente_id AND p.estado_cobertura='cotejado'
+     )
+     AND c.pendientes_criticos=0
+ ) THEN RAISE(ABORT,'B: PDF de convocatoria, enlace o paginas no cotejados') END;
+
+ SELECT CASE WHEN NOT (
+   EXISTS (
+     SELECT 1 FROM v2_control_validacion_fuente c
+     WHERE c.control_id=NEW.control_resultados_id AND c.numero=NEW.numero
+       AND c.rol='resultados_pdf' AND c.estado='sin_pdf_verificado'
+       AND c.fuente_id IS NULL AND c.url_documento IS NULL
+       AND c.pendientes_criticos=0
+   )
+   OR EXISTS (
+     SELECT 1 FROM v2_control_validacion_fuente c
+     JOIN v2_fuente_original f ON f.fuente_id=c.fuente_id
+     JOIN v2_vinculo_convocatoria_fuente v ON v.numero=c.numero AND v.fuente_id=c.fuente_id
+     WHERE c.control_id=NEW.control_resultados_id AND c.numero=NEW.numero
+       AND c.rol='resultados_pdf' AND c.estado='cotejada'
+       AND f.clase='resultados_pdf' AND f.uri_original=c.url_documento
+       AND c.total_paginas>=1 AND c.paginas_cotejadas=c.total_paginas
+       AND c.total_paginas=(
+         SELECT count(*) FROM v2_pagina_original p
+         JOIN v2_corrida_extraccion r ON r.corrida_id=p.corrida_id
+         WHERE r.fuente_id=c.fuente_id AND p.estado_cobertura='cotejado'
+       )
+       AND c.pendientes_criticos=0
+   )
+ ) THEN RAISE(ABORT,'C/D: disponibilidad de resultados no comprobada o PDF resultados incompleto') END;
+END;
+
+-- Los controles/actas son históricos. Una corrección produce un nuevo control
+-- y una nueva acta, sin borrar evidencia ni alterarla retroactivamente.
+CREATE TRIGGER IF NOT EXISTS trg_v2_control_no_update BEFORE UPDATE ON v2_control_validacion_fuente BEGIN SELECT RAISE(ABORT,'Control de cotejo inmutable'); END;
+CREATE TRIGGER IF NOT EXISTS trg_v2_control_no_delete BEFORE DELETE ON v2_control_validacion_fuente BEGIN SELECT RAISE(ABORT,'Control de cotejo inmutable'); END;
+CREATE TRIGGER IF NOT EXISTS trg_v2_acta_no_update BEFORE UPDATE ON v2_acta_validacion_convocatoria BEGIN SELECT RAISE(ABORT,'Acta de validacion inmutable'); END;
+CREATE TRIGGER IF NOT EXISTS trg_v2_acta_no_delete BEFORE DELETE ON v2_acta_validacion_convocatoria BEGIN SELECT RAISE(ABORT,'Acta de validacion inmutable'); END;
+
+CREATE INDEX IF NOT EXISTS idx_v2_control_numero ON v2_control_validacion_fuente(numero,rol,control_id);
+CREATE INDEX IF NOT EXISTS idx_v2_acta_numero ON v2_acta_validacion_convocatoria(numero,acta_id);
+
+-- «Validadas» se obtiene SOLO de actas finales que pasaron las tres puertas;
+-- contar códigos de fuente o PDF descargados daría resultados falsos.
+CREATE VIEW IF NOT EXISTS v2_convocatorias_validadas AS
+ SELECT DISTINCT numero FROM v2_acta_validacion_convocatoria;
+
+CREATE VIEW IF NOT EXISTS v2_conteo_convocatorias_validadas AS
+ SELECT (SELECT count(*) FROM v2_convocatorias_validadas) AS convocatorias_validadas,
+        (SELECT count(*) FROM v2_convocatoria) AS convocatorias_identificadas;

@@ -1,5 +1,12 @@
 # Norma 03 — Operación externa de extracción mediante IA
 
+## Condición de aceptación de la extracción: NORMA 04
+
+La actividad `persistir` dentro de una secuencia no significa por sí misma que la **convocatoria esté validada**. El cierre depende de [NORMA 04 — Validación por convocatoria](NORMA-04-validacion-convocatorias.md): Excel íntegro, PDF convocatoria íntegro y enlazado, comprobación real de resultados y, cuando estén disponibles, PDF resultados íntegro y enlazado, más acta final de evidencia y persistencia. Una comprobación de que no hay PDF de resultados debe incluir **URL de la publicación consultada, fecha y alcance**. Una celda sin enlace no equivale a comprobación.
+
+**El contador es exclusivamente el número de actas aceptadas por la base**, no el número de manifiestos «cotejados» ni el de documentos recuperados. [Regla SQL y métrica](../db/estructura_v2.sql). El validador de manifiestos revisa coherencia declarada, pero **no certifica** automáticamente la lectura visual de un PDF.
+
+
 **Prioridad:** subordinada a [Norma 01](NORMA-01-integridad-exhaustividad.md) y [Norma 02](NORMA-02-integracion-comparabilidad.md).  
 **Decisión vigente:** el programa no realiza la interpretación documental ni necesita un motor autónomo de extracción. **La extracción, lectura visual, reconstrucción de tablas y transcripción estructurada las realiza el asistente de forma externa al programa** en cada interacción solicitada. Los scripts especializados son **herramientas auxiliares opcionales para comprobar evidencias**, nunca sustitutos de la lectura e interpretación de la IA.
 

@@ -37,13 +37,13 @@ def importar(manifest_path: Path, db_path: Path):
         cur=db.execute("""INSERT INTO v2_fuente_original
         (clase,uri_original,nombre_literal,mime_literal,hash_sha256,bytes_originales,contenido_binario,estado_binario,metadatos_originales_json)
         VALUES(?,?,?,?,?,?,?,'binario_capturado',?)""",
-        (manifest["tipo_fuente"],manifest.get("url_fuente"),manifest["archivo_original"],"application/pdf",
+        (manifest["tipo_fuente"],manifest.get("url_fuente"),manifest.get("nombre_archivo_fuente_literal",manifest["archivo_original"]),"application/pdf",
          manifest["sha256_pdf_original"],len(pdf),pdf,
          json.dumps({"fecha":manifest["fecha_captura"],"version":manifest["version"]},ensure_ascii=False)))
         fid=cur.lastrowid
         db.execute("""INSERT INTO v2_vinculo_convocatoria_fuente
         (numero,fuente_id,rol_literal,codigo_observado_literal,correspondencia)
-        VALUES(?,?,?,?,'sin_cotejo')""",(number,fid,manifest["tipo_fuente"],number))
+        VALUES(?,?,?,?,'sin_cotejo')""",(number,fid,manifest["tipo_fuente"],None))
         cur=db.execute("""INSERT INTO v2_corrida_extraccion(fuente_id,herramienta,version_herramienta,estado,reporte_json)
         VALUES(?,'extraer_pdf_v2.py','0.1','elementos_extraidos',?)""",
         (fid,json.dumps(manifest.get("comprobaciones",{}),ensure_ascii=False)))

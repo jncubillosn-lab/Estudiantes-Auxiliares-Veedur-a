@@ -14,6 +14,13 @@ Se ejecutaron cuatro etapas acumulativas, usando la copia de Google Sheets como 
 
 Se detectaron **51 filas candidatas de postulantes** mediante lectura literal y se registraron sus identificadores. Las puntuaciones y la asociación exacta con encabezados siguen pendientes de cotejo visual; no se presumió una calificación si el formato no permite establecerla.
 
+## Verificación automática ejecutada
+
+- [Ejecución satisfactoria de GitHub Actions](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions/runs/43474267345) (13 de noviembre de 2026).
+- El script validó las **470 celdas y los 16 textos íntegros de PDF** contra los JSON de origen; también comprobó la integridad SQLite.
+- Se construyó exitosamente una base binaria con 43 expedientes, 16 documentos, 470 celdas, 2.340 renglones, 51 postulaciones provisionales y 4 hallazgos pendientes.
+- [Artefacto SQLite privado](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions/runs/43474267345/artifacts/14063085090) disponible temporalmente hasta el **20 de noviembre de 2026**. Los datos y SQL permanentes permiten reconstruirlo después de ese plazo.
+
 ## Persistencia
 - `data/lotes/lote_01.json` a `lote_04.json`: fuentes textuales literales.
 - `db/seed_lote_01.sql` a `seed_lote_04.sql`: tablas relacionales con los mismos textos.

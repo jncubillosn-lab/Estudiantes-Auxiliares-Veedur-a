@@ -31,8 +31,21 @@ jobs:
         run: python scripts/probar_exportacion_v3.py
       - name: Construir SQLite temporal desde fuentes versionadas
         run: python scripts/construir_base_v3.py --salida "${RUNNER_TEMP}/convocatorias_v3.sqlite"
+      - name: Validar sintaxis del script de la interfaz
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text(encoding='utf-8')
+          match=re.search(r'<script>(.*?)</script>', html, re.S)
+          assert match, 'Falta el script de la interfaz'
+          Path('/tmp/visor-v3.js').write_text(match.group(1), encoding='utf-8')
+          PY
+          node --check /tmp/visor-v3.js
       - name: Proyectar JSON oficial para GitHub Pages
-        run: python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida data/expedientes_v3.json
+        run: |
+          python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida "${RUNNER_TEMP}/expedientes_v3.json"
+          cp "${RUNNER_TEMP}/expedientes_v3.json" data/expedientes_v3.json
       - name: Asegurar que el JSON respeta la métrica de validación
         run: |
           python - <<'PY'

@@ -7,6 +7,8 @@ on:
       - 'scripts/probar_estructura_v3.py'
       - 'scripts/construir_base_v3.py'
       - 'scripts/probar_construccion_v3.py'
+      - 'scripts/exportar_base_v3.py'
+      - 'scripts/probar_exportacion_v3.py'
       - 'data/lotes/lote_*.json'
       - '.github/workflows/validar_v3.yml'
   workflow_dispatch:
@@ -24,11 +26,17 @@ jobs:
         run: python scripts/probar_estructura_v3.py
       - name: Verificar conservación completa del corte histórico
         run: python scripts/probar_construccion_v3.py
+      - name: Probar contrato completo de visualización
+        run: python scripts/probar_exportacion_v3.py
       - name: Construir base SQLite V3 reproducible
         run: python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
+      - name: Exportar contrato V3 de consulta
+        run: python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida salidas/expedientes_v3.json
       - name: Entregar SQLite de la base (artefacto reconstruible)
         uses: actions/upload-artifact@v4
         with:
           name: base-v3-corte-historico
-          path: salidas/convocatorias_v3.sqlite
+          path: |
+            salidas/convocatorias_v3.sqlite
+            salidas/expedientes_v3.json
           if-no-files-found: error

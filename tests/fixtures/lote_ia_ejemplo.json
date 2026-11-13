@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "modo": "extraccion_externa_por_ia",
+  "lote_id": "PRUEBA-IA-001",
+  "convocatorias": [
+    {
+      "numero": "TEST-C0001",
+      "orden": 1,
+      "etapas_completadas": [
+        "identificar_fuentes",
+        "leer_excel",
+        "leer_convocatoria",
+        "leer_resultados",
+        "integrar",
+        "verificar",
+        "persistir"
+      ],
+      "fuentes": [
+        {
+          "fuente_id": "test-1-excel",
+          "tipo": "excel",
+          "version": "corte-prueba-1",
+          "referencia": "Hoja de prueba fila 2",
+          "estado": "cotejada"
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "tipo": "convocatoria_pdf",
+          "version": "sha-prueba-1",
+          "referencia": "PDF de prueba página 1",
+          "estado": "cotejada"
+        }
+      ],
+      "lecturas": [
+        {
+          "fuente_id": "test-1-excel",
+          "version": "corte-prueba-1",
+          "ubicacion": "hoja:fila2:celda:A",
+          "accion": "extraer",
+          "texto_literal": "Requisito repetido"
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "version": "sha-prueba-1",
+          "ubicacion": "pagina1:tabla1:celda:2:1",
+          "accion": "extraer",
+          "texto_literal": "Requisito repetido"
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "version": "sha-prueba-1",
+          "ubicacion": "pagina1:tabla1:celda:3:1",
+          "accion": "extraer",
+          "texto_literal": "Requisito repetido"
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "version": "sha-prueba-1",
+          "ubicacion": "pagina1:tabla1:celda:2:1",
+          "accion": "cotejar",
+          "motivo": "Verificar encabezado y celda"
+        }
+      ],
+      "cobertura": [
+        {
+          "fuente_id": "test-1-excel",
+          "metrica": "celdas",
+          "esperado": 1,
+          "registrado": 1
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "metrica": "paginas",
+          "esperado": 1,
+          "registrado": 1
+        },
+        {
+          "fuente_id": "test-1-pdf",
+          "metrica": "celdas",
+          "esperado": 2,
+          "registrado": 2
+        }
+      ],
+      "pendientes": [],
+      "cotejo": "cotejada",
+      "persistencia": {
+        "estado": "confirmada",
+        "referencia": "solo-prueba.sqlite::TEST-C0001"
+      }
+    },
+    {
+      "numero": "TEST-C0002",
+      "orden": 2,
+      "etapas_completadas": [
+        "identificar_fuentes",
+        "leer_excel"
+      ],
+      "fuentes": [
+        {
+          "fuente_id": "test-2-excel",
+          "tipo": "excel",
+          "version": "corte-prueba-1",
+          "referencia": "Hoja de prueba fila 3",
+          "estado": "leida"
+        },
+        {
+          "fuente_id": "test-2-resultados",
+          "tipo": "resultados_pdf",
+          "version": "v0",
+          "referencia": "Sin enlace en la hoja",
+          "estado": "sin_enlace"
+        }
+      ],
+      "lecturas": [
+        {
+          "fuente_id": "test-2-excel",
+          "version": "corte-prueba-1",
+          "ubicacion": "hoja:fila3:A:J",
+          "accion": "extraer"
+        }
+      ],
+      "cobertura": [
+        {
+          "fuente_id": "test-2-excel",
+          "metrica": "celdas",
+          "esperado": 10,
+          "registrado": 10
+        }
+      ],
+      "pendientes": [
+        "PDF de resultados: sin enlace verificable"
+      ],
+      "cotejo": "parcial",
+      "persistencia": {
+        "estado": "parcial"
+      }
+    }
+  ]
+}

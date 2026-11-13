@@ -154,7 +154,16 @@ with tempfile.TemporaryDirectory() as temp:
     lots=[ROOT/"data"/"lotes"/f"lote_0{i}.json" for i in range(1,5)]
     result=importar(lots,dbpath)
     assert result["convocatorias"]==42 and result["celdas"]==470
+    assert result["pdf_enlaces_guardados"]==16, "Todos los PDF leídos deben tener URL en SQLite"
     con=sqlite3.connect(dbpath)
+    pdfs=con.execute("""SELECT uri_original,contenido_textual_original,estado_binario
+         FROM v2_fuente_original WHERE clase IN ('convocatoria_pdf','resultados_pdf')""").fetchall()
+    assert len(pdfs)==16
+    assert all(p[0].startswith("https://") and isinstance(p[1],str)
+               and p[1] and p[2]=="pendiente" for p in pdfs)
+    assert con.execute("""SELECT count(*) FROM v2_vinculo_convocatoria_fuente v
+           JOIN v2_fuente_original f ON f.fuente_id=v.fuente_id
+           WHERE f.clase IN ('convocatoria_pdf','resultados_pdf')""").fetchone()[0]==16
     n=con.execute("SELECT convocatorias_validadas,convocatorias_identificadas FROM v2_conteo_convocatorias_validadas").fetchone()
     assert n==(0,42),n
     con.close()
@@ -170,5 +179,6 @@ print(json.dumps({
  "actas_inmutables":True,
  "recalculo_si_nuevas_adendas_o_resultados":True,
  "convocatorias_historicas_identificadas":42,
- "convocatorias_historicas_validadas":0
+ "convocatorias_historicas_validadas":0,
+ "enlaces_pdf_historicos_persistidos_en_sqlite":16
 },ensure_ascii=False,indent=2))

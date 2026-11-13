@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory() as d:
     assert db.execute("SELECT COUNT(*) FROM v2_elemento_original").fetchone()[0]>50
     assert db.execute("SELECT COUNT(*) FROM v2_tabla_original").fetchone()[0]>=1,"No se identificó la retícula de prueba"
     assert db.execute("SELECT COUNT(*) FROM v2_celda_tabla_original").fetchone()[0]>=6
-    assert db.execute("SELECT estado_cobertura FROM v2_pagina_original").fetchone()[0][0]=="elementos_extraidos"
+    assert db.execute("SELECT estado_cobertura FROM v2_pagina_original").fetchone()[0]=="elementos_extraidos"
     # La interpretación semántica se crea explícitamente, separada del respaldo.
     cur=db.execute("""INSERT INTO v2_campo_original
        (fuente_id,numero,codigo_semantico,rotulo_literal,valor_literal,estado_lectura)

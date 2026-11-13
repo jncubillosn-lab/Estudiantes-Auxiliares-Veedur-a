@@ -1,91 +1,79 @@
-# Arquitectura de base de datos V3 — Reconstrucción desde la Norma 00
+# Arquitectura vigente — Base de datos SQLite v3
 
-**Implementación vigente:** [Operación de base V3](BASE-V3-OPERACION-Y-GARANTIAS.md) · [Contrato del visualizador](CONTRATO-V3-VISUALIZACION.md) · [Contrato de extracción IA](CONTRATO-V3-EXTRACCION-IA.md). El sitio de Pages sigue consumiendo V2.
+**Norma suprema:** [NORMA 00](NORMA-00-validacion-integral.md).  
+**Esquema ejecutable:** [db/estructura_v3.sql](../db/estructura_v3.sql).  
+**Operación:** [BASE-V3-OPERACION-Y-GARANTIAS](BASE-V3-OPERACION-Y-GARANTIAS.md).
 
+## 1. Decisión central
 
-**Fecha:** 13-11-2026 · **Estado:** esquema aislado probado, constructor SQLite y contrato JSON operativos. Las cuatro capturas históricas se importan como información parcial; cero expedientes cotejados o validados.  
-**Precedencia:** [NORMA 00 — validación integral](NORMA-00-validacion-integral.md) > [NORMA 01 — integridad](NORMA-01-integridad-exhaustividad.md) > [NORMA 02 — comparabilidad](NORMA-02-integracion-comparabilidad.md) > [NORMA 03 — extracción externa por IA](NORMA-03-extraccion-externa-ia.md). La [NORMA 04](NORMA-04-validacion-convocatorias.md) detalla las puertas operativas A–E.
+La **convocatoria** es la unidad de integración, no una fila de Excel ni un PDF aislado. Cada código agrupa fuentes, versiones, observaciones originales, verificaciones, actas y cálculos **sin perder las apariciones literales** de cada fuente.
 
-## 1. Decisión de reinicio
+La base mantiene tres capas independientes:
 
-Se **reinicia el diseño lógico de la base**, no se borra la investigación ni se destruyen las fuentes. `db/estructura_v3.sql` define desde cero una BD aislada, independiente de `db/schema.sql` y `db/estructura_v2.sql`. Los lotes `data/lotes/lote_01.json` a `lote_04.json` y la página `index.html` **no se modifican** en esta fase.
+1. **Originales inmutables:** Excel (todas las filas y celdas), PDF de convocatoria, PDF de resultados si existe, adendas y anexos. Cada PDF tiene URL real, versión y estructura de páginas, elementos, tablas, celdas y listas.
+2. **Validación documental:** comprobación de resultados, cobertura por documento y tipo de elemento, evidencias para cada criterio A–E, incidencias/resoluciones y actas de cierre.
+3. **Sintéticos opcionales:** indicadores y comparaciones derivados, con fórmula, versión e insumos rastreables, **sin sustituir originales**.
 
-**No marcar ningún caso validado automáticamente.** Los 42 códigos se cargan como identificados y sus fuentes previas quedan preservadas; cero cuentan como validados. La interfaz y la nueva extracción por IA son etapas posteriores.
+## 2. Modelo implementado
 
-### Principio de las dos capas
+El esquema actual define **31 tablas y 5 vistas**. Grupos:
 
-- **Originales:** hojas/celdas, PDF con URL original y versión, páginas, tablas, celdas, elementos visuales, requisitos y datos completos. Se guardan como hechos originales inmutables, incluso duplicados verdaderos; las adendas y revisiones se añaden como nuevas fuentes/versiones.
-- **Derivados:** índices semánticos, indicadores de conteo, sumas y comparaciones. Se almacenan aparte y nunca sustituyen ningún dato original.
+| Grupo | Relaciones principales |
+|---|---|
+| Convocatorias y fuentes | `v3_convocatoria`, `v3_fuente`, `v3_convocatoria_fuente` |
+| Capturas literales de origen | `v3_captura_lote`, `v3_excel_fila`, `v3_excel_celda`, `v3_lectura_pdf_previa` |
+| Estructura PDF que debe entregar la IA | `v3_pdf_pagina`, `v3_pdf_elemento`, `v3_pdf_tabla`, `v3_pdf_celda`, `v3_lista_original`, `v3_item_original`, `v3_resultado_fila`, `v3_resultado_valor` |
+| Datos e indicadores | `v3_dato_original`, `v3_indicador_sintetico`, `v3_indicador_insumo` |
+| Comprobación de resultados | `v3_consulta_resultados` (encontrado / sin PDF verificado al corte / indeterminado) |
+| Cotejos y criterios | `v3_revision_fuente`, `v3_metrica_requerida`, `v3_revision_metrica`, `v3_puerta`, `v3_criterio`, `v3_cumplimiento` |
+| Incidencias y actas | `v3_incidencia`, `v3_resolucion_incidencia`, `v3_acta_validacion`, `v3_acta_fuente` |
+| Trazabilidad del trabajo externo | `v3_entrega_ia`, `v3_control_lectura` |
 
-## 2. Tablas, por grupo y responsabilidad
+### Vistas de consumo
 
-| Grupo | Tablas | Qué garantiza |
-|---|---|---|
-| Identidad y fuentes | `v3_convocatoria`, `v3_fuente`, `v3_convocatoria_fuente` | Una convocatoria por código de integración, N documentos y versiones, **URL exacta obligatoria para cada fuente**, hash/binario opcional, acceso, fecha, nombre y código literal interno. |
-| Excel original | `v3_excel_fila`, `v3_excel_celda` | Cada fila original diferenciada y **todas sus celdas y metadatos**, incluso si hay dos filas para el mismo código; total de columnas declarado comprobable. |
-| PDF original | `v3_pdf_pagina`, `v3_pdf_elemento`, `v3_pdf_tabla`, `v3_pdf_celda` | Página/tabla/celda/elemento y su posición originales, marcas y literales. La IA reconstruye externamente, el programa almacena. |
-| Interpretación y derivados | `v3_dato_original`, `v3_indicador_sintetico`, `v3_indicador_insumo` | Todos los requisitos siguen siendo elementos separados y rastreables; los cálculos derivan de ellos sin reemplazarlos. |
-| Comprobación de resultados | `v3_consulta_resultados` | Tres estados **distintos**: `pdf_encontrado`, `sin_pdf_verificado_al_corte`, `indeterminado`. Consulta, URL, fecha, alcance, explicación y vínculo al PDF cuando existe. |
-| Cotejo por documento | `v3_revision_fuente`, `v3_revision_metrica`, `v3_metrica_requerida` | Prueba por cada documento de **cobertura integral de filas/celdas/páginas/tablas/requisitos/participantes/puntajes**, según clase, con URL, totales y explicación. |
-| Puertas y subcriterios | `v3_puerta`, `v3_criterio`, `v3_cumplimiento` | **A+B+C+(D si aplica)+E**, cada subcriterio con estado, evidencia URL, nota y conteos cuando procede. No basta un `validado=true`. |
-| Fallas documentadas | `v3_incidencia`, `v3_resolucion_incidencia` | El problema se guarda sin borrarse; la justificación o cierre se registra aparte. Las incidencias críticas abiertas bloquean la validación. |
-| Cierre y congelación de fuentes | `v3_acta_validacion`, `v3_acta_fuente` | Acta enlazada a las puertas, consulta de resultados y versión persistida. **Fotografía de todas las fuentes conocidas al cierre**; una fuente nueva obliga a recotejar. |
+- `v3_convocatorias_validadas`: códigos que conservan cierre vigente conforme a las reglas del esquema.
+- `v3_metrica_principal`: **convocatorias validadas** y, como dato auxiliar, identificadas.
+- `v3_estado_por_convocatoria`: no iniciada / en curso / bloqueada / validada.
+- `v3_fuentes_de_expediente`: enlaces y estados por documento.
+- `v3_cobertura_para_visualizador`: cobertura declarada/cotejada por categoría y fuente.
 
-**No hay tabla con un booleano «validada» manipulable libremente**. El estado se obtiene de actas que pasan condiciones y se recalcula contra información nueva.
+**No existe una autorización para editar originales porque el visualizador o un indicador lo necesiten.** Las capturas y evidencias se guardan con registros inmutables y correcciones aditivas.
 
-## 3. Flujo de una convocatoria y espacios de evidencia
+## 3. Puertas A–E
 
-### Puerta A — Excel
+La base dispone de **espacio de evidencia individual** por criterio y fuente, no de un simple booleano manual:
 
-Guardar **todas** las filas, con todas sus celdas, encabezados y enlaces. La revisión `v3_revision_fuente` contiene la fuente, URL, versión, alcance, total esperado/cotejado. En `v3_revision_metrica` deben figurar, por separado, **filas, celdas e hipervínculos**. La puerta A tiene tres subcriterios: `A_FILAS`, `A_CELDAS`, `A_ENLACES`.
+- **A:** Excel íntegro y cotejado.
+- **B:** PDF de convocatoria y todas las versiones/adendas/anexos disponibles, con URL y cotejo de páginas, tablas y elementos.
+- **C:** comprobación real de publicación de resultados con URL, fecha, alcance y conclusión.
+- **D:** PDF de resultados íntegro cuando existe; omisión de D solo ante ausencia **verificada al corte**.
+- **E:** persistencia, trazabilidad, revisión de fuentes y cierre sin incidencias críticas.
 
-### Puerta B — PDF de convocatoria
+La aceptación se registra en `v3_acta_validacion` y se refleja en las vistas de estado. La aparición de nuevas fuentes o una comprobación posterior de resultados puede retirar el estado actual de validación hasta un nuevo cotejo.
 
-Guardar URL original, código literal, versión, todas las páginas/elementos/tablas/celdas. Registrar revisiones con categorías **páginas, tablas, celdas, requisitos, criterios y otros elementos**. La puerta B exige `B_URL`, `B_PAGINAS` y `B_CONTENIDO`. Si hay anexos, adendas u otras versiones disponibles, también deben estar vinculados y cotejados por separado.
+**Las pruebas SQL no prueban por sí mismas que una extracción visual fue exhaustiva.** La lectura/cotejo material sigue siendo obligación de la IA externa; los controles del programa evitan inconsistencias declaradas y falsas actas.
 
-### Puerta C — Comprobación de resultados
+## 4. Entrada y salida única
 
-`v3_consulta_resultados` guarda **el sitio/publicación consultado, URL, fecha, alcance, método, conclusión y vínculo a la fuente si se encontró PDF**. Sin comprobación real, el estado es `indeterminado` y no se cierra el expediente. La puerta C usa `C_BUSQUEDA`.
+```text
+Fuentes originales ──(lectura y cotejo por IA externa)──> SQLite v3
+                                          ├─ originales íntegros
+                                          ├─ evidencia A–E
+                                          └─ sintéticos adicionales
+                                                        ↓
+                                        exportar_base_v3.py
+                                                        ↓
+                                           expedientes_v3.json
+                                                        ↓
+                                         visualizador futuro v3
+```
 
-### Puerta D — Resultados (condicional)
+- **Entrada/contrato IA:** [CONTRATO-V3-EXTRACCION-IA](CONTRATO-V3-EXTRACCION-IA.md) · [configuración](../config/contrato_ia_v3.json). Máximo **50 convocatorias distintas por interacción**.
+- **Salida/contrato para visualizador:** [CONTRATO-V3-VISUALIZACION](CONTRATO-V3-VISUALIZACION.md), con originales, controles y sintéticos separados dentro del expediente.
+- **Construcción reproducible:** `scripts/construir_base_v3.py`; pruebas de base y exportación en [GitHub Actions](https://github.com/jncubillosn-lab/Estudiantes-Auxiliares-Veedur-a/actions).
 
-Si C señala `pdf_encontrado`, es obligatorio guardar su PDF como `v3_fuente`, vincularlo, extraer todas sus páginas, **filas de participantes, puntajes y decisiones**, y completar los criterios `D_URL`, `D_PAGINAS`, `D_CONTENIDO`. Si C declara `sin_pdf_verificado_al_corte` con fuente/fecha/alcance, se omite **únicamente D**, no las demás puertas.
+## 5. Estado real
 
-### Puerta E — Persistencia y auditoría final
+**42 convocatorias identificadas, 43 filas Excel, 470 celdas y 16 PDF de lectura textual previa** incorporables al SQLite v3 desde los cuatro lotes históricos. **Ningún PDF se ha cotejado visualmente íntegro y hay 0 convocatorias validadas**. Los binarios de PDF no están dentro de los lotes históricos.
 
-Registrar evidencia de que el contenido original y sus URLs son accesibles desde el expediente, que la base conserva los datos y que no queda información disponible sin examinar. Los criterios `E_PERSISTENCIA`, `E_INTERFAZ` y `E_INCIDENCIAS` deben estar respaldados. Una diferencia entre fuentes puede documentarse sin declarar culpabilidad; **un error de cobertura o un documento omitido bloquea el cierre**.
-
-### Acta
-
-`v3_acta_validacion` referencia las puertas A, B, C, D si aplica, E, la última consulta de resultados, URL del expediente de interfaz, fecha, responsable y versión de persistencia. El trigger `v3_acta_check` bloquea el INSERT ante criterios incompletos, fuentes sin URL/revisión, faltas en celdas Excel, páginas PDF, adendas y críticas abiertas.
-
-`v3_acta_fuente` registra automáticamente cuáles fuentes existían al aprobar el acta. No se borra el acta si después aparece una nueva: queda histórica, pero **el código deja de contar en la vista actual** hasta un nuevo cierre.
-
-## 4. Métrica principal
-
-`v3_metrica_principal` devuelve:
-
-- `convocatorias_validadas`: cantidad de códigos distintos en `v3_convocatorias_validadas` después de aplicar todas las condiciones y comprobar nuevas fuentes.
-- `convocatorias_identificadas`: inventario secundario; nunca se presenta como avance equivalente.
-
-`v3_estado_por_convocatoria` separa: `no_iniciada`, `en_curso`, `bloqueada`, `validada`.
-
-**Corte histórico:** 42 identificadas, **0 validadas**. El esquema nuevo empieza vacío, sin falsas validaciones heredadas; no debe interpretarse como borrado de la investigación existente.
-
-## 5. Garantías y limitaciones explícitas
-
-**Controlado por SQLite:** claves foráneas, múltiples fuentes, URL, conservación de datos originales, actas inmutables, puertas A–E y criterios individuales, cobertura declarada por tipo de dato, ausencia/presencia de resultados, fuente adicional y crítica sin resolver.
-
-**No controlable automáticamente:** si la IA omitió una marca visual que no registró o si una URL corresponde realmente al documento correcto. La base verifica **consistencia y trazabilidad de la evidencia registrada**, no su veracidad material. El cotejo real de los originales y la comprobación de los enlaces siguen siendo obligatorios.
-
-**Sin mecanismo de extracción autónoma:** los scripts de la fase 3 sirven para controles y pruebas; la IA lee y estructura las fuentes externamente.
-
-## 6. Secuencia para continuar sin desviarnos
-
-1. **Validar esquema v3 y puertas** con casos ficticios incompletos y completos en `scripts/probar_estructura_v3.py`, mediante [GitHub Actions](../.github/workflows/validar_v3.yml).
-2. **Definir contrato de exportación v3 y actualizar la interfaz** para presentar todos los datos originales, enlaces PDF y estado detallado de puertas A–E. No suponer que la página v2 satisface todavía la arquitectura v3.
-3. **Empezar extracción externa de PDF real** sobre pocos expedientes de distinto formato, con cobertura y URLs precisas, antes de crecer en lotes hasta el máximo de 50.
-4. Reconstruir o migrar solo **capturas originales verificadas** a la estructura v3, sin transformar códigos identificados o textos PDF históricos en actas validadas.
-5. Publicar la vista de validaciones únicamente tras comprobar coherencia entre SQLite, exportación JSON y evidencias disponibles desde Pages.
-
-**Criterio de aceptación:** una sola omisión impide el acta. Una acta solo existe si las pruebas estructurales pasan y el cotejo documental real fue realizado y registrado.
+La página de GitHub Pages **todavía consume v2**. Es histórico el diseño v2 y no debe confundirse con el contrato vigente v3. [Archivo histórico](historico/INDICE.md).

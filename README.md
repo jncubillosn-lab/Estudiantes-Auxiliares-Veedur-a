@@ -37,6 +37,12 @@ python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida
 
 El constructor no sobrescribe archivos existentes. La exportación desde SQLite produce `data/expedientes_v3.json` para la [interfaz publicada](https://jncubillosn-lab.github.io/Estudiantes-Auxiliares-Veedur-a/) mediante GitHub Actions. Los resultados no cotejados se señalan como tales, no se promueven a actas ni a indicadores validados.
 
+### Interfaz de consulta
+
+La página principal usa **una tabla comparativa filtrable** con código, título, facultad, programa/perfil del Excel, nivel, estado, fecha de cierre y disponibilidad del enlace de resultados. Permite filtrar por texto, carrera/perfil, facultad, nivel, estado publicado y vínculo de resultados. Al seleccionar una fila, la **ficha lateral** muestra identificación, condiciones, selección, responsable, documentos y resultados estructurados, sin abandonar la tabla. Los datos originales, sus variantes y las páginas completas siguen disponibles en desplegables técnicos que se construyen al abrirlos. Los números de fecha de Excel se presentan como fechas legibles sin modificar sus literales.
+
+La base actual **todavía no tiene tablas de participantes y puntajes reconstruidas** en `resultados_estructurados[]`; los PDF con texto preliminar no se convierten en puntajes supuestamente cotejados. [Especificación de diseño y límites](docs/INTERFAZ-V3-JERARQUIA-DE-LECTURA.md).
+
 ## Contratos vigentes
 
 [Referencia general](docs/00-REFERENCIA-GENERAL.md) · [NORMA 00](docs/NORMA-00-validacion-integral.md) · [NORMA 01](docs/NORMA-01-integridad-exhaustividad.md) · [NORMA 02](docs/NORMA-02-integracion-comparabilidad.md) · [NORMA 03](docs/NORMA-03-extraccion-externa-ia.md) · [NORMA 04](docs/NORMA-04-validacion-convocatorias.md) · [NORMA 05](docs/NORMA-05-ORDEN-EXTRACCION-CERRADAS.md) · [Base v3](docs/BASE-V3-OPERACION-Y-GARANTIAS.md) · [Entrega IA v3](docs/CONTRATO-V3-EXTRACCION-IA.md) · [Contrato visualización v3](docs/CONTRATO-V3-VISUALIZACION.md).

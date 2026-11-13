@@ -141,7 +141,27 @@ function inspect(code){D.inspected=code;let g=conv(code),wrap=$("inspector");wra
  let en=enriched(code);wrap.append(el("h3","","Tablas, campos y listas PDF estructurados"));
  if(!(en.campos_originales||[]).length&&!(en.listas_originales||[]).length)wrap.append(el("div","message","La extracción anterior conservó texto lineal, no filas/celdas PDF verificadas. Esta sección permanece pendiente, sin presentar texto plano como si fuera una tabla."));
  (en.campos_originales||[]).forEach(v=>{let d=el("div","box");d.append(el("strong","",v.rotulo_literal||v.concepto),el("div","original",v.valor_literal??""),el("div","muted","Fuente "+v.fuente_id+" · Página "+(v.pagina??"pendiente")+" · Celda "+(v.celda_id??"pendiente")));wrap.append(d)});
- (en.listas_originales||[]).forEach(l=>{let d=el("div","box");d.append(el("h3","",l.concepto+" · Lista ORIGINAL"));let ol=el("ol","list-original");(l.items||[]).slice().sort((a,b)=>a.orden-b.orden).forEach(i=>ol.append(el("li","",i.literal_completo)));d.append(ol);wrap.append(d)});
+ (en.tablas_originales||[]).forEach(t=>{
+   let section=el("section","box");
+   section.append(el("h3","","TABLA ORIGINAL · fuente "+t.fuente_id+" · página "+t.pagina+" · #"+t.orden_tabla),
+                  el("p","muted","Estado: "+t.estado_revision+" · "+t.filas_detectadas+" filas × "+t.columnas_detectadas+" columnas detectadas. Las celdas sin lectura se conservan como tales."));
+   let table=el("table","dataTable"),body=document.createElement("tbody");
+   const lookup=new Map((t.celdas||[]).map(c=>[c.fila+":"+c.columna,c]));
+   for(let row=0;row<t.filas_detectadas;row++){
+     let tr=el("tr");tr.append(el("th","","Fila "+(row+1)));
+     for(let col=0;col<t.columnas_detectadas;col++){
+       let cell=lookup.get(row+":"+col),td=el("td");
+       if(cell){td.append(el("div","original",cell.texto_literal===null?"[sin texto extraído]":cell.texto_literal));
+         let summary=el("span","source","Celda "+cell.celda_id+" · "+cell.estado_lectura);
+         td.append(summary);
+         let det=document.createElement("details");det.append(el("summary","","Geometría y metadatos"),el("pre","raw",JSON.stringify(cell,null,2)));td.append(det);
+       }else td.append(el("span","absent","Celda no detectada"));
+       tr.append(td);
+     }body.append(tr)
+   }
+   table.append(body);section.append(table);wrap.append(section);
+ });
+ (en.listas_originales||[]).forEach(l=>{let d=el("div","box");d.append(el("h3","",l.concepto+" · Lista ORIGINAL"));let ol=el("ol","list-original");(l.items||[]).slice().sort((a,b)=>a.orden-b.orden).forEach(i=>{let li=el("li","",i.literal_completo);li.append(el("span","source","Ítem "+i.item_id+" · página "+(i.pagina??"pendiente")+" · celda "+(i.celda_id??"pendiente")));ol.append(li)});d.append(ol);wrap.append(d)});
  let synth=en.sinteticos||[];if(synth.length){wrap.append(el("h3","","Indicadores SINTÉTICOS (adicionales)"));synth.forEach(x=>{let d=el("div","box");d.append(el("strong","",x.nombre+" (SINTÉTICO)"),el("p","",JSON.stringify(x.valor)),el("div","muted","Regla "+x.regla+" · v"+x.version_regla));wrap.append(d)})}
 }
 function render(){updateChoices();variables();renderMatrix();if(D.inspected)inspect(D.inspected)}

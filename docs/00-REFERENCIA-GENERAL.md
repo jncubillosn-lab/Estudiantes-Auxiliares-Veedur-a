@@ -10,6 +10,14 @@ Integrar por **código de convocatoria** tres fuentes documentales independiente
 
 El sistema **no califica** automáticamente buenas o malas prácticas. La persona responsable interpreta las diferencias documentadas y decide la visibilidad de los datos. Los indicadores sintéticos son opcionales y **nunca reemplazan** originales.
 
+## Principio estructural: la base es el núcleo
+
+La **Norma 00** gobierna el proyecto. Bajo ella, la **base SQLite v3** constituye el contrato central que establece qué información existe, cómo se conserva y cómo se valida. La **interfaz** y la **extracción externa por IA** son componentes dependientes de la base, **no fuentes de autoridad para rediseñarla a conveniencia**.
+
+**Dependencias:** Norma 00 → **base de datos** → {interfaz de consulta, extracción externa por IA}. El flujo de datos de ejecución puede ir desde las fuentes hacia la base y luego a la interfaz, pero **la dirección de dependencia arquitectónica es desde la base hacia ambos componentes**.
+
+Si aparece contenido que la estructura no prevé, se documenta y se amplía/versiona el contrato **sin perder el original**; después se ajustan la salida para el visualizador y el protocolo de entrega de la IA. Los cambios deben preservar integridad y compatibilidad verificables.
+
 ## 2. Jerarquía y contratos vigentes
 
 | Orden | Documento | Obligatoriedad |

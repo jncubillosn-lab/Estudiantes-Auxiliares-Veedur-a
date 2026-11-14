@@ -3,7 +3,7 @@
   "naturaleza": "interpretacion_semantica_derivada_por_IA_NO_sustituye_fuentes_originales",
   "fecha_corte": "2026-11-13",
   "esquema_sql_v3_modificado": false,
-  "alcance": "avance curricular de perfil en 96 expedientes; lectura selectiva, NO normalizacion exhaustiva de todo el PDF",
+  "alcance": "Avance curricular en 96 expedientes, aspectos de C2374 y ficha parcial trazable de C2381; NO normalización exhaustiva del conjunto",
   "estado_validacion_A_E": "ningun_expediente_validado",
   "reglas": {
     "comparadores": "respeta diferencia entre mayor, mayor o igual, menor, menor o igual, sin operador",
@@ -14,8 +14,618 @@
   "expedientes": [
     {
       "numero": "2026-C2381",
-      "estado": "sin_faceta_interpretada_en_esta_pasada",
-      "facetas": []
+      "estado": "parcial_IA_sin_cotejo_visual_integral",
+      "facetas": [
+        {
+          "categoria": "perfil.descripcion",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Estudiante de posgrado en Química",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 1,
+              "extracto_original": "Estudiante de posgrado en Química",
+              "ubicacion_literal": "perfil.descripcion",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "perfil.papa_minimo",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "PAPA ≥ 4.0",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 1,
+              "extracto_original": "PAPA mayor o igual a 4.0",
+              "ubicacion_literal": "perfil.papa_minimo",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "perfil.competencia.1",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Dominio de conceptos fundamentales de química general",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Dominio de conceptos fundamentales de química general",
+              "ubicacion_literal": "perfil.competencia.1",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "perfil.competencia.2",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Experiencia en apoyo a cursos de laboratorio de Química básica",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Experiencia en apoyo a cursos de laboratorio de Química básica",
+              "ubicacion_literal": "perfil.competencia.2",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "perfil.competencia.3",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Experiencia en manejo del aplicativo HERMES",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Experiencia en manejo del aplicativo HERMES",
+              "ubicacion_literal": "perfil.competencia.3",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.plazas",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "numero",
+            "valor": 1,
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 1,
+              "extracto_original": "No. de estudiantes a",
+              "ubicacion_literal": "oferta.plazas",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.tipo_actividad",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Apoyo a proyectos de investigación o extensión",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 1,
+              "extracto_original": "Apoyo a proyectos",
+              "ubicacion_literal": "oferta.tipo_actividad",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.actividad.1",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Apoyo en el ajuste de la información solicitada en los reportes de laboratorio.",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "1. Apoyo en el ajuste de la información solicitada en los reportes de laboratorio.",
+              "ubicacion_literal": "oferta.actividad.1",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.actividad.2",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Apoyo en la consolidación de información de la evaluación al curso.",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "2. Apoyo en la consolidación de información de la evaluación al curso.",
+              "ubicacion_literal": "oferta.actividad.2",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.actividad.3",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Apoyar en la generación del inventario de reactivos utilizados en las prácticas seleccionadas.",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "3. Apoyar en la generación del inventario de reactivos utilizados en las prácticas",
+              "ubicacion_literal": "oferta.actividad.3",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.modalidad",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Presencial",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Presencial",
+              "ubicacion_literal": "oferta.modalidad",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.carga_horaria",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "numero",
+            "valor": 20,
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "20 H/semana",
+              "ubicacion_literal": "oferta.carga_horaria",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.estimulo_mensual",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "numero",
+            "valor": 1850000,
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "$ 1.850.000",
+              "ubicacion_literal": "oferta.estimulo_mensual",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "oferta.duracion",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "15 días",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "15 Días",
+              "ubicacion_literal": "oferta.duracion",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.envio_documentos",
+          "rol": "plazo",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Enviar los documentos al correo ysantosp@unal.edu.co, oficina 441",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Enviar los documentos al correo",
+              "ubicacion_literal": "aplicacion.envio_documentos",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.documento.1",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Hoja de vida del estudiante",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Hoja de vida del estudiante.",
+              "ubicacion_literal": "aplicacion.documento.1",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.documento.2",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Fotocopia de la cédula",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Fotocopia de la cédula.",
+              "ubicacion_literal": "aplicacion.documento.2",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.documento.3",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Fotocopia del carné de estudiante",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Fotocopia del carné de estudiante.",
+              "ubicacion_literal": "aplicacion.documento.3",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.documento.4",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Historia académica del SIA",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Historia académica del SIA.",
+              "ubicacion_literal": "aplicacion.documento.4",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.documento.5",
+          "rol": "habilitante",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Formato de autorización para verificación de inhabilidad por delitos sexuales cometidos contra menores (obligatorio)",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Formato Autorización para",
+              "ubicacion_literal": "aplicacion.documento.5",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.metodo",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Evaluación de hojas de vida por puntaje de criterios",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "Se recibe el total de hojas de vida para evaluar por puntaje de criterios los cuales son:",
+              "ubicacion_literal": "evaluacion.metodo",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.criterio.1",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "P.A.P.A. — 20 %",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "1. P.A.P.A. 20%",
+              "ubicacion_literal": "evaluacion.criterio.1",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.criterio.2",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Estudiante de posgrado en Química — 20 %",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "2. Estudiante de posgrado en Química 20%",
+              "ubicacion_literal": "evaluacion.criterio.2",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.criterio.3",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Dominio de conceptos fundamentales de química general — 20 %",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "3. Dominio de conceptos fundamentales de química general 20%",
+              "ubicacion_literal": "evaluacion.criterio.3",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.criterio.4",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Experiencia en apoyo a cursos de laboratorio de Química básica — 20 %",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "4. Experiencia en apoyo a cursos de laboratorio de Química básica 20%",
+              "ubicacion_literal": "evaluacion.criterio.4",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "evaluacion.criterio.5",
+          "rol": "evaluacion",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Experiencia en manejo del aplicativo HERMES — 20 %",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "5. Experiencia en manejo del aplicativo HERMES 20%",
+              "ubicacion_literal": "evaluacion.criterio.5",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "aplicacion.fecha_cierre",
+          "rol": "plazo",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "19/11/2026 16:00 (PDF; difiere del Excel)",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 2,
+              "extracto_original": "19/Nov/2026 04:00 p.m.",
+              "ubicacion_literal": "aplicacion.fecha_cierre",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "resultados.fecha_limite_publicacion",
+          "rol": "plazo",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "08/12/2026 10:00 (plazo anunciado; no equivale a publicación)",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "08/Dic/2026 10:00 a.m.",
+              "ubicacion_literal": "resultados.fecha_limite_publicacion",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        },
+        {
+          "categoria": "contacto.responsable",
+          "rol": "oferta",
+          "valor_normalizado": {
+            "tipo": "texto",
+            "valor": "Yesmith Santos Panqueva — Docente, ysantosp@unal.edu.co, cel. 3044910572",
+            "filtro_habilitado": false
+          },
+          "evidencias": [
+            {
+              "tipo_fuente": "convocatoria_pdf",
+              "url_original": "https://drive.google.com/file/d/11e0uf_0IJ5dYra9RksPG1uIT9TkGXI9T/view?usp=drivesdk",
+              "sha256_binario": "c5e62a33d0be0b9248e3df37caf5a33720cc438615f8b1ddabf3b2d650625971",
+              "numero_pagina": 3,
+              "extracto_original": "Yesmith Santos Panqueva - Docente",
+              "ubicacion_literal": "contacto.responsable",
+              "cotejo_visual_integral": false
+            }
+          ],
+          "criterio_de_interpretacion": "lectura_interpretada_por_IA_cotejo_visual_pendiente"
+        }
+      ]
     },
     {
       "numero": "2026-C2380",
@@ -2173,8 +2783,8 @@
   ],
   "metricas_cobertura_esta_version": {
     "expedientes_inventariados": 96,
-    "expedientes_con_facetas": 59,
-    "facetas_interpretadas": 69,
+    "expedientes_con_facetas": 60,
+    "facetas_interpretadas": 98,
     "facetas_sin_operador": 10,
     "convocatorias_validadas_A_E": 0
   }

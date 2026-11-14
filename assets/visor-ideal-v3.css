@@ -134,3 +134,11 @@ tbody tr:nth-child(even){background:#f8fafa}
 @media(max-width:760px){.shell{padding:12px 10px 30px}.basic-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.basic-filters .search{grid-column:1/-1}.advanced-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace{display:block}.navigator{position:static}.navscroll{max-height:270px;min-height:0}.mainview{position:static;max-height:none;overflow:visible;margin-top:12px}.sections{grid-template-columns:repeat(2,minmax(0,1fr))}.section.full{grid-column:1/-1}.case-header,.comparison-header{padding:15px}.jumpbar{padding:8px}}
 @media(max-width:600px){.sections{grid-template-columns:1fr}.section.full{grid-column:auto}.topmetrics{gap:7px}.metric{min-width:85px;padding:8px 10px}.metric strong{font-size:18px}.filter-header{align-items:flex-start;flex-direction:column}.basic-filters{grid-template-columns:1fr 1fr}.advanced-grid{grid-template-columns:1fr 1fr}.data-row{grid-template-columns:minmax(104px,38%) minmax(0,1fr)}.rows,.list-body{padding:9px}.table-wrap{margin:9px}.section-header{padding:11px 12px}.source-row{grid-template-columns:minmax(0,1fr) auto}}
 @media(max-width:390px){.advanced-grid,.basic-filters{grid-template-columns:1fr}.basic-filters .search{grid-column:auto}.audit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* El armazón permanece visible sin red ni datos: NORMA 00 no permite valores inventados. */
+.schema-banner{background:#f1f7f5;border:1px solid #c5ddd5;color:#315e55;border-radius:9px;padding:11px 15px;margin-bottom:9px;font-size:12px;font-weight:670;line-height:1.5}
+.notice{margin-bottom:10px}
+.btn[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 1px #aecfc5}
+.mainview{min-height:420px}
+.sections .section{scroll-margin-top:16px}
+@media(max-width:760px){.schema-banner{margin-top:9px}.mainview{min-height:0}}

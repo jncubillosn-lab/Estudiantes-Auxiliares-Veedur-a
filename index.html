@@ -99,6 +99,50 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
 @media(max-width:1190px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace{grid-template-columns:minmax(410px,1.05fr) minmax(340px,1fr)}.wrap{padding:16px 12px}}
 @media(max-width:880px){header.top{display:block}.stats{justify-content:flex-start;margin-top:12px}.workspace{display:block}.table-scroll{max-height:330px}.detail{position:static;max-height:none;margin-top:14px;scrollbar-gutter:auto}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.list-table{min-width:820px}}
 @media(max-width:500px){.filter-grid{grid-template-columns:1fr}.filter-grid .field:nth-child(1){grid-column:auto}.wrap{padding:14px 9px}.detail-block,.detail-header{padding:13px 12px}.properties{grid-template-columns:minmax(90px,38%) minmax(0,1fr)}}
+
+/* Vista documental: navegación persistente y ficha técnica prioritaria. */
+.workspace{grid-template-columns:minmax(250px,315px) minmax(0,1fr);gap:14px;align-items:start}
+.navigator{position:sticky;top:12px}
+.queue-scroll{max-height:calc(100vh - 154px);min-height:330px;overflow-y:auto;overscroll-behavior:contain}
+.queue-list{display:flex;flex-direction:column;gap:0}
+.queue-card{display:block;width:100%;border:0;border-bottom:1px solid var(--border);border-left:4px solid transparent;background:#fff;text-align:left;padding:12px 13px;color:var(--ink);border-radius:0}
+.queue-card:last-child{border-bottom:0}
+.queue-card:hover{background:#f7faf9}
+.queue-card[aria-current="true"]{background:#edf6f3;border-left-color:var(--accent)}
+.queue-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
+.queue-code{font-size:12px;color:var(--accent);font-weight:800}
+.queue-state{color:var(--muted);font-size:11px;text-align:right}
+.queue-title{font-size:13px;line-height:1.35;font-weight:700;overflow-wrap:anywhere}
+.queue-meta{font-size:11px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
+.queue-count{white-space:nowrap}
+.detail{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-gutter:stable;overscroll-behavior:contain}
+.detail-header{padding:19px 22px;background:#fff}
+.detail-header h2{font-size:clamp(19px,2vw,25px);line-height:1.3;margin:6px 0 10px}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;padding:13px;background:var(--bg)}
+.detail-grid .detail-block{border:1px solid var(--border);border-radius:9px;padding:15px 17px;background:#fff;min-width:0}
+.detail-grid .detail-block.wide{grid-column:1/-1}
+.detail-block h3{font-size:14px;margin:0 0 12px}
+.properties{grid-template-columns:minmax(130px,43%) minmax(0,1fr);border:1px solid #e8eeee;border-radius:6px;overflow:hidden}
+.properties dt,.properties dd{margin:0;border-bottom:0;padding:10px 11px;min-height:36px;font-size:12px;overflow-wrap:anywhere}
+.properties dt{background:#f2f4f4;color:#52666b;font-weight:700}
+.properties dd{background:#fff;white-space:pre-wrap}
+.properties dt:nth-of-type(even),.properties dd:nth-of-type(even){background:#f8faf9}
+.properties dt:last-of-type,.properties dd:last-of-type{border-bottom:0}
+.missing{font-style:normal;color:#69797f;font-weight:500}
+.list-placeholder{display:grid;grid-template-columns:minmax(130px,43%) minmax(0,1fr);border:1px solid #e8eeee;border-radius:6px;margin-top:9px;font-size:12px}
+.list-placeholder .list-name{font-weight:700;color:#52666b;background:#f2f4f4;padding:9px 11px}
+.list-placeholder .list-value{padding:9px 11px}
+.data-note{font-size:11px;color:var(--muted);margin:8px 0 0}
+.results-table{min-width:590px}
+.results-table th,.results-table td{font-size:12px}
+.results-empty{text-align:center;color:#69797f;background:#f8faf9;padding:20px!important}
+.result-summary{font-size:12px;color:#52666b;margin:0 0 10px}
+.detail-grid section[data-kind="validation"]{background:#fff}
+@media(max-width:1190px){.workspace{grid-template-columns:minmax(220px,285px) minmax(0,1fr)}.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:980px){.detail-grid{grid-template-columns:1fr}.detail-grid .detail-block.wide{grid-column:auto}}
+@media(max-width:760px){.workspace{display:block}.navigator{position:static}.queue-scroll{max-height:235px;min-height:0}.detail{position:static;max-height:none;margin-top:12px;overflow:visible}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-grid .detail-block.wide{grid-column:1/-1}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.detail-grid{grid-template-columns:1fr;padding:8px}.detail-grid .detail-block.wide{grid-column:auto}.properties{grid-template-columns:minmax(95px,43%) minmax(0,1fr)}.detail-grid .detail-block{padding:12px}.filter-grid{grid-template-columns:1fr}.detail-header{padding:14px}.wrap{padding:12px 8px}}
+
 </style>
 </head>
 <body>
@@ -127,22 +171,13 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
   <div class="filter-footer"><span id="filter-summary">Los filtros solo organizan la vista; no modifican ni descartan datos.</span><button id="reset" type="button" class="linkbutton">Limpiar filtros</button></div>
 </section>
 <div class="workspace">
-  <section class="panel" aria-label="Tabla de convocatorias">
-    <div class="panel-title"><h2>Listado comparativo</h2><span class="tiny">Selecciona una fila para consultar su ficha</span></div>
-    <div class="table-scroll">
-      <table class="list-table">
-        <thead><tr>
-          <th scope="col">Código</th><th scope="col">Convocatoria</th><th scope="col">Facultad</th>
-          <th scope="col">Carrera / perfil en Excel</th><th scope="col">Nivel</th>
-          <th scope="col">Estado Excel</th><th scope="col">Cierre</th><th scope="col">Resultados</th>
-        </tr></thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
+  <section class="panel navigator" aria-label="Convocatorias filtradas">
+    <div class="panel-title"><h2>Convocatorias filtradas</h2><span class="tiny queue-count" id="list-count">—</span></div>
+    <div class="queue-scroll"><nav id="rows" class="queue-list" aria-label="Seleccionar convocatoria"></nav></div>
   </section>
-  <aside class="panel detail" id="detail" aria-label="Ficha de la convocatoria seleccionada">
+  <main class="panel detail" id="detail" aria-label="Ficha técnica de la convocatoria seleccionada">
     <div class="detail-block"><div class="empty">Cargando la base documental v3…</div></div>
-  </aside>
+  </main>
 </div>
 <div id="global-meta" style="margin-top:13px"></div>
 <footer class="footer">
@@ -183,9 +218,11 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     selection:[/^forma de seleccion$/],
     criteria:[/^criterios de evaluacion$/, /^criterios de seleccion(?: y evaluacion)?$/],
     responsible:[/^responsable de la convocatoria$/, /^nombre del responsable$/],
-    progress:[/^porcentaje de avance$/, /^avance minimo$/, /^avance de la carrera$/]
+    progress:[/^porcentaje de avance$/, /^avance minimo$/, /^avance de la carrera$/],
+    requirements:[/^requisitos?(?: generales| especificos| particulares)?$/, /^condiciones requeridas$/],
+    documents:[/^documentos? (?:requeridos?|a presentar|a aportar|para la inscripcion)$/, /^documentacion requerida$/]
   };
-  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance"};
+  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance",requirements:"Requisitos",documents:"Documentación requerida"};
   let db=null;
   let allRows=[];
   let selected=null;
@@ -279,45 +316,43 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     const filteredRows=filtered(),target=$("rows");
     target.replaceChildren();
     $("metric-visible").textContent=String(filteredRows.length);
+    $("list-count").textContent=filteredRows.length+" de "+allRows.length;
     $("filter-summary").textContent=filteredRows.length+" de "+allRows.length+" convocatorias visibles · datos originales v3";
     if(!filteredRows.length){
-      const tr=make("tr"),td=make("td","");td.colSpan=8;
-      td.append(make("div","empty table-empty","No hay coincidencias. Ajusta los filtros; ninguna convocatoria se ha eliminado."));
-      tr.append(td);target.append(tr);$("detail").replaceChildren(make("div","detail-block","No hay una convocatoria visible con estos filtros."));return;
+      target.append(make("div","empty table-empty","No hay coincidencias. Ajusta los filtros."));
+      $("detail").replaceChildren(make("div","detail-block","No hay convocatoria seleccionada con estos filtros."));
+      return;
     }
     if(!filteredRows.some(r=>r.item.numero===selected))selected=filteredRows[0].item.numero;
     const fragment=document.createDocumentFragment();
     filteredRows.forEach(row=>{
-      const tr=make("tr");
-      tr.setAttribute("aria-selected",String(row.item.numero===selected));
-      const code=make("td");
-      const button=make("button","code-button",row.item.numero);
-      button.type="button";button.setAttribute("aria-label","Ver convocatoria "+row.item.numero);
-      button.addEventListener("click",()=>choose(row.item.numero,true));
-      code.append(button);tr.append(code);
-      appendTextCell(tr,row.title,"title-cell");
-      appendTextCell(tr,row.faculty,"");
-      appendTextCell(tr,row.program,"program-cell");
-      appendTextCell(tr,row.level,"");
-      appendTextCell(tr,row.state,"mini-state");
-      appendTextCell(tr,row.closing,"date-cell");
-      appendTextCell(tr,row.pdfResult?"PDF vinculado":"Sin vínculo","mini-state");
-      tr.addEventListener("click",ev=>{if(ev.target.closest("button"))return;choose(row.item.numero,true);});
-      fragment.append(tr);
+      const btn=make("button","queue-card");
+      btn.type="button";
+      btn.dataset.code=row.item.numero;
+      btn.setAttribute("aria-current",String(row.item.numero===selected));
+      btn.setAttribute("aria-label","Ver convocatoria "+row.item.numero);
+      const top=make("div","queue-card-top");
+      top.append(make("span","queue-code",row.item.numero));
+      top.append(make("span","queue-state",row.state||"Sin dato"));
+      btn.append(top,make("div","queue-title",row.title||"Sin título cargado"));
+      btn.append(make("div","queue-meta",[row.faculty,row.program].filter(nonempty).join(" · ")||"Facultad y programa: sin dato"));
+      btn.append(make("div","queue-meta","Cierre: "+(row.closing||"Sin dato")));
+      btn.addEventListener("click",()=>choose(row.item.numero,true));
+      fragment.append(btn);
     });
     target.append(fragment);
-    drawDetail(allRows.find(r=>r.item.numero===selected).item);
+    const item=allRows.find(r=>r.item.numero===selected);
+    if(item)drawDetail(item.item);
   }
   function choose(code,manual){
     selected=code;
-    const host=$("rows");
-    for(const tr of host.children){
-      const button=tr.querySelector("button");
-      if(button)tr.setAttribute("aria-selected",String(button.textContent===code));
+    for(const btn of $("rows").querySelectorAll("button.queue-card")){
+      btn.setAttribute("aria-current",String(btn.dataset.code===code));
     }
     const item=allRows.find(x=>x.item.numero===code);
     if(item)drawDetail(item.item);
-    if(manual && window.matchMedia && window.matchMedia("(max-width: 880px)").matches){
+    $("detail").scrollTop=0;
+    if(manual && window.matchMedia && window.matchMedia("(max-width: 760px)").matches){
       $("detail").scrollIntoView({behavior:"smooth",block:"start"});
     }
   }
@@ -333,9 +368,9 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     let num=0;
     keys.forEach(key=>{
       const vals=entries(c,key);
-      if(!vals.length)return;
-      const grouped=[...new Map(vals.map(v=>[String(v.fuente_id)+"|"+String(v.literal_completo),v])).values()];
       const dt=make("dt","",fieldNames[key]||key),dd=make("dd");
+      if(!vals.length){dd.append(make("span","missing","Sin dato"));dl.append(dt,dd);return;}
+      const grouped=[...new Map(vals.map(v=>[String(v.fuente_id)+"|"+String(v.literal_completo),v])).values()];
       grouped.forEach((entry,i)=>{
         if(i>0)dd.append(make("div","note","Otra ocurrencia de la fuente:"));
         dd.append(document.createTextNode(key==="published"||key==="closing"?excelDate(entry.literal_completo,key==="closing"):entry.literal_completo));
@@ -349,7 +384,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     if(num)section.append(dl);
     return num;
   }
-  function renderLists(section,c,matcher){
+  function renderLists(section,c,matcher,emptyLabel){
     let count=0;
     (c.listas_originales||[]).filter(l=>matcher(clean([l.codigo_concepto,l.titulo_literal].join(" ")))).forEach(l=>{
       count++;
@@ -359,6 +394,11 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       (l.items||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0)).forEach(v=>list.append(make("li","",v.literal_completo??"Vacío literal")));
       item.append(list);section.append(item);
     });
+    if(!count&&emptyLabel){
+      const box=make("div","list-placeholder");
+      box.append(make("span","list-name",emptyLabel),make("span","list-value missing","Sin dato"));
+      section.append(box);
+    }
     return count;
   }
   function resultsTable(c){
@@ -429,63 +469,82 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     });
     return el;
   }
+  function emptyResultsTable(){
+    const container=make("div","info-table-scroll"),table=make("table","results-table");
+    const head=make("thead"),tr=make("tr");
+    ["Identificación","Participante","Criterios y puntajes","Decisión y observaciones"].forEach(name=>tr.append(make("th","",name)));
+    head.append(tr);table.append(head);
+    const body=make("tbody"),row=make("tr"),cell=make("td","results-empty","Sin dato: no hay filas de resultados estructurados cargadas en este expediente.");
+    cell.colSpan=4;row.append(cell);body.append(row);table.append(body);container.append(table);
+    return container;
+  }
   function drawDetail(c){
     const host=$("detail");host.replaceChildren();
     const head=make("div","detail-header");
     head.append(make("div","code",c.numero));
-    head.append(make("h2","",display(c,"title")||"Convocatoria sin título indexado"));
+    head.append(make("h2","",display(c,"title")||"Sin dato: título de convocatoria"));
     head.append(make("span","detail-status",c.validada===true?"Validada según Norma 00":"Validación: "+String(c.estado_validacion||"no registrada").replace(/_/g," ")));
     head.append(links(c,["convocatoria_pdf","adenda_pdf","anexo_pdf","resultados_pdf"]));
     host.append(head);
-    let s=block("Identificación y fechas","red");
-    addFacts(s,c,["faculty","program","level","state","published","closing","places"]);host.append(s);
+    const grid=make("div","detail-grid");host.append(grid);
+    let s=block("Información general","red");
+    addFacts(s,c,["faculty","program","level","state","published","closing","places"]);
+    grid.append(s);
 
-    s=block("Perfil y condiciones","green");
-    const n=addFacts(s,c,["profile","progress","activities","modality","availability","stipend","duration"]);
-    const listCount=renderLists(s,c,t=>/perfil|actividad|requisito|condicion|documentacion/.test(t));
-    if(!n&&!listCount)s.append(make("p","note","La base aún no ofrece estos campos en forma estructurada para esta convocatoria. Consulta el PDF original desde el encabezado; no se deducen datos de transcripciones preliminares."));
-    host.append(s);
+    s=block("Perfil y requisitos","green");
+    addFacts(s,c,["profile","progress","requirements","documents"]);
+    renderLists(s,c,t=>/requisit|condicion|documentacion|documentos/.test(t),"Requisitos y documentos (lista)");
+    grid.append(s);
+
+    s=block("Condiciones de vinculación","green");
+    addFacts(s,c,["activities","modality","availability","stipend","duration"]);
+    renderLists(s,c,t=>/actividades/.test(t),"Actividades (lista)");
+    grid.append(s);
 
     s=block("Selección y criterios","yellow");
-    const conditions=addFacts(s,c,["selection","criteria"]);
-    const crits=renderLists(s,c,t=>/evaluacion|seleccion|criterio|ponderacion/.test(t));
-    if(!conditions&&!crits)s.append(make("p","note","Sin criterios estructurados en este corte de la base; no significa que el documento carezca de ellos."));
-    host.append(s);
+    addFacts(s,c,["selection","criteria"]);
+    renderLists(s,c,t=>/evaluacion|seleccion|criterio|ponderacion/.test(t),"Criterios y ponderaciones (lista)");
+    grid.append(s);
 
     s=block("Responsable y contacto","blue");
-    const contact=addFacts(s,c,["responsible","email"]);
-    if(!contact)s.append(make("p","note","Sin contacto registrado."));
-    host.append(s);
+    addFacts(s,c,["responsible","email"]);
+    grid.append(s);
 
-    s=block("Resultados publicados","blue");
+    s=block("Resultados de selección","blue");
+    s.classList.add("wide");
     const resultSources=(c.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
-    const results=resultsTable(c);
-    if(results)s.append(results);
-    if(!results){
-      s.append(make("p","note",resultSources.length?
-        "Hay PDF de resultados vinculado, pero aún no existe una tabla de participantes y puntajes estructurada en la exportación v3.":
-        "No hay PDF de resultados vinculado en esta exportación. Esto no acredita su inexistencia."));
-    }
+    const checks=(c.control_validacion?.comprobaciones_resultados||[]);
+    const confirmedAbsence=checks.some(q=>q.estado==="sin_pdf_verificado_al_corte");
+    const resultNote=resultSources.length
+      ?"PDF de resultados vinculado · "+(c.resultados_estructurados||[]).length+" fila(s) estructurada(s)."
+      :confirmedAbsence
+        ?"Sin PDF de resultados encontrado en la consulta documentada al corte; esto puede cambiar."
+        :"Sin PDF de resultados vinculado. No equivale a ausencia comprobada de resultados.";
+    s.append(make("p","result-summary",resultNote));
+    const table=resultsTable(c);
+    s.append(table||emptyResultsTable());
     if(resultSources.length)s.append(links(c,["resultados_pdf"]));
-    // Cualquier dato o lista de resultados sigue representándose aunque no exista una tabla.
-    const resultIds=new Set(resultSources.map(x=>String(x.fuente_id)));
-    (c.datos_originales||[]).filter(x=>resultIds.has(String(x.fuente_id))).forEach(v=>{
-      const o=make("div","observation");
-      o.append(make("div","observation-label",v.rotulo_literal||v.codigo_concepto||"Dato de resultados"));
-      o.append(make("div","observation-text",v.literal_completo??"Vacío literal"));s.append(o);
+    const resultIds=new Set(resultSources.map(f=>String(f.fuente_id)));
+    (c.datos_originales||[]).filter(d=>resultIds.has(String(d.fuente_id))).forEach(d=>{
+      const item=make("div","observation");
+      item.append(make("div","observation-label",d.rotulo_literal||d.codigo_concepto||"Dato de resultados"));
+      item.append(make("div","observation-text",d.literal_completo??"Sin dato"));s.append(item);
     });
-    (c.listas_originales||[]).filter(x=>resultIds.has(String(x.fuente_id))).forEach(v=>{
-      const o=make("div","observation");
-      o.append(make("div","observation-label",v.titulo_literal||v.codigo_concepto||"Lista de resultados"));
-      const list=make("ol");(v.items||[]).forEach(item=>list.append(make("li","",item.literal_completo)));
-      o.append(list);s.append(o);
+    (c.listas_originales||[]).filter(l=>resultIds.has(String(l.fuente_id))).forEach(l=>{
+      const item=make("div","observation"),list=make("ol");
+      item.append(make("div","observation-label",l.titulo_literal||l.codigo_concepto||"Lista de resultados"));
+      if(!(l.items||[]).length)list.append(make("li","missing","Sin dato"));
+      (l.items||[]).forEach(v=>list.append(make("li","",v.literal_completo??"Sin dato")));
+      item.append(list);s.append(item);
     });
-    host.append(s);
+    grid.append(s);
 
-    s=block("Fuentes, validación y expediente completo","", "validation");
-    s.append(make("p","note warning","La ficha es una vista del contrato v3. La lectura textual histórica de un PDF no equivale a una tabla verificada ni convierte la convocatoria en validada."));
-    const docTitle=make("div","observation-label","Documentos asociados a esta convocatoria");
+    s=block("Fuentes y control de validación","","validation");
+    s.classList.add("wide");
+    s.append(make("p","data-note","Los espacios «Sin dato» permiten identificar información todavía no estructurada. No indican por sí solos que falte en el documento original."));
+    const docTitle=make("div","observation-label","Documentos asociados");
     s.append(docTitle);
+    if(!(c.fuentes_originales||[]).length)s.append(make("p","missing","Sin dato: no hay fuentes vinculadas."));
     (c.fuentes_originales||[]).forEach(f=>{
       const row=make("div","doc-row");
       const kind=f.tipo==="excel"?"Excel":f.tipo==="convocatoria_pdf"?"Convocatoria PDF":f.tipo==="resultados_pdf"?"Resultados PDF":f.tipo;
@@ -497,13 +556,13 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       fuentes_originales:c.fuentes_originales,datos_originales:c.datos_originales,listas_originales:c.listas_originales,resultados_estructurados:c.resultados_estructurados
     }));
     s.append(lazyArchive("Ver controles A–E, incidencias y actas",c.control_validacion||{}));
-    if((c.indicadores_sinteticos||[]).length)s.append(lazyArchive("Ver indicadores sintéticos separados",c.indicadores_sinteticos));
+    s.append(lazyArchive("Ver indicadores sintéticos separados",c.indicadores_sinteticos||[]));
     const extra={};
     for(const key of Object.keys(c)){
       if(!["numero","estado_validacion","validada","fuentes_originales","datos_originales","listas_originales","resultados_estructurados","indicadores_sinteticos","control_validacion"].includes(key))extra[key]=c[key];
     }
     if(Object.keys(extra).length)s.append(lazyArchive("Ver campos adicionales del contrato",extra));
-    host.append(s);
+    grid.append(s);
   }
   function ensureContract(data){
     if(data?.version_contrato!=="3.0"||!Array.isArray(data.convocatorias)||!data.metricas)throw Error("La exportación no cumple el contrato v3.");

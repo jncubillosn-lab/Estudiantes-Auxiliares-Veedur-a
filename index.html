@@ -581,17 +581,17 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     grid.append(s);
 
     s=block("Perfil y requisitos","green");
-    addFacts(s,c,["profile","progress","requirements","documents"]);
+    addFacts(s,c,["profile","progress","requirements"]);
     renderLists(s,c,t=>/requisit|condicion|documentacion|documentos/.test(t),"Requisitos y documentos (lista)");
     grid.append(s);
 
     s=block("Condiciones de vinculación","green");
-    addFacts(s,c,["activities","modality","availability","stipend","duration","submission"]);
+    addFacts(s,c,["modality","availability","stipend","duration","submission"]);
     renderLists(s,c,t=>/actividades/.test(t),"Actividades (lista)");
     grid.append(s);
 
     s=block("Selección y criterios","yellow");
-    addFacts(s,c,["selection","criteria"]);
+    addFacts(s,c,["selection"]);
     renderLists(s,c,t=>/evaluacion|seleccion|criterio|ponderacion/.test(t),"Criterios y ponderaciones (lista)");
     grid.append(s);
 

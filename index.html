@@ -2,741 +2,94 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Convocatorias · Veeduría UNAL</title>
-<style>
-:root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;--bg:#f5f7f8;--paper:#fff;--ink:#1a292d;--muted:#58686e;--border:#dbe4e6;--accent:#175e54;--accent-soft:#edf6f3}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);margin:0;font-size:14px;line-height:1.5}
-a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px;overflow-wrap:anywhere}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #65b7a3;outline-offset:2px}
-.wrap{max-width:1720px;margin:0 auto;padding:22px 22px 48px}
-header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:19px;border-bottom:1px solid var(--border)}
-.kicker{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:800}
-h1{font-size:clamp(23px,2.5vw,31px);line-height:1.2;letter-spacing:-.035em;margin:5px 0}
-.subtitle{color:var(--muted);max-width:780px;margin:4px 0 0}
-.stats{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;justify-content:flex-end}
-.stat{min-width:105px;padding-left:12px;border-left:2px solid #bed2cd}
-.stat strong{font-size:23px;display:block;font-variant-numeric:tabular-nums}
-.stat span{color:var(--muted);font-size:11px;display:block}
-.filters{margin:16px 0;padding:13px 16px;border:1px solid var(--border);border-radius:11px;background:var(--paper)}
-.filter-grid{display:grid;grid-template-columns:minmax(200px,2fr) minmax(150px,1.4fr) repeat(3,minmax(120px,1fr)) minmax(135px,1fr);gap:12px;align-items:end}
-.field label{font-size:11px;font-weight:750;color:#4f6468;display:block;margin-bottom:5px}
-.field input,.field select{border-radius:7px;border:1px solid #cfdcdd;background:white;padding:9px 10px;width:100%;min-height:39px;color:var(--ink)}
-.filter-footer{display:flex;justify-content:space-between;align-items:center;margin-top:9px;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
-.linkbutton{border:0;background:transparent;color:var(--accent);font-size:12px;font-weight:750;text-decoration:underline;padding:2px}
-.workspace{display:grid;grid-template-columns:minmax(490px,1.12fr) minmax(390px,1fr);gap:15px;align-items:start}
-.panel{background:var(--paper);border:1px solid var(--border);border-radius:11px;overflow:hidden;min-width:0}
-.panel-title{padding:13px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--border)}
-.panel-title h2{font-size:15px;margin:0}
-.tiny{font-size:11px;color:var(--muted)}
-.table-scroll{max-height:calc(100vh - 251px);min-height:240px;overflow:auto;overscroll-behavior:contain}
-table{border-collapse:collapse;width:100%;text-align:left}
-.list-table{min-width:830px}
-th,td{border-bottom:1px solid #e8eff0;text-align:left;vertical-align:top;padding:10px 12px;overflow-wrap:anywhere}
-th{background:#f5f8f8;color:#53666a;font-size:11px;white-space:nowrap;font-weight:750}
-.list-table thead th{position:sticky;top:0;z-index:2;border-bottom:1px solid var(--border)}
-.list-table tbody tr{cursor:pointer}
-.list-table tbody tr:hover{background:#f7faf9}
-.list-table tbody tr[aria-selected="true"]{background:#eaf5f1}
-.list-table tbody tr[aria-selected="true"] td:first-child{box-shadow:inset 3px 0 var(--accent)}
-.list-table td{font-size:12px;line-height:1.45}
-.code-button{border:0;background:transparent;color:var(--accent);font-weight:800;padding:0;text-align:left}
-.title-cell{min-width:190px;max-width:310px;font-weight:650}
-.program-cell{max-width:260px}
-.date-cell{font-variant-numeric:tabular-nums;white-space:nowrap}
-.mini-state{font-size:11px;white-space:nowrap}
-.mini-state.pending{color:#7b602b}
-.empty{padding:20px;color:var(--muted);font-size:13px;background:#f9fbfb;border:1px dashed #d2dddd;border-radius:8px}
-.table-empty{border:0;border-radius:0}
-.detail{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
-.detail-header{padding:17px 19px;border-bottom:1px solid var(--border)}
-.detail-header .code{font-size:12px;font-weight:800;color:var(--accent)}
-.detail-header h2{font-size:19px;line-height:1.32;margin:6px 0;overflow-wrap:anywhere}
-.detail-status{font-size:11px;color:#655126;background:#fff6e5;border:1px solid #f0dfbc;border-radius:30px;display:inline-block;padding:3px 8px;margin-top:8px}
-.detail-block{padding:16px 19px;border-bottom:1px solid var(--border);min-width:0}
-.detail-block:last-child{border-bottom:0}
-.detail-block h3{font-size:14px;margin:0 0 9px;display:flex;align-items:center;gap:8px}
-.dot{width:7px;height:7px;border-radius:99px;display:inline-block;flex:none;background:var(--accent)}
-.dot.green{background:#3f9271}.dot.yellow{background:#b49a43}.dot.blue{background:#4188a5}.dot.red{background:#be6772}
-.properties{display:grid;grid-template-columns:minmax(120px,36%) minmax(0,1fr);margin:0}
-.properties dt,.properties dd{margin:0;padding:8px 0;border-bottom:1px solid #edf1f1;overflow-wrap:anywhere}
-.properties dt{font-weight:700;font-size:12px;color:#627379;padding-right:10px}
-.properties dd{font-size:12.5px;white-space:pre-wrap}
-.properties dt:last-of-type,.properties dd:last-of-type{border-bottom:0}
-.missing{color:#89969a;font-style:italic}
-.note{color:#617176;font-size:12px;margin:8px 0}
-.note.warning{color:#88652d}
-.sources{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.source-link{font-size:12px;display:inline-block;padding:5px 9px;border:1px solid #bfd9d2;background:#f3faf8;border-radius:6px;text-decoration:none}
-.source-link:hover{background:#e6f4ef}
-.observation{padding:10px 11px;background:#fafcfc;border:1px solid #e6ecec;border-radius:7px;margin:7px 0}
-.observation-label{font-size:12px;font-weight:750;margin-bottom:3px}
-.observation-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}
-.observation-src{font-size:11px;color:#6c7c80;margin-top:6px}
-.results-table,.criteria-table{min-width:560px}
-.results-table td,.criteria-table td{font-size:12px;white-space:pre-wrap}
-.results-table th,.criteria-table th{white-space:normal}
-.info-table-scroll{overflow-x:auto;border:1px solid #e2e9ea;border-radius:8px}
-section[data-kind="validation"]{background:#fffdf8}
-details.archive{border:1px solid var(--border);border-radius:8px;background:#fafcfc;margin-top:9px;overflow:hidden}
-details.archive>summary{padding:11px 13px;cursor:pointer;font-size:12px;font-weight:750;color:#315c57}
-details.archive[open]>summary{border-bottom:1px solid var(--border)}
-.archive-body{padding:10px 14px;max-height:460px;overflow:auto}
-.raw-fields{margin:0;display:grid;grid-template-columns:minmax(110px,30%) minmax(0,1fr)}
-.raw-fields dt,.raw-fields dd{font-size:11px;border-bottom:1px solid #e8eeee;margin:0;padding:6px 7px;overflow-wrap:anywhere}
-.raw-fields dt{color:#657478;font-weight:700}
-.raw-fields dd{white-space:pre-wrap}
-.raw-list{margin:0;padding:0 0 0 16px}
-.raw-list>li{margin:6px 0;padding:5px;border-left:1px solid #d8e2e3;overflow-wrap:anywhere}
-.raw-subtitle{font-weight:750;font-size:12px}
-.doc-row{padding:8px 0;border-bottom:1px solid #edf0f0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
-.doc-row:last-child{border-bottom:0}
-.footer{font-size:11px;color:var(--muted);margin-top:17px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
-@media(max-width:1190px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace{grid-template-columns:minmax(410px,1.05fr) minmax(340px,1fr)}.wrap{padding:16px 12px}}
-@media(max-width:880px){header.top{display:block}.stats{justify-content:flex-start;margin-top:12px}.workspace{display:block}.table-scroll{max-height:330px}.detail{position:static;max-height:none;margin-top:14px;scrollbar-gutter:auto}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.list-table{min-width:820px}}
-@media(max-width:500px){.filter-grid{grid-template-columns:1fr}.filter-grid .field:nth-child(1){grid-column:auto}.wrap{padding:14px 9px}.detail-block,.detail-header{padding:13px 12px}.properties{grid-template-columns:minmax(90px,38%) minmax(0,1fr)}}
-
-/* Vista documental: navegación persistente y ficha técnica prioritaria. */
-.workspace{grid-template-columns:minmax(250px,315px) minmax(0,1fr);gap:14px;align-items:start}
-.navigator{position:sticky;top:12px}
-.queue-scroll{max-height:calc(100vh - 154px);min-height:330px;overflow-y:auto;overscroll-behavior:contain}
-.queue-list{display:flex;flex-direction:column;gap:0}
-.queue-card{display:block;width:100%;border:0;border-bottom:1px solid var(--border);border-left:4px solid transparent;background:#fff;text-align:left;padding:12px 13px;color:var(--ink);border-radius:0}
-.queue-card:last-child{border-bottom:0}
-.queue-card:hover{background:#f7faf9}
-.queue-card[aria-current="true"]{background:#edf6f3;border-left-color:var(--accent)}
-.queue-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
-.queue-code{font-size:12px;color:var(--accent);font-weight:800}
-.queue-state{color:var(--muted);font-size:11px;text-align:right}
-.queue-title{font-size:13px;line-height:1.35;font-weight:700;overflow-wrap:anywhere}
-.queue-meta{font-size:11px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
-.queue-count{white-space:nowrap}
-.detail{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-gutter:stable;overscroll-behavior:contain}
-.detail-header{padding:19px 22px;background:#fff}
-.detail-header h2{font-size:clamp(19px,2vw,25px);line-height:1.3;margin:6px 0 10px}
-.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;padding:13px;background:var(--bg)}
-.detail-grid .detail-block{border:1px solid var(--border);border-radius:9px;padding:15px 17px;background:#fff;min-width:0}
-.detail-grid .detail-block.wide{grid-column:1/-1}
-.detail-block h3{font-size:14px;margin:0 0 12px}
-.properties{grid-template-columns:minmax(130px,43%) minmax(0,1fr);border:1px solid #e8eeee;border-radius:6px;overflow:hidden}
-.properties dt,.properties dd{margin:0;border-bottom:0;padding:10px 11px;min-height:36px;font-size:12px;overflow-wrap:anywhere}
-.properties dt{background:#f2f4f4;color:#52666b;font-weight:700}
-.properties dd{background:#fff;white-space:pre-wrap}
-.properties dt:nth-of-type(even),.properties dd:nth-of-type(even){background:#f8faf9}
-.properties dt:last-of-type,.properties dd:last-of-type{border-bottom:0}
-.missing{font-style:normal;color:#69797f;font-weight:500}
-.list-placeholder{display:grid;grid-template-columns:minmax(130px,43%) minmax(0,1fr);border:1px solid #e8eeee;border-radius:6px;margin-top:9px;font-size:12px}
-.list-placeholder .list-name{font-weight:700;color:#52666b;background:#f2f4f4;padding:9px 11px}
-.list-placeholder .list-value{padding:9px 11px}
-.data-note{font-size:11px;color:var(--muted);margin:8px 0 0}
-.results-table{min-width:590px}
-.results-table th,.results-table td{font-size:12px}
-.results-empty{text-align:center;color:#69797f;background:#f8faf9;padding:20px!important}
-.result-summary{font-size:12px;color:#52666b;margin:0 0 10px}
-.detail-grid section[data-kind="validation"]{background:#fff}
-@media(max-width:1190px){.workspace{grid-template-columns:minmax(220px,285px) minmax(0,1fr)}.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:980px){.detail-grid{grid-template-columns:1fr}.detail-grid .detail-block.wide{grid-column:auto}}
-@media(max-width:760px){.workspace{display:block}.navigator{position:static}.queue-scroll{max-height:235px;min-height:0}.detail{position:static;max-height:none;margin-top:12px;overflow:visible}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-grid .detail-block.wide{grid-column:1/-1}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.detail-grid{grid-template-columns:1fr;padding:8px}.detail-grid .detail-block.wide{grid-column:auto}.properties{grid-template-columns:minmax(95px,43%) minmax(0,1fr)}.detail-grid .detail-block{padding:12px}.filter-grid{grid-template-columns:1fr}.detail-header{padding:14px}.wrap{padding:12px 8px}}
-
-
-/* Contenido semántico IA: visible, derivado y trazable, sin modificar originales. */
-.evidence-label{display:inline-block;font-size:10px;color:#70552b;margin-left:5px}
-.evidence-link{font-size:11px;color:var(--accent);display:inline-block;margin-left:7px}
-.facet-item{margin:4px 0 8px;padding:7px 9px;background:#f8faf9;border-left:2px solid #c6d7d3;border-radius:3px}
-.facet-value{font-size:12px;overflow-wrap:anywhere}
-.list-facet{margin:8px 0 0;padding-left:19px}
-.list-facet li{margin-bottom:8px}
-.source-reading{border:1px solid var(--border);border-radius:7px;margin:9px 0;overflow:hidden}
-.source-reading summary{background:#f7faf9;padding:9px 11px;font-size:12px;font-weight:700;cursor:pointer}
-.source-reading pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.55 system-ui,sans-serif;padding:13px;background:#fff}
-.source-reading .reading-note{padding:8px 12px;font-size:11px;color:#78622c}
-.facet-disclaimer{font-size:11px;color:#736245;margin:5px 0 9px}
-
-</style>
+<meta name="description" content="Explorador público de convocatorias y resultados de estudiantes auxiliares. Fichas completas, comparaciones, filtros y fuentes verificables.">
+<title>Convocatorias · Consulta y veeduría UNAL</title>
+<link rel="stylesheet" href="./assets/visor-ideal-v3.css">
 </head>
 <body>
-<div class="wrap">
-<header class="top">
-  <div>
-    <div class="kicker">Veeduría documental · Universidad Nacional de Colombia</div>
-    <h1>Convocatorias de estudiantes auxiliares</h1>
-    <p class="subtitle">Compara los datos de la tabla, filtra convocatorias y consulta su detalle sin salir del listado. Los documentos originales permanecen vinculados.</p>
-  </div>
-  <div class="stats" aria-label="Métricas oficiales">
-    <div class="stat"><strong id="metric-validated">—</strong><span>Validadas · Norma 00</span></div>
-    <div class="stat"><strong id="metric-total">—</strong><span>Identificadas en la base</span></div>
-    <div class="stat"><strong id="metric-visible">—</strong><span>Visibles con filtros</span></div>
-  </div>
-</header>
-<section class="filters" aria-label="Filtrar convocatorias">
-  <div class="filter-grid">
-    <div class="field"><label for="search">Buscar código, nombre o dependencia</label><input type="search" id="search" placeholder="Buscar en las convocatorias…"></div>
-    <div class="field"><label for="program">Carrera o perfil publicado</label><input type="search" id="program" placeholder="Ej. Mecánica, Sistemas…"></div>
-    <div class="field"><label for="faculty">Facultad</label><select id="faculty"><option value="">Todas</option></select></div>
-    <div class="field"><label for="level">Nivel</label><select id="level"><option value="">Todos</option></select></div>
-    <div class="field"><label for="state">Estado publicado</label><select id="state"><option value="">Todos</option></select></div>
-    <div class="field"><label for="results">PDF de resultados</label><select id="results"><option value="">Todos</option><option value="yes">Vinculado</option><option value="no">Sin vínculo</option></select></div>
-    <div class="field"><label for="progressMin">Avance mínimo exigido desde (%)</label><input type="number" min="0" max="100" step="1" id="progressMin" placeholder="Ej. 50 · solo datos interpretados"></div>
-  </div>
-  <div class="filter-footer"><span id="filter-summary">Los filtros solo organizan la vista; no modifican ni descartan datos.</span><button id="reset" type="button" class="linkbutton">Limpiar filtros</button></div>
-</section>
-<div class="workspace">
-  <section class="panel navigator" aria-label="Convocatorias filtradas">
-    <div class="panel-title"><h2>Convocatorias filtradas</h2><span class="tiny queue-count" id="list-count">—</span></div>
-    <div class="queue-scroll"><nav id="rows" class="queue-list" aria-label="Seleccionar convocatoria"></nav></div>
+<div class="shell">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">Consulta documental · Universidad Nacional de Colombia</div>
+      <h1>Convocatorias de estudiantes auxiliares</h1>
+      <p class="subtitle">Explora, compara y revisa cada expediente sin descargar documentos para consultar sus datos básicos. Los campos faltantes permanecen visibles y los originales se conservan como evidencia.</p>
+    </div>
+    <div class="topmetrics" aria-label="Métricas de la base">
+      <div class="metric"><strong id="metric-total">—</strong><small>Convocatorias</small></div>
+      <div class="metric"><strong id="metric-visible">—</strong><small>Con los filtros</small></div>
+      <div class="metric"><strong id="metric-results">—</strong><small>Con PDF de resultados</small></div>
+      <div class="metric"><strong id="metric-validated">—</strong><small>Validadas A–E</small></div>
+    </div>
+  </header>
+
+  <section class="filters" aria-labelledby="filters-title">
+    <div class="filter-header">
+      <div class="filter-heading"><span class="filter-dot" aria-hidden="true"></span><h2 id="filters-title">Filtros de convocatorias</h2></div>
+      <div class="filter-actions">
+        <button class="btn" type="button" id="reset">Limpiar filtros</button>
+        <button class="btn primary" type="button" id="compare" disabled>Comparar (0/4)</button>
+        <button class="btn" type="button" id="show-detail" hidden>Volver a la ficha</button>
+      </div>
+    </div>
+    <div class="basic-filters">
+      <div class="field search"><label id="label-search" for="search">Búsqueda de texto, código, perfil, criterios o documentos</label><input data-filter id="search" type="search" placeholder="Código, programa, requisitos, proyecto…"></div>
+      <div class="field"><label id="label-faculty" for="faculty">Facultad</label><select data-filter id="faculty"><option value="">Todas las facultades</option></select></div>
+      <div class="field"><label id="label-level" for="level">Tipo de estudiante</label><select data-filter id="level"><option value="">Pregrado y posgrado</option></select></div>
+      <div class="field"><label id="label-state" for="state">Estado publicado</label><select data-filter id="state"><option value="">Todos los estados</option></select></div>
+      <div class="field"><label id="label-results" for="results">Resultados</label><select data-filter id="results"><option value="">Todos</option><option value="pdf">Con PDF vinculado</option><option value="table">Con participantes estructurados</option><option value="none">Sin resultados vinculados</option></select></div>
+    </div>
+
+    <details class="advanced" id="advanced-filters">
+      <summary>Filtros avanzados · requisitos, condiciones, fechas y auditoría</summary>
+      <div class="advanced-grid">
+        <div class="filter-section-label">Perfil y características académicas</div>
+        <div class="field"><label id="label-program" for="program">Carrera / programa / perfil</label><input data-filter id="program" placeholder="Ej. Ingeniería Mecánica"></div>
+        <div class="field"><label id="label-seedbed" for="seedbed">Semillero o grupo</label><input data-filter id="seedbed" placeholder="Ej. SEMIBIOT"></div>
+        <div class="field"><label id="label-advanceMin" for="advanceMin">Avance mínimo exigido desde (%)</label><input data-filter id="advanceMin" type="number" min="0" max="100" step="1" placeholder="Ej. 40"></div>
+        <div class="field"><label id="label-papaMin" for="papaMin">P.A.P.A. requerido desde</label><input data-filter id="papaMin" type="number" min="0" max="5" step=".1" placeholder="Ej. 3,5"></div>
+        <div class="field"><label id="label-activityType" for="activityType">Tipo de actividad</label><select data-filter id="activityType"><option value="">Todos</option></select></div>
+
+        <div class="filter-section-label">Condiciones de vinculación y plazas</div>
+        <div class="field"><label id="label-modality" for="modality">Modalidad</label><select data-filter id="modality"><option value="">Todas</option></select></div>
+        <div class="field"><label id="label-placesMin" for="placesMin">Plazas mínimas</label><input data-filter id="placesMin" type="number" min="0" step="1" placeholder="Ej. 1"></div>
+        <div class="field"><label id="label-placesMax" for="placesMax">Plazas máximas</label><input data-filter id="placesMax" type="number" min="0" step="1" placeholder="Ej. 3"></div>
+        <div class="field"><label id="label-hoursMin" for="hoursMin">Horas mín./semana</label><input data-filter id="hoursMin" type="number" min="0" step=".5" placeholder="Ej. 8"></div>
+        <div class="field"><label id="label-hoursMax" for="hoursMax">Horas máx./semana</label><input data-filter id="hoursMax" type="number" min="0" step=".5" placeholder="Ej. 20"></div>
+        <div class="field"><label id="label-stipendMin" for="stipendMin">Estímulo mensual desde (COP)</label><input data-filter id="stipendMin" type="number" min="0" step="1000" placeholder="Ej. 1000000"></div>
+        <div class="field"><label id="label-stipendMax" for="stipendMax">Estímulo mensual hasta (COP)</label><input data-filter id="stipendMax" type="number" min="0" step="1000" placeholder="Ej. 2000000"></div>
+
+        <div class="filter-section-label">Selección, resultados, fechas y calidad de la información</div>
+        <div class="field"><label id="label-criteriaMin" for="criteriaMin">N.º mínimo de criterios</label><input data-filter id="criteriaMin" type="number" min="0" step="1" placeholder="Ej. 3"></div>
+        <div class="field"><label id="label-start" for="start">Cierre desde (Excel)</label><input data-filter id="start" type="date"></div>
+        <div class="field"><label id="label-end" for="end">Cierre hasta (Excel)</label><input data-filter id="end" type="date"></div>
+        <div class="field"><label id="label-missing" for="missing">Detectar información faltante</label><select data-filter id="missing"><option value="">Todos los registros</option><option value="criteria">Sin criterios estructurados</option><option value="results">Sin participantes estructurados</option><option value="profile">Sin perfil estructurado</option><option value="stipend">Sin estímulo estructurado</option><option value="docs">Sin documentos estructurados</option><option value="responsible">Sin responsable estructurado</option></select></div>
+        <div class="field"><label id="label-validated" for="validated">Control de validación</label><select data-filter id="validated"><option value="">Todos</option><option value="yes">Validados</option><option value="no">Sin validación completa</option></select></div>
+      </div>
+    </details>
+    <div class="filter-footer">
+      <div id="filter-summary" role="status">Cargando la exportación documental V3…</div>
+      <div class="filter-badges" id="active-filters" aria-label="Filtros activos"></div>
+    </div>
   </section>
-  <main class="panel detail" id="detail" aria-label="Ficha técnica de la convocatoria seleccionada">
-    <div class="detail-block"><div class="empty">Cargando la base documental v3…</div></div>
-  </main>
+
+  <div class="workspace">
+    <aside class="panel navigator" aria-label="Convocatorias filtradas">
+      <div class="navhead"><h2>Convocatorias filtradas</h2><span class="smallmuted" id="filtered-count">—</span></div>
+      <div class="navscroll"><div id="case-list" class="case-list" role="list" aria-label="Seleccionar convocatoria"></div></div>
+      <div class="navfoot">Marca hasta cuatro expedientes con las casillas laterales para compararlos sin salir de esta página.</div>
+    </aside>
+    <main class="mainview" id="mainview" aria-live="polite" aria-label="Ficha completa o comparación de convocatorias">
+      <div class="notice">Cargando expedientes desde la base de datos V3…</div>
+    </main>
+  </div>
+  <div id="global-meta"></div>
+  <footer class="footer">
+    <span>La base de datos V3 es la fuente central. Esta interfaz no modifica ni completa automáticamente los originales.</span>
+    <span>«Sin dato» significa que el campo no está disponible en su representación estructurada; no demuestra ausencia en el PDF.</span>
+  </footer>
 </div>
-<div id="global-meta" style="margin-top:13px"></div>
-<footer class="footer">
-  <span>Las fechas se presentan en formato legible a partir del valor original de Excel. «Sin vínculo» no significa ausencia verificada de resultados.</span>
-  <span><a href="./docs/CONTRATO-V3-VISUALIZACION.md">Contrato v3</a> · <a href="./docs/NORMA-00-validacion-integral.md">Norma 00</a> · <a href="./comparador-v2.html">Comparador anterior</a></span>
-</footer>
-</div>
-<script>
-"use strict";
-(function(){
-  const URL="./data/expedientes_v3.json";
-  const $=id=>document.getElementById(id);
-  const make=(tag,className,textValue)=>{
-    const el=document.createElement(tag);
-    if(className)el.className=className;
-    if(textValue!==undefined)el.textContent=String(textValue);
-    return el;
-  };
-  const clean=s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim();
-  const nonempty=x=>x!==null&&x!==undefined&&String(x).trim()!=="";
-  const allowUrl=x=>typeof x==="string"&&/^https?:\/\/\S+$/i.test(x);
-  const labels={
-    title:[/^nombre de la convocatoria/,/^titulo$/,/^nombre convocatoria$/],
-    faculty:[/^facultad$/, /^facultad, dependencia/],
-    program:[/^programa curricular$/, /^carrera$/, /^programa academico$/],
-    level:[/^tipo de convocatoria$/, /^tipo de estudiante$/, /^programa$/],
-    state:[/^estado de la convocatoria$/, /^estado$/],
-    published:[/^fecha de publicacion(?: de la convocatoria)?$/],
-    closing:[/^fecha (?:y hora )?de cierre de la convocatoria$/, /^fecha de cierre$/],
-    email:[/^correo del responsable$/, /^correo responsable$/],
-    places:[/^no\.? de estudiantes a vincular$/, /^n.? de estudiantes a vincular$/, /^numero de estudiantes a vincular$/, /^plazas$/],
-    profile:[/^perfil requerido$/],
-    activities:[/^actividades a desarrollar$/, /^tipo de actividades a desarrollar/],
-    modality:[/^modalidad de las actividades$/],
-    availability:[/^disponibilidad de tiempo(?: requerida)?$/, /^horas semanales$/],
-    stipend:[/^estimulo economico(?: mensual)?$/],
-    duration:[/^duracion de la vinculacion$/],
-    selection:[/^forma de seleccion$/],
-    criteria:[/^criterios de evaluacion$/, /^criterios de seleccion(?: y evaluacion)?$/],
-    responsible:[/^responsable de la convocatoria$/, /^nombre del responsable$/],
-    progress:[/^porcentaje de avance$/, /^avance minimo$/, /^avance de la carrera$/],
-    requirements:[/^requisitos?(?: generales| especificos| particulares)?$/, /^condiciones requeridas$/],
-    documents:[/^documentos? (?:requeridos?|a presentar|a aportar|para la inscripcion)$/, /^documentacion requerida$/]
-  };
-  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance",requirements:"Requisitos",documents:"Documentación requerida",typeActivity:"Tipo de actividad",closingPDF:"Cierre según PDF",submission:"Presentación de documentos",resultsDeadline:"Fecha límite de publicación (anunciada)"};
-
-  const facetCategories={
-    places:["oferta.plazas"], profile:["perfil.descripcion","perfil.titulo_pregrado_requerido","perfil.posgrado_actual","perfil.pertenencia_semillero"],
-    progress:["perfil.avance_plan_estudios"],requirements:["perfil.papa_minimo"],documents:["aplicacion.documento."],
-    activities:["oferta.actividad."],typeActivity:["oferta.tipo_actividad"],
-    modality:["oferta.modalidad"],availability:["oferta.carga_horaria"],stipend:["oferta.estimulo_mensual"],
-    duration:["oferta.duracion"],selection:["evaluacion.metodo"],criteria:["evaluacion.criterio."],
-    responsible:["contacto.responsable"],closingPDF:["aplicacion.fecha_cierre"],resultsDeadline:["resultados.fecha_limite_publicacion"],
-    submission:["aplicacion.envio_documentos"]
-  };
-  function facetsFor(c,key){
-    const codes=facetCategories[key]||[];
-    return (c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&codes.some(code=>code.endsWith(".")?i.nombre.startsWith(code):i.nombre===code)&&i.valor&&i.valor.valor_normalizado);
-  }
-  function facetText(i){
-    const v=i.valor.valor_normalizado||{},type=v.tipo;
-    if(type==="porcentaje_de_avance"){
-      if(v.filtro_habilitado===false || (v.minimo_pct===undefined&&v.maximo_pct===undefined))return v.valor_mencionado_pct===undefined?"Valor ambiguo":"Menciona "+v.valor_mencionado_pct+" % (sin comparador inequívoco)";
-      const fragments=[];
-      if(v.minimo_pct!==undefined)fragments.push((v.minimo_inclusivo?"≥ ":"> ")+v.minimo_pct+" %");
-      if(v.maximo_pct!==undefined)fragments.push((v.maximo_inclusivo?"≤ ":"< ")+v.maximo_pct+" %");
-      return fragments.join(" y ");
-    }
-    if(type==="horas_por_semana")return v.valor+" h/semana";
-    if(type==="COP_por_mes")return new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(v.valor)+"/mes";
-    if(type==="meses")return v.valor+" mes"+(v.valor===1?"":"es");
-    if(i.nombre==="oferta.carga_horaria"&&typeof v.valor==="number")return v.valor+" h/semana";
-    if(i.nombre==="oferta.estimulo_mensual"&&typeof v.valor==="number")return new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(v.valor)+"/mes";
-    if(v.valor!==undefined&&v.valor!==null)return String(v.valor);
-    return "Sin dato normalizado";
-  }
-  function evidenceLink(i){
-    const frag=document.createDocumentFragment();
-    frag.append(make("span","evidence-label","Lectura IA · sin cotejo visual"));
-    const evidences=i.valor?.evidencias||[];
-    evidences.forEach((ev,j)=>{
-      if(!allowUrl(ev.url_original))return;
-      const a=make("a","evidence-link","PDF pág. "+ev.numero_pagina+(evidences.length>1?" ("+(j+1)+")":""));
-      a.href=ev.url_original;a.target="_blank";a.rel="noopener noreferrer";frag.append(a);
-    });
-    return frag;
-  }
-  let db=null;
-  let allRows=[];
-  let selected=null;
-  function matchField(d,key){
-    const identifiers=[d.rotulo_literal,d.codigo_concepto].filter(nonempty).map(clean);
-    return (labels[key]||[]).some(re=>identifiers.some(value=>re.test(value)));
-  }
-  function entries(c,key){
-    return (c.datos_originales||[]).filter(d=>matchField(d,key)&&nonempty(d.literal_completo));
-  }
-  function uniqueTexts(c,key){
-    return [...new Set(entries(c,key).map(x=>String(x.literal_completo).trim()))];
-  }
-  function primary(c,key){
-    const vals=uniqueTexts(c,key);
-    if(vals.length===0)return null;
-    if(vals.length>1)return "Varios valores ("+vals.length+")";
-    return vals[0];
-  }
-  function excelDate(text,withTime){
-    if(!nonempty(text))return null;
-    const n=Number(text);
-    if(!Number.isFinite(n)||n<20000||n>90000)return String(text);
-    // Convención de fechas de Excel 1900: origen 1899-12-30.
-    const instant=new Date(Date.UTC(1899,11,30)+Math.round(n*86400000));
-    if(Number.isNaN(instant.getTime()))return String(text);
-    const pad=x=>String(x).padStart(2,"0");
-    let result=pad(instant.getUTCDate())+"/"+pad(instant.getUTCMonth()+1)+"/"+instant.getUTCFullYear();
-    if(withTime && Math.abs(n-Math.floor(n))>0.00001)result+=" "+pad(instant.getUTCHours())+":"+pad(instant.getUTCMinutes());
-    return result;
-  }
-  function display(c,key){
-    const v=primary(c,key);
-    return (key==="closing"||key==="published")&&v&&!v.startsWith("Varios valores")?excelDate(v,key==="closing"):v;
-  }
-  function source(c,id){
-    return (c.fuentes_originales||[]).find(f=>String(f.fuente_id)===String(id));
-  }
-  function sourceAnchor(f,title){
-    if(!f||!allowUrl(f.url_original))return null;
-    const a=make("a","source-link",title);
-    a.href=f.url_original;a.target="_blank";a.rel="noopener noreferrer";return a;
-  }
-  function links(c,types){
-    const out=make("div","sources");
-    (c.fuentes_originales||[]).filter(f=>types.includes(f.tipo)).forEach((f,i)=>{
-      const kind=f.tipo==="convocatoria_pdf"?"Convocatoria":f.tipo==="resultados_pdf"?"Resultados":f.tipo==="excel"?"Excel":f.tipo.replace(/_pdf$/,"");
-      const a=sourceAnchor(f,"Abrir "+kind+(i>0?" · "+(i+1):""));
-      if(a)out.append(a);
-    });
-    return out;
-  }
-  function appendTextCell(row,textValue,className){
-    const td=make("td",className);
-    td.append(nonempty(textValue)?document.createTextNode(String(textValue)):make("span","missing","—"));
-    row.append(td);
-  }
-  function collectModel(c){
-    return {
-      item:c,
-      title:display(c,"title"),
-      faculty:display(c,"faculty"),
-      program:display(c,"program"),
-      level:display(c,"level"),
-      state:display(c,"state"),
-      closing:display(c,"closing"),
-      pdfResult:(c.fuentes_originales||[]).some(f=>f.tipo==="resultados_pdf"),
-    };
-  }
-  function populateFilter(id,values){
-    const select=$(id);
-    const order=[...new Set(values.filter(nonempty))].sort((a,b)=>String(a).localeCompare(String(b),"es",{sensitivity:"base"}));
-    order.forEach(value=>{const o=make("option","",value);o.value=value;select.append(o);});
-  }
-  function filtered(){
-    const q=clean($("search").value),p=clean($("program").value),minInput=$("progressMin").value;
-    const requestedMin=minInput===""?null:Number(minInput);
-    const faculty=$("faculty").value,level=$("level").value,state=$("state").value,results=$("results").value;
-    return allRows.filter(row=>{
-      const semanticText=(row.item.indicadores_sinteticos||[])
-        .filter(i=>i.version_formula==="IA-normalizacion-1.0")
-        .map(i=>[i.nombre,facetText(i),...(i.valor?.evidencias||[]).map(e=>e.extracto_original||"")].join(" ")).join(" ");
-      const text=clean([row.item.numero,row.title,row.faculty,row.program,row.level,row.state,display(row.item,"email"),semanticText].join(" "));
-      if(q&&!text.includes(q))return false;
-      if(p&&!clean(row.program).includes(p)&&!clean(display(row.item,"profile")).includes(p)&&!clean(semanticText).includes(p))return false;
-      if(faculty && !uniqueTexts(row.item,"faculty").includes(faculty))return false;
-      if(level && !uniqueTexts(row.item,"level").includes(level))return false;
-      if(state && !uniqueTexts(row.item,"state").includes(state))return false;
-      if(results==="yes"&&!row.pdfResult)return false;
-      if(results==="no"&&row.pdfResult)return false;
-      if(requestedMin!==null){
-        if(!Number.isFinite(requestedMin)||requestedMin<0||requestedMin>100)return false;
-        const valid=facetsFor(row.item,"progress").some(i=>{
-          const v=i.valor.valor_normalizado;
-          return v.filtro_habilitado!==false&&typeof v.minimo_pct==="number"&&v.minimo_pct>=requestedMin;
-        });
-        if(!valid)return false;
-      }
-      return true;
-    });
-  }
-  function drawRows(){
-    const filteredRows=filtered(),target=$("rows");
-    target.replaceChildren();
-    $("metric-visible").textContent=String(filteredRows.length);
-    $("list-count").textContent=filteredRows.length+" de "+allRows.length;
-    $("filter-summary").textContent=filteredRows.length+" de "+allRows.length+" convocatorias visibles · datos originales v3";
-    if(!filteredRows.length){
-      target.append(make("div","empty table-empty","No hay coincidencias. Ajusta los filtros."));
-      $("detail").replaceChildren(make("div","detail-block","No hay convocatoria seleccionada con estos filtros."));
-      return;
-    }
-    if(!filteredRows.some(r=>r.item.numero===selected))selected=filteredRows[0].item.numero;
-    const fragment=document.createDocumentFragment();
-    filteredRows.forEach(row=>{
-      const btn=make("button","queue-card");
-      btn.type="button";
-      btn.dataset.code=row.item.numero;
-      btn.setAttribute("aria-current",String(row.item.numero===selected));
-      btn.setAttribute("aria-label","Ver convocatoria "+row.item.numero);
-      const top=make("div","queue-card-top");
-      top.append(make("span","queue-code",row.item.numero));
-      top.append(make("span","queue-state",row.state||"Sin dato"));
-      btn.append(top,make("div","queue-title",row.title||"Sin título cargado"));
-      btn.append(make("div","queue-meta",[row.faculty,row.program].filter(nonempty).join(" · ")||"Facultad y programa: sin dato"));
-      btn.append(make("div","queue-meta","Cierre: "+(row.closing||"Sin dato")));
-      btn.addEventListener("click",()=>choose(row.item.numero,true));
-      fragment.append(btn);
-    });
-    target.append(fragment);
-    const item=allRows.find(r=>r.item.numero===selected);
-    if(item)drawDetail(item.item);
-  }
-  function choose(code,manual){
-    selected=code;
-    for(const btn of $("rows").querySelectorAll("button.queue-card")){
-      btn.setAttribute("aria-current",String(btn.dataset.code===code));
-    }
-    const item=allRows.find(x=>x.item.numero===code);
-    if(item)drawDetail(item.item);
-    $("detail").scrollTop=0;
-    if(manual && window.matchMedia && window.matchMedia("(max-width: 760px)").matches){
-      $("detail").scrollIntoView({behavior:"smooth",block:"start"});
-    }
-  }
-  function block(title,color,kind){
-    const section=make("section","detail-block");
-    if(kind)section.dataset.kind=kind;
-    const h=make("h3"),dot=make("span","dot "+color);
-    dot.setAttribute("aria-hidden","true");h.append(dot,document.createTextNode(title));
-    section.append(h);return section;
-  }
-  function addFacts(section,c,keys){
-    const dl=make("dl","properties");
-    let num=0;
-    keys.forEach(key=>{
-      const vals=entries(c,key);
-      const dt=make("dt","",fieldNames[key]||key),dd=make("dd");
-      if(!vals.length){
-        const derived=facetsFor(c,key);
-        if(!derived.length)dd.append(make("span","missing","Sin dato"));
-        else derived.forEach((i,j)=>{
-          if(j>0)dd.append(make("div","note","Otra condición registrada:"));
-          dd.append(make("div","facet-value",facetText(i)));
-          dd.append(evidenceLink(i));
-        });
-        dl.append(dt,dd);return;
-      }
-      const grouped=[...new Map(vals.map(v=>[String(v.fuente_id)+"|"+String(v.literal_completo),v])).values()];
-      grouped.forEach((entry,i)=>{
-        if(i>0)dd.append(make("div","note","Otra ocurrencia de la fuente:"));
-        dd.append(document.createTextNode(key==="published"||key==="closing"?excelDate(entry.literal_completo,key==="closing"):entry.literal_completo));
-        if(grouped.length>1){
-          const f=source(c,entry.fuente_id);
-          if(f&&allowUrl(f.url_original)){const a=make("a","", " · fuente "+entry.fuente_id);a.href=f.url_original;a.target="_blank";a.rel="noopener noreferrer";dd.append(a);}
-        }
-      });
-      dl.append(dt,dd);num++;
-    });
-    if(num)section.append(dl);
-    return num;
-  }
-  function renderLists(section,c,matcher,emptyLabel){
-    let count=0;
-    (c.listas_originales||[]).filter(l=>matcher(clean([l.codigo_concepto,l.titulo_literal].join(" ")))).forEach(l=>{
-      count++;
-      const item=make("div","observation"),h=make("div","observation-label",l.titulo_literal||l.codigo_concepto||"Lista original");
-      item.append(h);
-      const list=make("ol");
-      (l.items||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0)).forEach(v=>list.append(make("li","",v.literal_completo??"Vacío literal")));
-      item.append(list);section.append(item);
-    });
-    if(!count&&emptyLabel){
-      const key=emptyLabel.startsWith("Requisitos")?"requirements":emptyLabel.startsWith("Actividades")?"activities":"criteria";
-      const prefix=key==="requirements"?["perfil.competencia.","aplicacion.documento."]:key==="activities"?["oferta.actividad."]:["evaluacion.criterio."];
-      const derived=(c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&prefix.some(p=>i.nombre.startsWith(p)));
-      if(derived.length){
-        const wrap=make("div","observation"),label=make("div","observation-label",emptyLabel);
-        wrap.append(label);
-        const ol=make("ol","list-facet");
-        derived.forEach(i=>{const li=make("li");li.append(make("div","facet-value",facetText(i)),evidenceLink(i));ol.append(li);});
-        wrap.append(ol);section.append(wrap);
-      }else{
-        const box=make("div","list-placeholder");
-        box.append(make("span","list-name",emptyLabel),make("span","list-value missing","Sin dato"));
-        section.append(box);
-      }
-    }
-    return count;
-  }
-  function resultsTable(c){
-    const values=c.resultados_estructurados||[];
-    if(!values.length)return null;
-    const grouped=new Map();
-    values.forEach(v=>{
-      const key=String(v.fuente_id)+"|"+String(v.tabla_id);
-      if(!grouped.has(key))grouped.set(key,[]);
-      grouped.get(key).push(v);
-    });
-    const region=make("div");
-    for(const [key,rows] of grouped){
-      const headings=[],seen=new Set();
-      rows.forEach(r=>{
-        const occurrence=new Map();
-        (r.valores||[]).forEach(v=>{
-          const label=String(v.encabezado_literal||"Columna sin rótulo");
-          const n=(occurrence.get(label)||0)+1;occurrence.set(label,n);
-          const id=label+"|"+n;
-          if(!seen.has(id)){seen.add(id);headings.push({id,label:label+(n>1?" ("+n+")":"")});}
-        });
-      });
-      const container=make("div","info-table-scroll"),table=make("table","results-table"),thead=make("thead"),headrow=make("tr");
-      ["Fila","Identificación","Nombre"].concat(headings.map(h=>h.label),["Observaciones"]).forEach(t=>headrow.append(make("th","",t)));
-      thead.append(headrow);table.append(thead);
-      const body=make("tbody");
-      rows.slice().sort((a,b)=>a.fila_original-b.fila_original).forEach(r=>{
-        const tr=make("tr"),counts=new Map(),map=new Map();
-        (r.valores||[]).forEach(v=>{
-          const label=String(v.encabezado_literal||"Columna sin rótulo"),n=(counts.get(label)||0)+1;
-          counts.set(label,n);map.set(label+"|"+n,v.valor_literal);
-        });
-        [r.fila_original,r.identificacion_literal,r.nombre_literal].forEach(x=>appendTextCell(tr,x,""));
-        headings.forEach(h=>appendTextCell(tr,map.has(h.id)?map.get(h.id):null,""));
-        appendTextCell(tr,r.observacion_literal,"");
-        body.append(tr);
-      });
-      table.append(body);container.append(table);
-      const f=source(c,rows[0].fuente_id);
-      const info=make("div","note","Tabla documental original · "+rows.length+" filas. "+(f?"Fuente "+f.fuente_id:""));
-      region.append(info,container);
-    }
-    return region;
-  }
-  function rawTree(value,depth){
-    if(value===null||typeof value!=="object")return make("span","",value===null?"null":String(value));
-    // El expediente original debe conservarse accesible hasta el último nivel.
-    if(Array.isArray(value)){
-      if(!value.length)return make("span","missing","Lista sin registros");
-      const list=make("ol","raw-list");
-      value.forEach(v=>{const li=make("li");li.append(rawTree(v,depth+1));list.append(li);});
-      return list;
-    }
-    const list=make("dl","raw-fields");
-    Object.entries(value).forEach(([key,val])=>{
-      list.append(make("dt","",key.replace(/_/g," ")));
-      const dd=make("dd");dd.append(rawTree(val,depth+1));list.append(dd);
-    });
-    return list;
-  }
-  function lazyArchive(title,data){
-    const el=make("details","archive"),sum=make("summary","",title),body=make("div","archive-body");
-    el.append(sum,body);
-    el.addEventListener("toggle",()=>{
-      if(!el.open||body.dataset.loaded==="true")return;
-      body.append(rawTree(data,0));body.dataset.loaded="true";
-    });
-    return el;
-  }
-  function emptyResultsTable(){
-    const container=make("div","info-table-scroll"),table=make("table","results-table");
-    const head=make("thead"),tr=make("tr");
-    ["Identificación","Participante","Criterios y puntajes","Decisión y observaciones"].forEach(name=>tr.append(make("th","",name)));
-    head.append(tr);table.append(head);
-    const body=make("tbody"),row=make("tr"),cell=make("td","results-empty","Sin dato: no hay filas de resultados estructurados cargadas en este expediente.");
-    cell.colSpan=4;row.append(cell);body.append(row);table.append(body);container.append(table);
-    return container;
-  }
-  function drawDetail(c){
-    const host=$("detail");host.replaceChildren();
-    const head=make("div","detail-header");
-    head.append(make("div","code",c.numero));
-    head.append(make("h2","",display(c,"title")||"Sin dato: título de convocatoria"));
-    head.append(make("span","detail-status",c.validada===true?"Validada según Norma 00":"Validación: "+String(c.estado_validacion||"no registrada").replace(/_/g," ")));
-    head.append(links(c,["convocatoria_pdf","adenda_pdf","anexo_pdf","resultados_pdf"]));
-    host.append(head);
-    const grid=make("div","detail-grid");host.append(grid);
-    let s=block("Información general","red");
-    addFacts(s,c,["faculty","program","level","state","published","closing","closingPDF","places","typeActivity"]);
-    grid.append(s);
-
-    s=block("Perfil y requisitos","green");
-    addFacts(s,c,["profile","progress","requirements"]);
-    renderLists(s,c,t=>/requisit|condicion|documentacion|documentos/.test(t),"Requisitos y documentos (lista)");
-    grid.append(s);
-
-    s=block("Condiciones de vinculación","green");
-    addFacts(s,c,["modality","availability","stipend","duration","submission"]);
-    renderLists(s,c,t=>/actividades/.test(t),"Actividades (lista)");
-    grid.append(s);
-
-    s=block("Selección y criterios","yellow");
-    addFacts(s,c,["selection"]);
-    renderLists(s,c,t=>/evaluacion|seleccion|criterio|ponderacion/.test(t),"Criterios y ponderaciones (lista)");
-    grid.append(s);
-
-    s=block("Responsable y contacto","blue");
-    addFacts(s,c,["responsible","email"]);
-    grid.append(s);
-
-    s=block("Resultados de selección","blue");
-    s.classList.add("wide");
-    addFacts(s,c,["resultsDeadline"]);
-    const resultSources=(c.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
-    const checks=(c.control_validacion?.comprobaciones_resultados||[]);
-    const confirmedAbsence=checks.some(q=>q.estado==="sin_pdf_verificado_al_corte");
-    const resultNote=resultSources.length
-      ?"PDF de resultados vinculado · "+(c.resultados_estructurados||[]).length+" fila(s) estructurada(s)."
-      :confirmedAbsence
-        ?"Sin PDF de resultados encontrado en la consulta documentada al corte; esto puede cambiar."
-        :"Sin PDF de resultados vinculado. No equivale a ausencia comprobada de resultados.";
-    s.append(make("p","result-summary",resultNote));
-    const table=resultsTable(c);
-    s.append(table||emptyResultsTable());
-    if(resultSources.length)s.append(links(c,["resultados_pdf"]));
-    const resultIds=new Set(resultSources.map(f=>String(f.fuente_id)));
-    (c.datos_originales||[]).filter(d=>resultIds.has(String(d.fuente_id))).forEach(d=>{
-      const item=make("div","observation");
-      item.append(make("div","observation-label",d.rotulo_literal||d.codigo_concepto||"Dato de resultados"));
-      item.append(make("div","observation-text",d.literal_completo??"Sin dato"));s.append(item);
-    });
-    (c.listas_originales||[]).filter(l=>resultIds.has(String(l.fuente_id))).forEach(l=>{
-      const item=make("div","observation"),list=make("ol");
-      item.append(make("div","observation-label",l.titulo_literal||l.codigo_concepto||"Lista de resultados"));
-      if(!(l.items||[]).length)list.append(make("li","missing","Sin dato"));
-      (l.items||[]).forEach(v=>list.append(make("li","",v.literal_completo??"Sin dato")));
-      item.append(list);s.append(item);
-    });
-    grid.append(s);
-
-    // Facetas adicionales del contrato: nunca ocultar categorías nuevas
-    // solo porque el diseño de ficha todavía no tenga un campo dedicado.
-    const isKnownFacet=name=>{
-      if(Object.values(facetCategories).some(codes=>codes.some(code=>code.endsWith(".")?name.startsWith(code):name===code)))return true;
-      return ["perfil.competencia."].some(prefix=>name.startsWith(prefix));
-    };
-    const extras=(c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&!isKnownFacet(i.nombre));
-    if(extras.length){
-      s=block("Otros campos interpretados por IA","blue");
-      s.classList.add("wide");
-      s.append(make("p","facet-disclaimer","Datos adicionales presentes en la base, sin sección fija todavía. Interpretación preliminar y fuente enlazada."));
-      const dl=make("dl","properties");
-      extras.forEach(i=>{
-        const dt=make("dt","",i.nombre.replace(/[._]/g," ")),dd=make("dd");
-        dd.append(make("div","facet-value",facetText(i)),evidenceLink(i));dl.append(dt,dd);
-      });
-      s.append(dl);grid.append(s);
-    }
-
-    s=block("Lectura documental preliminar por páginas","blue");
-    s.classList.add("wide");
-    s.append(make("p","facet-disclaimer","Se muestra el texto previamente capturado por IA, por página y sin convertirlo en datos cotejados. Puede contener errores de orden o casillas sin interpretar."));
-    let sourcePages=0;
-    (c.fuentes_originales||[]).filter(f=>f.tipo!=="excel").forEach(f=>{
-      const pages=f.pdf_lectura_previa?.datos_textuales_originales?.paginas||[];
-      pages.forEach(p=>{
-        const txt=p.texto_original_orden_lectura_aproximado||p.texto_original_orden_pdf;
-        if(!nonempty(txt))return;
-        sourcePages++;
-        const box=make("details","source-reading");
-        box.append(make("summary","",String(f.nombre_literal||f.tipo)+" · página "+p.numero_pagina));
-        if(sourcePages===1)box.open=true;
-        box.append(make("p","reading-note","Texto sin cotejo visual ni estructura tabular certificada"));
-        box.append(make("pre","",txt));
-        grid.append(s);
-        s.append(box);
-      });
-    });
-    if(!sourcePages)s.append(make("p","missing","Sin lectura textual preliminar disponible."));
-    grid.append(s);
-
-    s=block("Fuentes y control de validación","","validation");
-    s.classList.add("wide");
-    s.append(make("p","data-note","Los espacios «Sin dato» permiten identificar información todavía no estructurada. No indican por sí solos que falte en el documento original."));
-    const docTitle=make("div","observation-label","Documentos asociados");
-    s.append(docTitle);
-    if(!(c.fuentes_originales||[]).length)s.append(make("p","missing","Sin dato: no hay fuentes vinculadas."));
-    (c.fuentes_originales||[]).forEach(f=>{
-      const row=make("div","doc-row");
-      const kind=f.tipo==="excel"?"Excel":f.tipo==="convocatoria_pdf"?"Convocatoria PDF":f.tipo==="resultados_pdf"?"Resultados PDF":f.tipo;
-      row.append(make("span","",kind+" · fuente "+String(f.fuente_id)));
-      const a=sourceAnchor(f,"Abrir documento");if(a)row.append(a);
-      s.append(row);
-    });
-    s.append(lazyArchive("Ver registros originales, páginas y celdas",{
-      fuentes_originales:c.fuentes_originales,datos_originales:c.datos_originales,listas_originales:c.listas_originales,resultados_estructurados:c.resultados_estructurados
-    }));
-    s.append(lazyArchive("Ver controles A–E, incidencias y actas",c.control_validacion||{}));
-    s.append(lazyArchive("Ver indicadores sintéticos separados",c.indicadores_sinteticos||[]));
-    const extra={};
-    for(const key of Object.keys(c)){
-      if(!["numero","estado_validacion","validada","fuentes_originales","datos_originales","listas_originales","resultados_estructurados","indicadores_sinteticos","control_validacion"].includes(key))extra[key]=c[key];
-    }
-    if(Object.keys(extra).length)s.append(lazyArchive("Ver campos adicionales del contrato",extra));
-    grid.append(s);
-  }
-  function ensureContract(data){
-    if(data?.version_contrato!=="3.0"||!Array.isArray(data.convocatorias)||!data.metricas)throw Error("La exportación no cumple el contrato v3.");
-    const m=data.metricas;
-    if(data.convocatorias.length!==m.convocatorias_identificadas||
-      data.convocatorias.filter(c=>c.validada===true).length!==m.convocatorias_validadas)
-      throw Error("La métrica oficial no coincide con los expedientes v3.");
-    for(const c of data.convocatorias){
-      if(!c.numero||!Array.isArray(c.datos_originales)||!Array.isArray(c.fuentes_originales)||!Array.isArray(c.listas_originales)||!Array.isArray(c.resultados_estructurados)||!c.control_validacion)
-        throw Error("Expediente incompleto: "+String(c.numero));
-    }
-  }
-  function error(message){
-    $("rows").replaceChildren();
-    $("detail").replaceChildren(make("div","detail-block",message));
-    $("filter-summary").textContent=message;
-  }
-  async function init(){
-    try{
-      const response=await fetch(URL,{cache:"no-store"});
-      if(!response.ok)throw Error("HTTP "+response.status);
-      const data=await response.json();
-      ensureContract(data);db=data;
-      const globalData={};
-      Object.keys(data).filter(k=>k!=="convocatorias").forEach(k=>globalData[k]=data[k]);
-      $("global-meta").replaceChildren(lazyArchive("Información general de la exportación, advertencias y capturas originales",globalData));
-      allRows=data.convocatorias.map(collectModel).sort((a,b)=>b.item.numero.localeCompare(a.item.numero,"es"));
-      $("metric-total").textContent=String(data.metricas.convocatorias_identificadas);
-      $("metric-validated").textContent=String(data.metricas.convocatorias_validadas);
-      populateFilter("faculty",allRows.flatMap(r=>uniqueTexts(r.item,"faculty")));
-      populateFilter("level",allRows.flatMap(r=>uniqueTexts(r.item,"level")));
-      populateFilter("state",allRows.flatMap(r=>uniqueTexts(r.item,"state")));
-      ["search","program","progressMin"].forEach(id=>$(id).addEventListener("input",drawRows));
-      ["faculty","level","state","results"].forEach(id=>$(id).addEventListener("change",drawRows));
-      $("reset").addEventListener("click",()=>{
-        ["search","program","faculty","level","state","results","progressMin"].forEach(id=>$(id).value="");
-        drawRows();
-      });
-      drawRows();
-    }catch(e){error("No se pudo consultar la exportación oficial v3: "+String(e.message||e)+". No se usará el comparador v2 como sustituto.");}
-  }
-  init();
-})();
-</script>
+<script defer src="./assets/visor-ideal-v3.js"></script>
 </body>
 </html>

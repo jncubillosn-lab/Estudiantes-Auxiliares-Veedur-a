@@ -20,8 +20,9 @@ with tempfile.TemporaryDirectory() as t:
     assert db.execute('SELECT COUNT(*) FROM v3_indicador_insumo').fetchone()[0]>=3155
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE numero='2026-C2297' AND nombre='perfil.avance_plan_estudios'").fetchone()[0]==1
     assert db.execute("SELECT COUNT(DISTINCT numero) FROM v3_indicador_sintetico WHERE version_formula='IA-normalizacion-2.0'").fetchone()[0]==96
-    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre LIKE 'oferta.estimulo_mensual%'").fetchone()[0]==96
+    assert db.execute("SELECT COUNT(DISTINCT numero) FROM v3_indicador_sintetico WHERE nombre LIKE 'oferta.estimulo_mensual%'").fetchone()[0]==96
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre LIKE 'evaluacion.criterio_1%'").fetchone()[0]>=90
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE numero='2026-C2324' AND nombre LIKE 'oferta.estimulo_mensual%'").fetchone()[0]==2
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre='cotejo.variacion_fecha_cierre_entre_fuentes'").fetchone()[0]==3
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre='resultados.estructura_tabla_documental'").fetchone()[0]==24
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE version_formula='IA-normalizacion-1.0'").fetchone()[0]==0

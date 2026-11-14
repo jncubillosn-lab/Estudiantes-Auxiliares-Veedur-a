@@ -143,6 +143,20 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
 @media(max-width:760px){.workspace{display:block}.navigator{position:static}.queue-scroll{max-height:235px;min-height:0}.detail{position:static;max-height:none;margin-top:12px;overflow:visible}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-grid .detail-block.wide{grid-column:1/-1}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.detail-grid{grid-template-columns:1fr;padding:8px}.detail-grid .detail-block.wide{grid-column:auto}.properties{grid-template-columns:minmax(95px,43%) minmax(0,1fr)}.detail-grid .detail-block{padding:12px}.filter-grid{grid-template-columns:1fr}.detail-header{padding:14px}.wrap{padding:12px 8px}}
 
+
+/* Contenido semántico IA: visible, derivado y trazable, sin modificar originales. */
+.evidence-label{display:inline-block;font-size:10px;color:#70552b;margin-left:5px}
+.evidence-link{font-size:11px;color:var(--accent);display:inline-block;margin-left:7px}
+.facet-item{margin:4px 0 8px;padding:7px 9px;background:#f8faf9;border-left:2px solid #c6d7d3;border-radius:3px}
+.facet-value{font-size:12px;overflow-wrap:anywhere}
+.list-facet{margin:8px 0 0;padding-left:19px}
+.list-facet li{margin-bottom:8px}
+.source-reading{border:1px solid var(--border);border-radius:7px;margin:9px 0;overflow:hidden}
+.source-reading summary{background:#f7faf9;padding:9px 11px;font-size:12px;font-weight:700;cursor:pointer}
+.source-reading pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.55 system-ui,sans-serif;padding:13px;background:#fff}
+.source-reading .reading-note{padding:8px 12px;font-size:11px;color:#78622c}
+.facet-disclaimer{font-size:11px;color:#736245;margin:5px 0 9px}
+
 </style>
 </head>
 <body>
@@ -167,6 +181,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     <div class="field"><label for="level">Nivel</label><select id="level"><option value="">Todos</option></select></div>
     <div class="field"><label for="state">Estado publicado</label><select id="state"><option value="">Todos</option></select></div>
     <div class="field"><label for="results">PDF de resultados</label><select id="results"><option value="">Todos</option><option value="yes">Vinculado</option><option value="no">Sin vínculo</option></select></div>
+    <div class="field"><label for="progressMin">Avance mínimo exigido desde (%)</label><input type="number" min="0" max="100" step="1" id="progressMin" placeholder="Ej. 50 · solo datos interpretados"></div>
   </div>
   <div class="filter-footer"><span id="filter-summary">Los filtros solo organizan la vista; no modifican ni descartan datos.</span><button id="reset" type="button" class="linkbutton">Limpiar filtros</button></div>
 </section>
@@ -222,7 +237,49 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     requirements:[/^requisitos?(?: generales| especificos| particulares)?$/, /^condiciones requeridas$/],
     documents:[/^documentos? (?:requeridos?|a presentar|a aportar|para la inscripcion)$/, /^documentacion requerida$/]
   };
-  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance",requirements:"Requisitos",documents:"Documentación requerida"};
+  const fieldNames={title:"Convocatoria",faculty:"Facultad",program:"Carrera o perfil (Excel)",level:"Nivel",state:"Estado publicado",published:"Publicación",closing:"Cierre",email:"Contacto",places:"Plazas",profile:"Perfil requerido",activities:"Actividades",modality:"Modalidad",availability:"Dedicación",stipend:"Estímulo",duration:"Duración",selection:"Forma de selección",criteria:"Criterios de evaluación",responsible:"Responsable",progress:"Avance",requirements:"Requisitos",documents:"Documentación requerida",typeActivity:"Tipo de actividad",closingPDF:"Cierre según PDF",submission:"Presentación de documentos",resultsDeadline:"Fecha límite de publicación (anunciada)"};
+
+  const facetCategories={
+    places:["oferta.plazas"], profile:["perfil.descripcion","perfil.titulo_pregrado_requerido","perfil.posgrado_actual","perfil.pertenencia_semillero"],
+    progress:["perfil.avance_plan_estudios"],requirements:["perfil.papa_minimo"],documents:["aplicacion.documento."],
+    activities:["oferta.actividad."],typeActivity:["oferta.tipo_actividad"],
+    modality:["oferta.modalidad"],availability:["oferta.carga_horaria"],stipend:["oferta.estimulo_mensual"],
+    duration:["oferta.duracion"],selection:["evaluacion.metodo"],criteria:["evaluacion.criterio."],
+    responsible:["contacto.responsable"],closingPDF:["aplicacion.fecha_cierre"],resultsDeadline:["resultados.fecha_limite_publicacion"],
+    submission:["aplicacion.envio_documentos"]
+  };
+  function facetsFor(c,key){
+    const codes=facetCategories[key]||[];
+    return (c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&codes.some(code=>code.endsWith(".")?i.nombre.startsWith(code):i.nombre===code)&&i.valor&&i.valor.valor_normalizado);
+  }
+  function facetText(i){
+    const v=i.valor.valor_normalizado||{},type=v.tipo;
+    if(type==="porcentaje_de_avance"){
+      if(v.filtro_habilitado===false || (v.minimo_pct===undefined&&v.maximo_pct===undefined))return v.valor_mencionado_pct===undefined?"Valor ambiguo":"Menciona "+v.valor_mencionado_pct+" % (sin comparador inequívoco)";
+      const fragments=[];
+      if(v.minimo_pct!==undefined)fragments.push((v.minimo_inclusivo?"≥ ":"> ")+v.minimo_pct+" %");
+      if(v.maximo_pct!==undefined)fragments.push((v.maximo_inclusivo?"≤ ":"< ")+v.maximo_pct+" %");
+      return fragments.join(" y ");
+    }
+    if(type==="horas_por_semana")return v.valor+" h/semana";
+    if(type==="COP_por_mes")return new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(v.valor)+"/mes";
+    if(type==="meses")return v.valor+" mes"+(v.valor===1?"":"es");
+    if(i.nombre==="oferta.carga_horaria"&&typeof v.valor==="number")return v.valor+" h/semana";
+    if(i.nombre==="oferta.estimulo_mensual"&&typeof v.valor==="number")return new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(v.valor)+"/mes";
+    if(v.valor!==undefined&&v.valor!==null)return String(v.valor);
+    return "Sin dato normalizado";
+  }
+  function evidenceLink(i){
+    const frag=document.createDocumentFragment();
+    frag.append(make("span","evidence-label","Lectura IA · sin cotejo visual"));
+    const evidences=i.valor?.evidencias||[];
+    evidences.forEach((ev,j)=>{
+      if(!allowUrl(ev.url_original))return;
+      const a=make("a","evidence-link","PDF pág. "+ev.numero_pagina+(evidences.length>1?" ("+(j+1)+")":""));
+      a.href=ev.url_original;a.target="_blank";a.rel="noopener noreferrer";frag.append(a);
+    });
+    return frag;
+  }
   let db=null;
   let allRows=[];
   let selected=null;
@@ -298,7 +355,8 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     order.forEach(value=>{const o=make("option","",value);o.value=value;select.append(o);});
   }
   function filtered(){
-    const q=clean($("search").value),p=clean($("program").value);
+    const q=clean($("search").value),p=clean($("program").value),minInput=$("progressMin").value;
+    const requestedMin=minInput===""?null:Number(minInput);
     const faculty=$("faculty").value,level=$("level").value,state=$("state").value,results=$("results").value;
     return allRows.filter(row=>{
       const text=clean([row.item.numero,row.title,row.faculty,row.program,row.level,row.state,display(row.item,"email")].join(" "));
@@ -309,6 +367,14 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       if(state && !uniqueTexts(row.item,"state").includes(state))return false;
       if(results==="yes"&&!row.pdfResult)return false;
       if(results==="no"&&row.pdfResult)return false;
+      if(requestedMin!==null){
+        if(!Number.isFinite(requestedMin)||requestedMin<0||requestedMin>100)return false;
+        const valid=facetsFor(row.item,"progress").some(i=>{
+          const v=i.valor.valor_normalizado;
+          return v.filtro_habilitado!==false&&typeof v.minimo_pct==="number"&&v.minimo_pct>=requestedMin;
+        });
+        if(!valid)return false;
+      }
       return true;
     });
   }
@@ -369,7 +435,16 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     keys.forEach(key=>{
       const vals=entries(c,key);
       const dt=make("dt","",fieldNames[key]||key),dd=make("dd");
-      if(!vals.length){dd.append(make("span","missing","Sin dato"));dl.append(dt,dd);return;}
+      if(!vals.length){
+        const derived=facetsFor(c,key);
+        if(!derived.length)dd.append(make("span","missing","Sin dato"));
+        else derived.forEach((i,j)=>{
+          if(j>0)dd.append(make("div","note","Otra condición registrada:"));
+          dd.append(make("div","facet-value",facetText(i)));
+          dd.append(evidenceLink(i));
+        });
+        dl.append(dt,dd);return;
+      }
       const grouped=[...new Map(vals.map(v=>[String(v.fuente_id)+"|"+String(v.literal_completo),v])).values()];
       grouped.forEach((entry,i)=>{
         if(i>0)dd.append(make("div","note","Otra ocurrencia de la fuente:"));
@@ -395,9 +470,20 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       item.append(list);section.append(item);
     });
     if(!count&&emptyLabel){
-      const box=make("div","list-placeholder");
-      box.append(make("span","list-name",emptyLabel),make("span","list-value missing","Sin dato"));
-      section.append(box);
+      const key=emptyLabel.startsWith("Requisitos")?"requirements":emptyLabel.startsWith("Actividades")?"activities":"criteria";
+      const prefix=key==="requirements"?["perfil.competencia.","aplicacion.documento."]:key==="activities"?["oferta.actividad."]:["evaluacion.criterio."];
+      const derived=(c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&prefix.some(p=>i.nombre.startsWith(p)));
+      if(derived.length){
+        const wrap=make("div","observation"),label=make("div","observation-label",emptyLabel);
+        wrap.append(label);
+        const ol=make("ol","list-facet");
+        derived.forEach(i=>{const li=make("li");li.append(make("div","facet-value",facetText(i)),evidenceLink(i));ol.append(li);});
+        wrap.append(ol);section.append(wrap);
+      }else{
+        const box=make("div","list-placeholder");
+        box.append(make("span","list-name",emptyLabel),make("span","list-value missing","Sin dato"));
+        section.append(box);
+      }
     }
     return count;
   }
@@ -488,7 +574,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     host.append(head);
     const grid=make("div","detail-grid");host.append(grid);
     let s=block("Información general","red");
-    addFacts(s,c,["faculty","program","level","state","published","closing","places"]);
+    addFacts(s,c,["faculty","program","level","state","published","closing","closingPDF","places","typeActivity"]);
     grid.append(s);
 
     s=block("Perfil y requisitos","green");
@@ -497,7 +583,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     grid.append(s);
 
     s=block("Condiciones de vinculación","green");
-    addFacts(s,c,["activities","modality","availability","stipend","duration"]);
+    addFacts(s,c,["activities","modality","availability","stipend","duration","submission"]);
     renderLists(s,c,t=>/actividades/.test(t),"Actividades (lista)");
     grid.append(s);
 
@@ -512,6 +598,7 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
 
     s=block("Resultados de selección","blue");
     s.classList.add("wide");
+    addFacts(s,c,["resultsDeadline"]);
     const resultSources=(c.fuentes_originales||[]).filter(f=>f.tipo==="resultados_pdf");
     const checks=(c.control_validacion?.comprobaciones_resultados||[]);
     const confirmedAbsence=checks.some(q=>q.estado==="sin_pdf_verificado_al_corte");
@@ -537,6 +624,28 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       (l.items||[]).forEach(v=>list.append(make("li","",v.literal_completo??"Sin dato")));
       item.append(list);s.append(item);
     });
+    grid.append(s);
+
+    s=block("Lectura documental preliminar por páginas","blue");
+    s.classList.add("wide");
+    s.append(make("p","facet-disclaimer","Se muestra el texto previamente capturado por IA, por página y sin convertirlo en datos cotejados. Puede contener errores de orden o casillas sin interpretar."));
+    let sourcePages=0;
+    (c.fuentes_originales||[]).filter(f=>f.tipo!=="excel").forEach(f=>{
+      const pages=f.pdf_lectura_previa?.datos_textuales_originales?.paginas||[];
+      pages.forEach(p=>{
+        const txt=p.texto_original_orden_lectura_aproximado||p.texto_original_orden_pdf;
+        if(!nonempty(txt))return;
+        sourcePages++;
+        const box=make("details","source-reading");
+        box.append(make("summary","",String(f.nombre_literal||f.tipo)+" · página "+p.numero_pagina));
+        if(sourcePages===1)box.open=true;
+        box.append(make("p","reading-note","Texto sin cotejo visual ni estructura tabular certificada"));
+        box.append(make("pre","",txt));
+        grid.append(s);
+        s.append(box);
+      });
+    });
+    if(!sourcePages)s.append(make("p","missing","Sin lectura textual preliminar disponible."));
     grid.append(s);
 
     s=block("Fuentes y control de validación","","validation");
@@ -595,10 +704,10 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       populateFilter("faculty",allRows.flatMap(r=>uniqueTexts(r.item,"faculty")));
       populateFilter("level",allRows.flatMap(r=>uniqueTexts(r.item,"level")));
       populateFilter("state",allRows.flatMap(r=>uniqueTexts(r.item,"state")));
-      ["search","program"].forEach(id=>$(id).addEventListener("input",drawRows));
+      ["search","program","progressMin"].forEach(id=>$(id).addEventListener("input",drawRows));
       ["faculty","level","state","results"].forEach(id=>$(id).addEventListener("change",drawRows));
       $("reset").addEventListener("click",()=>{
-        ["search","program","faculty","level","state","results"].forEach(id=>$(id).value="");
+        ["search","program","faculty","level","state","results","progressMin"].forEach(id=>$(id).value="");
         drawRows();
       });
       drawRows();

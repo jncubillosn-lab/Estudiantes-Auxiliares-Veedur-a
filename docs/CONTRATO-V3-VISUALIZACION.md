@@ -12,7 +12,7 @@ python scripts/construir_base_v3.py --salida salidas/convocatorias_v3.sqlite
 python scripts/exportar_base_v3.py --db salidas/convocatorias_v3.sqlite --salida salidas/expedientes_v3.json
 ```
 
-El artefacto resultante, `expedientes_v3.json`, es **la única interfaz de entrada de datos para el visualizador v3**. No debe leer datos dispersos de lotes originales para inventar una nueva conciliación. **GitHub Pages no ejecuta SQLite**; el JSON es una proyección que debe reconstruirse desde la base, nunca convertirse en fuente original.
+El artefacto resultante, `expedientes_v3.json`, es **el contrato oficial único de información del visualizador v3**. Para acelerar la carga en GitHub Pages, la interfaz puede consumir `data/visor_v3.json`, una **proyección materializada y subordinada**, generada exclusivamente mediante `scripts/proyectar_visor_v3.py` desde el JSON oficial, sin interpretación ni datos adicionales. Esta proyección conserva literalmente `datos_originales[]`, `listas_originales[]`, `resultados_estructurados[]`, `indicadores_sinteticos[]`, `control_validacion`, métricas y vínculos de procedencia; retira únicamente geometría, celdas Excel y árboles PDF duplicados que permanecen en el JSON oficial. La interfaz y sus filtros no usan otras fuentes. La proyección ligera no constituye una segunda base de datos, un nuevo contrato ni una extracción adicional. No debe leer datos dispersos de lotes originales para inventar una nueva conciliación. **GitHub Pages no ejecuta SQLite**; el JSON es una proyección que debe reconstruirse desde la base, nunca convertirse en fuente original.
 
 ### Objeto de raíz (contrato JSON)
 

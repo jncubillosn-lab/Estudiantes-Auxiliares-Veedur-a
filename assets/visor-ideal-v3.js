@@ -40,6 +40,9 @@ const config={
  contract:{raw:["naturaleza de la vinculacion"]},
  conditions:{raw:["condiciones de la vinculacion","condiciones particulares"]},
  submission:{raw:["terminos para la presentacion de documentos"],facet:["aplicacion.envio_documentos"]},
+ activities:{raw:["actividades a desarrollar"],facet:["oferta.actividad."]},
+ requiredDocs:{raw:["documentacion requerida"]},
+ criteria:{raw:["criterios de evaluacion","criterios de seleccion"]},
  channel:{raw:["medio de postulacion"]},
  format:{raw:["formato de entrega","formato de los documentos"]},
  applicationRules:{raw:["instrucciones de envio"]},
@@ -67,12 +70,12 @@ const config={
  terms:{raw:["condiciones normativas","requisitos generales"]}
 };
 const lists={
- activities:{facets:["oferta.actividad."],original:["actividades a desarrollar"]},
- requirements:{facets:["perfil.competencia."],original:["requisitos","perfil requerido"]},
- general:{facets:[],original:["requisitos generales"]},
- requiredDocs:{facets:["aplicacion.documento."],original:["documentacion requerida","documentos requeridos"]},
- optionalDocs:{facets:[],original:["documentos opcionales"]},
- criteria:{facets:["evaluacion.criterio."],original:["criterios de evaluacion","criterios de seleccion"]},
+ activities:{facets:["oferta.actividad."],original:["actividades a desarrollar"],field:"activities"},
+ requirements:{facets:["perfil.competencia."],original:["requisitos","perfil requerido"],field:"profile"},
+ general:{facets:[],original:["requisitos generales"],field:"terms"},
+ requiredDocs:{facets:["aplicacion.documento."],original:["documentacion requerida","documentos requeridos"],field:"requiredDocs"},
+ optionalDocs:{facets:[],original:["documentos opcionales"],field:"optionalDocs"},
+ criteria:{facets:["evaluacion.criterio."],original:["criterios de evaluacion","criterios de seleccion"],field:"criteria"},
 };
 const sectionsDef=[
  ["identificacion","Identificación general"],["perfil","Perfil y requisitos"],["actividades","Actividades a desarrollar"],["vinculacion","Condiciones de vinculación"],["postulacion","Postulación y documentación"],["seleccion","Proceso de selección"],["criterios","Criterios de evaluación"],["resultados","Resultados de selección"],["responsables","Responsables"],["fuentes","Fuentes y trazabilidad"]
@@ -133,6 +136,7 @@ function listValues(c,key){
   for(const i of arr(l.items))if(present(i.literal_completo))
    out.push({text:String(i.literal_completo),kind:"original",origin:f?.tipo||"Lista original",url:f?.url_original||"",page:i.numero_pagina||null});
  }
+ if(!out.length&&def.field){for(const x of originalFor(c,def.field))out.push(x)}
  for(const x of facetFor(c,def.facets))out.push(x);
  const seen=new Set();
  return out.filter(x=>{const k=norm(x.text);if(seen.has(k))return false;seen.add(k);return true});
@@ -357,9 +361,10 @@ function numeric(c,key,kind){
   const v=x.indicator?.valor?.valor_normalizado;
   if(v&&typeof v.valor==="number"&&Number.isFinite(v.valor))return v.valor;
   if(key==="advance"&&v&&v.filtro_habilitado!==false&&typeof v.minimo_pct==="number")return v.minimo_pct;
-  const string=x.text.replace(/\./g,"").replace(",",".");
-  const match=string.match(/-?\d+(?:\.\d+)?/);
-  if(match)return Number(match[0]);
+  let string=String(x.text);
+  if(key==="stipend")string=string.replace(/\.(?=\d{3}(?:\D|$))/g,"").replace(/,(?=\d{3}(?:\D|$))/g,"");
+  const match=string.match(/-?\d+(?:[.,]\d+)?/);
+  if(match)return Number(match[0].replace(",","."));
  }
  return null;
 }
@@ -381,7 +386,8 @@ function passes(r){
  ];
  for(const [fid,key] of fieldFilters){
   const requested=filterValue(fid);if(!requested)continue;
-  if(!values(c,key).some(v=>norm(v.text).includes(norm(requested))))return false;
+  const matched=key==="program"?[...values(c,"program"),...values(c,"profile"),...values(c,"profession"),...values(c,"study")]:values(c,key);
+  if(!matched.some(v=>norm(v.text).includes(norm(requested))))return false;
  }
  const dataCheck=filterValue("results");
  if(dataCheck==="pdf"&&!r.hasResultPDF)return false;

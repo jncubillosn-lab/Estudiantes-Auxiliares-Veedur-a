@@ -423,12 +423,16 @@ function passes(r){
   const num=Number(advanced);
   const valid=facetFor(c,["perfil.avance_plan_estudios"]).some(x=>{
    const v=x.indicator?.valor?.valor_normalizado;
-   return v&&v.filtro_habilitado!==false&&typeof v.minimo_pct==="number"&&v.minimo_pct>=num;
+   return v&&v.filtro_habilitado===true&&typeof v.minimo_pct==="number"&&v.minimo_pct>=num;
   });
   if(!valid)return false;
  }
  const minCriteria=filterValue("criteriaMin");
  if(minCriteria!==""&&criteriaRecords(c).length<Number(minCriteria))return false;
+ const criterion=norm(filterValue("criterionText"));
+ if(criterion&&!criteriaRecords(c).some(x=>norm(x.source.text).includes(criterion)))return false;
+ const participants=filterValue("participantsMin");
+ if(participants!==""&&arr(c.resultados_estructurados).length<Number(participants))return false;
  const starts=filterValue("start"),ends=filterValue("end");
  if(starts||ends){
   const n=dateNumber(c,"close");if(n===null)return false;
@@ -444,7 +448,7 @@ function choices(id,key){
  [...set].sort((a,b)=>a.localeCompare(b,"es",{sensitivity:"base"})).forEach(v=>{const op=el("option",null,v);op.value=v;select.append(op)});
 }
 function updateSummary(){
- const elems=["search","faculty","program","level","state","results","modality","activityType","seedbed","missing","validated","placesMin","placesMax","hoursMin","hoursMax","stipendMin","stipendMax","advanceMin","papaMin","criteriaMin","start","end"];
+ const elems=["search","faculty","program","level","state","results","modality","activityType","seedbed","missing","validated","placesMin","placesMax","hoursMin","hoursMax","stipendMin","stipendMax","advanceMin","papaMin","criteriaMin","criterionText","participantsMin","start","end"];
  const selectedFilters=elems.filter(id=>filterValue(id)!=="");
  const badge=$("active-filters");badge.replaceChildren();
  for(const id of selectedFilters){const lbl=$("label-"+id)?.textContent||id;badge.append(el("span","filter-badge",lbl))};
@@ -492,7 +496,7 @@ function compareView(){
   else for(const r of m){
    const td=el("td");let v;
    if(key==="criteria")v=criteriaRecords(r.item).map(x=>x.source.text).join(" · ");
-   else if(key==="results")v=arr(r.item.resultados_estructurados).length+" filas registradas";
+   else if(key==="results")v=arr(r.item.resultados_estructurados).length?arr(r.item.resultados_estructurados).length+" filas registradas":"Sin filas cargadas";
    else v=values(r.item,key).map(x=>x.text).join(" · ");
    td.append(present(v)?document.createTextNode(key==="close"?excelDate(v):v):blank());row.append(td);
   }
@@ -525,7 +529,7 @@ function filterAll(){
  renderMain();
 }
 function clearFilters(){
- for(const id of ["search","faculty","program","level","state","results","modality","activityType","seedbed","missing","validated","placesMin","placesMax","hoursMin","hoursMax","stipendMin","stipendMax","advanceMin","papaMin","criteriaMin","start","end"])$(id).value="";
+ for(const id of ["search","faculty","program","level","state","results","modality","activityType","seedbed","missing","validated","placesMin","placesMax","hoursMin","hoursMax","stipendMin","stipendMax","advanceMin","papaMin","criteriaMin","criterionText","participantsMin","start","end"])$(id).value="";
  filterAll();
 }
 function setError(message){

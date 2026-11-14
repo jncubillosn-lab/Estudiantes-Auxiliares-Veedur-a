@@ -33,9 +33,9 @@ La IA interpreta el significado y las relaciones de los originales para hacer co
 
 **Resultados 2026-C2188 (ejemplo de estructura, no integrante de los 96 códigos del corte).** El perfil se extiende de la página 1 a la 2, que contiene un **avance mínimo del 40 %**. En página 2 aparecen los criterios ordinales 1 = **Entrevista (40 %)** y 2 = **Hoja de vida (60 %)**. Las columnas 1 y 2 de la tabla de participantes corresponden a esas definiciones; el total y la marca de selección son otras columnas y no sustituyen los valores individuales. El PDF está disponible como ejemplo suministrado en la conversación, **no** se incorpora como expediente adicional ni como resultado de una de las 96 convocatorias.
 
-## Implementación inicial, 13/11/2026
+## Antecedente histórico — implementación inicial 13/11/2026 (sustituida por v2)
 
-`data/ia_v3/normalizacion_semantica_v1.json` contiene una **interpretación inicial por IA** de condiciones de avance, aspectos seleccionados de 2026-C2374 y 29 facetas adicionales de 2026-C2381 (perfil, plazas, actividades, dedicación, estímulo, documentos, criterios, responsable y plazos), cada una con evidencia de documento y página. El corte contiene 98 facetas en 60 expedientes; sigue siendo parcial y **no afirma haber estandarizado el resto de criterios y campos de los 96 expedientes**. `scripts/construir_base_v3.py` exige que las citas y sus SHA/páginas correspondan a fuentes ya guardadas e inserta la interpretación en `v3_indicador_sintetico`, con sus insumos literales en `v3_dato_original` y vínculos `v3_indicador_insumo`. La exportación de visualización v3 ya contempla esas tablas (`indicadores_sinteticos` e `insumos_datos_originales`). No cambia `db/estructura_v3.sql`, no se crean actas A–E y el historial original permanece inalterado.
+La antigua entrega `normalizacion_semantica_v1.json`, retirada de los insumos activos al integrar v2, contenía una **interpretación inicial por IA** de condiciones de avance, aspectos seleccionados de 2026-C2374 y 29 facetas adicionales de 2026-C2381 (perfil, plazas, actividades, dedicación, estímulo, documentos, criterios, responsable y plazos), cada una con evidencia de documento y página. El corte contiene 98 facetas en 60 expedientes; sigue siendo parcial y **no afirma haber estandarizado el resto de criterios y campos de los 96 expedientes**. `scripts/construir_base_v3.py` exige que las citas y sus SHA/páginas correspondan a fuentes ya guardadas e inserta la interpretación en `v3_indicador_sintetico`, con sus insumos literales en `v3_dato_original` y vínculos `v3_indicador_insumo`. La exportación de visualización v3 ya contempla esas tablas (`indicadores_sinteticos` e `insumos_datos_originales`). No cambia `db/estructura_v3.sql`, no se crean actas A–E y el historial original permanece inalterado.
 
 **Límite documentado:** los registros sin revisión semántica permanecen pendientes. Completar la normalización por categorías y el cotejo visual (y luego A–E) son operaciones distintas.
 ## Visualización de facetas sin certificación
@@ -43,3 +43,30 @@ La IA interpreta el significado y las relaciones de los originales para hacer co
 Las facetas almacenadas en `v3_indicador_sintetico` se muestran ahora como **lectura interpretada por IA, sin cotejo visual**, con enlaces a PDF y página. Se prefiere siempre un dato original semánticamente estructurado cuando exista; si no lo hay, la interfaz muestra la faceta sin presentarla como valor original certificado. El texto preliminar completo permanece consultable por páginas; no se ejecutan extractores ni normalizadores automáticos dentro del navegador.
 
 El avance mínimo se puede filtrar exclusivamente cuando la interpretación contiene `filtro_habilitado=true` y `minimo_pct` inequívoco. Los valores mencionados sin operador aparecen en la ficha, pero no intervienen en ese filtro. Las fechas de cierre contradictorias entre Excel y PDF aparecen en campos separados. Ninguna faceta altera las puertas A–E ni equivale a validación.
+
+
+## Entrega vigente — normalización semántica v2.0 (96 convocatorias)
+
+La interpretación de IA se suministra en **tres lotes independientes** de 36/30/30 códigos, con máximo de 50 por lote y hashes SHA-256 de los JSON íntegros. `data/ia_v3/normalizacion_semantica_v2/{abiertas,cerradas_01,cerradas_02}.json.zlib.b64` es la fuente **derivada**, subordinada al corte original inmutable. No reemplaza PDFs ni Excel.
+
+| Lote | Expedientes | Facetas con evidencias | Observaciones pendientes |
+|---|---:|---:|---:|
+| Abiertas | 36 | 1.119 | 16 |
+| Cerradas 01 | 30 | 966 | 24 |
+| Cerradas 02 | 30 | 1.070 | 24 |
+| **Total** | **96** | **3.155** | **64** |
+
+Se reconocen **73 categorías** documentales, entre ellas tipo de estudiante/actividad, programas, cursos y títulos, porcentaje de avance (límites y operadores inclusivos o exclusivos), requisitos académicos y competencias, herramientas, proyectos, tareas, documentos de postulación, plazas, modalidad, dedicación, estímulo económico, duración, fechas y criterios individuales de ponderación y resultados. **11 menciones de avance tienen el operador no explícito** y no se transforman en restricciones filtrables sin un cotejo adicional.
+
+### Relaciones y límites de comparación
+
+- Un mismo concepto puede funcionar como *requisito de admisión*, *actividad* o *criterio evaluado*. Se conservan las ocurrencias y roles diferenciados junto con el orden y vínculo a la evidencia literal. No convertir una ponderación en umbral de elegibilidad.
+- `v3_indicador_sintetico` almacena cada interpretación con su categoría, rol y valores en `valor_json`; `v3_dato_original` conserva pasajes/celdas comprobables, y `v3_indicador_insumo` enlaza cada faceta con uno o más originales. Las categorías repetidas reciben sufijos de ocurrencia; ninguna sustitución de texto original se permite. **No se alteró `db/estructura_v3.sql`.**
+- El programa **solamente verifica SHA-256, código, URL, página, pasaje y celda** antes de persistir la entrega IA: no ejecuta lectura, OCR ni extracción semántica. La cobertura documental material todavía depende de revisión humana/IA sobre los originales.
+- Los PDF de resultados presentes permiten reconocer metadatos y criterios cuando el texto es localizable, **no** inventar participantes, puntuaciones o selección no cotejados visualmente. `v3_pdf_tabla` y `v3_resultado_fila` siguen vacías por el momento, y no se genera ninguna acta A–E.
+
+### Pendientes visibles, sin conciliación automática
+
+Discrepancias Excel/PDF en cierre: `2026-C2381` (18/11/2026 16:00 vs 19/11/2026 16:00), `2026-C2361` (13/11/2026 11:00 vs 17/11/2026 11:00), `2026-C2295` (09/11/2026 14:00 vs 06/11/2026 14:00). `2026-C2286` contiene modificación de dedicación semanal mediante adenda (10 horas). Resultados `2026-C2312` enlazados con código interno discordante `2026-C2302`; `C2308` y `C2309` requieren cotejo visual. El listado completo de **64 observaciones** permanece en el JSON derivado por lote.
+
+**Alcance exacto:** primera estructuración semántica amplia de 96 expedientes, **no** declaración de haber verificado exhaustivamente cada original ni de haber reconstruido todas las tablas/celdas de resultados. NORMA 00 sigue intacta: **0 validadas A–E**.

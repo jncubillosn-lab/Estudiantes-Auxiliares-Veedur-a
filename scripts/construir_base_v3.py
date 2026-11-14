@@ -24,7 +24,12 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / 'db' / 'estructura_v3.sql'
 PAYLOAD = ROOT / 'data' / 'ia_v3' / 'integrado_96_2026-11-13.json.zlib.b64'
 PDF_MANIFEST = ROOT / 'data' / 'ia_v3' / 'pdf_originales' / 'manifest.json'
-SEMANTICA = ROOT / 'data' / 'ia_v3' / 'normalizacion_semantica_v1.json'
+SEMANTICA_V2 = ROOT / 'data' / 'ia_v3' / 'normalizacion_semantica_v2'
+SEMANTICA_V2_LOTES = {
+    'abiertas': '966ea7e16bed389612000deb3cf0a7b5363b2a36c5f5b4c20e80765d61d85f8f',
+    'cerradas_01': '16e9158f24dfbd2e15cd6b8d8485be7e198e50fd51c26a3347e968c4396b1abd',
+    'cerradas_02': '6b040b4c17c2775a1710f76156b111abdb839e4184f5a643512ec2122bea8c92',
+}
 SHA256_ORIGINAL = 'c62afceaff7b4560025ea9f053136a157e4c669ce7a5fda72a54d25844c9ea2b'
 FUENTE_URL = 'https://docs.google.com/spreadsheets/d/1f3qQNRiNwdFMtLrcBsP-JEgZwLBWmMVcq7QXCLo_Sps/edit?usp=sharing'
 FECHA = '2026-11-13'
@@ -84,65 +89,131 @@ def _texto_comparable(s):
     return re.sub(r'\s*%', '%', s).strip()
 
 
-def guardar_normalizacion_ia(db, archivo=SEMANTICA):
-    '''Almacena interpretación IA como DATO DERIVADO en tablas v3 ya existentes.
+def _cargar_lotes_semanticos_v2():
+    """Recibe SOLO datos interpretados externamente por IA; no extrae ni clasifica PDF."""
+    expedientes=[]
+    conteo_esperado={'facetas_semanticas':0,'expedientes_normalizados':0,
+                     'facetas_ambiguas':0,'pendientes_semanticos':0}
+    for lote,sha_expected in SEMANTICA_V2_LOTES.items():
+        path=SEMANTICA_V2/(lote+'.json.zlib.b64')
+        raw=zlib.decompress(base64.b64decode(''.join(path.read_text(encoding='ascii').split()),validate=True))
+        if hashlib.sha256(raw).hexdigest()!=sha_expected:
+            raise ValueError('NORMA 00: alteración de la entrega IA semántica: '+str(path))
+        doc=json.loads(raw)
+        items=doc.get('expedientes',[])
+        if doc.get('version')!='2.0' or doc.get('lote')!=lote or len(items)>50 or len(items)<1:
+            raise ValueError('Contrato de lote semántico inválido: '+lote)
+        if doc.get('estado_validacion_A_E')!='ningun_expediente_validado':
+            raise ValueError('La normalización no certifica la convocatoria')
+        local=doc['metricas_cobertura_esta_version']
+        if len(items)!=local['expedientes_inventariados'] or sum(len(x['facetas']) for x in items)!=local['facetas_interpretadas']:
+            raise ValueError('Métricas de lote IA semántico no reproducibles: '+lote)
+        if sum(len(x.get('pendientes_interpretacion',[])) for x in items)!=local['pendientes_interpretacion']:
+            raise ValueError('Pendientes semánticos no coinciden: '+lote)
+        expedientes.extend(items)
+        conteo_esperado['facetas_semanticas']+=local['facetas_interpretadas']
+        conteo_esperado['expedientes_normalizados']+=local['expedientes_con_facetas']
+        conteo_esperado['facetas_ambiguas']+=local['facetas_sin_operador']
+        conteo_esperado['pendientes_semanticos']+=local['pendientes_interpretacion']
+    return expedientes,conteo_esperado
 
-    No reinterpreta documentos ni modifica fuentes originales. Cada faceta
-    debe apuntar a una cita hallable en la página y al PDF binario real.
-    '''
-    normal=json.loads(archivo.read_text(encoding='utf-8'))
-    if normal.get('version')!='1.0' or len(normal.get('expedientes',[]))!=96:
-        raise ValueError('Falta corte semántico v1 de 96 códigos')
+
+def guardar_normalizacion_ia(db):
+    """Persistencia semántica v2 en tablas V3 EXISTENTES, sin reextracción automática.
+
+    Para cada faceta exige evidencia exacta, código, fuente y ubicación; no
+    permite incoherencia de URL, hash, página ni celda original. Registros
+    derivados separados, nunca actualiza fuentes ni genera actas A-E.
+    """
+    expedientes,expected=_cargar_lotes_semanticos_v2()
     codes={row[0] for row in db.execute('SELECT numero FROM v3_convocatoria')}
-    normcodes=[x['numero'] for x in normal['expedientes']]
-    if set(normcodes)!=codes or len(set(normcodes))!=96:
-        raise ValueError('Los 96 expedientes semánticos no coinciden con el corte')
-    stats={'facetas_semanticas':0,'expedientes_normalizados':0,'facetas_ambiguas':0}
-    for item in normal['expedientes']:
+    normcodes=[x['numero'] for x in expedientes]
+    if len(normcodes)!=96 or len(set(normcodes))!=96 or set(normcodes)!=codes:
+        raise ValueError('El corte de 96 códigos no corresponde a la semántica v2')
+    stats={'facetas_semanticas':0,'expedientes_normalizados':0,
+           'facetas_ambiguas':0,'pendientes_semanticos':0}
+    roles={'condicion_perfil_habilitante','habilitante','oferta','evaluacion',
+           'plazo','actividad','identificacion','postulacion',
+           'documentacion_obligatoria','documentacion_opcional',
+           'resultado_preliminar','modificacion_adenda','fuente_hoja',
+           'incidencia_documental'}
+    for item in expedientes:
         numero=item['numero']
         if item['facetas']:stats['expedientes_normalizados']+=1
+        stats['pendientes_semanticos']+=len(item.get('pendientes_interpretacion',[]))
+        name_occurrences={}
         for facet in item['facetas']:
             categoria=facet['categoria']
-            origen=facet['evidencias']
-            if not origen or facet['rol'] not in ('condicion_perfil_habilitante','habilitante','oferta','evaluacion','plazo'):
-                raise ValueError(f'{numero}: faceta sin evidencia/rol')
-            val=facet['valor_normalizado']
-            if val.get('filtro_habilitado') is False:stats['facetas_ambiguas']+=1
+            origen=facet.get('evidencias') or []
+            if not origen or facet.get('rol') not in roles:
+                raise ValueError(f'{numero}/{categoria}: faceta sin rol o evidencia')
+            v=facet.get('valor_normalizado')
+            if not isinstance(v,dict):
+                raise ValueError(f'{numero}/{categoria}: estructura no interpretada')
+            if (v.get('operador')=='no_explicito'):
+                stats['facetas_ambiguas']+=1
+            name_occurrences[categoria]=name_occurrences.get(categoria,0)+1
+            # La primera ocurrencia es el nombre canónico: las siguientes
+            # conservan identidad y orden, sin sobrescribir ni fusionar.
+            nombre=(categoria if name_occurrences[categoria]==1 else
+                    categoria+'__'+str(name_occurrences[categoria]).zfill(3))
             indice=db.execute('''INSERT INTO v3_indicador_sintetico
                 (numero,nombre,valor_json,formula,version_formula,fecha_calculo)
                 VALUES(?,?,?,?,?,?)''',
-                (numero,categoria,compact(facet),
-                 'Interpretación semántica explícita de IA vinculada a extractos de PDF; no sustituye el original ni constituye acta A-E',
-                 'IA-normalizacion-1.0',normal['fecha_corte'])).lastrowid
+                (numero,nombre,compact(facet),
+                 'Interpretación documental externa IA v2; derivado no sustituye original ni acredita A-E',
+                 'IA-normalizacion-2.0',FECHA)).lastrowid
             for evidencia in origen:
-                p=db.execute('''SELECT f.fuente_id,p.pagina_id,l.registro_original_json
-                    FROM v3_fuente f JOIN v3_pdf_pagina p ON p.fuente_id=f.fuente_id
-                    JOIN v3_convocatoria_fuente cf ON cf.fuente_id=f.fuente_id
-                    JOIN v3_lectura_pdf_previa l ON l.fuente_id=f.fuente_id AND l.numero=cf.numero
-                    WHERE cf.numero=? AND f.tipo=? AND f.sha256=?
-                      AND f.url_original=? AND p.numero_pagina=?''',
-                    (numero,evidencia['tipo_fuente'],evidencia['sha256_binario'],
-                     evidencia['url_original'],evidencia['numero_pagina'])).fetchone()
-                if p is None:raise ValueError(f'{numero}/{categoria}: PDF/página no existentes')
-                fuente_id,pagina_id,registro=p
-                d=json.loads(registro)
-                pagina=next((page for page in d.get('paginas',[])
-                             if page['numero_pagina']==evidencia['numero_pagina']),None)
-                if pagina is None or _texto_comparable(evidencia['extracto_original']) not in _texto_comparable(pagina['texto_original_orden_lectura_aproximado']):
-                    raise ValueError(f'{numero}/{categoria}: la cita no consta en la página de origen')
-                dato=db.execute('''INSERT INTO v3_dato_original
-                    (numero,fuente_id,codigo_concepto,rotulo_literal,literal_completo,
-                     orden_en_fuente,pagina_id,nota_lectura)
-                    VALUES(?,?,?,?,?,?,?,?)''',
-                    (numero,fuente_id,categoria,'Fragmento literal del PDF asociado a una faceta normalizada',
-                     evidencia['extracto_original'],evidencia['numero_pagina'],pagina_id,
-                     'Cita parcial, no sustituye el texto completo; la interpretación IA reside en v3_indicador_sintetico')).lastrowid
-                db.execute('INSERT INTO v3_indicador_insumo(indicador_id,dato_id) VALUES(?,?)',(indice,dato))
+                tipo=evidencia.get('tipo_fuente')
+                if tipo=='excel':
+                    row=db.execute('''SELECT f.fuente_id,c.celda_id,c.valor_visible_literal,d.dato_id
+                        FROM v3_fuente f JOIN v3_excel_fila r ON r.fuente_id=f.fuente_id
+                        JOIN v3_excel_celda c ON c.fila_id=r.fila_id
+                        JOIN v3_dato_original d ON d.celda_excel_id=c.celda_id AND d.numero=r.numero
+                        WHERE r.numero=? AND f.tipo='excel' AND f.url_original=?
+                          AND r.pestana_literal=? AND r.fila_original=? AND c.columna_original=?''',
+                        (numero,evidencia['url_original'],evidencia['hoja'],
+                         evidencia['fila'],evidencia['columna'])).fetchone()
+                    if row is None:
+                        raise ValueError(f'{numero}/{categoria}: celda Excel de evidencia inexistente')
+                    if literal(row[2])!=evidencia['extracto_original']:
+                        raise ValueError(f'{numero}/{categoria}: cita Excel no coincide con el original')
+                    dato=row[3]  # Reutiliza el dato original INMUTABLE, sin duplicarlo.
+                else:
+                    p=db.execute('''SELECT f.fuente_id,p.pagina_id,l.registro_original_json
+                        FROM v3_fuente f JOIN v3_pdf_pagina p ON p.fuente_id=f.fuente_id
+                        JOIN v3_convocatoria_fuente cf ON cf.fuente_id=f.fuente_id
+                        JOIN v3_lectura_pdf_previa l ON l.fuente_id=f.fuente_id AND l.numero=cf.numero
+                        WHERE cf.numero=? AND f.tipo=? AND f.sha256=?
+                          AND f.url_original=? AND p.numero_pagina=?''',
+                        (numero,tipo,evidencia['sha256_binario'],
+                         evidencia['url_original'],evidencia['numero_pagina'])).fetchone()
+                    if p is None:
+                        raise ValueError(f'{numero}/{categoria}: PDF/cita sin origen verificable')
+                    fuente_id,pagina_id,registro=p
+                    origen_pdf=json.loads(registro)
+                    page=next((z for z in origen_pdf.get('paginas',[])
+                         if z['numero_pagina']==evidencia['numero_pagina']),None)
+                    quote=_texto_comparable(evidencia['extracto_original'])
+                    # Ambas lecturas textuales pertenecen al mismo PDF binario ya
+                    # verificado, pero ninguna equivale a cotejo visual integral.
+                    textos=[_texto_comparable(page.get('texto_original_orden_pdf','')),
+                            _texto_comparable(page.get('texto_original_orden_lectura_aproximado',''))] if page else []
+                    if not quote or not any(quote in text for text in textos):
+                        raise ValueError(f'{numero}/{categoria}: cita ausente en página PDF')
+                    dato=db.execute('''INSERT INTO v3_dato_original
+                        (numero,fuente_id,codigo_concepto,rotulo_literal,literal_completo,
+                         orden_en_fuente,pagina_id,nota_lectura)
+                        VALUES(?,?,?,?,?,?,?,?)''',
+                        (numero,fuente_id,categoria,
+                         'Pasaje literal vinculado a interpretación externa de IA',
+                         evidencia['extracto_original'],evidencia['numero_pagina'],pagina_id,
+                         'Pasaje localizado, no sustituye fuente ni supone cotejo visual de tabla')).lastrowid
+                db.execute('INSERT INTO v3_indicador_insumo(indicador_id,dato_id) VALUES(?,?)',
+                           (indice,dato))
             stats['facetas_semanticas']+=1
-    expected=normal['metricas_cobertura_esta_version']
-    if (stats['facetas_semanticas'],stats['expedientes_normalizados'],stats['facetas_ambiguas']) != (
-        expected['facetas_interpretadas'],expected['expedientes_con_facetas'],expected['facetas_sin_operador']):
-        raise ValueError('Conteo de facetas no corresponde a la entrega de IA')
+    if stats!=expected:
+        raise ValueError('Métricas de normalización v2 difieren de la entrega: '+repr((stats,expected)))
     return stats
 
 def crear_base(salida:Path, payload:Path=PAYLOAD):

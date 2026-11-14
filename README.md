@@ -23,7 +23,7 @@ El corte es **preliminar**; sus textos y coordenadas no equivalen a cotejo visua
 
 ## Estandarización semántica — NORMA 06
 
-La [NORMA 06](docs/NORMA-06-ESTANDARIZACION-SEMANTICA.md) añade interpretación derivada por IA de condiciones de avance, ponderaciones, oferta y relaciones documentales, separada de los originales y trazada a URL, SHA-256 y página. La primera pasada es **parcial**: 59 expedientes con facetas, 69 facetas y 10 menciones con comparador no explícito. Su ausencia no implica ausencia del requisito. Se usan tablas SQL v3 existentes; **0 convocatorias validadas A–E**.
+La [NORMA 06](docs/NORMA-06-ESTANDARIZACION-SEMANTICA.md) establece una capa **derivada y trazable de interpretación por IA**, independiente de los originales. La **entrega semántica v2** aporta **3.155 facetas en los 96 expedientes** para perfil, avance, actividades, oferta, documentación, plazos, evaluación y estructura de resultados; conserva **64 observaciones pendientes**, incluidas **11 menciones de avance con operador no inequívoco**. Cada faceta enlaza a su fuente PDF (SHA-256/página/pasaje) o celda Excel. El constructor comprueba las referencias, pero **no interpreta ni coteja por sí mismo los PDF**. Se usan las tablas SQL v3 existentes; **0 convocatorias validadas A–E**.
 
 ## Construcción reproducible y sin contaminación histórica
 
@@ -45,7 +45,7 @@ El constructor no sobrescribe archivos existentes. La exportación desde SQLite 
 
 La página principal mantiene **filtros superiores**, una **barra lateral con convocatorias filtradas** y una **ficha técnica amplia** que se actualiza al seleccionar otra convocatoria sin cambiar de página. La ficha tiene categorías estables para identificación, perfil, requisitos, condiciones, selección, responsables y resultados. **Todos los campos previstos aparecen incluso si están vacíos**, usando «Sin dato»; la tabla de resultados conserva su encabezado cuando aún no hay registros estructurados, sin interpretar esa ausencia como falta de publicación. Los originales, variantes y controles de validación permanecen disponibles para veeduría mediante desplegables técnicos. Los números de fecha de Excel se presentan como fechas legibles sin modificar sus literales.
 
-La ficha ya consulta las **98 facetas semánticas derivadas por IA presentes en 60 expedientes**, incluida una lectura parcial de 2026-C2381, con evidencias enlazadas y estado no cotejado. El navegador no interpreta PDFs: expone las facetas persistidas y muestra, adicionalmente, la transcripción preliminar por página para que el contenido capturado no quede oculto. **No equivale a normalización exhaustiva.**
+La ficha consulta las **3.155 facetas derivadas de IA presentes en los 96 expedientes**, incluido 2026-C2381, con evidencias enlazadas y estado no cotejado. El navegador no interpreta PDFs: expone las facetas persistidas y muestra, adicionalmente, la transcripción preliminar por página para que el contenido capturado no quede oculto. **No equivale a normalización exhaustiva.**
 
 La base actual **todavía no tiene tablas de participantes y puntajes reconstruidas** en `resultados_estructurados[]`; los PDF con texto preliminar no se convierten en puntajes supuestamente cotejados. [Especificación de diseño y límites](docs/INTERFAZ-V3-JERARQUIA-DE-LECTURA.md).
 

@@ -16,9 +16,16 @@ with tempfile.TemporaryDirectory() as t:
     assert db.execute("SELECT COUNT(*) FROM v3_excel_fila WHERE numero='2026-C2324'").fetchone()[0]==2
     assert db.execute('SELECT COUNT(*) FROM v3_pdf_pagina WHERE cotejo_visual="completo"').fetchone()[0]==0
     assert db.execute('SELECT COUNT(*) FROM v3_fuente WHERE binario_original IS NOT NULL').fetchone()[0]==121
-    assert db.execute('SELECT COUNT(*) FROM v3_indicador_sintetico').fetchone()[0]==98
-    assert db.execute('SELECT COUNT(*) FROM v3_indicador_insumo').fetchone()[0]==105
+    assert db.execute('SELECT COUNT(*) FROM v3_indicador_sintetico').fetchone()[0]==3155
+    assert db.execute('SELECT COUNT(*) FROM v3_indicador_insumo').fetchone()[0]>=3155
     assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE numero='2026-C2297' AND nombre='perfil.avance_plan_estudios'").fetchone()[0]==1
+    assert db.execute("SELECT COUNT(DISTINCT numero) FROM v3_indicador_sintetico WHERE version_formula='IA-normalizacion-2.0'").fetchone()[0]==96
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre LIKE 'oferta.estimulo_mensual%'").fetchone()[0]==96
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre LIKE 'evaluacion.criterio_1%'").fetchone()[0]>=90
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre='cotejo.variacion_fecha_cierre_entre_fuentes'").fetchone()[0]==3
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE nombre='resultados.estructura_tabla_documental'").fetchone()[0]==24
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE version_formula='IA-normalizacion-1.0'").fetchone()[0]==0
+    assert db.execute("SELECT COUNT(*) FROM v3_indicador_sintetico WHERE json_extract(valor_json,'$.valor_normalizado.operador')='no_explicito'").fetchone()[0]==11
     assert db.execute('SELECT COUNT(*) FROM v3_acta_validacion').fetchone()[0]==0
     assert db.execute('SELECT COUNT(*) FROM v3_incidencia').fetchone()[0]>=40
     assert db.execute('SELECT COUNT(*) FROM v3_pdf_tabla').fetchone()[0]==0
@@ -26,6 +33,8 @@ with tempfile.TemporaryDirectory() as t:
     assert db.execute('SELECT COUNT(*) FROM v3_entrega_ia WHERE estado_importacion="pendiente_cotejo"').fetchone()[0]==96
     b=db.execute('SELECT contenido_literal_json FROM v3_captura_lote').fetchone()[0].encode()
     assert b==raw
+    assert s['facetas_semanticas']==3155 and s['expedientes_normalizados']==96
+    assert s['facetas_ambiguas']==11 and s['pendientes_semanticos']==64
     assert set(json.loads(b)['datos_originales'][i]['expediente']['numero'] for i in range(96)) == set(x[0] for x in db.execute('SELECT numero FROM v3_convocatoria'))
     assert db.execute('PRAGMA foreign_key_check').fetchall()==[]
     assert db.execute('PRAGMA integrity_check').fetchone()[0]=='ok'

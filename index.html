@@ -359,9 +359,12 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
     const requestedMin=minInput===""?null:Number(minInput);
     const faculty=$("faculty").value,level=$("level").value,state=$("state").value,results=$("results").value;
     return allRows.filter(row=>{
-      const text=clean([row.item.numero,row.title,row.faculty,row.program,row.level,row.state,display(row.item,"email")].join(" "));
+      const semanticText=(row.item.indicadores_sinteticos||[])
+        .filter(i=>i.version_formula==="IA-normalizacion-1.0")
+        .map(i=>[i.nombre,facetText(i),...(i.valor?.evidencias||[]).map(e=>e.extracto_original||"")].join(" ")).join(" ");
+      const text=clean([row.item.numero,row.title,row.faculty,row.program,row.level,row.state,display(row.item,"email"),semanticText].join(" "));
       if(q&&!text.includes(q))return false;
-      if(p&&!clean(row.program).includes(p)&&!clean(display(row.item,"profile")).includes(p))return false;
+      if(p&&!clean(row.program).includes(p)&&!clean(display(row.item,"profile")).includes(p)&&!clean(semanticText).includes(p))return false;
       if(faculty && !uniqueTexts(row.item,"faculty").includes(faculty))return false;
       if(level && !uniqueTexts(row.item,"level").includes(level))return false;
       if(state && !uniqueTexts(row.item,"state").includes(state))return false;
@@ -625,6 +628,25 @@ details.archive[open]>summary{border-bottom:1px solid var(--border)}
       item.append(list);s.append(item);
     });
     grid.append(s);
+
+    // Facetas adicionales del contrato: nunca ocultar categorías nuevas
+    // solo porque el diseño de ficha todavía no tenga un campo dedicado.
+    const isKnownFacet=name=>{
+      if(Object.values(facetCategories).some(codes=>codes.some(code=>code.endsWith(".")?name.startsWith(code):name===code)))return true;
+      return ["perfil.competencia."].some(prefix=>name.startsWith(prefix));
+    };
+    const extras=(c.indicadores_sinteticos||[]).filter(i=>i.version_formula==="IA-normalizacion-1.0"&&!isKnownFacet(i.nombre));
+    if(extras.length){
+      s=block("Otros campos interpretados por IA","blue");
+      s.classList.add("wide");
+      s.append(make("p","facet-disclaimer","Datos adicionales presentes en la base, sin sección fija todavía. Interpretación preliminar y fuente enlazada."));
+      const dl=make("dl","properties");
+      extras.forEach(i=>{
+        const dt=make("dt","",i.nombre.replace(/[._]/g," ")),dd=make("dd");
+        dd.append(make("div","facet-value",facetText(i)),evidenceLink(i));dl.append(dt,dd);
+      });
+      s.append(dl);grid.append(s);
+    }
 
     s=block("Lectura documental preliminar por páginas","blue");
     s.classList.add("wide");

@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'index.html'
+      - 'assets/visor-ideal-v3.css'
+      - 'assets/visor-ideal-v3.js'
       - 'data/ia_v3/**'
       - 'db/estructura_v3.sql'
       - 'scripts/construir_base_v3.py'
@@ -27,16 +29,13 @@ jobs:
         run: python scripts/probar_exportacion_v3.py
       - name: Construir SQLite temporal desde el nuevo payload IA
         run: python scripts/construir_base_v3.py --salida "${RUNNER_TEMP}/convocatorias_v3.sqlite"
-      - name: Validar sintaxis de la interfaz
+      - name: Validar interfaz externa y sus dependencias
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          m=re.search(r'<script>(.*?)</script>',Path('index.html').read_text(encoding='utf-8'),re.S)
-          assert m, 'Falta script de la interfaz'
-          Path('/tmp/visor-v3.js').write_text(m.group(1),encoding='utf-8')
-          PY
-          node --check /tmp/visor-v3.js
+          test -s assets/visor-ideal-v3.css
+          test -s assets/visor-ideal-v3.js
+          grep -Fq 'assets/visor-ideal-v3.css' index.html
+          grep -Fq 'assets/visor-ideal-v3.js' index.html
+          node --check assets/visor-ideal-v3.js
       - name: Proyectar único JSON de lectura
         run: |
           python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida "${RUNNER_TEMP}/expedientes_v3.json"

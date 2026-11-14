@@ -10,6 +10,8 @@ on:
       - 'db/estructura_v3.sql'
       - 'scripts/construir_base_v3.py'
       - 'scripts/exportar_base_v3.py'
+      - 'scripts/proyectar_visor_v3.py'
+      - 'scripts/probar_visor_v3.py'
       - 'scripts/probar_exportacion_v3.py'
       - '.github/workflows/publicar_visor_v3.yml'
   workflow_dispatch:
@@ -27,6 +29,8 @@ jobs:
           python-version: '3.12'
       - name: Verificar salida v3 sin validar expedientes pendientes
         run: python scripts/probar_exportacion_v3.py
+      - name: Probar contrato y proyección ligera del visor
+        run: python scripts/probar_visor_v3.py
       - name: Construir SQLite temporal desde el nuevo payload IA
         run: python scripts/construir_base_v3.py --salida "${RUNNER_TEMP}/convocatorias_v3.sqlite"
       - name: Validar interfaz externa y sus dependencias
@@ -40,6 +44,8 @@ jobs:
         run: |
           python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida "${RUNNER_TEMP}/expedientes_v3.json"
           cp "${RUNNER_TEMP}/expedientes_v3.json" data/expedientes_v3.json
+          python scripts/proyectar_visor_v3.py --entrada "${RUNNER_TEMP}/expedientes_v3.json" --salida "${RUNNER_TEMP}/visor_v3.json"
+          cp "${RUNNER_TEMP}/visor_v3.json" data/visor_v3.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -48,12 +54,25 @@ jobs:
           assert len(p['convocatorias'])==p['metricas']['convocatorias_identificadas']==96
           assert p['metricas']['convocatorias_validadas']==0
           assert sum(c['validada'] for c in p['convocatorias'])==0
+          compact=json.loads(Path('data/visor_v3.json').read_text(encoding='utf-8'))
+          assert compact['version_contrato']=='3.0'
+          assert len(compact['convocatorias'])==len(p['convocatorias'])
+          assert len(compact['convocatorias'][0]['indicadores_sinteticos'])==len(p['convocatorias'][0]['indicadores_sinteticos'])
+          assert Path('data/visor_v3.json').stat().st_size < Path('data/expedientes_v3.json').stat().st_size
+          assert all(
+              c['datos_originales']==k['datos_originales'] and
+              c['listas_originales']==k['listas_originales'] and
+              c['resultados_estructurados']==k['resultados_estructurados'] and
+              c['indicadores_sinteticos']==k['indicadores_sinteticos'] and
+              c['control_validacion']==k['control_validacion']
+              for c,k in zip(p['convocatorias'], compact['convocatorias'])
+          )
           PY
       - name: Actualizar solo proyección de consulta
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- data/expedientes_v3.json
+          git add -- data/expedientes_v3.json data/visor_v3.json
           if ! git diff --cached --quiet; then
             git commit -m "datos: proyectar 96 expedientes preliminares desde SQLite v3"
             git push origin HEAD:main

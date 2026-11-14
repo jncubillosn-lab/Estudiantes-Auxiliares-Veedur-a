@@ -50,7 +50,7 @@ def projection(doc: dict) -> dict:
             previous = source.get("pdf_lectura_previa")
             f["pdf_lectura_previa"] = None
             if isinstance(previous, dict):
-                pages = previous.get("datos_textuales_originales", {}).get("paginas", [])
+                pages = (previous.get("datos_textuales_originales") or {}).get("paginas", [])
                 f["pdf_lectura_previa"] = {
                     "estado": previous.get("estado"),
                     "nota": previous.get("nota"),

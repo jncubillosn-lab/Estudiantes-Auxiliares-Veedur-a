@@ -69,3 +69,16 @@ La ficha prioriza datos originales estructurados. Cuando un campo aún no existe
 - **Fidelidad:** no se sintetizan resultados desde texto plano histórico ni se altera el contrato de la base. Las fuentes, las lecturas originales y los controles A–E continúan disponibles en desplegables de trazabilidad.
 - **Filtro actual:** se conservan filtros ya implementados (texto, carrera/perfil, facultad, nivel, estado y vínculo PDF). Los campos todavía no estructurados no se convierten en falsos filtros de valores numéricos.
 - **Implementación:** `index.html`, sin modificación de `db/estructura_v3.sql` ni `scripts/exportar_base_v3.py`.
+
+## Corrección de conexión entre datos y ficha · 13 de noviembre de 2026
+
+La ficha anterior mostraba «Sin dato» para condiciones cuya lectura estaba conservada en `fuentes_originales[].pdf_lectura_previa` o ya había sido normalizada por IA en `v3_indicador_sintetico`. No era una ausencia del documento original, sino una desconexión de presentación.
+
+- `index.html` interpreta para **presentación** las facetas previamente entregadas por IA y proyectadas como `indicadores_sinteticos[]`; no ejecuta extracción semántica del PDF.
+- Se muestran valores, categorías y evidencia URL/página con la marca «Lectura IA · sin cotejo visual», sin confundirlos con datos cotejados ni alterar originales.
+- Los campos esperados siguen mostrando «Sin dato» cuando **no existe un dato estructurado o una faceta asociada**; no se interpreta esto como ausencia del documento.
+- Las listas de actividades, requisitos/documentos y criterios representan todos los ítems semánticos entregados. Los criterios no se reemplazan únicamente por totales.
+- El buscador general ahora considera los textos de las facetas IA y las citas documentales asociadas. Las categorías no reconocidas se exponen en «Otros campos interpretados por IA» en lugar de ocultarse.
+- «Lectura documental preliminar por páginas» pone a disposición la transcripción de PDF en la ficha, con advertencias de sus limitaciones y sin convertirla automáticamente en datos comparables.
+- Caso de control: `2026-C2381`, con facetas de plazas, perfil, actividades, horas, estímulo, modalidad, duración, cinco criterios, contacto y fechas documentales (incluida discrepancia Excel/PDF).
+- **Cobertura todavía parcial:** 98 facetas en 60 de 96 expedientes según el corte semántico actual; 0 expedientes validados por NORMA 00. La normalización de las restantes características y de los otros expedientes continúa pendiente; no confundir mejora de exposición con extracción completada.

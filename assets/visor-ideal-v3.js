@@ -80,8 +80,8 @@ const lists={
 const sectionsDef=[
  ["identificacion","Identificación general"],["perfil","Perfil y requisitos"],["actividades","Actividades a desarrollar"],["vinculacion","Condiciones de vinculación"],["postulacion","Postulación y documentación"],["seleccion","Proceso de selección"],["criterios","Criterios de evaluación"],["resultados","Resultados de selección"],["responsables","Responsables"],["fuentes","Fuentes y trazabilidad"]
 ];
-let base=null,rows=[],selected=null,compared=new Set(),mode="detail",shown=[];
-const cache=new WeakMap();
+let base=null,rows=[],selected=null,compared=new Set(),mode="detail",shown=[],schemaMode=false;
+const EMPTY_CASE={numero:"Sin expediente",validada:false,estado_validacion:"sin_datos",datos_originales:[],listas_originales:[],fuentes_originales:[],resultados_estructurados:[],indicadores_sinteticos:[],control_validacion:{puertas:[],comprobaciones_resultados:[],incidencias:[],actas:[]}};
 function originalFor(c,key){
  const aliases=arr(config[key]?.raw).map(norm), out=[];
  if(!aliases.length)return out;
@@ -316,11 +316,12 @@ function metaPanel(c){
  archive("Abrir facetas IA derivadas con evidencias",c.indicadores_sinteticos);
  return s;
 }
-function buildCase(c){
+function buildCase(c,empty=false){
  const host=$("mainview");host.replaceChildren();
+ if(empty)host.append(el("div","schema-banner","Vista del esquema completo, sin expediente seleccionado. Ningún campo contiene valores inventados."));
  const head=el("header","case-header"),status=el("div","head-meta");
- status.append(el("span","case-number",c.numero),el("span","pill",primary(c,"state")||"Sin estado publicado"),el("span","pill "+(c.validada?"ok":"warn"),c.validada?"Validada":"Sin validación integral"));
- head.append(status,el("h2",null,primary(c,"title")||"Título sin dato"),el("p","case-desc",[primary(c,"faculty"),primary(c,"program")].filter(present).join(" · ")||"Facultad y programa sin dato"));
+ status.append(el("span","case-number",empty?"ESTRUCTURA DE REFERENCIA":c.numero),el("span","pill",empty?"Sin datos":primary(c,"state")||"Sin estado publicado"),el("span","pill "+(c.validada?"ok":"warn"),empty?"Solo esquema":c.validada?"Validada":"Sin validación integral"));
+ head.append(status,el("h2",null,empty?"Ficha completa de convocatoria":primary(c,"title")||"Título sin dato"),el("p","case-desc",empty?"Los diez apartados se muestran aunque no haya información disponible.":([primary(c,"faculty"),primary(c,"program")].filter(present).join(" · ")||"Facultad y programa sin dato")));
  head.append(docLinks(c));host.append(head);
  const jumps=el("nav","jumpbar");jumps.setAttribute("aria-label","Apartados de la ficha");
  for(const [id,title] of sectionsDef){const b=el("button",null,title);b.type="button";b.addEventListener("click",()=>{$("sec-"+id)?.scrollIntoView({block:"start",behavior:"smooth"})});jumps.append(b)}host.append(jumps);
@@ -461,7 +462,7 @@ function drawList(){
   const btn=el("button","case-btn"),head=el("div","case-top");
   btn.type="button";head.append(el("span","case-code",r.number),el("span","case-status",r.state||"Sin dato"));
   btn.append(head,el("div","case-title",r.title||"Título sin dato"),el("div","case-meta",[r.faculty,r.program].filter(present).join(" · ")||"Facultad/programa sin dato"),el("div","case-meta","Cierre: "+(excelDate(r.close)||"Sin dato")));
-  btn.addEventListener("click",()=>{selected=r.number;mode="detail";drawList();renderMain();$("mainview").scrollTop=0});
+  btn.addEventListener("click",()=>{selected=r.number;mode="detail";schemaMode=false;drawList();renderMain();$("mainview").scrollTop=0});
   const check=el("input","case-check");check.type="checkbox";check.setAttribute("aria-label","Añadir "+r.number+" a la comparación");check.checked=compared.has(r.number);check.disabled=!check.checked&&compared.size>=4;
   check.addEventListener("change",()=>{if(check.checked&&compared.size<4)compared.add(r.number);else if(!check.checked)compared.delete(r.number);drawList();updateCompareButton()});
   item.append(btn,check);fragment.append(item);
@@ -500,13 +501,21 @@ function compareView(){
  table.append(body);wrap.append(table);panel.append(wrap);host.append(panel);
 }
 function renderMain(){
- if(mode==="compare"&&compared.size>=2)compareView();
+ if(schemaMode)buildCase(EMPTY_CASE,true);
+ else if(mode==="compare"&&compared.size>=2)compareView();
  else{
   mode="detail";
   const row=rows.find(x=>x.number===selected);
-  if(row)buildCase(row.item);else $("mainview").replaceChildren(el("div","notice","Seleccione una convocatoria de la lista."));
+  if(row)buildCase(row.item);
+  else{
+   buildCase(EMPTY_CASE,true);
+   if(base)$("mainview").prepend(el("div","notice","No hay coincidencias con los filtros actuales. La estructura permanece visible."));
+  }
  }
  updateCompareButton();
+ const toggle=$("schemaToggle");
+ toggle.textContent=schemaMode?"Volver a los expedientes":"Ver estructura vacía";
+ toggle.setAttribute("aria-pressed",String(schemaMode));
 }
 function filterAll(){
  shown=rows.filter(passes);
@@ -519,8 +528,21 @@ function clearFilters(){
  for(const id of ["search","faculty","program","level","state","results","modality","activityType","seedbed","missing","validated","placesMin","placesMax","hoursMin","hoursMax","stipendMin","stipendMax","advanceMin","papaMin","criteriaMin","start","end"])$(id).value="";
  filterAll();
 }
-function setError(message){$("filter-summary").textContent=message;$("mainview").replaceChildren(el("div","notice",message));$("case-list").replaceChildren()}
+function setError(message){
+ $("filter-summary").textContent=message;
+ buildCase(EMPTY_CASE,true);
+ $("mainview").prepend(el("div","notice",message));
+ $("case-list").replaceChildren(el("div","empty-state","No se han cargado expedientes. Los filtros estarán disponibles cuando exista información."));
+ $("schemaToggle").textContent="Ver estructura vacía";
+}
 async function start(){
+ schemaMode=new URL(location.href).searchParams.get("esquema")==="1";
+ $("schemaToggle").addEventListener("click",()=>{schemaMode=!schemaMode;mode="detail";renderMain()});
+ for(const field of document.querySelectorAll("[data-filter]"))field.addEventListener(field.tagName==="SELECT"?"change":"input",filterAll);
+ $("reset").addEventListener("click",clearFilters);
+ $("compare").addEventListener("click",()=>{if(compared.size<2)return;schemaMode=false;mode="compare";renderMain()});
+ $("show-detail").addEventListener("click",()=>{schemaMode=false;mode="detail";renderMain()});
+ buildCase(EMPTY_CASE,true);
  try{
   const resp=await fetch(DATA_URL,{cache:"no-store"});if(!resp.ok)throw Error("HTTP "+resp.status);
   const data=await resp.json();
@@ -534,10 +556,6 @@ async function start(){
   for(const [id,key] of [["faculty","faculty"],["level","level"],["state","state"],["modality","modality"],["activityType","activityType"]])choices(id,key);
   const url=new URL(location.href),asked=url.searchParams.get("convocatoria");
   selected=rows.some(x=>x.number===asked)?asked:rows[0]?.number||null;
-  for(const field of document.querySelectorAll("[data-filter]"))field.addEventListener(field.tagName==="SELECT"?"change":"input",filterAll);
-  $("reset").addEventListener("click",clearFilters);
-  $("compare").addEventListener("click",()=>{if(compared.size<2)return;mode="compare";renderMain()});
-  $("show-detail").addEventListener("click",()=>{mode="detail";renderMain()});
   const meta=el("details","archive"),summary=el("summary",null,"Métricas y capturas originales de la exportación V3"),pre=el("pre");
   meta.append(summary,pre);meta.addEventListener("toggle",()=>{if(meta.open&&!pre.dataset.ready){pre.textContent=JSON.stringify({metricas:base.metricas,capturas_originales:base.capturas_originales,advertencias:base.advertencias},null,2);pre.dataset.ready="true"}});$("global-meta").append(meta);
   filterAll();

@@ -1,6 +1,6 @@
 "use strict";
 (()=>{
-const DATA_URL="./data/expedientes_v3.json";
+const DATA_URL="./data/visor_v3.json";
 const $=id=>document.getElementById(id);
 const el=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined&&txt!==null)n.textContent=String(txt);return n;};
 const arr=x=>Array.isArray(x)?x:[];

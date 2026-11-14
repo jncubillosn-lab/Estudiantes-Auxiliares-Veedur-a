@@ -6,6 +6,7 @@ on:
       - 'index.html'
       - 'assets/visor-ideal-v3.css'
       - 'assets/visor-ideal-v3.js'
+      - 'scripts/probar_interfaz_v3.cjs'
       - 'data/ia_v3/**'
       - 'db/estructura_v3.sql'
       - 'scripts/construir_base_v3.py'
@@ -40,6 +41,7 @@ jobs:
           grep -Fq 'assets/visor-ideal-v3.css' index.html
           grep -Fq 'assets/visor-ideal-v3.js' index.html
           node --check assets/visor-ideal-v3.js
+          node scripts/probar_interfaz_v3.cjs
       - name: Proyectar único JSON de lectura
         run: |
           python scripts/exportar_base_v3.py --db "${RUNNER_TEMP}/convocatorias_v3.sqlite" --salida "${RUNNER_TEMP}/expedientes_v3.json"

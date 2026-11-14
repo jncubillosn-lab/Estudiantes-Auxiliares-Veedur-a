@@ -16,6 +16,9 @@ on:
       - 'scripts/probar_exportacion_v3.py'
       - '.github/workflows/publicar_visor_v3.yml'
   workflow_dispatch:
+concurrency:
+  group: publicar-v3-main
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -77,5 +80,19 @@ jobs:
           git add -- data/expedientes_v3.json data/visor_v3.json
           if ! git diff --cached --quiet; then
             git commit -m "datos: proyectar 96 expedientes preliminares desde SQLite v3"
-            git push origin HEAD:main
+            for intento in 1 2 3 4; do
+              git fetch origin main
+              # Evitar que una ejecución antigua sobrescriba una extracción posterior.
+              if ! git diff --quiet HEAD origin/main -- data/ia_v3 db/estructura_v3.sql scripts/construir_base_v3.py scripts/exportar_base_v3.py; then
+                echo "La fuente cambió desde este corte: una ejecución nueva generará el JSON."
+                exit 0
+              fi
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep 2
+            done
+            echo "No se pudo publicar la proyección luego de cuatro intentos"
+            exit 1
           fi

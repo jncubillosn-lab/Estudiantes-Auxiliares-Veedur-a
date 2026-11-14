@@ -184,7 +184,11 @@ function row(label,vs){
 }
 function facts(c,fields){
  const wrap=el("div","rows");
- for(const [key,label] of fields)wrap.append(row(label,values(c,key)));
+ for(const [key,label] of fields){
+  const vals=values(c,key);
+  const shown=(key==="close"||key==="publish")?vals.map(x=>({...x,text:excelDate(x.text)||x.text})):vals;
+  wrap.append(row(label,shown));
+ }
  return wrap;
 }
 function section(id,title,num,wide=false){
@@ -362,6 +366,7 @@ function numeric(c,key,kind){
   if(v&&typeof v.valor==="number"&&Number.isFinite(v.valor))return v.valor;
   if(key==="advance"&&v&&v.filtro_habilitado!==false&&typeof v.minimo_pct==="number")return v.minimo_pct;
   let string=String(x.text);
+  if(key==="papa"&&!/(?:≥|>=|igual o superior|mayor o igual|al menos|mínimo|minimo)/i.test(string))continue;
   if(key==="stipend")string=string.replace(/\.(?=\d{3}(?:\D|$))/g,"").replace(/,(?=\d{3}(?:\D|$))/g,"");
   const match=string.match(/-?\d+(?:[.,]\d+)?/);
   if(match)return Number(match[0].replace(",","."));

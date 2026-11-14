@@ -56,6 +56,10 @@ Cuando la IA registre nuevas fuentes, se debe respetar el contrato estructural v
 - **Campos pendientes de filtrado:** el porcentaje de avance, las horas, el estímulo y los puntajes no se convierten en filtros cuantitativos hasta que existan en los datos originales estructurados. Un renglón preliminar no es una extracción confiable de esos valores.
 - **Rendimiento:** las páginas, celdas y lecturas extensas del expediente se construyen visualmente solo cuando se despliega el detalle técnico, sin ocultar ni descartar información.
 
+## Uso de lectura semántica ya existente · 13 de noviembre de 2026
+
+La ficha prioriza datos originales estructurados. Cuando un campo aún no existe como original semántico, usa las interpretaciones producidas por IA, incluidas en `indicadores_sinteticos[]` como **capa derivada explícita**, con `evidencias` de fuente y página y aviso «Lectura IA · sin cotejo visual». Se muestran los 58 porcentajes de avance interpretados y la ficha parcial trazable de `2026-C2381`; el filtro «Avance mínimo exigido desde (%)» solo admite facetas con `minimo_pct` y `filtro_habilitado=true`. No interpreta textos de PDF en el navegador. Adicionalmente, la captura textual preliminar se puede leer por página en un panel documental, sin alterar valores ni convertirlo en cotejo visual.
+
 ## Diseño de ficha persistente y espacios vacíos · 13 de noviembre de 2026
 
 - **Distribución:** filtros superiores fijos en el flujo de página; barra lateral compacta y desplazable con convocatoria, código, estado, facultad/programa y fecha de cierre; ficha principal amplia y desplazable, con dos columnas de tarjetas en escritorio y adaptación a móviles.

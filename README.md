@@ -45,6 +45,8 @@ El constructor no sobrescribe archivos existentes. La exportación desde SQLite 
 
 La página principal mantiene **filtros superiores**, una **barra lateral con convocatorias filtradas** y una **ficha técnica amplia** que se actualiza al seleccionar otra convocatoria sin cambiar de página. La ficha tiene categorías estables para identificación, perfil, requisitos, condiciones, selección, responsables y resultados. **Todos los campos previstos aparecen incluso si están vacíos**, usando «Sin dato»; la tabla de resultados conserva su encabezado cuando aún no hay registros estructurados, sin interpretar esa ausencia como falta de publicación. Los originales, variantes y controles de validación permanecen disponibles para veeduría mediante desplegables técnicos. Los números de fecha de Excel se presentan como fechas legibles sin modificar sus literales.
 
+La ficha ya consulta las **98 facetas semánticas derivadas por IA presentes en 60 expedientes**, incluida una lectura parcial de 2026-C2381, con evidencias enlazadas y estado no cotejado. El navegador no interpreta PDFs: expone las facetas persistidas y muestra, adicionalmente, la transcripción preliminar por página para que el contenido capturado no quede oculto. **No equivale a normalización exhaustiva.**
+
 La base actual **todavía no tiene tablas de participantes y puntajes reconstruidas** en `resultados_estructurados[]`; los PDF con texto preliminar no se convierten en puntajes supuestamente cotejados. [Especificación de diseño y límites](docs/INTERFAZ-V3-JERARQUIA-DE-LECTURA.md).
 
 ## Contratos vigentes

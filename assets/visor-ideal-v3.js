@@ -279,7 +279,7 @@ function metaPanel(c){
  for(const f of arr(c.fuentes_originales)){
   const row=el("div","source-row"),lab=el("div");
   lab.append(el("div","source-name",f.nombre_literal||f.tipo||"Fuente sin título"));
-  lab.append(el("div","source-meta",[f.tipo, f.sha256_pdf_nativo?"SHA-256 disponible":"sin hash",f.paginas_cotejadas+" páginas cotejadas"].join(" · ")));
+  lab.append(el("div","source-meta",[f.tipo, f.sha256_pdf_nativo?"SHA-256 disponible":"sin hash",Number.isFinite(f.paginas_cotejadas)?f.paginas_cotejadas+" páginas cotejadas":"Cotejo sin dato"].join(" · ")));
   row.append(lab);
   if(safeURL(f.url_original)){const a=el("a","doclink","Abrir");a.href=f.url_original;a.target="_blank";a.rel="noopener noreferrer";row.append(a)}
   lst.append(row);

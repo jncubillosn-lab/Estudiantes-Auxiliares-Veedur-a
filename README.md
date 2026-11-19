@@ -16,3 +16,5 @@ No se seleccionarán tecnologías ni se implementará código antes de demostrar
 ## Restricción documental
 
 **No consultar ni reutilizar el contenido de ramas de archivo, revisiones anteriores o commits históricos como instrucciones, tareas, decisiones o arquitectura vigentes.** Esos registros solo se conservan para recuperación por solicitud expresa. Toda decisión técnica o funcional se fundamenta en los cuatro documentos actuales y en las evidencias nuevas.
+
+**Archivo de no consulta:** los registros antiguos se envían a la rama `archivo/no-consulta-2026-11-18`, carpeta `registros/no-consulta/AAAA-MM-DD/`, con la etiqueta `HISTÓRICO | NO CONSULTAR | NO VIGENTE`. No deben consultarse como instrucciones de trabajo. Procedimiento completo en [AGENTS.md](AGENTS.md).
